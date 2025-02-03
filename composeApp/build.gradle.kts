@@ -1,0 +1,154 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Pkg
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+import java.util.UUID
+
+plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
+}
+
+kotlin {
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_18)
+        }
+    }
+    
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "Refy"
+            isStatic = true
+        }
+    }
+    
+    jvm("desktop") {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_18)
+        }
+    }
+    
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        moduleName = "composeApp"
+        browser {
+            val rootDirPath = project.rootDir.path
+            val projectDirPath = project.projectDir.path
+            commonWebpackConfig {
+                outputFileName = "Refy.js"
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    static = (static ?: mutableListOf()).apply {
+                        // Serve sources to debug inside browser
+                        add(rootDirPath)
+                        add(projectDirPath)
+                    }
+                }
+            }
+        }
+        binaries.executable()
+    }
+    
+    sourceSets {
+        val desktopMain by getting
+        
+        androidMain.dependencies {
+            implementation(compose.preview)
+            implementation(libs.androidx.activity.compose)
+        }
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.runtime.compose)
+        }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
+        }
+    }
+}
+
+android {
+    namespace = "com.tecknobit.refy"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+    defaultConfig {
+        applicationId = "com.tecknobit.refy"
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = 2
+        versionName = "1.0.1"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
+    }
+}
+
+dependencies {
+    debugImplementation(compose.uiTooling)
+}
+
+compose.desktop {
+    application {
+        mainClass = "com.tecknobit.refy.MainKt"
+        nativeDistributions {
+            targetFormats(Deb, Pkg, Exe)
+            modules(
+                "java.compiler", "java.instrument", "java.management", "java.naming", "java.net.http", "java.prefs",
+                "java.rmi", "java.scripting", "java.security.jgss", "java.sql", "jdk.jfr", "jdk.unsupported",
+                "jdk.security.auth"
+            )
+            packageName = "Refy"
+            packageVersion = "1.0.1"
+            version = "1.0.1"
+            description = "References collector and custom links generator"
+            copyright = "© 2025 Tecknobit"
+            vendor = "Tecknobit"
+            licenseFile.set(project.file("LICENSE"))
+            macOS {
+                iconFile.set(project.file("src/desktopMain/resources/logo.icns"))
+                bundleID = "com.tecknobit.refy"
+            }
+            windows {
+                iconFile.set(project.file("src/desktopMain/resources/logo.ico"))
+                upgradeUuid = UUID.randomUUID().toString()
+            }
+            linux {
+                iconFile.set(project.file("src/desktopMain/resources/logo.png"))
+                packageName = "com-tecknobit-refy"
+                debMaintainer = "infotecknobitcompany@gmail.com"
+                appRelease = "1.0.1"
+                appCategory = "PERSONALIZATION"
+                rpmLicenseType = "MIT"
+            }
+            buildTypes.release.proguard {
+                configurationFiles.from(project.file("compose-desktop.pro"))
+                obfuscate.set(true)
+            }
+        }
+    }
+}
