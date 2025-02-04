@@ -2,6 +2,10 @@
 
 package com.tecknobit.refy.ui.screens.home.presenter
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,9 +42,12 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.icons.Link45deg
 import com.tecknobit.refy.ui.icons.TempPreferencesCustom
+import com.tecknobit.refy.ui.screens.collections.presenter.CollectionsScreen
+import com.tecknobit.refy.ui.screens.customs.presenter.CustomLinksScreen
 import com.tecknobit.refy.ui.screens.home.components.SideNavigationItem
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import com.tecknobit.refy.ui.screens.links.presenter.LinksScreen
+import com.tecknobit.refy.ui.screens.teams.presenter.TeamsScreen
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.app_version
@@ -56,19 +63,23 @@ class HomeScreen : EquinoxNoModelScreen() {
         private val tabs = arrayOf(
             NavigationTab(
                 title = Res.string.links,
-                icon = Link45deg
+                icon = Link45deg,
+                screen = LinksScreen()
             ),
             NavigationTab(
                 title = Res.string.collections,
-                icon = Icons.Default.CollectionsBookmark
+                icon = Icons.Default.CollectionsBookmark,
+                screen = CollectionsScreen()
             ),
             NavigationTab(
                 title = Res.string.teams,
-                icon = Icons.Default.Groups3
+                icon = Icons.Default.Groups3,
+                screen = TeamsScreen()
             ),
             NavigationTab(
                 title = Res.string.custom,
-                icon = TempPreferencesCustom
+                icon = TempPreferencesCustom,
+                screen = CustomLinksScreen()
             )
         )
 
@@ -193,9 +204,16 @@ class HomeScreen : EquinoxNoModelScreen() {
         Column (
             modifier = modifier
                 .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
         ) {
-            when(currentSelectedTab.value.title) {
-                Res.string.links -> { LinksScreen().ShowContent() }
+            tabs.forEachIndexed { index, tab ->
+                AnimatedVisibility(
+                    visible = currentSelectedTab.value == tabs[index],
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    tab.screen.ShowContent()
+                }
             }
         }
     }

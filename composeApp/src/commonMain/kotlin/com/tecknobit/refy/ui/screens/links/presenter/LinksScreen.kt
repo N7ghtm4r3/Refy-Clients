@@ -1,26 +1,15 @@
 package com.tecknobit.refy.ui.screens.links.presenter
 
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
+import com.tecknobit.refy.ui.screens.shared.screens.RefyScreen
+import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.links
 
-class LinksScreen : EquinoxScreen<LinksScreenViewModel>(
+class LinksScreen : RefyScreen<LinksScreenViewModel>(
+    title = Res.string.links,
     viewModel = LinksScreenViewModel()
 ) {
-
-    /**
-     * Method to arrange the content of the screen to display
-     */
-    @Composable
-    override fun ArrangeScreenContent() {
-        Scaffold {
-            Text(
-                text = "g"
-            )
-        }
-    }
 
     /**
      * Method to collect or instantiate the states of the screen
