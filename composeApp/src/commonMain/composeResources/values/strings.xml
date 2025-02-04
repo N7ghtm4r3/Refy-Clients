@@ -1,19 +1,11 @@
 <resources>
-    <string name="app_name">Refy</string>
-    <string name="app_version">1.0.1</string>
-    <string name="links">Links</string>
-    <string name="collections">Collections</string>
-    <string name="teams">Teams</string>
-    <string name="custom">Custom</string>
     <string name="no_links_yet">No links yet</string>
     <string name="add_link_to_team">Add link to team</string>
     <string name="dismiss">Dismiss</string>
-    <string name="add">Add</string>
     <string name="add_link_to_collection">Add link to collection</string>
     <string name="delete_link">Delete link</string>
     <string name="delete_link_message">By confirming, the link and related data will no longer be available, even in any teams or collections</string>
     <string name="confirm">Confirm</string>
-    <string name="add_new_link">Add new link</string>
     <string name="link_reference">Link reference</string>
     <string name="link_reference_not_valid">Link reference not valid</string>
     <string name="description">Description</string>
@@ -90,6 +82,18 @@
     <string name="tag_name_not_valid">Tag name not valid</string>
     <string name="link_copied">Link copied!</string>
     <string name="server_currently_offline">Server currently offline</string>
+    <string name="account_deletion">Account deletion</string>
+
+
+    <!-- TODO CHECK OTHER RESOURCES WHETHER ARE TO KEEP -->
+    <string name="app_name">Refy</string>
+    <string name="app_version">1.0.1</string>
+    <string name="links">Links</string>
+    <string name="collections">Collections</string>
+    <string name="teams">Teams</string>
+    <string name="custom">Custom</string>
+    <string name="create">Created</string>
+    <string name="add">Add</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minute</item>
         <item formatted="false" quantity="other">%1$d minutes</item>
@@ -106,5 +110,4 @@
         <item formatted="false" quantity="one">%1$d week</item>
         <item formatted="false" quantity="other">%1$d weeks</item>
     </plurals>
-    <string name="account_deletion">Account deletion</string>
 </resources>

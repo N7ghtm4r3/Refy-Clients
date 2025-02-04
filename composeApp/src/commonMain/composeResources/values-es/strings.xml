@@ -1,10 +1,4 @@
 <resources>
-    <string name="app_name">Refy</string>
-    <string name="app_version">1.0.1</string>
-    <string name="links">Enlaces</string>
-    <string name="collections">Colecciones</string>
-    <string name="teams">Equipos</string>
-    <string name="custom">A medida</string>
     <string name="no_links_yet">Aún no hay enlaces</string>
     <string name="add_link_to_team">Añadir enlace al equipo</string>
     <string name="dismiss">Desestimar</string>
@@ -13,7 +7,6 @@
     <string name="delete_link">Borrar enlace</string>
     <string name="delete_link_message">Al confirmar, el enlace y los datos relacionados dejarán de estar disponibles, incluso en cualquier equipo o colección</string>
     <string name="confirm">Confirme</string>
-    <string name="add_new_link">Añadir nuevo enlace</string>
     <string name="link_reference">Enlace de referencia</string>
     <string name="link_reference_not_valid">Referencia de enlace no válida</string>
     <string name="description">Descripción</string>
@@ -90,6 +83,17 @@
     <string name="tag_name_not_valid">Nombre de etiqueta no válido</string>
     <string name="link_copied">Enlace copiado!</string>
     <string name="server_currently_offline">Servidor desconectado</string>
+    <string name="account_deletion">Eliminación de la cuenta</string>
+
+
+    <!-- TODO CHECK OTHER RESOURCES WHETHER ARE TO KEEP -->
+    <string name="app_name">Refy</string>
+    <string name="app_version">1.0.1</string>
+    <string name="links">Enlaces</string>
+    <string name="collections">Colecciones</string>
+    <string name="teams">Equipos</string>
+    <string name="custom">A medida</string>
+    <string name="create">Creado</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minutos</item>
@@ -106,5 +110,4 @@
         <item formatted="false" quantity="one">%1$d semana</item>
         <item formatted="false" quantity="other">%1$d semanas</item>
     </plurals>
-    <string name="account_deletion">Eliminación de la cuenta</string>
 </resources>

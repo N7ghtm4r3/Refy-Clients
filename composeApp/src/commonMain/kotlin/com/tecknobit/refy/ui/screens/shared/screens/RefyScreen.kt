@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -21,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
@@ -60,19 +59,27 @@ abstract class RefyScreen<V : EquinoxViewModel>(
     @NonRestartableComposable
     private fun ExtendedFAB() {
         ExtendedFloatingActionButton(
-            onClick = {
-
-            }
+            onClick = { fabAction() }
         ) {
             Text(
-                text = "AGGIUNGI"
+                text = stringResource(fabText())
             )
             Icon(
-                imageVector = Icons.Default.Add,
+                modifier = Modifier
+                    .padding(
+                        start = 5.dp
+                    ),
+                imageVector = fabIcon(),
                 contentDescription = null
             )
         }
     }
+
+    protected abstract fun fabAction()
+
+    protected abstract fun fabText(): StringResource
+
+    protected abstract fun fabIcon(): ImageVector
 
     @Composable
     @NonRestartableComposable

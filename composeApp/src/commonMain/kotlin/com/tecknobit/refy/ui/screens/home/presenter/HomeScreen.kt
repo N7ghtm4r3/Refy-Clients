@@ -2,9 +2,9 @@
 
 package com.tecknobit.refy.ui.screens.home.presenter
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,10 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CollectionsBookmark
 import androidx.compose.material.icons.filled.Groups3
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,7 +31,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
@@ -44,6 +40,7 @@ import com.tecknobit.refy.ui.icons.Link45deg
 import com.tecknobit.refy.ui.icons.TempPreferencesCustom
 import com.tecknobit.refy.ui.screens.collections.presenter.CollectionsScreen
 import com.tecknobit.refy.ui.screens.customs.presenter.CustomLinksScreen
+import com.tecknobit.refy.ui.screens.home.components.AnimatedBottomNavigationBar
 import com.tecknobit.refy.ui.screens.home.components.SideNavigationItem
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import com.tecknobit.refy.ui.screens.links.presenter.LinksScreen
@@ -169,30 +166,12 @@ class HomeScreen : EquinoxNoModelScreen() {
                 modifier = Modifier
                     .navigationBarsPadding()
             )
-            NavigationBar (
+            AnimatedBottomNavigationBar(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-            ) {
-                tabs.forEach { tab ->
-                    NavigationBarItem(
-                        icon = {
-                            Icon(
-                                imageVector = tab.icon,
-                                contentDescription = null
-                            )
-                        },
-                        label = {
-                            Text(
-                                text = stringResource(tab.title),
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                        },
-                        selected = tab == currentSelectedTab.value,
-                        onClick = { currentSelectedTab.value = tab },
-                    )
-                }
-            }
+                    .align(Alignment.BottomCenter),
+                tabs = tabs,
+                currentSelectedTab = currentSelectedTab
+            )
         }
     }
 
@@ -206,14 +185,11 @@ class HomeScreen : EquinoxNoModelScreen() {
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            tabs.forEachIndexed { index, tab ->
-                AnimatedVisibility(
-                    visible = currentSelectedTab.value == tabs[index],
-                    enter = fadeIn(),
-                    exit = fadeOut()
-                ) {
-                    tab.screen.ShowContent()
-                }
+            AnimatedContent(
+                targetState = currentSelectedTab.value,
+                transitionSpec = spring(stiffness = Spring.StiffnessMediumLow)
+            ) { tab ->
+                tab.screen.ShowContent()
             }
         }
     }
