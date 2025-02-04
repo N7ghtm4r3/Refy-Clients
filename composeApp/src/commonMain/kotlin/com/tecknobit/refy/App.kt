@@ -3,9 +3,8 @@ package com.tecknobit.refy
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.text.font.FontFamily
-import coil3.ImageLoader
 import com.tecknobit.refy.helpers.RefyLocalUser
-import com.tecknobit.refy.ui.screens.links.presenter.LinksScreen
+import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
 import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
 import moe.tlaster.precompose.PreComposeApp
@@ -34,11 +33,6 @@ lateinit var displayFontFamily: FontFamily
 lateinit var navigator: Navigator
 
 /**
- * `imageLoader` the image loader used by coil library to load the image and by-passing the https self-signed certificates
- */
-lateinit var imageLoader: ImageLoader
-
-/**
  *`localUser` the helper to manage the local sessions stored locally in
  * the device
  */
@@ -55,9 +49,14 @@ const val SPLASHSCREEN = "Splashscreen"
 const val AUTH_SCREEN = "AuthScreen"
 
 /**
- * `LINKS_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.links.presenter.AuthScreen]
+ * `HOME_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.home.presenter.HomeScreen]
  */
-const val LINKS_SCREEN = "LinksScreen"
+const val HOME_SCREEN = "HomeScreen"
+
+/**
+ * `PROFILE_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen]
+ */
+const val PROFILE_SCREEN = "ProfileScreen"
 
 /**
  * Method to start the `Refy`'s application
@@ -100,9 +99,9 @@ fun App() {
                     SplashScreen().ShowContent()
                 }
                 scene(
-                    route = LINKS_SCREEN
+                    route = HOME_SCREEN
                 ) {
-                    LinksScreen().ShowContent()
+                    HomeScreen().ShowContent()
                 }
             }
         }
@@ -147,7 +146,7 @@ fun startSession() {
     } else
         AUTH_SCREEN*/
     setUserLanguage()
-    navigator.navigate(LINKS_SCREEN)
+    navigator.navigate(HOME_SCREEN)
 }
 
 /**

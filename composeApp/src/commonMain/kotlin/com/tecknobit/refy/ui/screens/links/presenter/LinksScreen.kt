@@ -1,5 +1,7 @@
 package com.tecknobit.refy.ui.screens.links.presenter
 
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
@@ -13,6 +15,11 @@ class LinksScreen : EquinoxScreen<LinksScreenViewModel>(
      */
     @Composable
     override fun ArrangeScreenContent() {
+        Scaffold {
+            Text(
+                text = "g"
+            )
+        }
     }
 
     /**

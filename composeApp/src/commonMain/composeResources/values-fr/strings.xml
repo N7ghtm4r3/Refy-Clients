@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Refy</string>
-    <string name="app_version">1.0.0</string>
+    <string name="app_version">1.0.1</string>
     <string name="links">Liens</string>
     <string name="collections">Collections</string>
     <string name="teams">Les équipes</string>

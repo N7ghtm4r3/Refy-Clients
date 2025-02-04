@@ -1,0 +1,9 @@
+package com.tecknobit.refy.ui.screens.home.data
+
+import androidx.compose.ui.graphics.vector.ImageVector
+import org.jetbrains.compose.resources.StringResource
+
+data class NavigationTab(
+    val title: StringResource,
+    val icon: ImageVector
+)
