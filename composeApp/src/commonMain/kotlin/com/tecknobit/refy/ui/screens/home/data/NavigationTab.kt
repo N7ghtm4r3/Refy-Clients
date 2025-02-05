@@ -1,7 +1,7 @@
 package com.tecknobit.refy.ui.screens.home.data
 
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.tecknobit.refy.ui.screens.shared.screens.RefyScreen
+import com.tecknobit.refy.ui.shared.screens.RefyScreen
 import org.jetbrains.compose.resources.StringResource
 
 data class NavigationTab(

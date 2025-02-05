@@ -1,0 +1,21 @@
+package com.tecknobit.refy.ui.screens.teams.data
+
+import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
+import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.RefyItem
+import com.tecknobit.refy.ui.shared.data.RefyUser.RefyUserImpl
+import com.tecknobit.refycore.LOGO_PIC_KEY
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Team(
+    override val owner: RefyUserImpl,
+    override val title: String,
+    override val description: String,
+    @SerialName(LOGO_PIC_KEY)
+    val logoPic: String,
+    val members: List<TeamMember>,
+    val links: List<RefyLinkImpl>,
+    val collections: List<LinksCollection>
+) : RefyItem

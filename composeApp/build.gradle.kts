@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    kotlin("plugin.serialization") version "2.1.0"
 }
 
 kotlin {
@@ -82,6 +83,8 @@ kotlin {
                 implementation(libs.precompose)
                 implementation(libs.equinox.core)
                 implementation(libs.equinox.compose)
+                implementation(libs.refycore)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
 
