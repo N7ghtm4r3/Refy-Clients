@@ -1,5 +1,5 @@
 <resources>
-    <string name="no_links_yet">Nessun link ancora</string>
+
     <string name="add_link_to_team">Aggiungi un link al team</string>
     <string name="dismiss">Annulla</string>
     <string name="add_link_to_collection">Aggiungi un link alla collezione</string>
@@ -94,6 +94,7 @@
     <string name="custom">Personalizzati</string>
     <string name="create">Crea</string>
     <string name="add">Aggiungi</string>
+    <string name="no_links_yet">Nessun link ancora</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minuti</item>

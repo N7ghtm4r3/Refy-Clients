@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class LinksCollection(
+    override val id: String,
     override val owner: RefyUserImpl,
     override val title: String,
     override val description: String,

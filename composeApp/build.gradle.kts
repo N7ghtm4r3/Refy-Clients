@@ -84,6 +84,7 @@ kotlin {
                 implementation(libs.equinox.core)
                 implementation(libs.equinox.compose)
                 implementation(libs.refycore)
+                implementation(libs.lazy.pagination.compose)
                 implementation(libs.kotlinx.serialization.json)
             }
         }

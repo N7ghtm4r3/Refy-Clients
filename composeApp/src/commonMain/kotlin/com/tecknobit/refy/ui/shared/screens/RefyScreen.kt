@@ -57,27 +57,17 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                 )
             }
         ) {
-            TopBar()
-        }
-    }
-
-    @Composable
-    @NonRestartableComposable
-    private fun ExtendedFAB() {
-        ExtendedFloatingActionButton(
-            onClick = { createAction() }
-        ) {
-            Text(
-                text = stringResource(createText())
-            )
-            Icon(
-                modifier = Modifier
-                    .padding(
-                        start = 5.dp
-                    ),
-                imageVector = createIcon(),
-                contentDescription = null
-            )
+            Column {
+                TopBar()
+                Column(
+                    modifier = Modifier
+                        .padding(
+                            all = 16.dp
+                        )
+                ) {
+                    Content()
+                }
+            }
         }
     }
 
@@ -144,6 +134,30 @@ abstract class RefyScreen<V : EquinoxViewModel>(
             }
             HorizontalDivider(
                 color = MaterialTheme.colorScheme.primary
+            )
+        }
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected abstract fun Content()
+
+    @Composable
+    @NonRestartableComposable
+    private fun ExtendedFAB() {
+        ExtendedFloatingActionButton(
+            onClick = { createAction() }
+        ) {
+            Text(
+                text = stringResource(createText())
+            )
+            Icon(
+                modifier = Modifier
+                    .padding(
+                        start = 5.dp
+                    ),
+                imageVector = createIcon(),
+                contentDescription = null
             )
         }
     }

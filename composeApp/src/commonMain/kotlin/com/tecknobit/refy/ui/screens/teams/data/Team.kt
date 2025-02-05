@@ -5,11 +5,14 @@ import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refy.ui.shared.data.RefyUser.RefyUserImpl
 import com.tecknobit.refycore.LOGO_PIC_KEY
+import com.tecknobit.refycore.TEAM_IDENTIFIER_KEY
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Team(
+    @SerialName(TEAM_IDENTIFIER_KEY)
+    override val id: String,
     override val owner: RefyUserImpl,
     override val title: String,
     override val description: String,
