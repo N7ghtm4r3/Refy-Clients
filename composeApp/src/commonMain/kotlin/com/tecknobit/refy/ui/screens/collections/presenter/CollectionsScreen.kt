@@ -16,15 +16,15 @@ class CollectionsScreen : RefyScreen<CollectionsScreenViewModel>(
     viewModel = CollectionsScreenViewModel()
 ) {
 
-    override fun fabAction() {
+    override fun createAction() {
         // TODO: TO NAV TO CREATE
     }
 
-    override fun fabText(): StringResource {
+    override fun createText(): StringResource {
         return Res.string.create
     }
 
-    override fun fabIcon(): ImageVector {
+    override fun createIcon(): ImageVector {
         return Icons.Default.CreateNewFolder
     }
 

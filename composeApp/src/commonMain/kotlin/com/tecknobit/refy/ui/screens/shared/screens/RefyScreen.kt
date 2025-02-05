@@ -2,15 +2,18 @@
 
 package com.tecknobit.refy.ui.screens.shared.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -19,7 +22,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
@@ -59,27 +65,21 @@ abstract class RefyScreen<V : EquinoxViewModel>(
     @NonRestartableComposable
     private fun ExtendedFAB() {
         ExtendedFloatingActionButton(
-            onClick = { fabAction() }
+            onClick = { createAction() }
         ) {
             Text(
-                text = stringResource(fabText())
+                text = stringResource(createText())
             )
             Icon(
                 modifier = Modifier
                     .padding(
                         start = 5.dp
                     ),
-                imageVector = fabIcon(),
+                imageVector = createIcon(),
                 contentDescription = null
             )
         }
     }
-
-    protected abstract fun fabAction()
-
-    protected abstract fun fabText(): StringResource
-
-    protected abstract fun fabIcon(): ImageVector
 
     @Composable
     @NonRestartableComposable
@@ -94,16 +94,41 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                     ),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = stringResource(title),
-                    fontSize = 30.sp,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontFamily = displayFontFamily
-                )
                 ResponsiveContent(
-                    onExpandedSizeClass = {},
-                    onMediumSizeClass = {},
+                    onExpandedSizeClass = { ScreenTitle() },
+                    onMediumSizeClass = { ScreenTitle() },
                     onCompactSizeClass = {
+                        ListItem(
+                            modifier = Modifier
+                                .weight(2f),
+                            supportingContent = {
+                                Row(
+                                    modifier = Modifier
+                                        .clip(
+                                            RoundedCornerShape(
+                                                size = 5.dp
+                                            )
+                                        )
+                                        .clickable { createAction() }
+                                        .padding(
+                                            horizontal = 4.dp
+                                        ),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(5.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = createIcon(),
+                                        contentDescription = null
+                                    )
+                                    Text(
+                                        text = stringResource(createText())
+                                    )
+                                }
+                            },
+                            headlineContent = {
+                                ScreenTitle()
+                            }
+                        )
                         Column(
                             modifier = Modifier
                                 .weight(1f),
@@ -121,6 +146,26 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                 color = MaterialTheme.colorScheme.primary
             )
         }
+    }
+
+    protected abstract fun createIcon(): ImageVector
+
+    protected abstract fun createText(): StringResource
+
+    protected abstract fun createAction()
+
+    @Composable
+    @NonRestartableComposable
+    private fun ScreenTitle() {
+        Text(
+            text = stringResource(title),
+            fontSize = 28.sp,
+            color = MaterialTheme.colorScheme.primary,
+            fontFamily = displayFontFamily,
+            fontWeight = FontWeight.Bold,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
     }
 
 }

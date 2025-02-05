@@ -92,7 +92,7 @@
     <string name="collections">Collections</string>
     <string name="teams">Teams</string>
     <string name="custom">Custom</string>
-    <string name="create">Created</string>
+    <string name="create">Create</string>
     <string name="add">Add</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minute</item>

@@ -3,8 +3,6 @@
 package com.tecknobit.refy.ui.screens.home.presenter
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -55,9 +53,9 @@ import refy.composeapp.generated.resources.teams
 
 class HomeScreen : EquinoxNoModelScreen() {
 
-    companion object {
+    private companion object {
 
-        private val tabs = arrayOf(
+        val tabs = arrayOf(
             NavigationTab(
                 title = Res.string.links,
                 icon = Link45deg,
@@ -186,8 +184,7 @@ class HomeScreen : EquinoxNoModelScreen() {
                 .background(MaterialTheme.colorScheme.background)
         ) {
             AnimatedContent(
-                targetState = currentSelectedTab.value,
-                transitionSpec = spring(stiffness = Spring.StiffnessMediumLow)
+                targetState = currentSelectedTab.value
             ) { tab ->
                 tab.screen.ShowContent()
             }
