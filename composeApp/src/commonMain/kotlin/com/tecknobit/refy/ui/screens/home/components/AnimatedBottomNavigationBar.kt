@@ -54,7 +54,7 @@ import androidx.compose.ui.zIndex
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import org.jetbrains.compose.resources.stringResource
 
-// credit to https://stackoverflow.com/a/78329710/22902790
+// credits to https://stackoverflow.com/a/78329710/22902790
 
 @Composable
 @NonRestartableComposable

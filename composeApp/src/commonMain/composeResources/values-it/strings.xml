@@ -3,8 +3,6 @@
     <string name="add_link_to_team">Aggiungi un link al team</string>
     <string name="dismiss">Annulla</string>
     <string name="add_link_to_collection">Aggiungi un link alla collezione</string>
-    <string name="delete_link">Cancella link</string>
-    <string name="delete_link_message">Confermando, il link e i relativi dati non saranno più disponibili, nemmeno in eventuali team o raccolte.</string>
     <string name="confirm">Conferma</string>
     <string name="link_reference">Risorsa</string>
     <string name="link_reference_not_valid">Risorsa non valida</string>
@@ -80,7 +78,6 @@
     <string name="server_secret">Server secret</string>
     <string name="tag_name">Tagname</string>
     <string name="tag_name_not_valid">Tagname non valido</string>
-    <string name="link_copied">Link copiato!</string>
     <string name="server_currently_offline">Il server è attualmente offline</string>
     <string name="account_deletion">Eliminazione account</string>
 
@@ -95,6 +92,9 @@
     <string name="create">Crea</string>
     <string name="add">Aggiungi</string>
     <string name="no_links_yet">Nessun link ancora</string>
+    <string name="delete_link">Elimina link</string>
+    <string name="delete_link_message">Confermando, il link e i relativi dati non saranno più disponibili, nemmeno in eventuali team o raccolte.</string>
+    <string name="link_copied">Link copiato!</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minuti</item>

@@ -3,8 +3,6 @@
     <string name="add_link_to_team">Ajouter un lien vers l'équipe</string>
     <string name="dismiss">Rejeter</string>
     <string name="add_link_to_collection">Ajouter un lien à la collection</string>
-    <string name="delete_link">Supprimer le lien</string>
-    <string name="delete_link_message">En confirmant, le lien et les données associées ne seront plus disponibles, même dans les équipes ou les collections.</string>
     <string name="confirm">Confirmer</string>
     <string name="link_reference">Référence du lien</string>
     <string name="link_reference_not_valid">La référence du lien n'est pas valide</string>
@@ -80,7 +78,6 @@
     <string name="server_secret">Secret du serveur</string>
     <string name="tag_name">Nom du jour</string>
     <string name="tag_name_not_valid">Le nom de l'étiquette n'est pas valide</string>
-    <string name="link_copied">Lien copié!</string>
     <string name="server_currently_offline">Le serveur est actuellement hors ligne</string>
     <string name="account_deletion">Suppression du compte</string>
 
@@ -95,6 +92,9 @@
     <string name="create">Créée</string>
     <string name="add">Ajouter</string>
     <string name="no_links_yet">Pas encore de liens</string>
+    <string name="delete_link">Supprimer le lien</string>
+    <string name="delete_link_message">En confirmant, le lien et les données associées ne seront plus disponibles, même dans les équipes ou les collections.</string>
+    <string name="link_copied">Lien copié!</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minute</item>
         <item formatted="false" quantity="other">%1$d minutes</item>

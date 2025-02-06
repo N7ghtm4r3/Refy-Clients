@@ -2,13 +2,14 @@
 
 package com.tecknobit.refy.ui.screens.links.presenter
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddLink
 import androidx.compose.material.icons.filled.LinkOff
@@ -27,7 +28,7 @@ import com.tecknobit.refy.ui.screens.links.components.LinkCard
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import com.tecknobit.refy.ui.shared.screens.RefyScreen
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
-import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyVerticalGrid
+import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyVerticalStaggeredGrid
 import org.jetbrains.compose.resources.StringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.add
@@ -66,16 +67,17 @@ class LinksScreen : RefyScreen<LinksScreenViewModel>(
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            PaginatedLazyVerticalGrid(
+            PaginatedLazyVerticalStaggeredGrid(
                 modifier = Modifier
                     .widthIn(
                         max = MAX_CONTAINER_WIDTH
-                    ),
+                    )
+                    .animateContentSize(),
                 paginationState = viewModel.linksState,
-                columns = GridCells.Adaptive(
+                columns = StaggeredGridCells.Adaptive(
                     minSize = 325.dp
                 ),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
+                verticalItemSpacing = 10.dp,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 firstPageProgressIndicator = { FirstPageProgressIndicator() },
                 newPageProgressIndicator = { NewPageProgressIndicator() },
@@ -86,6 +88,7 @@ class LinksScreen : RefyScreen<LinksScreenViewModel>(
                     key = { link -> link.id }
                 ) { link ->
                     LinkCard(
+                        viewModel = viewModel,
                         link = link
                     )
                 }
@@ -97,6 +100,8 @@ class LinksScreen : RefyScreen<LinksScreenViewModel>(
     @NonRestartableComposable
     private fun LinksList() {
         PaginatedLazyColumn(
+            modifier = Modifier
+                .animateContentSize(),
             paginationState = viewModel.linksState,
             verticalArrangement = Arrangement.spacedBy(10.dp),
             firstPageProgressIndicator = { FirstPageProgressIndicator() },
@@ -108,6 +113,7 @@ class LinksScreen : RefyScreen<LinksScreenViewModel>(
                 key = { link -> link.id }
             ) { link ->
                 LinkCard(
+                    viewModel = viewModel,
                     link = link
                 )
             }

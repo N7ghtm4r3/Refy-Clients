@@ -3,8 +3,6 @@
     <string name="add_link_to_team">Añadir enlace al equipo</string>
     <string name="dismiss">Desestimar</string>
     <string name="add_link_to_collection">Añadir enlace a la colección</string>
-    <string name="delete_link">Borrar enlace</string>
-    <string name="delete_link_message">Al confirmar, el enlace y los datos relacionados dejarán de estar disponibles, incluso en cualquier equipo o colección</string>
     <string name="confirm">Confirme</string>
     <string name="link_reference">Enlace de referencia</string>
     <string name="link_reference_not_valid">Referencia de enlace no válida</string>
@@ -80,7 +78,6 @@
     <string name="server_secret">Secreto del servidor</string>
     <string name="tag_name">Nombre de la etiqueta</string>
     <string name="tag_name_not_valid">Nombre de etiqueta no válido</string>
-    <string name="link_copied">Enlace copiado!</string>
     <string name="server_currently_offline">Servidor desconectado</string>
     <string name="account_deletion">Eliminación de la cuenta</string>
 
@@ -95,6 +92,9 @@
     <string name="create">Creado</string>
     <string name="add">Añadir</string>
     <string name="no_links_yet">Aún no hay enlaces</string>
+    <string name="delete_link">Borrar enlace</string>
+    <string name="delete_link_message">Al confirmar, el enlace y los datos relacionados dejarán de estar disponibles, incluso en cualquier equipo o colección</string>
+    <string name="link_copied">Enlace copiado!</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minutos</item>

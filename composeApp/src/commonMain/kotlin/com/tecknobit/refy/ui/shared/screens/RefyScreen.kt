@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
+import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.displayFontFamily
@@ -48,7 +49,19 @@ abstract class RefyScreen<V : EquinoxViewModel>(
     @Composable
     override fun ArrangeScreenContent() {
         Scaffold(
-            snackbarHost = { SnackbarHost(viewModel.snackbarHostState!!) },
+            snackbarHost = {
+                SnackbarHost(
+                    modifier = Modifier
+                        .padding(
+                            bottom = responsiveAssignment(
+                                onExpandedSizeClass = { 0.dp },
+                                onMediumSizeClass = { 0.dp },
+                                onCompactSizeClass = { 100.dp }
+                            )
+                        ),
+                    hostState = viewModel.snackbarHostState!!
+                )
+            },
             floatingActionButton = {
                 ResponsiveContent(
                     onExpandedSizeClass = { ExtendedFAB() },
@@ -63,6 +76,13 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                     modifier = Modifier
                         .padding(
                             all = 16.dp
+                        )
+                        .padding(
+                            bottom = responsiveAssignment(
+                                onExpandedSizeClass = { 0.dp },
+                                onMediumSizeClass = { 0.dp },
+                                onCompactSizeClass = { 79.dp }
+                            )
                         )
                 ) {
                     Content()
