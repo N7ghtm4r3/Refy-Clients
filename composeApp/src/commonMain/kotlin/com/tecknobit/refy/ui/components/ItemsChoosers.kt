@@ -40,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.ChameleonText
@@ -171,7 +172,7 @@ fun TeamsChooser(
                         profilePic = "",
                         tagName = "@prova"
                     ),
-                    title = "gag",
+                    title = "Tecknobit",
                     links = emptyList(),
                     members = emptyList(),
                     logoPic = "https://starwalk.space/gallery/images/what-is-space/1920x1080.jpg",
@@ -202,7 +203,10 @@ fun TeamsChooser(
             confirmAction.invoke(teams)
         },
         overlineContent = { team ->
-            // TODO: INSERT LOGO 
+            TeamLogo(
+                size = 40.dp,
+                team = team
+            )
         }
     )
 }
@@ -362,6 +366,7 @@ private fun <T : RefyItem> ChooserItem(
                     .verticalScroll(rememberScrollState())
                     .animateContentSize(),
                 text = mainItem.description,
+                textAlign = TextAlign.Justify,
                 minLines = 3,
                 maxLines = if (expanded.value)
                     Int.MAX_VALUE

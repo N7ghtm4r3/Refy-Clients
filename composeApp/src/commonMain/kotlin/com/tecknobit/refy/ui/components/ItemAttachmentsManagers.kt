@@ -2,17 +2,29 @@
 
 package com.tecknobit.refy.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
@@ -116,9 +128,52 @@ private fun AttachItem(
                     modifier = Modifier
                         .height(500.dp)
                 ) {
+                    PagerIndicator(
+                        state = pagerState,
+                        currentPage = index
+                    )
                     pages[index]()
                 }
             }
+        }
+    }
+}
+
+@Composable
+@NonRestartableComposable
+private fun PagerIndicator(
+    state: PagerState,
+    currentPage: Int
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                bottom = 10.dp
+            ),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        repeat(state.pageCount) { page ->
+            Box(
+                modifier = Modifier
+                    .padding(
+                        end = 10.dp
+                    )
+                    .clip(
+                        RoundedCornerShape(
+                            size = 2.dp
+                        )
+                    )
+                    .width(85.dp)
+                    .height(4.dp)
+                    .background(
+                        if (currentPage == page)
+                            MaterialTheme.colorScheme.primary
+                        else
+                            Color.LightGray
+                    ),
+                content = {}
+            )
         }
     }
 }
