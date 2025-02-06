@@ -43,6 +43,7 @@ import com.tecknobit.refy.ui.screens.home.components.SideNavigationItem
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import com.tecknobit.refy.ui.screens.links.presenter.LinksScreen
 import com.tecknobit.refy.ui.screens.teams.presenter.TeamsScreen
+import com.tecknobit.refy.ui.theme.RefyTheme
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.app_version
@@ -87,7 +88,9 @@ class HomeScreen : EquinoxNoModelScreen() {
      */
     @Composable
     override fun ArrangeScreenContent() {
-        NavigationBar()
+        RefyTheme {
+            NavigationBar()
+        }
     }
 
     @Composable

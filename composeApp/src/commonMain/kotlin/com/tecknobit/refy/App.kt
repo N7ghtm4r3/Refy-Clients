@@ -1,7 +1,11 @@
 package com.tecknobit.refy
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import com.tecknobit.refy.helpers.RefyLocalUser
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
@@ -90,6 +94,9 @@ fun App() {
         navigator = rememberNavigator()
         RefyTheme {
             NavHost(
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.primary)
+                    .statusBarsPadding(),
                 navigator = navigator,
                 initialRoute = SPLASHSCREEN
             ) {

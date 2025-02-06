@@ -2,7 +2,11 @@ package com.tecknobit.refy
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.toArgb
 import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
 
 class MainActivity : ComponentActivity() {
@@ -10,6 +14,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         ContextActivityProvider.setCurrentActivity(this)
         setContent {
+            enableEdgeToEdge(
+                statusBarStyle = SystemBarStyle.auto(
+                    lightScrim = MaterialTheme.colorScheme.primary.toArgb(),
+                    darkScrim = MaterialTheme.colorScheme.inversePrimary.toArgb()
+                )
+            )
             App()
         }
     }

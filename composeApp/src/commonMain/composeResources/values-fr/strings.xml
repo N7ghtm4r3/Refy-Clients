@@ -10,12 +10,10 @@
     <string name="description_not_valid">Description non valide</string>
     <string name="edit_link">Editer le lien</string>
     <string name="edit">Editer</string>
-    <string name="no_collections_yet">Pas encore de collections</string>
     <string name="delete_collection">Supprimer la collection</string>
     <string name="delete_collection_message">En confirmant, la collection et les liens associés ne seront plus disponibles. Si la collection est partagée avec des équipes, les liens personnels de chaque membre seront conservés, à l'exception de celui qui a supprimé la collection.</string>
     <string name="add_collection_to_team">Ajouter une collection à l'équipe</string>
     <string name="collection_name">Nom de la collection</string>
-    <string name="collection_color">Couleur de la collection</string>
     <string name="invalid_collection">Collection non valide</string>
     <string name="add_links_to_collection">Ajouter des liens à la collection</string>
     <string name="you_re_not_on_any_team">Vous ne faites partie d'aucune équipe</string>
@@ -95,6 +93,8 @@
     <string name="delete_link">Supprimer le lien</string>
     <string name="delete_link_message">En confirmant, le lien et les données associées ne seront plus disponibles, même dans les équipes ou les collections.</string>
     <string name="link_copied">Lien copié!</string>
+    <string name="no_collections_yet">Pas encore de collections</string>
+    <string name="collection_color">Couleur de la collection</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minute</item>
         <item formatted="false" quantity="other">%1$d minutes</item>

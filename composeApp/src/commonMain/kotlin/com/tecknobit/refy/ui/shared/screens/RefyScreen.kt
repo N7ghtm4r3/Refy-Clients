@@ -35,6 +35,7 @@ import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.components.ProfilePic
+import com.tecknobit.refy.ui.theme.RefyTheme
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -48,44 +49,46 @@ abstract class RefyScreen<V : EquinoxViewModel>(
 
     @Composable
     override fun ArrangeScreenContent() {
-        Scaffold(
-            snackbarHost = {
-                SnackbarHost(
-                    modifier = Modifier
-                        .padding(
-                            bottom = responsiveAssignment(
-                                onExpandedSizeClass = { 0.dp },
-                                onMediumSizeClass = { 0.dp },
-                                onCompactSizeClass = { 100.dp }
+        RefyTheme {
+            Scaffold(
+                snackbarHost = {
+                    SnackbarHost(
+                        modifier = Modifier
+                            .padding(
+                                bottom = responsiveAssignment(
+                                    onExpandedSizeClass = { 0.dp },
+                                    onMediumSizeClass = { 0.dp },
+                                    onCompactSizeClass = { 100.dp }
+                                )
+                            ),
+                        hostState = viewModel.snackbarHostState!!
+                    )
+                },
+                floatingActionButton = {
+                    ResponsiveContent(
+                        onExpandedSizeClass = { ExtendedFAB() },
+                        onMediumSizeClass = { ExtendedFAB() },
+                        onCompactSizeClass = {}
+                    )
+                }
+            ) {
+                Column {
+                    TopBar()
+                    Column(
+                        modifier = Modifier
+                            .padding(
+                                all = 16.dp
                             )
-                        ),
-                    hostState = viewModel.snackbarHostState!!
-                )
-            },
-            floatingActionButton = {
-                ResponsiveContent(
-                    onExpandedSizeClass = { ExtendedFAB() },
-                    onMediumSizeClass = { ExtendedFAB() },
-                    onCompactSizeClass = {}
-                )
-            }
-        ) {
-            Column {
-                TopBar()
-                Column(
-                    modifier = Modifier
-                        .padding(
-                            all = 16.dp
-                        )
-                        .padding(
-                            bottom = responsiveAssignment(
-                                onExpandedSizeClass = { 0.dp },
-                                onMediumSizeClass = { 0.dp },
-                                onCompactSizeClass = { 79.dp }
+                            .padding(
+                                bottom = responsiveAssignment(
+                                    onExpandedSizeClass = { 0.dp },
+                                    onMediumSizeClass = { 0.dp },
+                                    onCompactSizeClass = { 79.dp }
+                                )
                             )
-                        )
-                ) {
-                    Content()
+                    ) {
+                        Content()
+                    }
                 }
             }
         }

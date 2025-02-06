@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalFoundationApi::class)
+@file:OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 
 package com.tecknobit.refy.ui.screens.links.components
 
@@ -17,20 +17,25 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Attachment
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,15 +51,18 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.helpers.shareLink
+import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.components.DeleteLink
+import com.tecknobit.refy.ui.components.LinksCollectionsChooser
 import com.tecknobit.refy.ui.icons.CollapseAll
 import com.tecknobit.refy.ui.icons.ExpandAll
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.logo
-import kotlin.random.Random
 
 // credits to https://cdn.prod.website-files.com/64c7b734b044b679c715bc30/6674b58d32fbc146194c888a_5%20best%20practices%20to%20design%20UI%20Cards%20for%20your%20website%402x.webp
 @Composable
@@ -221,10 +229,32 @@ private fun LinkBottomBar(
                         contentDescription = null
                     )
                 }
+                val state = rememberModalBottomSheetState(
+                    skipPartiallyExpanded = true
+                )
+                val scope = rememberCoroutineScope()
+                IconButton(
+                    modifier = Modifier
+                        .size(30.dp),
+                    onClick = {
+                        scope.launch {
+                            state.show()
+                        }
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Attachment,
+                        contentDescription = null
+                    )
+                }
+                AttachLink(
+                    state = state,
+                    scope = scope,
+                    link = link
+                )
             }
         }
-        val del by remember { mutableStateOf(Random.nextBoolean()) } // TODO: TO DELETE
-        if (/*link.owner.id == localUser.userId*/ del) { // TODO: SET THE REAL CHECK
+        if (link.owner.id == localUser.userId) {
             val deleteLink = remember { mutableStateOf(false) }
             Column(
                 modifier = Modifier
@@ -247,6 +277,29 @@ private fun LinkBottomBar(
                 show = deleteLink,
                 viewModel = viewModel,
                 link = link
+            )
+        }
+    }
+}
+
+@Composable
+@NonRestartableComposable
+private fun AttachLink(
+    state: SheetState,
+    scope: CoroutineScope,
+    link: RefyLinkImpl
+) {
+    if (state.isVisible) {
+        ModalBottomSheet(
+            onDismissRequest = {
+                scope.launch {
+                    state.hide()
+                }
+            }
+        ) {
+            LinksCollectionsChooser(
+                mainItem = link,
+                currentLinksCollectionsAttached = link.collections
             )
         }
     }
