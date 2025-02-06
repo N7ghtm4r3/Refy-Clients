@@ -98,6 +98,7 @@
     <string name="with_collections">Avec des collections</string>
     <string name="with_teams">Avec les équipes</string>
     <string name="confirm">Confirmer</string>
+    <string name="search_by_keywords">Recherche par mots-clés</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minute</item>
         <item formatted="false" quantity="other">%1$d minutes</item>

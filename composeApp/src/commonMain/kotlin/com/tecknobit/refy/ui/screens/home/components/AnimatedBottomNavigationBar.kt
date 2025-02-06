@@ -69,7 +69,9 @@ fun AnimatedBottomNavigationBar(
 ) {
     val circleRadius = 26.dp
 
-    var selectedItem by rememberSaveable { mutableIntStateOf(0) }
+    var selectedItem by rememberSaveable {
+        mutableIntStateOf(tabs.indexOf(currentSelectedTab.value))
+    }
     var barSize by remember { mutableStateOf(IntSize(0, 0)) }
     // first item's center offset for Arrangement.SpaceAround
     val offsetStep = remember(barSize) {

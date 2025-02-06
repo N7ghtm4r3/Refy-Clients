@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,6 +48,8 @@ abstract class RefyScreen<V : EquinoxViewModel>(
 ) : EquinoxScreen<V>(
     viewModel = viewModel
 ) {
+
+    protected lateinit var filtersEnabled: MutableState<Boolean>
 
     @Composable
     override fun ArrangeScreenContent() {
@@ -194,15 +198,26 @@ abstract class RefyScreen<V : EquinoxViewModel>(
     @Composable
     @NonRestartableComposable
     private fun ScreenTitle() {
-        Text(
-            text = stringResource(title),
-            fontSize = 28.sp,
-            color = MaterialTheme.colorScheme.primary,
-            fontFamily = displayFontFamily,
-            fontWeight = FontWeight.Bold,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = stringResource(title),
+                fontSize = 28.sp,
+                color = MaterialTheme.colorScheme.primary,
+                fontFamily = displayFontFamily,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Filters()
+        }
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected open fun RowScope.Filters() {
+
     }
 
 }

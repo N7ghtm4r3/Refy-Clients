@@ -98,6 +98,7 @@
     <string name="with_collections">Nelle collezioni</string>
     <string name="with_teams">Con i team</string>
     <string name="confirm">Conferma</string>
+    <string name="search_by_keywords">Ricerca per parole chiave</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minuti</item>
