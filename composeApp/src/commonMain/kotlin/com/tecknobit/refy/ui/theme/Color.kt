@@ -1,5 +1,6 @@
 package com.tecknobit.refy.ui.theme
 import androidx.compose.ui.graphics.Color
+import com.tecknobit.equinoxcompose.utilities.toColor
 
 /**
  * Set of default medium light theme colors
@@ -235,7 +236,8 @@ val surfaceContainerDarkHighContrast = Color(0xFF1D2024)
 val surfaceContainerHighDarkHighContrast = Color(0xFF282A2F)
 val surfaceContainerHighestDarkHighContrast = Color(0xFF33353A)
 
-
+val greenLight = "#388E3C".toColor()
+val greenDark = "#4CAF50".toColor()
 
 
 

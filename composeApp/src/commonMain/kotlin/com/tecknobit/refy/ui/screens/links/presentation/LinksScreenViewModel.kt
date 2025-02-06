@@ -3,8 +3,10 @@ package com.tecknobit.refy.ui.screens.links.presentation
 import androidx.compose.material3.SnackbarHostState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
+import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 import kotlin.random.Random
@@ -79,6 +81,24 @@ class LinksScreenViewModel : EquinoxViewModel(
             nextPageKey = page + 1, // TODO: TO USE THE REAL DATA
             isLastPage = Random.nextBoolean() // TODO: TO USE THE REAL DATA
         )
+    }
+
+    fun shareLinkWithCollections(
+        link: RefyLink,
+        linksCollection: List<LinksCollection>,
+        afterShared: () -> Unit
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        afterShared()
+    }
+
+    fun shareLinkWithTeams(
+        link: RefyLink,
+        teams: List<Team>,
+        afterShared: () -> Unit
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        afterShared()
     }
 
     fun deleteLink(

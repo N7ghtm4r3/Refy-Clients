@@ -19,6 +19,6 @@ data class Team(
     @SerialName(LOGO_PIC_KEY)
     val logoPic: String,
     val members: List<TeamMember>,
-    val links: List<RefyLinkImpl>,
-    val collections: List<LinksCollection>
+    val links: List<RefyLinkImpl> = emptyList(),
+    val collections: List<LinksCollection> = emptyList()
 ) : RefyItem

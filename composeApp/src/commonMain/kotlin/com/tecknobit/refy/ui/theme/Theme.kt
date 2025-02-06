@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
 import com.tecknobit.refy.localUser
@@ -253,6 +254,20 @@ private val highContrastDarkColorScheme = darkColorScheme(
     surfaceContainerHigh = surfaceContainerHighDarkHighContrast,
     surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
 )
+
+@Composable
+fun green(): Color {
+    return when (localUser.theme) {
+        Light -> greenLight
+        Dark -> greenDark
+        else -> {
+            if (isSystemInDarkTheme())
+                greenDark
+            else
+                greenLight
+        }
+    }
+}
 
 /**
  * Function to set the Refy theme to the content

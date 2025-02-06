@@ -3,7 +3,6 @@
     <string name="add_link_to_team">Añadir enlace al equipo</string>
     <string name="dismiss">Desestimar</string>
     <string name="add_link_to_collection">Añadir enlace a la colección</string>
-    <string name="confirm">Confirme</string>
     <string name="link_reference">Enlace de referencia</string>
     <string name="link_reference_not_valid">Referencia de enlace no válida</string>
     <string name="description">Descripción</string>
@@ -95,6 +94,10 @@
     <string name="link_copied">Enlace copiado!</string>
     <string name="no_collections_yet">Aún no hay colecciones</string>
     <string name="collection_color">Color de la colección</string>
+    <string name="share_link">Compartir el enlace</string>
+    <string name="with_collections">Con colecciones</string>
+    <string name="with_teams">Con equipos</string>
+    <string name="confirm">Confirme</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minutos</item>

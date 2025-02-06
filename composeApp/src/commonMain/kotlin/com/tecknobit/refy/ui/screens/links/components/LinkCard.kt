@@ -26,8 +26,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -52,17 +50,17 @@ import coil3.request.crossfade
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.helpers.shareLink
 import com.tecknobit.refy.localUser
+import com.tecknobit.refy.ui.components.AttachLink
 import com.tecknobit.refy.ui.components.DeleteLink
-import com.tecknobit.refy.ui.components.LinksCollectionsChooser
 import com.tecknobit.refy.ui.icons.CollapseAll
 import com.tecknobit.refy.ui.icons.ExpandAll
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.logo
+
 
 // credits to https://cdn.prod.website-files.com/64c7b734b044b679c715bc30/6674b58d32fbc146194c888a_5%20best%20practices%20to%20design%20UI%20Cards%20for%20your%20website%402x.webp
 @Composable
@@ -250,6 +248,7 @@ private fun LinkBottomBar(
                 AttachLink(
                     state = state,
                     scope = scope,
+                    viewModel = viewModel,
                     link = link
                 )
             }
@@ -277,29 +276,6 @@ private fun LinkBottomBar(
                 show = deleteLink,
                 viewModel = viewModel,
                 link = link
-            )
-        }
-    }
-}
-
-@Composable
-@NonRestartableComposable
-private fun AttachLink(
-    state: SheetState,
-    scope: CoroutineScope,
-    link: RefyLinkImpl
-) {
-    if (state.isVisible) {
-        ModalBottomSheet(
-            onDismissRequest = {
-                scope.launch {
-                    state.hide()
-                }
-            }
-        ) {
-            LinksCollectionsChooser(
-                mainItem = link,
-                currentLinksCollectionsAttached = link.collections
             )
         }
     }
