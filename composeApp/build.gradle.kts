@@ -65,6 +65,7 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.accompanist.systemuicontroller)
         }
 
         val commonMain by getting {
@@ -86,6 +87,7 @@ kotlin {
                 implementation(libs.refycore)
                 implementation(libs.lazy.pagination.compose)
                 implementation(libs.kotlinx.serialization.json)
+                implementation(libs.material.kolor)
             }
         }
 

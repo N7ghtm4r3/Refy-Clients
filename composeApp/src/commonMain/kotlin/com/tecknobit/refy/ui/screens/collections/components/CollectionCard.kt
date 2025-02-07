@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.utilities.BorderToColor
 import com.tecknobit.equinoxcompose.utilities.colorOneSideBorder
 import com.tecknobit.equinoxcompose.utilities.toColor
+import com.tecknobit.refy.COLLECTION_SCREEN
+import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.AttachCollection
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.DeleteCollection
@@ -48,7 +50,9 @@ fun CollectionCard(
                 shape = CardDefaults.shape
             ),
         onClick = {
-            // TODO: NAV TO OPEN COLLECTION
+            navigator.navigate(
+                route = "$COLLECTION_SCREEN/${collection.id}/${collection.title}/${collection.color}"
+            )
         }
     ) {
         Column(

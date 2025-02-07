@@ -22,15 +22,15 @@ class CustomLinksScreen : RefyScreen<CustomLinksScreenViewModel>(
     override fun Content() {
     }
 
-    override fun createAction() {
+    override fun upsertAction() {
         // TODO: TO NAV TO CREATE
     }
 
-    override fun createText(): StringResource {
+    override fun upsertText(): StringResource {
         return Res.string.add
     }
 
-    override fun createIcon(): ImageVector {
+    override fun upsertIcon(): ImageVector {
         return Icons.Default.AddLink
     }
 

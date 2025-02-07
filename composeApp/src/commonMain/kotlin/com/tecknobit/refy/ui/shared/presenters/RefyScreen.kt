@@ -37,13 +37,12 @@ import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.components.ProfilePic
-import com.tecknobit.refy.ui.theme.RefyTheme
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 @Structure
 abstract class RefyScreen<V : EquinoxViewModel>(
-    private val title: StringResource,
+    private val title: StringResource? = null,
     viewModel: V
 ) : EquinoxScreen<V>(
     viewModel = viewModel
@@ -53,46 +52,44 @@ abstract class RefyScreen<V : EquinoxViewModel>(
 
     @Composable
     override fun ArrangeScreenContent() {
-        RefyTheme {
-            Scaffold(
-                snackbarHost = {
-                    SnackbarHost(
-                        modifier = Modifier
-                            .padding(
-                                bottom = responsiveAssignment(
-                                    onExpandedSizeClass = { 0.dp },
-                                    onMediumSizeClass = { 0.dp },
-                                    onCompactSizeClass = { 100.dp }
-                                )
-                            ),
-                        hostState = viewModel.snackbarHostState!!
-                    )
-                },
-                floatingActionButton = {
-                    ResponsiveContent(
-                        onExpandedSizeClass = { ExtendedFAB() },
-                        onMediumSizeClass = { ExtendedFAB() },
-                        onCompactSizeClass = {}
-                    )
-                }
-            ) {
-                Column {
-                    TopBar()
-                    Column(
-                        modifier = Modifier
-                            .padding(
-                                all = 16.dp
+        Scaffold(
+            snackbarHost = {
+                SnackbarHost(
+                    modifier = Modifier
+                        .padding(
+                            bottom = responsiveAssignment(
+                                onExpandedSizeClass = { 0.dp },
+                                onMediumSizeClass = { 0.dp },
+                                onCompactSizeClass = { 100.dp }
                             )
-                            .padding(
-                                bottom = responsiveAssignment(
-                                    onExpandedSizeClass = { 0.dp },
-                                    onMediumSizeClass = { 0.dp },
-                                    onCompactSizeClass = { 79.dp }
-                                )
+                        ),
+                    hostState = viewModel.snackbarHostState!!
+                )
+            },
+            floatingActionButton = {
+                ResponsiveContent(
+                    onExpandedSizeClass = { ExtendedFAB() },
+                    onMediumSizeClass = { ExtendedFAB() },
+                    onCompactSizeClass = {}
+                )
+            }
+        ) {
+            Column {
+                TopBar()
+                Column(
+                    modifier = Modifier
+                        .padding(
+                            all = 16.dp
+                        )
+                        .padding(
+                            bottom = responsiveAssignment(
+                                onExpandedSizeClass = { 0.dp },
+                                onMediumSizeClass = { 0.dp },
+                                onCompactSizeClass = { 79.dp }
                             )
-                    ) {
-                        Content()
-                    }
+                        )
+                ) {
+                    Content()
                 }
             }
         }
@@ -126,7 +123,7 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                                                 size = 5.dp
                                             )
                                         )
-                                        .clickable { createAction() }
+                                        .clickable { upsertAction() }
                                         .padding(
                                             horizontal = 4.dp
                                         ),
@@ -134,11 +131,11 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                                     horizontalArrangement = Arrangement.spacedBy(5.dp)
                                 ) {
                                     Icon(
-                                        imageVector = createIcon(),
+                                        imageVector = upsertIcon(),
                                         contentDescription = null
                                     )
                                     Text(
-                                        text = stringResource(createText())
+                                        text = stringResource(upsertText())
                                     )
                                 }
                             },
@@ -173,27 +170,27 @@ abstract class RefyScreen<V : EquinoxViewModel>(
     @NonRestartableComposable
     private fun ExtendedFAB() {
         ExtendedFloatingActionButton(
-            onClick = { createAction() }
+            onClick = { upsertAction() }
         ) {
             Text(
-                text = stringResource(createText())
+                text = stringResource(upsertText())
             )
             Icon(
                 modifier = Modifier
                     .padding(
                         start = 5.dp
                     ),
-                imageVector = createIcon(),
+                imageVector = upsertIcon(),
                 contentDescription = null
             )
         }
     }
 
-    protected abstract fun createIcon(): ImageVector
+    protected abstract fun upsertIcon(): ImageVector
 
-    protected abstract fun createText(): StringResource
+    protected abstract fun upsertText(): StringResource
 
-    protected abstract fun createAction()
+    protected abstract fun upsertAction()
 
     @Composable
     @NonRestartableComposable
@@ -201,8 +198,9 @@ abstract class RefyScreen<V : EquinoxViewModel>(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
+            NavBackButton()
             Text(
-                text = stringResource(title),
+                text = title(),
                 fontSize = 28.sp,
                 color = MaterialTheme.colorScheme.primary,
                 fontFamily = displayFontFamily,
@@ -212,6 +210,20 @@ abstract class RefyScreen<V : EquinoxViewModel>(
             )
             Filters()
         }
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected open fun RowScope.NavBackButton() {
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected open fun title(): String {
+        return if (title != null)
+            stringResource(title)
+        else
+            ""
     }
 
     @Composable

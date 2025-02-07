@@ -26,7 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -41,6 +41,7 @@ import com.tecknobit.refy.ui.screens.customs.presenter.CustomLinksScreen
 import com.tecknobit.refy.ui.screens.home.components.AnimatedBottomNavigationBar
 import com.tecknobit.refy.ui.screens.home.components.SideNavigationItem
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
+import com.tecknobit.refy.ui.screens.home.data.NavigationTabSaver
 import com.tecknobit.refy.ui.screens.links.presenter.LinksScreen
 import com.tecknobit.refy.ui.screens.teams.presenter.TeamsScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
@@ -55,6 +56,8 @@ import refy.composeapp.generated.resources.teams
 class HomeScreen : EquinoxNoModelScreen() {
 
     private companion object {
+
+        private lateinit var currentSelectedTab: MutableState<NavigationTab>
 
         val tabs = arrayOf(
             NavigationTab(
@@ -81,32 +84,24 @@ class HomeScreen : EquinoxNoModelScreen() {
 
     }
 
-    private lateinit var currentSelectedTab: MutableState<NavigationTab>
-
     /**
      * Method to arrange the content of the screen to display
      */
     @Composable
     override fun ArrangeScreenContent() {
         RefyTheme {
-            NavigationBar()
+            ResponsiveContent(
+                onExpandedSizeClass = {
+                    SideNavigationBar()
+                },
+                onMediumSizeClass = {
+                    SideNavigationBar()
+                },
+                onCompactSizeClass = {
+                    BottomNavigationBar()
+                }
+            )
         }
-    }
-
-    @Composable
-    @NonRestartableComposable
-    private fun NavigationBar() {
-        ResponsiveContent(
-            onExpandedSizeClass = {
-                SideNavigationBar()
-            },
-            onMediumSizeClass = {
-                SideNavigationBar()
-            },
-            onCompactSizeClass = {
-                BottomNavigationBar()
-            }
-        )
     }
 
     @Composable
@@ -200,7 +195,11 @@ class HomeScreen : EquinoxNoModelScreen() {
      */
     @Composable
     override fun CollectStates() {
-        currentSelectedTab = remember { mutableStateOf(tabs[0]) }
+        currentSelectedTab = rememberSaveable(
+            saver = NavigationTabSaver()
+        ) {
+            mutableStateOf(tabs[0])
+        }
     }
 
 }

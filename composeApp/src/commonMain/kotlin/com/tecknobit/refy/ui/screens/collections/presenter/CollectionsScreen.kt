@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.refy.ui.components.EmptyCollections
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
+import com.tecknobit.refy.ui.screens.collection.helpers.restoreDefaultApplicationThemeStatusBar
 import com.tecknobit.refy.ui.screens.collections.components.CollectionCard
 import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
 import com.tecknobit.refy.ui.shared.presenters.ItemsScreen
@@ -33,6 +34,12 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
     title = Res.string.collections,
     viewModel = CollectionsScreenViewModel()
 ) {
+
+    @Composable
+    override fun ArrangeScreenContent() {
+        restoreDefaultApplicationThemeStatusBar()
+        super.ArrangeScreenContent()
+    }
 
     @Composable
     @NonRestartableComposable
@@ -99,15 +106,15 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
         }
     }
 
-    override fun createAction() {
+    override fun upsertAction() {
         // TODO: TO NAV TO CREATE
     }
 
-    override fun createText(): StringResource {
+    override fun upsertText(): StringResource {
         return Res.string.create
     }
 
-    override fun createIcon(): ImageVector {
+    override fun upsertIcon(): ImageVector {
         return Icons.Default.CreateNewFolder
     }
 

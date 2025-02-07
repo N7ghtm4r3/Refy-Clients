@@ -7,13 +7,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
+import com.tecknobit.equinoxcore.helpers.NAME_KEY
 import com.tecknobit.refy.helpers.RefyLocalUser
+import com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
 import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
+import com.tecknobit.refycore.COLLECTION_COLOR_KEY
+import com.tecknobit.refycore.COLLECTION_IDENTIFIER_KEY
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
+import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -63,6 +68,11 @@ const val HOME_SCREEN = "HomeScreen"
 const val PROFILE_SCREEN = "ProfileScreen"
 
 /**
+ * `COLLECTION_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen]
+ */
+const val COLLECTION_SCREEN = "CollectionScreen"
+
+/**
  * Method to start the `Refy`'s application
  */
 @Composable
@@ -109,6 +119,19 @@ fun App() {
                     route = HOME_SCREEN
                 ) {
                     HomeScreen().ShowContent()
+                }
+                scene(
+                    route = "$COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}/{$NAME_KEY}/{$COLLECTION_COLOR_KEY}"
+                ) { backstackEntry ->
+                    val collectionId: String =
+                        backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)!!
+                    val name: String = backstackEntry.path<String>(NAME_KEY)!!
+                    val color: String = backstackEntry.path<String>(COLLECTION_COLOR_KEY)!!
+                    CollectionScreen(
+                        collectionId = collectionId,
+                        collectionName = name,
+                        collectionColor = color
+                    ).ShowContent()
                 }
             }
         }

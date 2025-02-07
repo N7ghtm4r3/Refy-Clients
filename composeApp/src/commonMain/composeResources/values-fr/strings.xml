@@ -8,7 +8,6 @@
     <string name="description">Description</string>
     <string name="description_not_valid">Description non valide</string>
     <string name="edit_link">Editer le lien</string>
-    <string name="edit">Editer</string>
     <string name="add_collection_to_team">Ajouter une collection à l'équipe</string>
     <string name="collection_name">Nom de la collection</string>
     <string name="invalid_collection">Collection non valide</string>
@@ -103,6 +102,8 @@
     <string name="add_links">Ajouter des liens</string>
     <string name="add_related_links">Ajouter les liens connexes</string>
     <string name="share_collection">Collection de partage</string>
+    <string name="edit">Editer</string>
+    <string name="loading">Chargement...</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minute</item>
         <item formatted="false" quantity="other">%1$d minutes</item>
