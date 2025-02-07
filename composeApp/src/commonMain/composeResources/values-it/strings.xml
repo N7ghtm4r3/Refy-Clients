@@ -100,6 +100,9 @@
     <string name="delete_collection_message">Confermando, la collezione e i relativi link non saranno più disponibili; se la raccolta è condivisa con i team, i link personali di ciascun membro saranno mantenuti, ad eccezione di chi ha cancellato la raccolta.</string>
     <string name="inserted_on">Inserito il %1$s</string>
     <string name="created_on">Creata il %1$s</string>
+    <string name="add_links">Aggiungi link</string>
+    <string name="add_related_links">Aggiungi i link correlati</string>
+    <string name="share_collection">Condividi la collezione</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minuti</item>

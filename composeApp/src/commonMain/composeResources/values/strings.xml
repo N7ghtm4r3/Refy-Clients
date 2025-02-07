@@ -100,6 +100,9 @@
     <string name="delete_collection_message">By confirming, the collection and related links will no longer be available, if the collection is shared with teams the personal links for each member will be kept except for who deleted the collection</string>
     <string name="inserted_on">Inserted on %1$s</string>
     <string name="created_on">Created on %1$s</string>
+    <string name="add_links">Add links</string>
+    <string name="add_related_links">Add the related links</string>
+    <string name="share_collection">Share collection</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minute</item>
         <item formatted="false" quantity="other">%1$d minutes</item>

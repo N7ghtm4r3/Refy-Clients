@@ -27,11 +27,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
+import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.add_links
+import refy.composeapp.generated.resources.share_collection
 import refy.composeapp.generated.resources.share_link
 
 @Composable
@@ -83,6 +87,58 @@ fun AttachLink(
         )
     )
 }
+
+
+@Composable
+@NonRestartableComposable
+fun AttachCollection(
+    state: SheetState,
+    scope: CoroutineScope,
+    viewModel: CollectionsScreenViewModel,
+    collection: LinksCollection
+) {
+    AttachItem(
+        state = state,
+        scope = scope,
+        pages = arrayOf(
+            {
+                LinksChooser(
+                    mainTitle = Res.string.add_links,
+                    currentAttachedLinks = collection.links,
+                    confirmAction = { links ->
+                        viewModel.attachLinks(
+                            collection = collection,
+                            links = links,
+                            afterAttached = {
+                                scope.launch {
+                                    state.hide()
+                                }
+                            }
+                        )
+                    }
+                )
+            },
+            {
+                TeamsChooser(
+                    mainTitle = Res.string.share_collection,
+                    currentTeamsAttached = collection.teams,
+                    confirmAction = { teams ->
+                        viewModel.shareWithTeams(
+                            collection = collection,
+                            teams = teams,
+                            afterShared = {
+                                scope.launch {
+                                    state.hide()
+                                }
+                            }
+                        )
+                    }
+                )
+            }
+        )
+    )
+}
+
 
 @Composable
 @NonRestartableComposable

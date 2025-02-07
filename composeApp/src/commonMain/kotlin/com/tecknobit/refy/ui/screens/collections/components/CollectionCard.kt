@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.tecknobit.refy.ui.screens.collections.components
 
 import androidx.compose.foundation.layout.Column
@@ -6,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
@@ -17,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.utilities.BorderToColor
 import com.tecknobit.equinoxcompose.utilities.colorOneSideBorder
 import com.tecknobit.equinoxcompose.utilities.toColor
+import com.tecknobit.refy.ui.components.AttachCollection
+import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.DeleteCollection
 import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.ExpandCardButton
@@ -88,6 +93,16 @@ private fun CollectionBottomBar(
     ) {
         ExpandCardButton(
             expanded = expanded
+        )
+        AttachItemButton(
+            attachItemContent = { state, scope ->
+                AttachCollection(
+                    state = state,
+                    scope = scope,
+                    viewModel = viewModel,
+                    collection = collection
+                )
+            }
         )
         DeleteItemButton(
             item = collection,

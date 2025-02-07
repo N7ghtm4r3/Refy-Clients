@@ -13,20 +13,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Attachment
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,6 +35,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.tecknobit.refy.helpers.shareLink
+import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.AttachLink
 import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.DeleteLink
@@ -45,7 +43,6 @@ import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
-import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.inserted_on
@@ -174,29 +171,15 @@ private fun LinkBottomBar(
                         contentDescription = null
                     )
                 }
-                val state = rememberModalBottomSheetState(
-                    skipPartiallyExpanded = true
-                )
-                val scope = rememberCoroutineScope()
-                IconButton(
-                    modifier = Modifier
-                        .size(30.dp),
-                    onClick = {
-                        scope.launch {
-                            state.show()
-                        }
+                AttachItemButton(
+                    attachItemContent = { state, scope ->
+                        AttachLink(
+                            state = state,
+                            scope = scope,
+                            viewModel = viewModel,
+                            link = link
+                        )
                     }
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Attachment,
-                        contentDescription = null
-                    )
-                }
-                AttachLink(
-                    state = state,
-                    scope = scope,
-                    viewModel = viewModel,
-                    link = link
                 )
             }
         }
