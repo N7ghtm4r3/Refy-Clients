@@ -1,9 +1,9 @@
 package com.tecknobit.refy.helpers
 
 import android.content.Intent
+import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
-import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 
 /**
  * `INTENT_TYPE` the type of the intent to apply to correctly share the link
@@ -17,7 +17,7 @@ private const val INTENT_TYPE = "text/plain"
  * @param link The link to share
  */
 actual fun shareLink(
-    viewModel: LinksScreenViewModel,
+    viewModel: EquinoxViewModel,
     link: RefyLink
 ) {
     val intent = Intent()

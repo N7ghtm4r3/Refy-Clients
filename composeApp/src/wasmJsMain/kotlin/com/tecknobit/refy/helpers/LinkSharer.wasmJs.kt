@@ -1,8 +1,8 @@
 package com.tecknobit.refy.helpers
 
 import com.tecknobit.equinoxcompose.utilities.copyOnClipboard
+import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
-import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.link_copied
 
@@ -13,7 +13,7 @@ import refy.composeapp.generated.resources.link_copied
  * @param link The link to share
  */
 actual fun shareLink(
-    viewModel: LinksScreenViewModel,
+    viewModel: EquinoxViewModel,
     link: RefyLink
 ) {
     copyOnClipboard(

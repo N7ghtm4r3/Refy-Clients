@@ -1,9 +1,13 @@
+@file:OptIn(ExperimentalMultiplatform::class)
+
 package com.tecknobit.refy.ui.screens.collection.presenter
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -15,9 +19,13 @@ import com.materialkolor.rememberDynamicColorScheme
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Auto
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
+import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.refy.localUser
+import com.tecknobit.refy.ui.components.links.LinksGrid
+import com.tecknobit.refy.ui.components.links.LinksList
 import com.tecknobit.refy.ui.icons.FolderManaged
+import com.tecknobit.refy.ui.screens.collection.components.CollectionLinkCard
 import com.tecknobit.refy.ui.screens.collection.components.CollectionTeamCard
 import com.tecknobit.refy.ui.screens.collection.helpers.adaptStatusBarToCollectionTheme
 import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenViewModel
@@ -61,6 +69,11 @@ class CollectionScreen(
     @Composable
     override fun ColumnScope.ItemDetails() {
         TeamsSection()
+        Spacer(
+            modifier = Modifier
+                .height(10.dp)
+        )
+        LinksSection()
     }
 
     @Composable
@@ -81,6 +94,49 @@ class CollectionScreen(
                 )
             }
         }
+    }
+
+    @Composable
+    @NonRestartableComposable
+    private fun LinksSection() {
+        ResponsiveContent(
+            onExpandedSizeClass = {
+                LinksGrid(
+                    linksState = viewModel.linksState,
+                    linkCard = { link ->
+                        CollectionLinkCard(
+                            viewModel = viewModel,
+                            collection = item.value!!,
+                            link = link
+                        )
+                    }
+                )
+            },
+            onMediumSizeClass = {
+                LinksGrid(
+                    linksState = viewModel.linksState,
+                    linkCard = { link ->
+                        CollectionLinkCard(
+                            viewModel = viewModel,
+                            collection = item.value!!,
+                            link = link
+                        )
+                    }
+                )
+            },
+            onCompactSizeClass = {
+                LinksList(
+                    linksState = viewModel.linksState,
+                    linkCard = { link ->
+                        CollectionLinkCard(
+                            viewModel = viewModel,
+                            collection = item.value!!,
+                            link = link
+                        )
+                    }
+                )
+            }
+        )
     }
 
     override fun upsertIcon(): ImageVector {

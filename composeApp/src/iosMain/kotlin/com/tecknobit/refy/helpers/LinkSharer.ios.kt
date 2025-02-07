@@ -1,7 +1,7 @@
 package com.tecknobit.refy.helpers
 
+import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
-import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 
@@ -12,7 +12,7 @@ import platform.UIKit.UIApplication
  * @param link The link to share
  */
 actual fun shareLink(
-    viewModel: LinksScreenViewModel,
+    viewModel: EquinoxViewModel,
     link: RefyLink
 ) {
     val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController

@@ -8,12 +8,13 @@ import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refy.ui.shared.presentations.ItemsScreenViewModel
+import com.tecknobit.refy.ui.shared.presentations.LinksRetriever
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 import kotlin.random.Random
 
-class LinksScreenViewModel : ItemsScreenViewModel() {
-    
-    val linksState = PaginationState<Int, RefyLinkImpl>(
+class LinksScreenViewModel : ItemsScreenViewModel(), LinksRetriever {
+
+    override val linksState: PaginationState<Int, RefyLinkImpl> = PaginationState(
         initialPageKey = DEFAULT_PAGE,
         onRequestPage = { page ->
             loadLinks(
@@ -22,7 +23,7 @@ class LinksScreenViewModel : ItemsScreenViewModel() {
         }
     )
 
-    private fun loadLinks(
+    override fun loadLinks(
         page: Int
     ) {
         // TODO: MAKE THE REQUEST THEN
