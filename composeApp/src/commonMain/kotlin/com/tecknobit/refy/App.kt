@@ -143,7 +143,7 @@ fun startSession() {
                 },
                 onSuccess = { response ->
                     localUser.updateDynamicAccountData(
-                        dynamicData = response.toResponseData()
+                        dynamicdate = response.toResponseData()
                     )
                 },
                 onFailure = {}

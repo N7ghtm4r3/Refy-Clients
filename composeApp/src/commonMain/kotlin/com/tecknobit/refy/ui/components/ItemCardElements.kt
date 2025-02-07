@@ -4,7 +4,6 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,18 +24,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.icons.CollapseAll
 import com.tecknobit.refy.ui.icons.ExpandAll
 import com.tecknobit.refy.ui.shared.data.RefyItem
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 @NonRestartableComposable
 fun ItemCardDetails(
     modifier: Modifier = Modifier,
     expanded: MutableState<Boolean>,
-    item: RefyItem
+    item: RefyItem,
+    info: StringResource
 ) {
     Column(
         modifier = modifier
@@ -45,20 +48,20 @@ fun ItemCardDetails(
             )
     ) {
         Text(
-            modifier = Modifier
-                .then(
-                    if (expanded.value) {
-                        Modifier.padding(
-                            bottom = 5.dp
-                        )
-                    } else
-                        Modifier
-                ),
             text = item.title,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             fontWeight = FontWeight.Bold,
             fontFamily = displayFontFamily
+        )
+        Text(
+            text = stringResource(
+                resource = info,
+                item.date.toDateString()
+            ),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            fontSize = 15.sp
         )
         Text(
             modifier = Modifier

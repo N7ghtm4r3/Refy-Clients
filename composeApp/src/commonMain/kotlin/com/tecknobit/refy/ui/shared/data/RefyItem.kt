@@ -7,4 +7,5 @@ interface RefyItem {
     val owner: RefyUserImpl
     val title: String
     val description: String
+    val date: Long
 }

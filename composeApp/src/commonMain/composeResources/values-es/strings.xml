@@ -98,6 +98,8 @@
     <string name="search_by_keywords">Búsqueda por palabras clave</string>
     <string name="delete_collection">Borrar colección</string>
     <string name="delete_collection_message">Al confirmar, la colección y los enlaces relacionados dejarán de estar disponibles; si la colección se comparte con equipos, se conservarán los enlaces personales de cada miembro, excepto los de quien haya eliminado la colección.</string>
+    <string name="inserted_on">Insertado el %1$s</string>
+    <string name="created_on">Creado el %1$s</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minutos</item>

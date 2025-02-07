@@ -1,6 +1,7 @@
 package com.tecknobit.refy.ui.screens.links.presentation
 
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
+import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
@@ -50,6 +51,7 @@ class LinksScreenViewModel : ItemsScreenViewModel() {
                             "Donec eros ex, tincidunt sit amet dui et, consequat tempus nisl. Proin justo quam, tempus malesuada libero nec, malesuada pharetra lorem. In ac nisi vel tellus lobortis accumsan. Nulla facilisi. Donec eget lorem viverra, tempus ex congue, finibus orci. In id vehicula sem. Nullam vulputate leo sed sapien dapibus efficitur. Nunc tincidunt, nibh id tincidunt facilisis, nisl nunc sagittis leo, et venenatis eros purus in justo. Donec bibendum sodales efficitur. Donec at odio a velit euismod venenatis in quis tortor. Fusce imperdiet in felis in eleifend. Morbi eget posuere urna. Aliquam interdum vel lacus et suscipit. Cras a suscipit urna, vel dapibus tortor. Duis semper porttitor finibus."
 
                 } else "gag",
+                date = TimeFormatter.currentTimestamp(),
                 thumbnailPreview = "https://www.baeldung.com/wp-content/uploads/2021/08/Baeldung-Featured-Image.png",
                 reference = "https://starwalk.space/gallery/images/what-is-space/1920x1080.jpg"
             ),
@@ -75,6 +77,7 @@ class LinksScreenViewModel : ItemsScreenViewModel() {
                             "\n" +
                             "Donec eros ex, tincidunt sit amet dui et, consequat tempus nisl. Proin justo quam, tempus malesuada libero nec, malesuada pharetra lorem. In ac nisi vel tellus lobortis accumsan. Nulla facilisi. Donec eget lorem viverra, tempus ex congue, finibus orci. In id vehicula sem. Nullam vulputate leo sed sapien dapibus efficitur. Nunc tincidunt, nibh id tincidunt facilisis, nisl nunc sagittis leo, et venenatis eros purus in justo. Donec bibendum sodales efficitur. Donec at odio a velit euismod venenatis in quis tortor. Fusce imperdiet in felis in eleifend. Morbi eget posuere urna. Aliquam interdum vel lacus et suscipit. Cras a suscipit urna, vel dapibus tortor. Duis semper porttitor finibus."
                 } else "gag",
+                date = TimeFormatter.currentTimestamp(),
                 thumbnailPreview = "https://resources.jetbrains.com/storage/products/jetbrains/img/meta/preview.png",
                 reference = "https://www.jetbrains.com/"
             ),
@@ -101,6 +104,7 @@ class LinksScreenViewModel : ItemsScreenViewModel() {
                             "Donec eros ex, tincidunt sit amet dui et, consequat tempus nisl. Proin justo quam, tempus malesuada libero nec, malesuada pharetra lorem. In ac nisi vel tellus lobortis accumsan. Nulla facilisi. Donec eget lorem viverra, tempus ex congue, finibus orci. In id vehicula sem. Nullam vulputate leo sed sapien dapibus efficitur. Nunc tincidunt, nibh id tincidunt facilisis, nisl nunc sagittis leo, et venenatis eros purus in justo. Donec bibendum sodales efficitur. Donec at odio a velit euismod venenatis in quis tortor. Fusce imperdiet in felis in eleifend. Morbi eget posuere urna. Aliquam interdum vel lacus et suscipit. Cras a suscipit urna, vel dapibus tortor. Duis semper porttitor finibus."
 
                 } else "gag",
+                date = TimeFormatter.currentTimestamp(),
                 thumbnailPreview = "https://static.sky.it/editorialimages/6c24c3c7b4caf2e84027e72d8a732221ae980f2a/skysport/it/motori/formula-1/2025/02/05/f1-2025-ferrari-barcellona-test-pirelli-seconda-giornata-diretta/hamilton_test_barcel._pirelli.jpg?im=Resize,width=565",
                 reference = "https://www.jetbrains.com/"
             ),
@@ -127,6 +131,7 @@ class LinksScreenViewModel : ItemsScreenViewModel() {
                             "Donec eros ex, tincidunt sit amet dui et, consequat tempus nisl. Proin justo quam, tempus malesuada libero nec, malesuada pharetra lorem. In ac nisi vel tellus lobortis accumsan. Nulla facilisi. Donec eget lorem viverra, tempus ex congue, finibus orci. In id vehicula sem. Nullam vulputate leo sed sapien dapibus efficitur. Nunc tincidunt, nibh id tincidunt facilisis, nisl nunc sagittis leo, et venenatis eros purus in justo. Donec bibendum sodales efficitur. Donec at odio a velit euismod venenatis in quis tortor. Fusce imperdiet in felis in eleifend. Morbi eget posuere urna. Aliquam interdum vel lacus et suscipit. Cras a suscipit urna, vel dapibus tortor. Duis semper porttitor finibus."
 
                 } else "gag",
+                date = TimeFormatter.currentTimestamp(),
                 reference = "https://www.jetbrains.com/"
             )
         )

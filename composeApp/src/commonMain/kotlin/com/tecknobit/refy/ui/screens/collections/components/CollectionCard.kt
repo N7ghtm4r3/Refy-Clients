@@ -23,6 +23,8 @@ import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
+import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.created_on
 
 @Composable
 @NonRestartableComposable
@@ -60,7 +62,8 @@ fun CollectionCard(
                         bottom = 5.dp
                     ),
                 expanded = expanded,
-                item = collection
+                item = collection,
+                info = Res.string.created_on
             )
             CollectionBottomBar(
                 expanded = expanded,

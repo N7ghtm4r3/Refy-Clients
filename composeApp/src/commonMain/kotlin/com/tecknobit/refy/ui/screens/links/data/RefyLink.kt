@@ -21,6 +21,7 @@ interface RefyLink : RefyItem {
         override val owner: RefyUser.RefyUserImpl,
         override val title: String,
         override val description: String,
+        override val date: Long,
         override val reference: String,
         override val teams: List<Team> = emptyList(),
         override val collections: List<LinksCollection> = emptyList(),

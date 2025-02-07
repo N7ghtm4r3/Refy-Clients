@@ -14,6 +14,7 @@ data class LinksCollection(
     override val owner: RefyUserImpl,
     override val title: String,
     override val description: String,
+    override val date: Long,
     @SerialName(COLLECTION_COLOR_KEY)
     val color: String,
     val links: List<RefyLinkImpl>,

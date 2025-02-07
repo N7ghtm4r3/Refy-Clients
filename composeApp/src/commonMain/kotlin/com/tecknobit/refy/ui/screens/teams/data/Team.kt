@@ -16,6 +16,7 @@ data class Team(
     override val owner: RefyUserImpl,
     override val title: String,
     override val description: String,
+    override val date: Long,
     @SerialName(LOGO_PIC_KEY)
     val logoPic: String,
     val members: List<TeamMember>,

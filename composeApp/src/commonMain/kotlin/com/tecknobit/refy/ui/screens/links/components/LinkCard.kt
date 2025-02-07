@@ -48,6 +48,7 @@ import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.inserted_on
 import refy.composeapp.generated.resources.no_preview_available
 
 
@@ -94,7 +95,8 @@ fun LinkCard(
                         start = 5.dp
                     ),
                 expanded = expanded,
-                item = link
+                item = link,
+                info = Res.string.inserted_on
             )
             LinkBottomBar(
                 expanded = expanded,
