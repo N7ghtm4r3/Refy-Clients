@@ -169,7 +169,8 @@ class HomeScreen : EquinoxNoModelScreen() {
             )
             AnimatedBottomNavigationBar(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter),
+                    .align(Alignment.BottomCenter)
+                    .navigationBarsPadding(),
                 tabs = tabs,
                 currentSelectedTab = currentSelectedTab
             )

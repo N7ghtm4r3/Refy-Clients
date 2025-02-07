@@ -9,8 +9,6 @@
     <string name="description_not_valid">Descripción no válida</string>
     <string name="edit_link">Editar enlace</string>
     <string name="edit">Editar</string>
-    <string name="delete_collection">Borrar colección</string>
-    <string name="delete_collection_message">Al confirmar, la colección y los enlaces relacionados dejarán de estar disponibles; si la colección se comparte con equipos, se conservarán los enlaces personales de cada miembro, excepto los de quien haya eliminado la colección.</string>
     <string name="add_collection_to_team">Añadir colección al equipo</string>
     <string name="collection_name">Nombre de la colección</string>
     <string name="invalid_collection">Recogida no válida</string>
@@ -88,7 +86,6 @@
     <string name="custom">A medida</string>
     <string name="create">Creado</string>
     <string name="add">Añadir</string>
-    <string name="no_links_yet">Aún no hay enlaces</string>
     <string name="delete_link">Borrar enlace</string>
     <string name="delete_link_message">Al confirmar, el enlace y los datos relacionados dejarán de estar disponibles, incluso en cualquier equipo o colección</string>
     <string name="link_copied">Enlace copiado!</string>
@@ -99,6 +96,8 @@
     <string name="with_teams">Con equipos</string>
     <string name="confirm">Confirme</string>
     <string name="search_by_keywords">Búsqueda por palabras clave</string>
+    <string name="delete_collection">Borrar colección</string>
+    <string name="delete_collection_message">Al confirmar, la colección y los enlaces relacionados dejarán de estar disponibles; si la colección se comparte con equipos, se conservarán los enlaces personales de cada miembro, excepto los de quien haya eliminado la colección.</string>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minutos</item>

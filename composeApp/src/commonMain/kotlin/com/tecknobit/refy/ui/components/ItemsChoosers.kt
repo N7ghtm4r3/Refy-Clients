@@ -15,7 +15,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.FolderOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -44,7 +43,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.ChameleonText
-import com.tecknobit.equinoxcompose.components.EmptyListUI
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcompose.utilities.toHex
@@ -67,7 +65,6 @@ import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.collection_color
 import refy.composeapp.generated.resources.confirm
-import refy.composeapp.generated.resources.no_collections_yet
 import refy.composeapp.generated.resources.with_collections
 import refy.composeapp.generated.resources.with_teams
 import kotlin.random.Random
@@ -126,6 +123,7 @@ fun LinksCollectionsChooser(
         confirmAction = { collections ->
             confirmAction.invoke(collections)
         },
+        pageEmptyIndicator = { EmptyCollections() },
         overlineContent = { collection ->
             val collectionColor = collection.color.toColor()
             Card(
@@ -202,6 +200,7 @@ fun TeamsChooser(
         confirmAction = { teams ->
             confirmAction.invoke(teams)
         },
+        pageEmptyIndicator = { EmptyTeams() },
         overlineContent = { team ->
             TeamLogo(
                 size = 40.dp,
@@ -273,6 +272,7 @@ private fun <T : RefyItem> ItemsChooser(
     currentItemsAttached: List<T>,
     itemsState: PaginationState<Int, T>,
     confirmAction: (List<T>) -> Unit,
+    pageEmptyIndicator: @Composable () -> Unit,
     overlineContent: @Composable (T) -> Unit
 ) {
     val itemsAdded = remember { mutableStateListOf<T>() }
@@ -291,16 +291,7 @@ private fun <T : RefyItem> ItemsChooser(
         paginationState = itemsState,
         firstPageProgressIndicator = { FirstPageProgressIndicator() },
         newPageProgressIndicator = { NewPageProgressIndicator() },
-        firstPageEmptyIndicator = {
-            EmptyListUI(
-                containerModifier = Modifier
-                    .heightIn(
-                        max = 500.dp
-                    ),
-                icon = Icons.Default.FolderOff,
-                subText = Res.string.no_collections_yet
-            )
-        }
+        firstPageEmptyIndicator = pageEmptyIndicator
     ) {
         items(
             items = itemsState.allItems!!,

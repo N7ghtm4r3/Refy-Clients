@@ -25,7 +25,7 @@ interface RefyLink : RefyItem {
         override val teams: List<Team> = emptyList(),
         override val collections: List<LinksCollection> = emptyList(),
         @SerialName(THUMBNAIL_PREVIEW_KEY)
-        val thumbnailPreview: String?
+        val thumbnailPreview: String? = null
     ) : RefyLink
 
 }

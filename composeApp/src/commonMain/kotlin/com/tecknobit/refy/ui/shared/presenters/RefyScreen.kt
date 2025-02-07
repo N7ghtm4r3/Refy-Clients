@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMultiplatform::class)
 
-package com.tecknobit.refy.ui.shared.screens
+package com.tecknobit.refy.ui.shared.presenters
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -217,7 +217,6 @@ abstract class RefyScreen<V : EquinoxViewModel>(
     @Composable
     @NonRestartableComposable
     protected open fun RowScope.Filters() {
-
     }
 
 }

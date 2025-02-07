@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.tecknobit.refy.ui.screens.customs.presentation.CustomLinksScreenViewModel
-import com.tecknobit.refy.ui.shared.screens.RefyScreen
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import org.jetbrains.compose.resources.StringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.add

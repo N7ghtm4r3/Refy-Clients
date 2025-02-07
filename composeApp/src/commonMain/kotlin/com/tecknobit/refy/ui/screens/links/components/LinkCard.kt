@@ -2,7 +2,6 @@
 
 package com.tecknobit.refy.ui.screens.links.components
 
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,23 +9,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Attachment
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -39,27 +32,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.helpers.shareLink
-import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.components.AttachLink
+import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.DeleteLink
-import com.tecknobit.refy.ui.icons.CollapseAll
-import com.tecknobit.refy.ui.icons.ExpandAll
+import com.tecknobit.refy.ui.components.ExpandCardButton
+import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
-import refy.composeapp.generated.resources.logo
+import refy.composeapp.generated.resources.no_preview_available
 
 
 // credits to https://cdn.prod.website-files.com/64c7b734b044b679c715bc30/6674b58d32fbc146194c888a_5%20best%20practices%20to%20design%20UI%20Cards%20for%20your%20website%402x.webp
@@ -98,9 +87,14 @@ fun LinkCard(
             LinkThumbnail(
                 link = link
             )
-            LinkDetails(
+            ItemCardDetails(
+                modifier = Modifier
+                    .padding(
+                        top = 5.dp,
+                        start = 5.dp
+                    ),
                 expanded = expanded,
-                link = link
+                item = link
             )
             LinkBottomBar(
                 expanded = expanded,
@@ -133,48 +127,9 @@ private fun LinkThumbnail(
             .crossfade(500)
             .build(),
         contentScale = ContentScale.Crop,
-        error = painterResource(Res.drawable.logo),
+        error = painterResource(Res.drawable.no_preview_available),
         contentDescription = "Reference thumbnail picture"
     )
-}
-
-@Composable
-@NonRestartableComposable
-private fun LinkDetails(
-    expanded: MutableState<Boolean>,
-    link: RefyLinkImpl
-) {
-    Column(
-        modifier = Modifier
-            .padding(
-                top = 5.dp,
-                start = 5.dp
-            )
-            .heightIn(
-                max = 200.dp
-            )
-    ) {
-        Text(
-            text = link.title,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            fontWeight = FontWeight.Bold,
-            fontFamily = displayFontFamily
-        )
-        Text(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .animateContentSize(),
-            text = link.description,
-            minLines = 3,
-            maxLines = if (expanded.value)
-                Int.MAX_VALUE
-            else
-                3,
-            overflow = TextOverflow.Ellipsis,
-            fontSize = 14.sp
-        )
-    }
 }
 
 @Composable
@@ -199,19 +154,9 @@ private fun LinkBottomBar(
             Row(
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
-                IconButton(
-                    modifier = Modifier
-                        .size(30.dp),
-                    onClick = { expanded.value = !expanded.value }
-                ) {
-                    Icon(
-                        imageVector = if (expanded.value)
-                            CollapseAll
-                        else
-                            ExpandAll,
-                        contentDescription = null
-                    )
-                }
+                ExpandCardButton(
+                    expanded = expanded
+                )
                 IconButton(
                     modifier = Modifier
                         .size(28.dp),
@@ -253,30 +198,15 @@ private fun LinkBottomBar(
                 )
             }
         }
-        if (link.owner.id == localUser.userId) {
-            val deleteLink = remember { mutableStateOf(false) }
-            Column(
-                modifier = Modifier
-                    .weight(1f),
-                horizontalAlignment = Alignment.End
-            ) {
-                IconButton(
-                    modifier = Modifier
-                        .size(32.dp),
-                    onClick = { deleteLink.value = true }
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.error
-                    )
-                }
+        DeleteItemButton(
+            item = link,
+            deleteContent = { delete ->
+                DeleteLink(
+                    show = delete,
+                    viewModel = viewModel,
+                    link = link
+                )
             }
-            DeleteLink(
-                show = deleteLink,
-                viewModel = viewModel,
-                link = link
-            )
-        }
+        )
     }
 }

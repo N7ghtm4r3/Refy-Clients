@@ -10,9 +10,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EquinoxAlertDialog
 import com.tecknobit.refy.displayFontFamily
+import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
+import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.delete_collection
+import refy.composeapp.generated.resources.delete_collection_message
 import refy.composeapp.generated.resources.delete_link
 import refy.composeapp.generated.resources.delete_link_message
 
@@ -44,6 +48,34 @@ fun DeleteLink(
         confirmAction = {
             viewModel.deleteLink(
                 link = link,
+                onDelete = {
+                    show.value = false
+                }
+            )
+        }
+    )
+}
+
+@Composable
+@NonRestartableComposable
+fun DeleteCollection(
+    show: MutableState<Boolean>,
+    viewModel: CollectionsScreenViewModel,
+    collection: LinksCollection
+) {
+    EquinoxAlertDialog(
+        modifier = Modifier
+            .widthIn(
+                max = 400.dp
+            ),
+        show = show,
+        viewModel = viewModel,
+        title = Res.string.delete_collection,
+        titleStyle = titleStyle,
+        text = Res.string.delete_collection_message,
+        confirmAction = {
+            viewModel.deleteCollection(
+                collection = collection,
                 onDelete = {
                     show.value = false
                 }
