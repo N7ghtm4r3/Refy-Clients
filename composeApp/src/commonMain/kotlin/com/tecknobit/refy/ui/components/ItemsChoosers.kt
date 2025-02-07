@@ -284,7 +284,6 @@ fun TeamsChooser(
         pageEmptyIndicator = { EmptyTeams() },
         overlineContent = { team ->
             TeamLogo(
-                size = 40.dp,
                 team = team
             )
         }

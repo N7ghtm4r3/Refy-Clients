@@ -56,12 +56,8 @@ fun ItemCardDetails(
                 max = 200.dp
             )
     ) {
-        Text(
-            text = item.title,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            fontWeight = FontWeight.Bold,
-            fontFamily = displayFontFamily
+        ItemTitle(
+            item = item
         )
         Text(
             text = stringResource(
@@ -86,6 +82,20 @@ fun ItemCardDetails(
             fontSize = 14.sp
         )
     }
+}
+
+@Composable
+@NonRestartableComposable
+fun ItemTitle(
+    item: RefyItem
+) {
+    Text(
+        text = item.title,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        fontWeight = FontWeight.Bold,
+        fontFamily = displayFontFamily
+    )
 }
 
 @Composable

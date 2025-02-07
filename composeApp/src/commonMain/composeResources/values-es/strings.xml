@@ -18,7 +18,6 @@
     <string name="add_links_to_team">Añadir enlaces al equipo</string>
     <string name="invalid_team">Equipo inválido</string>
     <string name="team_name">Nombre del equipo</string>
-    <string name="members">Miembros</string>
     <string name="leave_team">Dejar el equipo</string>
     <string name="leave_team_message">Al confirmar, el equipo y los datos relacionados dejarán de estar disponibles para usted.</string>
     <string name="invalid_custom_link">Enlace personalizado no válido</string>
@@ -104,6 +103,11 @@
     <string name="share_collection">Compartir la colección</string>
     <string name="edit">Editar</string>
     <string name="loading">Cargando...</string>
+    <string name="members">Miembros</string>
+    <plurals name="members">
+        <item formatted="false" quantity="one">%1$d miembro</item>
+        <item formatted="false" quantity="other">%1$d miembros</item>
+    </plurals>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minuto</item>
         <item formatted="false" quantity="other">%1$d minutos</item>

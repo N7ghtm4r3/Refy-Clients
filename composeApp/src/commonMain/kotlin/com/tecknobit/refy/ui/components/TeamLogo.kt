@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
@@ -22,7 +23,7 @@ import refy.composeapp.generated.resources.logo
 @NonRestartableComposable
 fun TeamLogo(
     modifier: Modifier = Modifier,
-    size: Dp,
+    size: Dp = 40.dp,
     onClick: (() -> Unit)? = null,
     team: Team
 ) {
