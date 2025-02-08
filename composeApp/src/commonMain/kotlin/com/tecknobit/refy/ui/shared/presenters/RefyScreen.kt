@@ -63,7 +63,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
     viewModel = viewModel
 ) {
 
-    protected lateinit var filtersEnabled: MutableState<Boolean>
+    private lateinit var filtersEnabled: MutableState<Boolean>
 
     @Composable
     override fun ArrangeScreenContent() {
@@ -181,7 +181,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
 
     @Composable
     @NonRestartableComposable
-    private fun ExtendedFAB() {
+    protected open fun ExtendedFAB() {
         ExtendedFloatingActionButton(
             onClick = { upsertAction() }
         ) {
@@ -269,6 +269,15 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
 
     @Composable
     @NonRestartableComposable
+    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    protected open fun ColumnScope.TrailingContent() {
+        ProfilePic(
+            size = 75.dp
+        )
+    }
+
+    @Composable
+    @NonRestartableComposable
     protected fun FiltersInputField() {
         AnimatedVisibility(
             visible = filtersEnabled.value
@@ -295,14 +304,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 )
             }
         }
-    }
-
-    @Composable
-    @NonRestartableComposable
-    protected open fun ColumnScope.TrailingContent() {
-        ProfilePic(
-            size = 75.dp
-        )
     }
 
     @Composable

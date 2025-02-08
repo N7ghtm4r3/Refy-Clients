@@ -42,7 +42,6 @@
     <string name="theme">Thème</string>
     <string name="change">Changer</string>
     <string name="logout">Déconnexion</string>
-    <string name="delete">Supprimer</string>
     <string name="logout_message">Si vous confirmez, vous serez déconnecté de ce dispositif.</string>
     <string name="delete_message">Si vous confirmez, votre compte sera définitivement supprimé et vos données ne seront plus récupérables.</string>
     <string name="change_email">Modifier l'adresse électronique</string>
@@ -103,6 +102,7 @@
     <string name="share_collection">Collection de partage</string>
     <string name="edit">Editer</string>
     <string name="remove">Retirer</string>
+    <string name="delete">Supprimer</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membre</item>
         <item formatted="false" quantity="other">%1$d membres</item>
