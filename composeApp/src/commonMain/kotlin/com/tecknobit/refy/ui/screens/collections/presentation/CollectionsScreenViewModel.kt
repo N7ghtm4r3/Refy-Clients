@@ -31,6 +31,7 @@ class CollectionsScreenViewModel : RefyScreenViewModel(), CollectionsManager {
         page: Int
     ) {
         // TODO: MAKE THE REQUEST THEN
+        // TODO: APPLY THE keywords FILTER
         val linksCollection = listOf(
             LinksCollection(
                 id = Random.nextLong().toString(),
