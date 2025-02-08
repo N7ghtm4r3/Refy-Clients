@@ -41,6 +41,8 @@ fun LinkCard(
         },
         cancelButton = {
             DeleteItemButton(
+                modifier = Modifier
+                    .weight(1f),
                 item = link,
                 deleteContent = { delete ->
                     DeleteLink(

@@ -4,7 +4,6 @@ package com.tecknobit.refy.ui.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -42,7 +41,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
-private const val MINIMUM_DESCRIPTION_LINES = 3
+const val MINIMUM_DESCRIPTION_LINES = 3
 
 @Composable
 @NonRestartableComposable
@@ -171,15 +170,15 @@ fun RemoveItemButton(
 
 @Composable
 @NonRestartableComposable
-fun RowScope.DeleteItemButton(
+fun DeleteItemButton(
+    modifier: Modifier = Modifier,
     item: RefyItem,
     deleteContent: @Composable() (MutableState<Boolean>) -> Unit
 ) {
     if (item.iAmTheOwner()) {
         val deleteItem = remember { mutableStateOf(false) }
         Column(
-            modifier = Modifier
-                .weight(1f),
+            modifier = modifier,
             horizontalAlignment = Alignment.End
         ) {
             IconButton(

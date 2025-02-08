@@ -30,6 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -395,6 +396,7 @@ private fun <T : RefyItem> ChooserItem(
 ) {
     val expanded = remember { mutableStateOf(false) }
     var contained by remember { mutableStateOf(itemsAdded.contains(mainItem)) }
+    var descriptionLines by remember { mutableIntStateOf(0) }
     ListItem(
         colors = ListItemDefaults.colors(
             containerColor = Color.Transparent
@@ -443,6 +445,7 @@ private fun <T : RefyItem> ChooserItem(
                     .animateContentSize(),
                 text = mainItem.description,
                 textAlign = TextAlign.Justify,
+                onTextLayout = { descriptionLines = it.lineCount },
                 minLines = 3,
                 maxLines = if (expanded.value)
                     Int.MAX_VALUE
@@ -450,20 +453,23 @@ private fun <T : RefyItem> ChooserItem(
                     3
             )
         },
-        trailingContent = {
-            IconButton(
-                modifier = Modifier
-                    .size(30.dp),
-                onClick = { expanded.value = !expanded.value }
-            ) {
-                Icon(
-                    imageVector = if (expanded.value)
-                        CollapseAll
-                    else
-                        ExpandAll,
-                    contentDescription = null
-                )
+        trailingContent = if (descriptionLines >= MINIMUM_DESCRIPTION_LINES) {
+            {
+                IconButton(
+                    modifier = Modifier
+                        .size(30.dp),
+                    onClick = { expanded.value = !expanded.value }
+                ) {
+                    Icon(
+                        imageVector = if (expanded.value)
+                            CollapseAll
+                        else
+                            ExpandAll,
+                        contentDescription = null
+                    )
+                }
             }
-        }
+        } else
+            null
     )
 }

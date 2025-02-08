@@ -6,7 +6,7 @@ import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 
 @Structure
-abstract class ItemsScreenViewModel : EquinoxViewModel(
+abstract class RefyScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
 ) {
 

@@ -115,6 +115,8 @@ private fun CollectionBottomBar(
             }
         )
         DeleteItemButton(
+            modifier = Modifier
+                .weight(1f),
             item = collection,
             deleteContent = { delete ->
                 DeleteCollection(
@@ -123,7 +125,7 @@ private fun CollectionBottomBar(
                     collection = collection,
                     onDelete = {
                         delete.value = false
-                        viewModel.refreshAfterAttached()
+                        viewModel.refreshAfterLinksAttached()
                     }
                 )
             }

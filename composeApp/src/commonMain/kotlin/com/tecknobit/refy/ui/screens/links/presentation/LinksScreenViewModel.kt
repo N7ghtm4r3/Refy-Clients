@@ -7,12 +7,12 @@ import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
-import com.tecknobit.refy.ui.shared.presentations.ItemsScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.LinksRetriever
+import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 import kotlin.random.Random
 
-class LinksScreenViewModel : ItemsScreenViewModel(), LinksRetriever {
+class LinksScreenViewModel : RefyScreenViewModel(), LinksRetriever {
 
     override val linksState: PaginationState<Int, RefyLinkImpl> = PaginationState(
         initialPageKey = DEFAULT_PAGE,

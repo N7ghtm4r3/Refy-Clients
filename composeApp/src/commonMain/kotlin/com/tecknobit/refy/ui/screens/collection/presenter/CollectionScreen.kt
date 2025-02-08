@@ -8,12 +8,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
@@ -21,6 +21,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
@@ -45,10 +46,13 @@ import com.tecknobit.refy.ui.screens.collection.helpers.adaptStatusBarToCollecti
 import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenViewModel
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.shared.presenters.ItemScreen
+import com.tecknobit.refy.ui.theme.AppTypography
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyRow
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.edit
+import refy.composeapp.generated.resources.links
 
 class CollectionScreen(
     collectionId: String,
@@ -85,10 +89,6 @@ class CollectionScreen(
     @Composable
     override fun ColumnScope.ItemDetails() {
         TeamsSection()
-        Spacer(
-            modifier = Modifier
-                .height(10.dp)
-        )
         LinksSection()
     }
 
@@ -116,6 +116,7 @@ class CollectionScreen(
     @Composable
     @NonRestartableComposable
     private fun LinksSection() {
+        LinksHeader()
         ResponsiveContent(
             onExpandedSizeClass = {
                 LinksGrid(
@@ -156,6 +157,29 @@ class CollectionScreen(
         )
     }
 
+    @Composable
+    @NonRestartableComposable
+    private fun LinksHeader() {
+        Column(
+            modifier = Modifier
+                .padding(
+                    top = 5.dp,
+                    bottom = 10.dp
+                )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(Res.string.links),
+                    style = AppTypography.headlineMedium
+                )
+                FilterButton()
+            }
+            FiltersInputField()
+        }
+    }
+
     override fun upsertIcon(): ImageVector {
         return FolderManaged
     }
@@ -173,7 +197,7 @@ class CollectionScreen(
     override fun ColumnScope.TrailingContent() {
         var show by remember { mutableStateOf(false) }
         LaunchedEffect(item.value) {
-            show = item.value != null
+            show = item.value != null && item.value!!.iAmTheOwner()
         }
         AnimatedVisibility(
             visible = show
@@ -189,23 +213,20 @@ class CollectionScreen(
                         )
                     }
                 )
-                Row {
-
-                    DeleteItemButton(
-                        item = item.value!!,
-                        deleteContent = { delete ->
-                            DeleteCollection(
-                                show = delete,
-                                collectionsManager = viewModel,
-                                collection = item.value!!,
-                                onDelete = {
-                                    delete.value = false
-                                    navigator.goBack()
-                                }
-                            )
-                        }
-                    )
-                }
+                DeleteItemButton(
+                    item = item.value!!,
+                    deleteContent = { delete ->
+                        DeleteCollection(
+                            show = delete,
+                            collectionsManager = viewModel,
+                            collection = item.value!!,
+                            onDelete = {
+                                delete.value = false
+                                navigator.goBack()
+                            }
+                        )
+                    }
+                )
             }
         }
     }

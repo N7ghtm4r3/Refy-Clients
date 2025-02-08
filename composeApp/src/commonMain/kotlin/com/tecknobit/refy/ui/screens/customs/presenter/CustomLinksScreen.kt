@@ -34,11 +34,4 @@ class CustomLinksScreen : RefyScreen<CustomLinksScreenViewModel>(
         return Icons.Default.AddLink
     }
 
-    /**
-     * Method to collect or instantiate the states of the screen
-     */
-    @Composable
-    override fun CollectStates() {
-    }
-
 }

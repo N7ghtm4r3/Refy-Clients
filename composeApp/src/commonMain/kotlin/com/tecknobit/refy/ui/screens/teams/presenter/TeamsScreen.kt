@@ -34,11 +34,4 @@ class TeamsScreen : RefyScreen<TeamsScreenViewModel>(
         return Icons.Default.GroupAdd
     }
 
-    /**
-     * Method to collect or instantiate the states of the screen
-     */
-    @Composable
-    override fun CollectStates() {
-    }
-
 }

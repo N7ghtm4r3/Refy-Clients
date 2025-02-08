@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.ManagedContent
+import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.shared.data.RefyItem
@@ -61,6 +62,11 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     @NonRestartableComposable
     override fun title(): String {
         return itemName
+    }
+
+    @Composable
+    @NonRestartableComposable
+    override fun RowScope.Filters() {
     }
 
     @Composable
@@ -110,7 +116,9 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     }
 
     @Composable
+    @RequiresSuperCall
     override fun CollectStates() {
+        super.CollectStates()
         item = viewModel.item.collectAsState()
     }
 

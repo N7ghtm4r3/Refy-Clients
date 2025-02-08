@@ -238,9 +238,16 @@ class CollectionScreenViewModel(
         )
     }
 
-    override fun refreshAfterAttached() {
-        collectionTeams.refresh()
+    override fun refresh() {
         linksState.refresh()
+    }
+
+    override fun refreshAfterLinksAttached() {
+        linksState.refresh()
+    }
+
+    override fun refreshAfterTeamsAttached() {
+        collectionTeams.refresh()
     }
 
     fun removeTeam(

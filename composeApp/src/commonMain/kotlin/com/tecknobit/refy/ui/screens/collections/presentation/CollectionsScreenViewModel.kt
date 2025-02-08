@@ -8,12 +8,12 @@ import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
-import com.tecknobit.refy.ui.shared.presentations.ItemsScreenViewModel
+import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 import kotlinx.coroutines.CoroutineScope
 import kotlin.random.Random
 
-class CollectionsScreenViewModel : ItemsScreenViewModel(), CollectionsManager {
+class CollectionsScreenViewModel : RefyScreenViewModel(), CollectionsManager {
 
     override val requestsScope: CoroutineScope
         get() = viewModelScope
@@ -71,8 +71,11 @@ class CollectionsScreenViewModel : ItemsScreenViewModel(), CollectionsManager {
         collectionsState.refresh()
     }
 
-    override fun refreshAfterAttached() {
-        refresh()
+    override fun refreshAfterLinksAttached() {
+        collectionsState.refresh()
+    }
+
+    override fun refreshAfterTeamsAttached() {
     }
 
 }

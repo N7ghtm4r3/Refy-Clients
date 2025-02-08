@@ -15,7 +15,7 @@ interface CollectionsManager {
         afterAttached: () -> Unit
     ) {
         // TODO: MAKE THE REQUEST THEN
-        refreshAfterAttached()
+        refreshAfterLinksAttached()
         afterAttached()
     }
 
@@ -25,7 +25,7 @@ interface CollectionsManager {
         afterShared: () -> Unit
     ) {
         // TODO: MAKE THE REQUEST THEN
-        refreshAfterAttached()
+        refreshAfterTeamsAttached()
         afterShared()
     }
 
@@ -37,6 +37,8 @@ interface CollectionsManager {
         onDelete()
     }
 
-    fun refreshAfterAttached()
+    fun refreshAfterLinksAttached()
+
+    fun refreshAfterTeamsAttached()
 
 }

@@ -1,8 +1,11 @@
 package com.tecknobit.refy.ui.screens.teams.presentation
 
-import androidx.compose.material3.SnackbarHostState
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
 
-class TeamsScreenViewModel : EquinoxViewModel(
-    snackbarHostState = SnackbarHostState()
-)
+class TeamsScreenViewModel : RefyScreenViewModel() {
+
+    override fun refresh() {
+        TODO("Not yet implemented")
+    }
+
+}
