@@ -104,8 +104,7 @@ class CollectionScreen(
             extras = { collection -> collection.iAmTheOwner() }
         ) {
             Column(
-                horizontalAlignment = Alignment.End,
-                verticalArrangement = Arrangement.spacedBy(5.dp)
+                horizontalAlignment = Alignment.End
             ) {
                 val state = rememberModalBottomSheetState(
                     skipPartiallyExpanded = true
@@ -129,6 +128,10 @@ class CollectionScreen(
                 )
                 val delete = remember { mutableStateOf(false) }
                 ExtendedFloatingActionButton(
+                    modifier = Modifier
+                        .padding(
+                            bottom = 5.dp
+                        ),
                     containerColor = MaterialTheme.colorScheme.error,
                     onClick = { delete.value = !delete.value }
                 ) {
@@ -136,10 +139,6 @@ class CollectionScreen(
                         text = stringResource(Res.string.delete)
                     )
                     Icon(
-                        modifier = Modifier
-                            .padding(
-                                start = 5.dp
-                            ),
                         imageVector = Icons.Default.Delete,
                         contentDescription = null
                     )
