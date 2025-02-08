@@ -13,8 +13,6 @@
     <string name="invalid_collection">Invalid collection</string>
     <string name="add_links_to_collection">Add links to collection</string>
     <string name="you_re_not_on_any_team">You're not on any team</string>
-    <string name="delete_team">Delete team</string>
-    <string name="delete_team_message">By confirming, the team and related data will no longer be available, the personal links for each member will be kept</string>
     <string name="add_links_to_team">Add links to team</string>
     <string name="invalid_team">Invalid team</string>
     <string name="team_name">Team name</string>
@@ -96,13 +94,18 @@
     <string name="delete_collection">Delete collection</string>
     <string name="delete_collection_message">By confirming, the collection and related links will no longer be available, if the collection is shared with teams the personal links for each member will be kept except for who deleted the collection</string>
     <string name="inserted_on">Inserted on %1$s</string>
-    <string name="created_on">Created on %1$s</string>
+    <string name="collection_created_on">Created on %1$s</string>
     <string name="add_links">Add links</string>
     <string name="add_related_links">Add the related links</string>
     <string name="share_collection">Share collection</string>
     <string name="edit">Edit</string>
     <string name="remove">Remove</string>
     <string name="delete">Delete</string>
+    <string name="delete_team">Delete team</string>
+    <string name="delete_team_message">By confirming, the team and related data will no longer be available, the personal links for each member will be kept</string>
+    <string name="add_collections">Add collections</string>
+    <string name="add_related_collections">Add the related collections</string>
+    <string name="team_created_on">Created on %1$s</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d member</item>
         <item formatted="false" quantity="other">%1$d members</item>

@@ -13,12 +13,16 @@ import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
+import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.delete_collection
 import refy.composeapp.generated.resources.delete_collection_message
 import refy.composeapp.generated.resources.delete_link
 import refy.composeapp.generated.resources.delete_link_message
+import refy.composeapp.generated.resources.delete_team
+import refy.composeapp.generated.resources.delete_team_message
 
 /**
  * `titleStyle` the style to apply to the title of the [EquinoxAlertDialog]
@@ -76,6 +80,32 @@ fun DeleteCollection(
         confirmAction = {
             collectionsManager.deleteCollection(
                 collection = collection,
+                onDelete = onDelete
+            )
+        }
+    )
+}
+
+@Composable
+@NonRestartableComposable
+fun DeleteTeam(
+    show: MutableState<Boolean>,
+    viewModel: TeamsScreenViewModel,
+    team: Team,
+    onDelete: () -> Unit
+) {
+    EquinoxAlertDialog(
+        modifier = Modifier
+            .widthIn(
+                max = 400.dp
+            ),
+        show = show,
+        title = Res.string.delete_team,
+        titleStyle = titleStyle,
+        text = Res.string.delete_team_message,
+        confirmAction = {
+            viewModel.deleteTeam(
+                team = team,
                 onDelete = onDelete
             )
         }

@@ -150,6 +150,7 @@ fun LinksChooser(
 @NonRestartableComposable
 fun LinksCollectionsChooser(
     mainTitle: StringResource,
+    subTitle: StringResource = Res.string.with_collections,
     currentLinksCollectionsAttached: List<LinksCollection>,
     confirmAction: (List<LinksCollection>) -> Unit
 ) {
@@ -195,7 +196,7 @@ fun LinksCollectionsChooser(
     )
     ItemsChooser(
         mainTitle = mainTitle,
-        subTitle = Res.string.with_collections,
+        subTitle = subTitle,
         currentItemsAttached = currentLinksCollectionsAttached,
         itemsState = linksCollectionState,
         confirmAction = { collections ->

@@ -1,11 +1,14 @@
 package com.tecknobit.refy.ui.screens.teams.data
 
+import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refy.ui.shared.data.RefyUser.RefyUserImpl
 import com.tecknobit.refycore.LOGO_PIC_KEY
 import com.tecknobit.refycore.TEAM_IDENTIFIER_KEY
+import com.tecknobit.refycore.enums.TeamRole
+import com.tecknobit.refycore.enums.TeamRole.VIEWER
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,4 +25,14 @@ data class Team(
     val members: List<TeamMember>,
     val links: List<RefyLinkImpl> = emptyList(),
     val collections: List<LinksCollection> = emptyList()
-) : RefyItem
+) : RefyItem {
+
+    fun findMyRole(): TeamRole {
+        members.forEach { member ->
+            if (member.id == localUser.userId)
+                return member.role
+        }
+        return VIEWER
+    }
+
+}

@@ -30,11 +30,15 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
+import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.add_collections
 import refy.composeapp.generated.resources.add_links
+import refy.composeapp.generated.resources.add_related_collections
 import refy.composeapp.generated.resources.share_collection
 import refy.composeapp.generated.resources.share_link
 
@@ -88,15 +92,13 @@ fun AttachLink(
     )
 }
 
-
 @Composable
 @NonRestartableComposable
 fun AttachCollection(
     state: SheetState,
     scope: CoroutineScope,
     collectionsManager: CollectionsManager,
-    collection: LinksCollection,
-
+    collection: LinksCollection
 ) {
     AttachItem(
         state = state,
@@ -140,6 +142,56 @@ fun AttachCollection(
     )
 }
 
+@Composable
+@NonRestartableComposable
+fun AttachTeam(
+    state: SheetState,
+    scope: CoroutineScope,
+    viewModel: TeamsScreenViewModel,
+    team: Team
+) {
+    AttachItem(
+        state = state,
+        scope = scope,
+        pages = arrayOf(
+            {
+                LinksChooser(
+                    mainTitle = Res.string.add_links,
+                    currentAttachedLinks = team.links,
+                    confirmAction = { links ->
+                        viewModel.attachLinks(
+                            team = team,
+                            links = links,
+                            afterAttached = {
+                                scope.launch {
+                                    state.hide()
+                                }
+                            }
+                        )
+                    }
+                )
+            },
+            {
+                LinksCollectionsChooser(
+                    mainTitle = Res.string.add_collections,
+                    subTitle = Res.string.add_related_collections,
+                    currentLinksCollectionsAttached = team.collections,
+                    confirmAction = { collections ->
+                        viewModel.attachCollections(
+                            team = team,
+                            collections = collections,
+                            afterAttached = {
+                                scope.launch {
+                                    state.hide()
+                                }
+                            }
+                        )
+                    }
+                )
+            }
+        )
+    )
+}
 
 @Composable
 @NonRestartableComposable

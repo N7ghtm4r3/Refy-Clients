@@ -2,6 +2,8 @@ package com.tecknobit.refy.ui.screens.teams.presentation
 
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse
 import com.tecknobit.equinoxcore.time.TimeFormatter
+import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
+import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
@@ -65,6 +67,35 @@ class TeamsScreenViewModel : RefyScreenViewModel() {
 
     override fun refresh() {
         teamsState.refresh()
+    }
+
+    fun attachLinks(
+        team: Team,
+        links: List<RefyLinkImpl>,
+        afterAttached: () -> Unit
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        refresh()
+        afterAttached()
+    }
+
+    fun attachCollections(
+        team: Team,
+        collections: List<LinksCollection>,
+        afterAttached: () -> Unit
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        refresh()
+        afterAttached()
+    }
+
+    fun deleteTeam(
+        team: Team,
+        onDelete: () -> Unit
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        refresh()
+        onDelete()
     }
 
 }

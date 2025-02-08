@@ -13,8 +13,6 @@
     <string name="invalid_collection">Collection non valide</string>
     <string name="add_links_to_collection">Ajouter des liens à la collection</string>
     <string name="you_re_not_on_any_team">Vous ne faites partie d'aucune équipe</string>
-    <string name="delete_team">Supprimer l'équipe</string>
-    <string name="delete_team_message">En confirmant, l'équipe et les données associées ne seront plus disponibles, les liens personnels de chaque membre seront conservés.</string>
     <string name="add_links_to_team">Ajouter des liens à l'équipe</string>
     <string name="invalid_team">Équipe non valide</string>
     <string name="team_name">Nom de l'équipe</string>
@@ -96,13 +94,18 @@
     <string name="delete_collection">Supprimer la collection</string>
     <string name="delete_collection_message">En confirmant, la collection et les liens associés ne seront plus disponibles. Si la collection est partagée avec des équipes, les liens personnels de chaque membre seront conservés, à l'exception de celui qui a supprimé la collection.</string>
     <string name="inserted_on">Inséré le %1$s</string>
-    <string name="created_on">Créé le %1$s</string>
+    <string name="collection_created_on">Créé le %1$s</string>
     <string name="add_links">Ajouter des liens</string>
     <string name="add_related_links">Ajouter les liens connexes</string>
     <string name="share_collection">Collection de partage</string>
     <string name="edit">Editer</string>
     <string name="remove">Retirer</string>
     <string name="delete">Supprimer</string>
+    <string name="delete_team">Supprimer l'équipe</string>
+    <string name="delete_team_message">En confirmant, l'équipe et les données associées ne seront plus disponibles, les liens personnels de chaque membre seront conservés.</string>
+    <string name="add_collections">Ajouter des collections</string>
+    <string name="add_related_collections">Ajouter les collections apparentées</string>
+    <string name="team_created_on">Créé le %1$s</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membre</item>
         <item formatted="false" quantity="other">%1$d membres</item>

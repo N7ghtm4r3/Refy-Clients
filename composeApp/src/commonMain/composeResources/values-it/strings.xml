@@ -13,8 +13,6 @@
     <string name="invalid_collection">Collezione non valida</string>
     <string name="add_links_to_collection">Aggiungi link alla collezione</string>
     <string name="you_re_not_on_any_team">Non sei in nessun team</string>
-    <string name="delete_team">Cancella il team</string>
-    <string name="delete_team_message">Confermando, il team e i relativi dati non saranno più disponibili, mentre i link personali di ciascun membro saranno mantenuti.</string>
     <string name="add_links_to_team">Aggiungi link al team</string>
     <string name="invalid_team">Team non valido</string>
     <string name="team_name">Nome del team</string>
@@ -96,13 +94,18 @@
     <string name="delete_collection">Elimina collezione</string>
     <string name="delete_collection_message">Confermando, la collezione e i relativi link non saranno più disponibili; se la raccolta è condivisa con i team, i link personali di ciascun membro saranno mantenuti, ad eccezione di chi ha cancellato la raccolta.</string>
     <string name="inserted_on">Inserito il %1$s</string>
-    <string name="created_on">Creata il %1$s</string>
+    <string name="collection_created_on">Creata il %1$s</string>
     <string name="add_links">Aggiungi link</string>
     <string name="add_related_links">Aggiungi i link correlati</string>
     <string name="share_collection">Condividi la collezione</string>
     <string name="edit">Modifica</string>
     <string name="remove">Rimuovi</string>
     <string name="delete">Elimina</string>
+    <string name="delete_team">Elimina il team</string>
+    <string name="delete_team_message">Confermando, il team e i relativi dati non saranno più disponibili, mentre i link personali di ciascun membro saranno mantenuti.</string>
+    <string name="add_collections">Aggiungi collezioni</string>
+    <string name="add_related_collections">Aggiungi le collezioni correlate</string>
+    <string name="team_created_on">Creato il %1$s</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membro</item>
         <item formatted="false" quantity="other">%1$d membri</item>

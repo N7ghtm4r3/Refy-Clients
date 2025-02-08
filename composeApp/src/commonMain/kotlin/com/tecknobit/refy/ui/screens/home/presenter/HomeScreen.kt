@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CollectionsBookmark
 import androidx.compose.material.icons.filled.Groups3
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.refy.ui.components.ProfilePic
+import com.tecknobit.refy.ui.icons.Collection
 import com.tecknobit.refy.ui.icons.Link45deg
 import com.tecknobit.refy.ui.icons.TempPreferencesCustom
 import com.tecknobit.refy.ui.screens.collections.presenter.CollectionsScreen
@@ -67,7 +67,7 @@ class HomeScreen : EquinoxNoModelScreen() {
             ),
             NavigationTab(
                 title = Res.string.collections,
-                icon = Icons.Default.CollectionsBookmark,
+                icon = Collection,
                 screen = CollectionsScreen()
             ),
             NavigationTab(

@@ -32,7 +32,7 @@ import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
 import refy.composeapp.generated.resources.Res
-import refy.composeapp.generated.resources.created_on
+import refy.composeapp.generated.resources.collection_created_on
 
 @Composable
 @NonRestartableComposable
@@ -74,7 +74,7 @@ fun CollectionCard(
                     ),
                 expanded = expanded,
                 item = collection,
-                info = Res.string.created_on,
+                info = Res.string.collection_created_on,
                 descriptionLines = descriptionLines
             )
             CollectionBottomBar(

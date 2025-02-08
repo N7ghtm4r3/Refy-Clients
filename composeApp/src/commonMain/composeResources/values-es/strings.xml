@@ -13,8 +13,6 @@
     <string name="invalid_collection">Recogida no válida</string>
     <string name="add_links_to_collection">Añadir enlaces a la colección</string>
     <string name="you_re_not_on_any_team">No estás en ningún equipo</string>
-    <string name="delete_team">Borrar equipo</string>
-    <string name="delete_team_message">Al confirmar, el equipo y los datos relacionados ya no estarán disponibles, los enlaces personales de cada miembro se mantendrán.</string>
     <string name="add_links_to_team">Añadir enlaces al equipo</string>
     <string name="invalid_team">Equipo inválido</string>
     <string name="team_name">Nombre del equipo</string>
@@ -96,13 +94,18 @@
     <string name="delete_collection">Borrar colección</string>
     <string name="delete_collection_message">Al confirmar, la colección y los enlaces relacionados dejarán de estar disponibles; si la colección se comparte con equipos, se conservarán los enlaces personales de cada miembro, excepto los de quien haya eliminado la colección.</string>
     <string name="inserted_on">Insertado el %1$s</string>
-    <string name="created_on">Creado el %1$s</string>
+    <string name="collection_created_on">Creado el %1$s</string>
     <string name="add_links">Añadir enlaces</string>
     <string name="add_related_links">Añadir los enlaces relacionados</string>
     <string name="share_collection">Compartir la colección</string>
     <string name="edit">Editar</string>
     <string name="remove">Eliminar</string>
     <string name="delete">Borrar</string>
+    <string name="delete_team">Borrar equipo</string>
+    <string name="delete_team_message">Al confirmar, el equipo y los datos relacionados ya no estarán disponibles, los enlaces personales de cada miembro se mantendrán.</string>
+    <string name="add_collections">Añadir colecciones</string>
+    <string name="add_related_collections">Añadir las colecciones relacionadas</string>
+    <string name="team_created_on">Creado el %1$s</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>

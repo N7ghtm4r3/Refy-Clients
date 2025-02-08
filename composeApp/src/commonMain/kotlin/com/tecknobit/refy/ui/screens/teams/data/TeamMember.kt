@@ -1,11 +1,16 @@
 package com.tecknobit.refy.ui.screens.teams.data
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import com.tecknobit.equinoxcore.helpers.PROFILE_PIC_KEY
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refycore.MEMBER_IDENTIFIER_KEY
 import com.tecknobit.refycore.TAG_NAME_KEY
 import com.tecknobit.refycore.TEAM_ROLE_KEY
 import com.tecknobit.refycore.enums.TeamRole
+import com.tecknobit.refycore.enums.TeamRole.ADMIN
+import com.tecknobit.refycore.enums.TeamRole.VIEWER
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,4 +27,18 @@ data class TeamMember(
     override val tagName: String,
     @SerialName(TEAM_ROLE_KEY)
     val role: TeamRole
-) : RefyUser
+) : RefyUser {
+
+    companion object {
+
+        @Composable
+        fun TeamRole.toColor(): Color {
+            return when (this) {
+                ADMIN -> MaterialTheme.colorScheme.error
+                VIEWER -> Color.Unspecified
+            }
+        }
+
+    }
+
+}
