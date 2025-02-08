@@ -17,6 +17,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.ManagedContent
 import com.tecknobit.equinoxcore.annotations.Structure
@@ -30,9 +31,13 @@ import org.jetbrains.compose.resources.stringResource
 @Structure
 abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     viewModel: V,
-    private val itemName: String
+    private val itemName: String,
+    snackbarHostStateBottomPadding: Dp = 100.dp,
+    contentBottomPadding: Dp = 79.dp
 ) : RefyScreen<V>(
-    viewModel = viewModel
+    viewModel = viewModel,
+    snackbarHostStateBottomPadding = snackbarHostStateBottomPadding,
+    contentBottomPadding = contentBottomPadding
 ) {
 
     protected lateinit var item: State<I?>

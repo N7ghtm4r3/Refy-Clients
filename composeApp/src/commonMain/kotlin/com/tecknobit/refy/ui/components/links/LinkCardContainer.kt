@@ -22,6 +22,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -55,6 +56,7 @@ fun LinkCardContainer(
     cancelButton: @Composable() RowScope.() -> Unit
 ) {
     val expanded = remember { mutableStateOf(false) }
+    val descriptionLines = remember { mutableIntStateOf(0) }
     val uriHandler = LocalUriHandler.current
     Card(
         modifier = modifier
@@ -90,14 +92,16 @@ fun LinkCardContainer(
                     ),
                 expanded = expanded,
                 item = link,
-                info = Res.string.inserted_on
+                info = Res.string.inserted_on,
+                descriptionLines = descriptionLines
             )
             LinkBottomBar(
                 expanded = expanded,
                 viewModel = viewModel,
                 link = link,
                 extraButton = extraButton,
-                cancelButton = cancelButton
+                cancelButton = cancelButton,
+                descriptionLines = descriptionLines
             )
         }
     }
@@ -136,7 +140,8 @@ private fun LinkBottomBar(
     viewModel: EquinoxViewModel,
     link: RefyLinkImpl,
     extraButton: @Composable() (() -> Unit)? = null,
-    cancelButton: @Composable() RowScope.() -> Unit
+    cancelButton: @Composable() RowScope.() -> Unit,
+    descriptionLines: MutableState<Int>
 ) {
     Row(
         modifier = Modifier
@@ -154,6 +159,7 @@ private fun LinkBottomBar(
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
                 ExpandCardButton(
+                    descriptionLines = descriptionLines,
                     expanded = expanded
                 )
                 IconButton(

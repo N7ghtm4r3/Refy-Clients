@@ -1,18 +1,22 @@
 package com.tecknobit.refy.ui.screens.collections.presentation
 
+import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
-import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
+import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
 import com.tecknobit.refy.ui.shared.presentations.ItemsScreenViewModel
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
+import kotlinx.coroutines.CoroutineScope
 import kotlin.random.Random
 
-class CollectionsScreenViewModel : ItemsScreenViewModel() {
+class CollectionsScreenViewModel : ItemsScreenViewModel(), CollectionsManager {
+
+    override val requestsScope: CoroutineScope
+        get() = viewModelScope
 
     val collectionsState = PaginationState<Int, LinksCollection>(
         initialPageKey = DEFAULT_PAGE,
@@ -67,33 +71,8 @@ class CollectionsScreenViewModel : ItemsScreenViewModel() {
         collectionsState.refresh()
     }
 
-    fun attachLinks(
-        collection: LinksCollection,
-        links: List<RefyLinkImpl>,
-        afterAttached: () -> Unit
-    ) {
-        // TODO: MAKE THE REQUEST THEN
+    override fun refreshAfterAttached() {
         refresh()
-        afterAttached()
-    }
-
-    fun shareWithTeams(
-        collection: LinksCollection,
-        teams: List<Team>,
-        afterShared: () -> Unit
-    ) {
-        // TODO: MAKE THE REQUEST THEN
-        refresh()
-        afterShared()
-    }
-
-    fun deleteCollection(
-        collection: LinksCollection,
-        onDelete: () -> Unit
-    ) {
-        // TODO: MAKE THE REQUEST THEN
-        refresh()
-        onDelete()
     }
 
 }

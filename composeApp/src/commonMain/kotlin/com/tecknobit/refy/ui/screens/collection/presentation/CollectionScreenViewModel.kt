@@ -6,13 +6,14 @@ import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
+import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
 import com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.LinksRetriever
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -21,7 +22,10 @@ class CollectionScreenViewModel(
     collectionId: String
 ) : ItemScreenViewModel<LinksCollection>(
     itemId = collectionId
-), LinksRetriever {
+), LinksRetriever, CollectionsManager {
+
+    override val requestsScope: CoroutineScope
+        get() = viewModelScope
 
     override fun retrieveItem() {
         viewModelScope.launch {
@@ -232,6 +236,25 @@ class CollectionScreenViewModel(
             nextPageKey = page + 1, // TODO: TO USE THE REAL DATA
             isLastPage = Random.nextBoolean() // TODO: TO USE THE REAL DATA
         )
+    }
+
+    override fun refreshAfterAttached() {
+        collectionTeams.refresh()
+        linksState.refresh()
+    }
+
+    fun removeTeam(
+        team: Team
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        collectionTeams.refresh()
+    }
+
+    fun removeLink(
+        link: RefyLinkImpl
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        linksState.refresh()
     }
 
 }

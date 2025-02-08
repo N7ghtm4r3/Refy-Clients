@@ -28,9 +28,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
+import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import refy.composeapp.generated.resources.Res
@@ -94,8 +94,9 @@ fun AttachLink(
 fun AttachCollection(
     state: SheetState,
     scope: CoroutineScope,
-    viewModel: CollectionsScreenViewModel,
-    collection: LinksCollection
+    collectionsManager: CollectionsManager,
+    collection: LinksCollection,
+
 ) {
     AttachItem(
         state = state,
@@ -106,7 +107,7 @@ fun AttachCollection(
                     mainTitle = Res.string.add_links,
                     currentAttachedLinks = collection.links,
                     confirmAction = { links ->
-                        viewModel.attachLinks(
+                        collectionsManager.attachLinks(
                             collection = collection,
                             links = links,
                             afterAttached = {
@@ -123,7 +124,7 @@ fun AttachCollection(
                     mainTitle = Res.string.share_collection,
                     currentTeamsAttached = collection.teams,
                     confirmAction = { teams ->
-                        viewModel.shareWithTeams(
+                        collectionsManager.shareWithTeams(
                             collection = collection,
                             teams = teams,
                             afterShared = {

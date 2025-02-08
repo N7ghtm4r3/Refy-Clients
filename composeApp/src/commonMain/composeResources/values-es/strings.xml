@@ -102,8 +102,7 @@
     <string name="add_related_links">Añadir los enlaces relacionados</string>
     <string name="share_collection">Compartir la colección</string>
     <string name="edit">Editar</string>
-    <string name="loading">Cargando...</string>
-    <string name="members">Miembros</string>
+    <string name="remove">Eliminar</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>

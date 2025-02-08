@@ -5,6 +5,7 @@ package com.tecknobit.refy.ui.shared.presenters
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
@@ -43,7 +45,9 @@ import org.jetbrains.compose.resources.stringResource
 @Structure
 abstract class RefyScreen<V : EquinoxViewModel>(
     private val title: StringResource? = null,
-    viewModel: V
+    viewModel: V,
+    private val snackbarHostStateBottomPadding: Dp = 100.dp,
+    private val contentBottomPadding: Dp = 79.dp
 ) : EquinoxScreen<V>(
     viewModel = viewModel
 ) {
@@ -60,7 +64,7 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                             bottom = responsiveAssignment(
                                 onExpandedSizeClass = { 0.dp },
                                 onMediumSizeClass = { 0.dp },
-                                onCompactSizeClass = { 100.dp }
+                                onCompactSizeClass = { snackbarHostStateBottomPadding }
                             )
                         ),
                     hostState = viewModel.snackbarHostState!!
@@ -85,7 +89,7 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                             bottom = responsiveAssignment(
                                 onExpandedSizeClass = { 0.dp },
                                 onMediumSizeClass = { 0.dp },
-                                onCompactSizeClass = { 79.dp }
+                                onCompactSizeClass = { contentBottomPadding }
                             )
                         )
                 ) {
@@ -149,9 +153,7 @@ abstract class RefyScreen<V : EquinoxViewModel>(
                             horizontalAlignment = Alignment.End,
                             verticalArrangement = Arrangement.Center
                         ) {
-                            ProfilePic(
-                                size = 75.dp
-                            )
+                            TrailingContent()
                         }
                     }
                 )
@@ -229,6 +231,14 @@ abstract class RefyScreen<V : EquinoxViewModel>(
     @Composable
     @NonRestartableComposable
     protected open fun RowScope.Filters() {
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected open fun ColumnScope.TrailingContent() {
+        ProfilePic(
+            size = 75.dp
+        )
     }
 
 }

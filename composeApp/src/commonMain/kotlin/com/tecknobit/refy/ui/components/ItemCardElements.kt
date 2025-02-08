@@ -11,6 +11,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Attachment
+import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -33,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.refy.displayFontFamily
-import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.icons.CollapseAll
 import com.tecknobit.refy.ui.icons.ExpandAll
 import com.tecknobit.refy.ui.shared.data.RefyItem
@@ -42,13 +42,16 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+private const val MINIMUM_DESCRIPTION_LINES = 3
+
 @Composable
 @NonRestartableComposable
 fun ItemCardDetails(
     modifier: Modifier = Modifier,
     expanded: MutableState<Boolean>,
     item: RefyItem,
-    info: StringResource
+    info: StringResource,
+    descriptionLines: MutableState<Int>
 ) {
     Column(
         modifier = modifier
@@ -72,12 +75,13 @@ fun ItemCardDetails(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .animateContentSize(),
+            onTextLayout = { layout -> descriptionLines.value = layout.lineCount },
             text = item.description,
-            minLines = 3,
+            minLines = MINIMUM_DESCRIPTION_LINES,
             maxLines = if (expanded.value)
                 Int.MAX_VALUE
             else
-                3,
+                MINIMUM_DESCRIPTION_LINES,
             overflow = TextOverflow.Ellipsis,
             fontSize = 14.sp
         )
@@ -101,20 +105,23 @@ fun ItemTitle(
 @Composable
 @NonRestartableComposable
 fun ExpandCardButton(
-    expanded: MutableState<Boolean>
+    expanded: MutableState<Boolean>,
+    descriptionLines: MutableState<Int>
 ) {
-    IconButton(
-        modifier = Modifier
-            .size(30.dp),
-        onClick = { expanded.value = !expanded.value }
-    ) {
-        Icon(
-            imageVector = if (expanded.value)
-                CollapseAll
-            else
-                ExpandAll,
-            contentDescription = null
-        )
+    if (descriptionLines.value >= MINIMUM_DESCRIPTION_LINES) {
+        IconButton(
+            modifier = Modifier
+                .size(30.dp),
+            onClick = { expanded.value = !expanded.value }
+        ) {
+            Icon(
+                imageVector = if (expanded.value)
+                    CollapseAll
+                else
+                    ExpandAll,
+                contentDescription = null
+            )
+        }
     }
 }
 
@@ -146,11 +153,29 @@ fun AttachItemButton(
 
 @Composable
 @NonRestartableComposable
+fun RemoveItemButton(
+    removeAction: () -> Unit
+) {
+    IconButton(
+        modifier = Modifier
+            .size(32.dp),
+        onClick = removeAction
+    ) {
+        Icon(
+            imageVector = Icons.Default.Cancel,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.error
+        )
+    }
+}
+
+@Composable
+@NonRestartableComposable
 fun RowScope.DeleteItemButton(
     item: RefyItem,
     deleteContent: @Composable() (MutableState<Boolean>) -> Unit
 ) {
-    if (item.owner.id == localUser.userId) {
+    if (item.iAmTheOwner()) {
         val deleteItem = remember { mutableStateOf(false) }
         Column(
             modifier = Modifier

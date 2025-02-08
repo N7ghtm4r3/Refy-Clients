@@ -12,6 +12,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -41,6 +42,7 @@ fun CollectionCard(
     collection: LinksCollection
 ) {
     val expanded = remember { mutableStateOf(false) }
+    val descriptionLines = remember { mutableIntStateOf(0) }
     Card(
         modifier = modifier
             .colorOneSideBorder(
@@ -72,12 +74,14 @@ fun CollectionCard(
                     ),
                 expanded = expanded,
                 item = collection,
-                info = Res.string.created_on
+                info = Res.string.created_on,
+                descriptionLines = descriptionLines
             )
             CollectionBottomBar(
                 expanded = expanded,
                 viewModel = viewModel,
-                collection = collection
+                collection = collection,
+                descriptionLines = descriptionLines
             )
         }
     }
@@ -88,7 +92,8 @@ fun CollectionCard(
 private fun CollectionBottomBar(
     expanded: MutableState<Boolean>,
     viewModel: CollectionsScreenViewModel,
-    collection: LinksCollection
+    collection: LinksCollection,
+    descriptionLines: MutableState<Int>
 ) {
     Row(
         modifier = Modifier
@@ -96,6 +101,7 @@ private fun CollectionBottomBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         ExpandCardButton(
+            descriptionLines = descriptionLines,
             expanded = expanded
         )
         AttachItemButton(
@@ -103,7 +109,7 @@ private fun CollectionBottomBar(
                 AttachCollection(
                     state = state,
                     scope = scope,
-                    viewModel = viewModel,
+                    collectionsManager = viewModel,
                     collection = collection
                 )
             }
@@ -113,8 +119,12 @@ private fun CollectionBottomBar(
             deleteContent = { delete ->
                 DeleteCollection(
                     show = delete,
-                    viewModel = viewModel,
-                    collection = collection
+                    collectionsManager = viewModel,
+                    collection = collection,
+                    onDelete = {
+                        delete.value = false
+                        viewModel.refreshAfterAttached()
+                    }
                 )
             }
         )

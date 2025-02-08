@@ -3,6 +3,7 @@ package com.tecknobit.refy.ui.screens.collection.components
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
+import com.tecknobit.refy.ui.components.RemoveItemButton
 import com.tecknobit.refy.ui.components.links.LinkCardContainer
 import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenViewModel
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
@@ -21,7 +22,13 @@ fun CollectionLinkCard(
         viewModel = viewModel,
         link = link,
         cancelButton = {
-
+            if (collection.iAmTheOwner()) {
+                RemoveItemButton {
+                    viewModel.removeLink(
+                        link = link
+                    )
+                }
+            }
         }
     )
 }
