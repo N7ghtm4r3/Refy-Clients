@@ -21,6 +21,7 @@ fun TeamLinkCard(
         modifier = modifier,
         viewModel = viewModel,
         link = link,
+        showOwnerData = true,
         cancelButton = {
             if (team.iAmTheOwner() || team.iAmAnAdmin()) {
                 RemoveItemButton(

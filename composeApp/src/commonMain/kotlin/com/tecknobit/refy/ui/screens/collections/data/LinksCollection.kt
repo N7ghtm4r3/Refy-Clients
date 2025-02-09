@@ -19,4 +19,10 @@ data class LinksCollection(
     val color: String,
     val links: List<RefyLinkImpl>,
     val teams: List<Team> = emptyList()
-) : RefyItem
+) : RefyItem {
+
+    fun isShared(): Boolean {
+        return teams.isNotEmpty()
+    }
+
+}

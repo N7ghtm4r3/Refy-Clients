@@ -35,6 +35,7 @@ import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Au
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
 import com.tecknobit.equinoxcompose.utilities.toColor
+import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.AttachCollection
@@ -68,6 +69,8 @@ class CollectionScreen(
     ),
     itemName = collectionName
 ) {
+
+    private var isCollectionShared: Boolean = false
 
     @Composable
     override fun ArrangeScreenContent() {
@@ -179,6 +182,7 @@ class CollectionScreen(
         CollectionLinkCard(
             viewModel = viewModel,
             collection = item.value!!,
+            showOwnerData = isCollectionShared,
             link = link
         )
     }
@@ -252,6 +256,18 @@ class CollectionScreen(
                 navigator.goBack()
             }
         )
+    }
+
+    @Composable
+    @RequiresSuperCall
+    @NonRestartableComposable
+    override fun CollectStates() {
+        super.CollectStates()
+        awaitNullItemLoaded(
+            itemToWait = item.value
+        ) { collection ->
+            isCollectionShared = collection.isShared()
+        }
     }
 
 }

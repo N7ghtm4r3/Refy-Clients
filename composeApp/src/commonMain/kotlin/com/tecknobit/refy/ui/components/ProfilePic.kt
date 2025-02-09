@@ -31,6 +31,7 @@ lateinit var imageLoader: ImageLoader
 @NonRestartableComposable
 fun ProfilePic(
     modifier: Modifier = Modifier,
+    profilePic: String = localUser.profilePic,
     size: Dp
 ) {
     AsyncImage(
@@ -46,7 +47,7 @@ fun ProfilePic(
                 // navigator.navigate(PROFILE_SCREEN) TODO: TO SET
             },
         model = ImageRequest.Builder(LocalPlatformContext.current)
-            .data(localUser.profilePic)
+            .data(profilePic)
             .crossfade(true)
             .crossfade(500)
             .build(),

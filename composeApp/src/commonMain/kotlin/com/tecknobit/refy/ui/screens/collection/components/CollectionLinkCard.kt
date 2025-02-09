@@ -15,12 +15,14 @@ fun CollectionLinkCard(
     modifier: Modifier = Modifier,
     viewModel: CollectionScreenViewModel,
     collection: LinksCollection,
+    showOwnerData: Boolean,
     link: RefyLinkImpl
 ) {
     LinkCardContainer(
         modifier = modifier,
         viewModel = viewModel,
         link = link,
+        showOwnerData = showOwnerData,
         cancelButton = {
             if (collection.iAmTheOwner()) {
                 RemoveItemButton(

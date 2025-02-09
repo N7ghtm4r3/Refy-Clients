@@ -25,4 +25,8 @@ interface RefyUser {
         override val tagName: String
     ) : RefyUser
 
+    fun completeName(): String {
+        return "$name $surname"
+    }
+
 }

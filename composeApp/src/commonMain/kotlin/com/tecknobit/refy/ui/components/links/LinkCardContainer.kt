@@ -17,8 +17,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
@@ -28,8 +33,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
@@ -39,7 +46,9 @@ import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.refy.helpers.shareLink
 import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
+import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.RefyUser
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.inserted_on
@@ -52,6 +61,7 @@ fun LinkCardContainer(
     modifier: Modifier = Modifier,
     viewModel: EquinoxViewModel,
     link: RefyLinkImpl,
+    showOwnerData: Boolean = false,
     extraButton: @Composable() (() -> Unit)? = null,
     cancelButton: @Composable() RowScope.() -> Unit
 ) {
@@ -75,6 +85,11 @@ fun LinkCardContainer(
                 }
             )
     ) {
+        if (showOwnerData) {
+            OwnerData(
+                owner = link.owner
+            )
+        }
         Column(
             modifier = Modifier
                 .padding(
@@ -105,6 +120,42 @@ fun LinkCardContainer(
             )
         }
     }
+}
+
+@Composable
+@NonRestartableComposable
+private fun OwnerData(
+    owner: RefyUser
+) {
+    ListItem(
+        colors = ListItemDefaults.colors(
+            containerColor = Color.Transparent
+        ),
+        overlineContent = {
+            Text(
+                text = owner.tagName,
+                color = MaterialTheme.colorScheme.primary,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        },
+        leadingContent = {
+            ProfilePic(
+                profilePic = owner.profilePic,
+                size = 40.dp
+            )
+        },
+        headlineContent = {
+            Text(
+                text = owner.completeName(),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+    )
+    HorizontalDivider(
+        color = MaterialTheme.colorScheme.primary
+    )
 }
 
 @Composable
