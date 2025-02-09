@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
@@ -109,10 +110,16 @@ class TeamScreen(
             itemToWait = item.value
         ) { team ->
             Row(
+                modifier = Modifier
+                    .padding(
+                        top = 5.dp
+                    ),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (team.iAmTheOwner()) {
                     IconButton(
+                        modifier = Modifier
+                            .size(32.dp),
                         onClick = { upsertAction() }
                     ) {
                         Icon(

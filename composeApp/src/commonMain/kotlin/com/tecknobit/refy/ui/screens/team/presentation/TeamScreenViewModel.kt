@@ -259,6 +259,15 @@ class TeamScreenViewModel(
         teamCollections.refresh()
     }
 
+    fun changeMemberRole(
+        member: TeamMember,
+        role: TeamRole,
+        onChange: () -> Unit
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        onChange()
+    }
+
     fun removeMember(
         member: TeamMember,
         onRemove: () -> Unit
