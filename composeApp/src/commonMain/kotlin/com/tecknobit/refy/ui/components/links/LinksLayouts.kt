@@ -17,16 +17,16 @@ import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen.Compani
 import com.tecknobit.refy.ui.components.EmptyLinks
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyVerticalStaggeredGrid
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 
 @Composable
 @NonRestartableComposable
-fun LinksGrid(
-    linksState: PaginationState<Int, RefyLinkImpl>,
-    linkCard: @Composable() (RefyLinkImpl) -> Unit
+fun <T : RefyLink> LinksGrid(
+    linksState: PaginationState<Int, T>,
+    linkCard: @Composable() (T) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -61,9 +61,9 @@ fun LinksGrid(
 
 @Composable
 @NonRestartableComposable
-fun LinksList(
-    linksState: PaginationState<Int, RefyLinkImpl>,
-    linkCard: @Composable() (RefyLinkImpl) -> Unit
+fun <T : RefyLink> LinksList(
+    linksState: PaginationState<Int, T>,
+    linkCard: @Composable() (T) -> Unit
 ) {
     PaginatedLazyColumn(
         modifier = Modifier

@@ -44,10 +44,12 @@ abstract class ItemsScreen<V : RefyScreenViewModel>(
 
     @Composable
     @NonRestartableComposable
+    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     protected abstract fun ItemsGrid()
 
     @Composable
     @NonRestartableComposable
+    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     protected abstract fun ItemsList()
 
 }

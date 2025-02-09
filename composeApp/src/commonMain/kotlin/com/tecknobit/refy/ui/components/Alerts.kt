@@ -11,9 +11,9 @@ import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EquinoxAlertDialog
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
-import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
+import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
 import com.tecknobit.refy.ui.shared.presentations.TeamsManager
 import refy.composeapp.generated.resources.Res
@@ -34,10 +34,10 @@ val titleStyle = TextStyle(
 
 @Composable
 @NonRestartableComposable
-fun DeleteLink(
+fun <T : RefyLink> DeleteLink(
     show: MutableState<Boolean>,
-    viewModel: LinksScreenViewModel,
-    link: RefyLinkImpl
+    viewModel: BaseLinksScreenViewModel<T>,
+    link: T
 ) {
     EquinoxAlertDialog(
         modifier = Modifier

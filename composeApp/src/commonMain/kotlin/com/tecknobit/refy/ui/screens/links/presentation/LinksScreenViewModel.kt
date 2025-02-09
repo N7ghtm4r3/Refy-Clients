@@ -1,27 +1,15 @@
 package com.tecknobit.refy.ui.screens.links.presentation
 
-import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
-import com.tecknobit.refy.ui.shared.presentations.LinksRetriever
-import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
-import io.github.ahmad_hamwi.compose.pagination.PaginationState
+import com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel
 import kotlin.random.Random
 
-class LinksScreenViewModel : RefyScreenViewModel(), LinksRetriever {
-
-    override val linksState: PaginationState<Int, RefyLinkImpl> = PaginationState(
-        initialPageKey = DEFAULT_PAGE,
-        onRequestPage = { page ->
-            loadLinks(
-                page = page
-            )
-        }
-    )
+class LinksScreenViewModel : BaseLinksScreenViewModel<RefyLinkImpl>() {
 
     override fun loadLinks(
         page: Int
@@ -143,10 +131,6 @@ class LinksScreenViewModel : RefyScreenViewModel(), LinksRetriever {
         )
     }
 
-    override fun refresh() {
-        linksState.refresh()
-    }
-
     fun shareLinkWithCollections(
         link: RefyLink,
         linksCollection: List<LinksCollection>,
@@ -163,15 +147,6 @@ class LinksScreenViewModel : RefyScreenViewModel(), LinksRetriever {
     ) {
         // TODO: MAKE THE REQUEST THEN
         afterShared()
-    }
-
-    fun deleteLink(
-        link: RefyLink,
-        onDelete: () -> Unit
-    ) {
-        // TODO: MAKE THE REQUEST THEN
-        refresh()
-        onDelete()
     }
 
 }

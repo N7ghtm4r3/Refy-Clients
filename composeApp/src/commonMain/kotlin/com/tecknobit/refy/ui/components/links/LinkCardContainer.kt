@@ -47,6 +47,7 @@ import com.tecknobit.refy.helpers.shareLink
 import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.components.ProfilePic
+import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import org.jetbrains.compose.resources.painterResource
@@ -60,7 +61,7 @@ import refy.composeapp.generated.resources.no_preview_available
 fun LinkCardContainer(
     modifier: Modifier = Modifier,
     viewModel: EquinoxViewModel,
-    link: RefyLinkImpl,
+    link: RefyLink,
     showOwnerData: Boolean = false,
     extraButton: @Composable() (() -> Unit)? = null,
     cancelButton: @Composable() RowScope.() -> Unit
@@ -96,9 +97,11 @@ fun LinkCardContainer(
                     all = 10.dp
                 )
         ) {
-            LinkThumbnail(
-                link = link
-            )
+            if (link is RefyLinkImpl) {
+                LinkThumbnail(
+                    link = link
+                )
+            }
             ItemCardDetails(
                 modifier = Modifier
                     .padding(
@@ -189,7 +192,7 @@ private fun LinkThumbnail(
 private fun LinkBottomBar(
     expanded: MutableState<Boolean>,
     viewModel: EquinoxViewModel,
-    link: RefyLinkImpl,
+    link: RefyLink,
     extraButton: @Composable() (() -> Unit)? = null,
     cancelButton: @Composable() RowScope.() -> Unit,
     descriptionLines: MutableState<Int>

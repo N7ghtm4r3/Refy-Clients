@@ -36,6 +36,7 @@ class TeamsScreen : ItemsScreen<TeamsScreenViewModel>(
 
     @Composable
     @NonRestartableComposable
+    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     override fun ItemsGrid() {
         Column(
             modifier = Modifier
@@ -74,6 +75,7 @@ class TeamsScreen : ItemsScreen<TeamsScreenViewModel>(
 
     @Composable
     @NonRestartableComposable
+    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     override fun ItemsList() {
         PaginatedLazyColumn(
             modifier = Modifier

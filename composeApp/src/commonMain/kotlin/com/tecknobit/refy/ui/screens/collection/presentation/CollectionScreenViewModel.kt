@@ -22,7 +22,7 @@ class CollectionScreenViewModel(
     collectionId: String
 ) : ItemScreenViewModel<LinksCollection>(
     itemId = collectionId
-), LinksRetriever, CollectionsManager {
+), LinksRetriever<RefyLinkImpl>, CollectionsManager {
 
     override val requestsScope: CoroutineScope = viewModelScope
 
