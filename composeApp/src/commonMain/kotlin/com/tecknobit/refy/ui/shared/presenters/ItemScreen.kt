@@ -168,9 +168,8 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = stringResource(Res.string.links),
-                    style = AppTypography.headlineMedium
+                SectionHeaderTitle(
+                    header = Res.string.links
                 )
                 FilterButton()
             }
@@ -208,9 +207,11 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     @Composable
     @NonRestartableComposable
     protected fun SectionHeaderTitle(
+        modifier: Modifier = Modifier,
         header: StringResource
     ) {
         Text(
+            modifier = modifier,
             text = stringResource(header),
             style = AppTypography.headlineLarge
         )

@@ -132,33 +132,8 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                         ListItem(
                             modifier = Modifier
                                 .weight(2f),
-                            supportingContent = {
-                                Row(
-                                    modifier = Modifier
-                                        .clip(
-                                            RoundedCornerShape(
-                                                size = 5.dp
-                                            )
-                                        )
-                                        .clickable { upsertAction() }
-                                        .padding(
-                                            horizontal = 4.dp
-                                        ),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(5.dp)
-                                ) {
-                                    Icon(
-                                        imageVector = upsertIcon(),
-                                        contentDescription = null
-                                    )
-                                    Text(
-                                        text = stringResource(upsertText())
-                                    )
-                                }
-                            },
-                            headlineContent = {
-                                ScreenTitle()
-                            }
+                            headlineContent = { ScreenTitle() },
+                            supportingContent = { SubTitleSection() }
                         )
                         Column(
                             modifier = Modifier
@@ -179,10 +154,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
 
     @Composable
     @NonRestartableComposable
-    protected abstract fun Content()
-
-    @Composable
-    @NonRestartableComposable
     protected open fun ExtendedFAB() {
         ExtendedFloatingActionButton(
             onClick = { upsertAction() }
@@ -200,6 +171,10 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
             )
         }
     }
+
+    @Composable
+    @NonRestartableComposable
+    protected abstract fun Content()
 
     protected abstract fun upsertIcon(): ImageVector
 
@@ -224,6 +199,41 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 overflow = TextOverflow.Ellipsis
             )
             Filters()
+        }
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected fun SubTitleSection() {
+        Column {
+            SubTitleContent()
+        }
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected open fun SubTitleContent() {
+        Row(
+            modifier = Modifier
+                .clip(
+                    RoundedCornerShape(
+                        size = 5.dp
+                    )
+                )
+                .clickable { upsertAction() }
+                .padding(
+                    horizontal = 4.dp
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(5.dp)
+        ) {
+            Icon(
+                imageVector = upsertIcon(),
+                contentDescription = null
+            )
+            Text(
+                text = stringResource(upsertText())
+            )
         }
     }
 

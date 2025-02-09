@@ -13,7 +13,7 @@ interface RefyItem {
     fun iAmTheOwner(): Boolean {
         // TODO: TO USE THIS
         // return localUser.userId == owner.id
-        return Random.nextBoolean()
+        return Random.nextBoolean() || true
     }
 
 }

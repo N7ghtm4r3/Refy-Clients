@@ -8,9 +8,11 @@ import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.screens.teams.data.TeamMember
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.TeamsManager
+import com.tecknobit.refycore.enums.TeamRole
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 import kotlinx.coroutines.CoroutineScope
 import kotlin.random.Random
@@ -50,7 +52,26 @@ class TeamScreenViewModel(
 
             } else "gag",
             date = TimeFormatter.currentTimestamp(),
-            members = emptyList()
+            members = listOf(
+                TeamMember(
+                    id = Random.nextLong().toString(),
+                    name = "Name",
+                    surname = "Name",
+                    email = "email@email.com",
+                    profilePic = "",
+                    tagName = "@prova",
+                    role = TeamRole.ADMIN
+                ),
+                TeamMember(
+                    id = Random.nextLong().toString(),
+                    name = "Name",
+                    surname = "Name",
+                    email = "email@email.com",
+                    profilePic = "",
+                    tagName = "@prova",
+                    role = TeamRole.VIEWER
+                )
+            )
         )
     }
 
@@ -236,6 +257,14 @@ class TeamScreenViewModel(
     ) {
         // TODO: MAKE THE REQUEST THEN
         teamCollections.refresh()
+    }
+
+    fun removeMember(
+        member: TeamMember,
+        onRemove: () -> Unit
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        onRemove()
     }
 
 }

@@ -107,7 +107,9 @@
     <string name="add_related_collections">Ajouter les collections apparentées</string>
     <string name="team_created_on">Créé le %1$s</string>
     <string name="collection">Collection</string>
-    <string name="team">L\'équipe</string>
+    <string name="team">L'équipe</string>
+    <string name="share_with_the_team">Partage avec l'équipe</string>
+    <string name="team_member">Membres de l\'équipe</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membre</item>
         <item formatted="false" quantity="other">%1$d membres</item>

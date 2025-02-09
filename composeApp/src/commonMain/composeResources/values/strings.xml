@@ -108,6 +108,8 @@
     <string name="team_created_on">Created on %1$s</string>
     <string name="collection">Collection</string>
     <string name="team">Team</string>
+    <string name="share_with_the_team">Share with the team</string>
+    <string name="team_members">Team members</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d member</item>
         <item formatted="false" quantity="other">%1$d members</item>

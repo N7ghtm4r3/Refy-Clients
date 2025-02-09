@@ -108,6 +108,8 @@
     <string name="team_created_on">Creado el %1$s</string>
     <string name="collection">Colección</string>
     <string name="team">Equipo</string>
+    <string name="share_with_the_team">Comparti con el equipo</string>
+    <string name="team_member">Miembros del equipo</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>
