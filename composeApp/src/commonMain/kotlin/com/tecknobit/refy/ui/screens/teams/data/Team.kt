@@ -8,6 +8,7 @@ import com.tecknobit.refy.ui.shared.data.RefyUser.RefyUserImpl
 import com.tecknobit.refycore.LOGO_PIC_KEY
 import com.tecknobit.refycore.TEAM_IDENTIFIER_KEY
 import com.tecknobit.refycore.enums.TeamRole
+import com.tecknobit.refycore.enums.TeamRole.ADMIN
 import com.tecknobit.refycore.enums.TeamRole.VIEWER
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -33,6 +34,11 @@ data class Team(
                 return member.role
         }
         return VIEWER
+    }
+
+    fun iAmAnAdmin(): Boolean {
+        val role = findMyRole()
+        return role == ADMIN
     }
 
 }

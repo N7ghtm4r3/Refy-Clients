@@ -12,9 +12,11 @@ import com.tecknobit.refy.helpers.RefyLocalUser
 import com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
 import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
+import com.tecknobit.refy.ui.screens.team.presenter.TeamScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.COLLECTION_IDENTIFIER_KEY
+import com.tecknobit.refycore.TEAM_IDENTIFIER_KEY
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
@@ -71,6 +73,11 @@ const val PROFILE_SCREEN = "ProfileScreen"
  * `COLLECTION_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen]
  */
 const val COLLECTION_SCREEN = "CollectionScreen"
+
+/**
+ * `TEAM_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.team.presenter.TeamScreen]
+ */
+const val TEAM_SCREEN = "TeamScreen"
 
 /**
  * Method to start the `Refy`'s application
@@ -131,6 +138,16 @@ fun App() {
                         collectionId = collectionId,
                         collectionName = name,
                         collectionColor = color
+                    ).ShowContent()
+                }
+                scene(
+                    route = "$TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}/{$NAME_KEY}"
+                ) { backstackEntry ->
+                    val teamId: String = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)!!
+                    val name: String = backstackEntry.path<String>(NAME_KEY)!!
+                    TeamScreen(
+                        teamId = teamId,
+                        teamName = name
                     ).ShowContent()
                 }
             }

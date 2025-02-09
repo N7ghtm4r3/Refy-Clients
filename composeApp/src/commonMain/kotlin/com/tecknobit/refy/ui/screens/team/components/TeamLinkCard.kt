@@ -1,20 +1,20 @@
-package com.tecknobit.refy.ui.screens.collection.components
+package com.tecknobit.refy.ui.screens.team.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import com.tecknobit.refy.ui.components.RemoveItemButton
 import com.tecknobit.refy.ui.components.links.LinkCardContainer
-import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenViewModel
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
+import com.tecknobit.refy.ui.screens.teams.data.Team
 
 @Composable
 @NonRestartableComposable
-fun CollectionLinkCard(
+fun TeamLinkCard(
     modifier: Modifier = Modifier,
-    viewModel: CollectionScreenViewModel,
-    collection: LinksCollection,
+    viewModel: TeamScreenViewModel,
+    team: Team,
     link: RefyLinkImpl
 ) {
     LinkCardContainer(
@@ -22,7 +22,7 @@ fun CollectionLinkCard(
         viewModel = viewModel,
         link = link,
         cancelButton = {
-            if (collection.iAmTheOwner()) {
+            if (team.iAmTheOwner() || team.iAmAnAdmin()) {
                 RemoveItemButton(
                     removeAction = {
                         viewModel.removeLink(

@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -153,7 +154,8 @@ fun AttachItemButton(
 @Composable
 @NonRestartableComposable
 fun RemoveItemButton(
-    removeAction: () -> Unit
+    removeAction: () -> Unit,
+    color: Color = MaterialTheme.colorScheme.error
 ) {
     IconButton(
         modifier = Modifier
@@ -163,7 +165,7 @@ fun RemoveItemButton(
         Icon(
             imageVector = Icons.Default.Cancel,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.error
+            tint = color
         )
     }
 }

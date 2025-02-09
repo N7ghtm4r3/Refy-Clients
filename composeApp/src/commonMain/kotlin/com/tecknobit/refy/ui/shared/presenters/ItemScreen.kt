@@ -1,12 +1,14 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMultiplatform::class)
 
 package com.tecknobit.refy.ui.shared.presenters
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
@@ -28,29 +30,32 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.ManagedContent
+import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.navigator
+import com.tecknobit.refy.ui.components.links.LinksGrid
+import com.tecknobit.refy.ui.components.links.LinksList
+import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel
 import com.tecknobit.refy.ui.theme.AppTypography
 import kotlinx.coroutines.CoroutineScope
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
+import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.links
 
 @Structure
 abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     viewModel: V,
-    private val itemName: String,
-    snackbarHostStateBottomPadding: Dp = 100.dp,
-    contentBottomPadding: Dp = 79.dp
+    private val itemName: String
 ) : RefyScreen<V>(
     viewModel = viewModel,
-    snackbarHostStateBottomPadding = snackbarHostStateBottomPadding,
-    contentBottomPadding = contentBottomPadding
+    snackbarHostStateBottomPadding = 0.dp,
+    contentBottomPadding = 0.dp
 ) {
 
     protected lateinit var item: State<I?>
@@ -100,12 +105,84 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
                                 max = MAX_CONTAINER_WIDTH
                             )
                     ) {
-                        ItemDetails()
+                        RowItems()
+                        LinksSection()
                     }
                 }
             }
         )
     }
+
+    @Composable
+    @NonRestartableComposable
+    protected abstract fun ColumnScope.RowItems()
+
+    @Composable
+    @NonRestartableComposable
+    private fun LinksSection() {
+        LinksHeader()
+        ResponsiveContent(
+            onExpandedSizeClass = {
+                LinksGrid(
+                    linksState = viewModel.linksState,
+                    linkCard = { link ->
+                        ItemRelatedLinkCard(
+                            link = link
+                        )
+                    }
+                )
+            },
+            onMediumSizeClass = {
+                LinksGrid(
+                    linksState = viewModel.linksState,
+                    linkCard = { link ->
+                        ItemRelatedLinkCard(
+                            link = link
+                        )
+                    }
+                )
+            },
+            onCompactSizeClass = {
+                LinksList(
+                    linksState = viewModel.linksState,
+                    linkCard = { link ->
+                        ItemRelatedLinkCard(
+                            link = link
+                        )
+                    }
+                )
+            }
+        )
+    }
+
+    @Composable
+    @NonRestartableComposable
+    private fun LinksHeader() {
+        Column(
+            modifier = Modifier
+                .padding(
+                    top = 5.dp,
+                    bottom = 10.dp
+                )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(Res.string.links),
+                    style = AppTypography.headlineMedium
+                )
+                FilterButton()
+            }
+            FiltersInputField()
+        }
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected abstract fun ItemRelatedLinkCard(
+        link: RefyLinkImpl
+    )
 
     @Composable
     @NonRestartableComposable
@@ -127,10 +204,6 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
             loadedContent(itemToWait!!)
         }
     }
-
-    @Composable
-    @NonRestartableComposable
-    protected abstract fun ColumnScope.ItemDetails()
 
     @Composable
     @NonRestartableComposable

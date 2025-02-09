@@ -6,7 +6,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.items
@@ -35,7 +34,6 @@ import com.materialkolor.rememberDynamicColorScheme
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Auto
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
-import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.navigator
@@ -43,16 +41,14 @@ import com.tecknobit.refy.ui.components.AttachCollection
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.DeleteCollection
 import com.tecknobit.refy.ui.components.DeleteItemButton
-import com.tecknobit.refy.ui.components.links.LinksGrid
-import com.tecknobit.refy.ui.components.links.LinksList
 import com.tecknobit.refy.ui.icons.FolderManaged
 import com.tecknobit.refy.ui.screens.collection.components.CollectionLinkCard
 import com.tecknobit.refy.ui.screens.collection.components.CollectionTeamCard
 import com.tecknobit.refy.ui.screens.collection.helpers.adaptStatusBarToCollectionTheme
 import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenViewModel
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
+import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.presenters.ItemScreen
-import com.tecknobit.refy.ui.theme.AppTypography
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyRow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -61,7 +57,6 @@ import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.delete
 import refy.composeapp.generated.resources.edit
-import refy.composeapp.generated.resources.links
 
 class CollectionScreen(
     collectionId: String,
@@ -71,9 +66,7 @@ class CollectionScreen(
     viewModel = CollectionScreenViewModel(
         collectionId = collectionId
     ),
-    itemName = collectionName,
-    snackbarHostStateBottomPadding = 0.dp,
-    contentBottomPadding = 0.dp
+    itemName = collectionName
 ) {
 
     @Composable
@@ -152,9 +145,9 @@ class CollectionScreen(
     }
 
     @Composable
-    override fun ColumnScope.ItemDetails() {
+    @NonRestartableComposable
+    override fun ColumnScope.RowItems() {
         TeamsSection()
-        LinksSection()
     }
 
     @Composable
@@ -180,69 +173,14 @@ class CollectionScreen(
 
     @Composable
     @NonRestartableComposable
-    private fun LinksSection() {
-        LinksHeader()
-        ResponsiveContent(
-            onExpandedSizeClass = {
-                LinksGrid(
-                    linksState = viewModel.linksState,
-                    linkCard = { link ->
-                        CollectionLinkCard(
-                            viewModel = viewModel,
-                            collection = item.value!!,
-                            link = link
-                        )
-                    }
-                )
-            },
-            onMediumSizeClass = {
-                LinksGrid(
-                    linksState = viewModel.linksState,
-                    linkCard = { link ->
-                        CollectionLinkCard(
-                            viewModel = viewModel,
-                            collection = item.value!!,
-                            link = link
-                        )
-                    }
-                )
-            },
-            onCompactSizeClass = {
-                LinksList(
-                    linksState = viewModel.linksState,
-                    linkCard = { link ->
-                        CollectionLinkCard(
-                            viewModel = viewModel,
-                            collection = item.value!!,
-                            link = link
-                        )
-                    }
-                )
-            }
+    override fun ItemRelatedLinkCard(
+        link: RefyLinkImpl
+    ) {
+        CollectionLinkCard(
+            viewModel = viewModel,
+            collection = item.value!!,
+            link = link
         )
-    }
-
-    @Composable
-    @NonRestartableComposable
-    private fun LinksHeader() {
-        Column(
-            modifier = Modifier
-                .padding(
-                    top = 5.dp,
-                    bottom = 10.dp
-                )
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = stringResource(Res.string.links),
-                    style = AppTypography.headlineMedium
-                )
-                FilterButton()
-            }
-            FiltersInputField()
-        }
     }
 
     override fun upsertIcon(): ImageVector {

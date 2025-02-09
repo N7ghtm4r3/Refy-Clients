@@ -31,8 +31,8 @@ import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import com.tecknobit.refy.ui.screens.teams.data.Team
-import com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
+import com.tecknobit.refy.ui.shared.presentations.TeamsManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import refy.composeapp.generated.resources.Res
@@ -147,7 +147,7 @@ fun AttachCollection(
 fun AttachTeam(
     state: SheetState,
     scope: CoroutineScope,
-    viewModel: TeamsScreenViewModel,
+    teamsManager: TeamsManager,
     team: Team
 ) {
     AttachItem(
@@ -159,7 +159,7 @@ fun AttachTeam(
                     mainTitle = Res.string.add_links,
                     currentAttachedLinks = team.links,
                     confirmAction = { links ->
-                        viewModel.attachLinks(
+                        teamsManager.attachLinks(
                             team = team,
                             links = links,
                             afterAttached = {
@@ -177,7 +177,7 @@ fun AttachTeam(
                     subTitle = Res.string.add_related_collections,
                     currentLinksCollectionsAttached = team.collections,
                     confirmAction = { collections ->
-                        viewModel.attachCollections(
+                        teamsManager.attachCollections(
                             team = team,
                             collections = collections,
                             afterAttached = {

@@ -106,9 +106,15 @@
     <string name="add_collections">Ajouter des collections</string>
     <string name="add_related_collections">Ajouter les collections apparentées</string>
     <string name="team_created_on">Créé le %1$s</string>
+    <string name="collection">Collection</string>
+    <string name="team">L\'équipe</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membre</item>
         <item formatted="false" quantity="other">%1$d membres</item>
+    </plurals>
+    <plurals name="links_contained">
+        <item formatted="false" quantity="one">Contient %1$d lien</item>
+        <item formatted="false" quantity="other">Contient %1$d liens</item>
     </plurals>
     <plurals name="expirations_minute">
         <item formatted="false" quantity="one">%1$d minute</item>

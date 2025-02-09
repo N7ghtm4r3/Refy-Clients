@@ -20,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tecknobit.refy.TEAM_SCREEN
+import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.AttachTeam
 import com.tecknobit.refy.ui.components.DeleteItemButton
@@ -44,9 +46,7 @@ fun TeamCard(
     Card(
         modifier = Modifier
             .fillMaxWidth(),
-        onClick = {
-            // TODO: NAV TO TEAM
-        }
+        onClick = { navigator.navigate("$TEAM_SCREEN/${team.id}/${team.title}") }
     ) {
         Column(
             modifier = Modifier
@@ -111,7 +111,7 @@ private fun TeamBottomBar(
                 AttachTeam(
                     state = state,
                     scope = scope,
-                    viewModel = viewModel,
+                    teamsManager = viewModel,
                     team = team
                 )
             }
@@ -123,7 +123,7 @@ private fun TeamBottomBar(
             deleteContent = { delete ->
                 DeleteTeam(
                     show = delete,
-                    viewModel = viewModel,
+                    teamsManager = viewModel,
                     team = team,
                     onDelete = {
                         delete.value = false

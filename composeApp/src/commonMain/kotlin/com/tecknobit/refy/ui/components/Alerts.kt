@@ -14,8 +14,8 @@ import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import com.tecknobit.refy.ui.screens.teams.data.Team
-import com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
+import com.tecknobit.refy.ui.shared.presentations.TeamsManager
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.delete_collection
 import refy.composeapp.generated.resources.delete_collection_message
@@ -90,7 +90,7 @@ fun DeleteCollection(
 @NonRestartableComposable
 fun DeleteTeam(
     show: MutableState<Boolean>,
-    viewModel: TeamsScreenViewModel,
+    teamsManager: TeamsManager,
     team: Team,
     onDelete: () -> Unit
 ) {
@@ -104,7 +104,7 @@ fun DeleteTeam(
         titleStyle = titleStyle,
         text = Res.string.delete_team_message,
         confirmAction = {
-            viewModel.deleteTeam(
+            teamsManager.deleteTeam(
                 team = team,
                 onDelete = onDelete
             )

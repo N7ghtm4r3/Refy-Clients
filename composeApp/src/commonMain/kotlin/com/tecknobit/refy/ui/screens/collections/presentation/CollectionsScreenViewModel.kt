@@ -15,8 +15,7 @@ import kotlin.random.Random
 
 class CollectionsScreenViewModel : RefyScreenViewModel(), CollectionsManager {
 
-    override val requestsScope: CoroutineScope
-        get() = viewModelScope
+    override val requestsScope: CoroutineScope = viewModelScope
 
     val collectionsState = PaginationState<Int, LinksCollection>(
         initialPageKey = DEFAULT_PAGE,
@@ -73,10 +72,11 @@ class CollectionsScreenViewModel : RefyScreenViewModel(), CollectionsManager {
     }
 
     override fun refreshAfterLinksAttached() {
-        collectionsState.refresh()
+        refresh()
     }
 
     override fun refreshAfterTeamsAttached() {
+        refresh()
     }
 
 }

@@ -1,16 +1,19 @@
 package com.tecknobit.refy.ui.screens.teams.presentation
 
+import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse
 import com.tecknobit.equinoxcore.time.TimeFormatter
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
+import com.tecknobit.refy.ui.shared.presentations.TeamsManager
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
+import kotlinx.coroutines.CoroutineScope
 import kotlin.random.Random
 
-class TeamsScreenViewModel : RefyScreenViewModel() {
+class TeamsScreenViewModel : RefyScreenViewModel(), TeamsManager {
+
+    override val requestsScope: CoroutineScope = viewModelScope
 
     val teamsState = PaginationState<Int, Team>(
         initialPageKey = PaginatedResponse.DEFAULT_PAGE,
@@ -56,7 +59,7 @@ class TeamsScreenViewModel : RefyScreenViewModel() {
             )
         )
         teamsState.appendPage(
-            items = if (Random.nextBoolean())
+            items = if (true)
                 teams
             else
                 emptyList(), // TODO: TO USE THE REAL DATA
@@ -69,33 +72,12 @@ class TeamsScreenViewModel : RefyScreenViewModel() {
         teamsState.refresh()
     }
 
-    fun attachLinks(
-        team: Team,
-        links: List<RefyLinkImpl>,
-        afterAttached: () -> Unit
-    ) {
-        // TODO: MAKE THE REQUEST THEN
+    override fun refreshAfterLinksAttached() {
         refresh()
-        afterAttached()
     }
 
-    fun attachCollections(
-        team: Team,
-        collections: List<LinksCollection>,
-        afterAttached: () -> Unit
-    ) {
-        // TODO: MAKE THE REQUEST THEN
+    override fun refreshAfterCollectionsAttached() {
         refresh()
-        afterAttached()
-    }
-
-    fun deleteTeam(
-        team: Team,
-        onDelete: () -> Unit
-    ) {
-        // TODO: MAKE THE REQUEST THEN
-        refresh()
-        onDelete()
     }
 
 }

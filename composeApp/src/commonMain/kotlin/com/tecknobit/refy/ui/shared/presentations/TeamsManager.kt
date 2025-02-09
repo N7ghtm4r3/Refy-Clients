@@ -5,12 +5,12 @@ import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import kotlinx.coroutines.CoroutineScope
 
-interface CollectionsManager {
+interface TeamsManager {
 
     val requestsScope: CoroutineScope
 
     fun attachLinks(
-        collection: LinksCollection,
+        team: Team,
         links: List<RefyLinkImpl>,
         afterAttached: () -> Unit
     ) {
@@ -21,20 +21,20 @@ interface CollectionsManager {
 
     fun refreshAfterLinksAttached()
 
-    fun shareWithTeams(
-        collection: LinksCollection,
-        teams: List<Team>,
-        afterShared: () -> Unit
+    fun attachCollections(
+        team: Team,
+        collections: List<LinksCollection>,
+        afterAttached: () -> Unit
     ) {
         // TODO: MAKE THE REQUEST THEN
-        refreshAfterTeamsAttached()
-        afterShared()
+        refreshAfterCollectionsAttached()
+        afterAttached()
     }
 
-    fun refreshAfterTeamsAttached()
+    fun refreshAfterCollectionsAttached()
 
-    fun deleteCollection(
-        collection: LinksCollection,
+    fun deleteTeam(
+        team: Team,
         onDelete: () -> Unit
     ) {
         // TODO: MAKE THE REQUEST THEN
