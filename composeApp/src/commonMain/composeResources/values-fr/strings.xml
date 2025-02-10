@@ -46,26 +46,7 @@
     <string name="change_password">Modifier le mot de passe</string>
     <string name="disconnect">Déconnexion</string>
     <string name="execute">Exécuter</string>
-    <string name="hello">Bonjour</string>
-    <string name="name">Nom</string>
-    <string name="surname">Nom de famille</string>
-    <string name="sign_in">S'inscrire !</string>
-    <string name="sign_in_btn">S'inscrire</string>
-    <string name="are_you_new_to_neutron">Vous êtes nouveau sur Refy ?</string>
-    <string name="have_an_account">Vous avez un compte ?</string>
-    <string name="sign_up">Inscrivez-vous !</string>
-    <string name="sign_up_btn">S'inscrire</string>
-    <string name="welcome_back">Bienvenue à nouveau</string>
-    <string name="host_address_not_valid">L'adresse de l'hôte n'est pas valide</string>
-    <string name="server_secret_not_valid">Le secret du serveur n'est pas valide</string>
-    <string name="email_not_valid">L'email n'est pas valide</string>
-    <string name="password_not_valid">Le mot de passe n'est pas valide</string>
-    <string name="name_not_valid">Nom non valide</string>
-    <string name="surname_not_valid">Nom de famille non valide</string>
-    <string name="host_address">Adresse de l'hôte</string>
-    <string name="server_secret">Secret du serveur</string>
-    <string name="tag_name">Nom du jour</string>
-    <string name="tag_name_not_valid">Le nom de l'étiquette n'est pas valide</string>
+
     <string name="server_currently_offline">Le serveur est actuellement hors ligne</string>
     <string name="account_deletion">Suppression du compte</string>
 
@@ -117,6 +98,27 @@
     <string name="access_method">Méthode d'accès</string>
     <string name="auth">Auth</string>
     <string name="resources">Ressources</string>
+    <string name="hello">Bonjour</string>
+    <string name="name">Nom</string>
+    <string name="surname">Nom de famille</string>
+    <string name="sign_in">S'inscrire !</string>
+    <string name="sign_in_btn">S'inscrire</string>
+    <string name="are_you_new_to_refy">Vous êtes nouveau sur Refy ?</string>
+    <string name="have_an_account">Vous avez un compte ?</string>
+    <string name="sign_up">Inscrivez-vous !</string>
+    <string name="sign_up_btn">S'inscrire</string>
+    <string name="welcome_back">Bienvenue à nouveau</string>
+    <string name="host_address_not_valid">L'adresse de l'hôte n'est pas valide</string>
+    <string name="server_secret_not_valid">Le secret du serveur n'est pas valide</string>
+    <string name="email_not_valid">L'email n'est pas valide</string>
+    <string name="password_not_valid">Le mot de passe n'est pas valide</string>
+    <string name="name_not_valid">Nom non valide</string>
+    <string name="surname_not_valid">Nom de famille non valide</string>
+    <string name="host_address">Adresse de l'hôte</string>
+    <string name="server_secret">Secret du serveur</string>
+    <string name="must_start_with_at">Doit commencer par @</string>
+    <string name="tag_name">Nom du jour</string>
+    <string name="tag_name_not_valid">Le nom de l'étiquette n'est pas valide</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membre</item>
         <item formatted="false" quantity="other">%1$d membres</item>

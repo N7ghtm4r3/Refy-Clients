@@ -46,26 +46,7 @@
     <string name="change_password">Cambiar contraseña</string>
     <string name="disconnect">Desconecte</string>
     <string name="execute">Ejecute</string>
-    <string name="hello">Hola</string>
-    <string name="name">Nombre</string>
-    <string name="surname">Apellido</string>
-    <string name="sign_in">Regístrese</string>
-    <string name="sign_in_btn">Iniciar sesión</string>
-    <string name="are_you_new_to_neutron">¿Es usted nuevo en Refy?</string>
-    <string name="have_an_account">¿Tiene una cuenta?</string>
-    <string name="sign_up">¡Inscríbete!</string>
-    <string name="sign_up_btn">Inscríbete</string>
-    <string name="welcome_back">Bienvenido de nuevo</string>
-    <string name="host_address_not_valid">Dirección de host no válida</string>
-    <string name="server_secret_not_valid">El secreto del servidor no es válido</string>
-    <string name="email_not_valid">Correo electrónico no válido</string>
-    <string name="password_not_valid">Contraseña no válida</string>
-    <string name="name_not_valid">Nombre no válido</string>
-    <string name="surname_not_valid">Apellido no válido</string>
-    <string name="host_address">Dirección del host</string>
-    <string name="server_secret">Secreto del servidor</string>
-    <string name="tag_name">Nombre de la etiqueta</string>
-    <string name="tag_name_not_valid">Nombre de etiqueta no válido</string>
+
     <string name="server_currently_offline">Servidor desconectado</string>
     <string name="account_deletion">Eliminación de la cuenta</string>
 
@@ -117,6 +98,27 @@
     <string name="access_method">Método de acceso</string>
     <string name="auth">Aut</string>
     <string name="resources">Recursos</string>
+    <string name="hello">Hola</string>
+    <string name="name">Nombre</string>
+    <string name="surname">Apellido</string>
+    <string name="sign_in">Regístrese</string>
+    <string name="sign_in_btn">Iniciar sesión</string>
+    <string name="are_you_new_to_refy">¿Es usted nuevo en Refy?</string>
+    <string name="have_an_account">¿Tiene una cuenta?</string>
+    <string name="sign_up">¡Inscríbete!</string>
+    <string name="sign_up_btn">Inscríbete</string>
+    <string name="welcome_back">Bienvenido de nuevo</string>
+    <string name="host_address_not_valid">Dirección de host no válida</string>
+    <string name="server_secret_not_valid">El secreto del servidor no es válido</string>
+    <string name="email_not_valid">Correo electrónico no válido</string>
+    <string name="password_not_valid">Contraseña no válida</string>
+    <string name="name_not_valid">Nombre no válido</string>
+    <string name="surname_not_valid">Apellido no válido</string>
+    <string name="host_address">Dirección del host</string>
+    <string name="server_secret">Secreto del servidor</string>
+    <string name="must_start_with_at">Debe empezar por @</string>
+    <string name="tag_name">Nombre de la etiqueta</string>
+    <string name="tag_name_not_valid">Nombre de etiqueta no válido</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>
