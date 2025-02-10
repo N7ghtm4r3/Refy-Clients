@@ -24,7 +24,6 @@
     <string name="unique_access">Accesso unico</string>
     <string name="expires">Scade</string>
     <string name="expires_in">in</string>
-    <string name="resources">Risorse</string>
     <string name="fields">Campi</string>
     <string name="key">Chiave</string>
     <string name="value">Valore</string>
@@ -33,7 +32,6 @@
     <string name="not_valid">Non valido</string>
     <string name="details">Dettagli</string>
     <string name="unique_access_text">Questo link ha l'accesso unico, alla prima visualizzazione sarà automaticamente cancellato</string>
-    <string name="the_link_will_expire_on">Il link scadrà il %1$s</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="language">Lingua</string>
@@ -110,6 +108,15 @@
     <string name="team">Team</string>
     <string name="share_with_the_team">Condividi con il team</string>
     <string name="team_members">Membri del team</string>
+    <string name="has_unique_access">- Questo link è ad accesso unico</string>
+    <string name="the_link_will_expire_on">- Il link scadrà il %1$s</string>
+    <string name="this_link_is">Questo link è</string>
+    <string name="expired">scaduto</string>
+    <string name="this_link_not_expires">- Questo link non scade</string>
+    <string name="link_details">Dettagli link</string>
+    <string name="access_method">Modalità di accesso</string>
+    <string name="auth">Autenticazione</string>
+    <string name="resources">Risorse</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membro</item>
         <item formatted="false" quantity="other">%1$d membri</item>

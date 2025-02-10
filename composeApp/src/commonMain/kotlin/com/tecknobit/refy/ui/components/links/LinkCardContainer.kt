@@ -36,6 +36,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -62,7 +63,10 @@ fun LinkCardContainer(
     modifier: Modifier = Modifier,
     viewModel: EquinoxViewModel,
     link: RefyLink,
+    onClick: (UriHandler) -> Unit = { uriHandler -> uriHandler.openUri(link.reference) },
+    onLongClick: () -> Unit = { /* TODO: NAV TO EDIT*/ },
     showOwnerData: Boolean = false,
+    extraInformation: @Composable() (() -> Unit)? = null,
     extraButton: @Composable() (() -> Unit)? = null,
     cancelButton: @Composable() RowScope.() -> Unit
 ) {
@@ -74,16 +78,18 @@ fun LinkCardContainer(
             .fillMaxWidth()
             .clip(CardDefaults.shape)
             .combinedClickable(
-                onClick = {
-                    uriHandler.openUri(
-                        uri = link.reference
-                    )
-                },
+                onClick = { onClick.invoke(uriHandler) },
                 onDoubleClick = {
                     viewModel.showSnackbarMessage(
                         message = link.reference
                     )
-                }
+                },
+                onLongClick = if (link.iAmTheOwner()) {
+                    {
+                        onLongClick()
+                    }
+                } else
+                    null
             )
     ) {
         if (showOwnerData) {
@@ -111,6 +117,7 @@ fun LinkCardContainer(
                 expanded = expanded,
                 item = link,
                 info = Res.string.inserted_on,
+                extraInformation = extraInformation,
                 descriptionLines = descriptionLines
             )
             LinkBottomBar(

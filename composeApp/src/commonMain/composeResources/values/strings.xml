@@ -24,7 +24,6 @@
     <string name="unique_access">Unique access</string>
     <string name="expires">Expires</string>
     <string name="expires_in">in</string>
-    <string name="resources">Resources</string>
     <string name="fields">Fields</string>
     <string name="key">Key</string>
     <string name="value">Value</string>
@@ -33,7 +32,6 @@
     <string name="not_valid">Not valid</string>
     <string name="details">Details</string>
     <string name="unique_access_text">This link has the unique access, at the first view will be automatically deleted</string>
-    <string name="the_link_will_expire_on">The link will expire on %1$s</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="language">Language</string>
@@ -110,6 +108,15 @@
     <string name="team">Team</string>
     <string name="share_with_the_team">Share with the team</string>
     <string name="team_members">Team members</string>
+    <string name="has_unique_access">- This link is unique access</string>
+    <string name="the_link_will_expire_on">- The link will expire on %1$s</string>
+    <string name="this_link_is">This links is</string>
+    <string name="expired">expired</string>
+    <string name="this_link_not_expires">- This link not expires</string>
+    <string name="link_details">Link details</string>
+    <string name="access_method">Access method</string>
+    <string name="auth">Auth</string>
+    <string name="resources">Resources</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d member</item>
         <item formatted="false" quantity="other">%1$d members</item>

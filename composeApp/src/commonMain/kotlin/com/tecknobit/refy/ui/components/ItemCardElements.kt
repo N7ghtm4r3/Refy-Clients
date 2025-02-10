@@ -51,6 +51,7 @@ fun ItemCardDetails(
     expanded: MutableState<Boolean>,
     item: RefyItem,
     info: StringResource,
+    extraInformation: @Composable() (() -> Unit)? = null,
     descriptionLines: MutableState<Int>
 ) {
     Column(
@@ -62,15 +63,13 @@ fun ItemCardDetails(
         ItemTitle(
             item = item
         )
-        Text(
-            text = stringResource(
+        ItemInfo(
+            info = stringResource(
                 resource = info,
                 item.date.toDateString()
-            ),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            fontSize = 15.sp
+            )
         )
+        extraInformation?.invoke()
         Text(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
@@ -99,6 +98,21 @@ fun ItemTitle(
         overflow = TextOverflow.Ellipsis,
         fontWeight = FontWeight.Bold,
         fontFamily = displayFontFamily
+    )
+}
+
+@Composable
+@NonRestartableComposable
+fun ItemInfo(
+    info: String,
+    color: Color = Color.Unspecified
+) {
+    Text(
+        text = info,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        fontSize = 15.sp,
+        color = color
     )
 }
 

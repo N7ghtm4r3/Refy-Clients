@@ -24,7 +24,6 @@
     <string name="unique_access">Acceso único</string>
     <string name="expires">Expira en</string>
     <string name="expires_in">en</string>
-    <string name="resources">Recursos</string>
     <string name="fields">Campos</string>
     <string name="key">Clave</string>
     <string name="value">Valor</string>
@@ -33,7 +32,6 @@
     <string name="not_valid">No válido</string>
     <string name="details">Detalles</string>
     <string name="unique_access_text">Este enlace tiene el acceso único, en la primera vista se eliminará automáticamente</string>
-    <string name="the_link_will_expire_on">El enlace caducará el %1$s</string>
     <string name="email">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="language">Idioma</string>
@@ -109,7 +107,16 @@
     <string name="collection">Colección</string>
     <string name="team">Equipo</string>
     <string name="share_with_the_team">Comparti con el equipo</string>
-    <string name="team_member">Miembros del equipo</string>
+    <string name="team_members">Miembros del equipo</string>
+    <string name="has_unique_access">- Este enlace es de acceso único</string>
+    <string name="the_link_will_expire_on">- El enlace caducará el %1$s</string>
+    <string name="this_link_is">Este enlace es</string>
+    <string name="expired">caducado</string>
+    <string name="this_link_not_expires">- Este enlace no caduca</string>
+    <string name="link_details">Detalles del enlace</string>
+    <string name="access_method">Método de acceso</string>
+    <string name="auth">Aut</string>
+    <string name="resources">Recursos</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>

@@ -1,5 +1,6 @@
 package com.tecknobit.refy.ui.screens.customs.data
 
+import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
@@ -38,5 +39,19 @@ data class CustomRefyLink(
 ) : RefyLink {
 
     override val reference: String = localUser.hostAddress + _reference
+
+    fun expirationDate(): Long {
+        return date + expiredTime.gap
+    }
+
+    fun isExpired(): Boolean {
+        if (expiredTime == NO_EXPIRATION)
+            return false
+        return TimeFormatter.currentTimestamp() >= expirationDate()
+    }
+
+    fun previewReference(): String {
+        return "$reference?$PREVIEW_TOKEN_KEY=$previewToken"
+    }
 
 }
