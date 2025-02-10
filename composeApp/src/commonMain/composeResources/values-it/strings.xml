@@ -32,23 +32,12 @@
     <string name="not_valid">Non valido</string>
     <string name="details">Dettagli</string>
     <string name="unique_access_text">Questo link ha l'accesso unico, alla prima visualizzazione sarà automaticamente cancellato</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="language">Lingua</string>
-    <string name="theme">Tema</string>
-    <string name="change">Cambia</string>
-    <string name="logout">Disconnettimi</string>
-    <string name="logout_message">Confermando, verrai disconness da questo dispositivo.</string>
-    <string name="delete_message">Confermando, l'account sarà definitivamente cancellato ed i dati non saranno più recuperabili.</string>
-    <string name="change_email">Modifica e-mail</string>
-    <string name="new_email">Nuova e-mail</string>
-    <string name="new_password">Nuova password</string>
-    <string name="change_password">Modifica password</string>
+
+
     <string name="disconnect">Disconnessione</string>
     <string name="execute">Esegui</string>
 
     <string name="server_currently_offline">Il server è attualmente offline</string>
-    <string name="account_deletion">Eliminazione account</string>
 
 
     <!-- TODO CHECK OTHER RESOURCES WHETHER ARE TO KEEP -->
@@ -119,6 +108,18 @@
     <string name="must_start_with_at">Deve iniziare con @</string>
     <string name="tag_name">Tagname</string>
     <string name="tag_name_not_valid">Tagname non valido</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="language">Lingua</string>
+    <string name="theme">Tema</string>
+    <string name="logout">Disconnettimi</string>
+    <string name="logout_message">Confermando, verrai disconness da questo dispositivo.</string>
+    <string name="delete_message">Confermando, l'account sarà definitivamente cancellato ed i dati non saranno più recuperabili.</string>
+    <string name="change_email">Modifica e-mail</string>
+    <string name="new_email">Nuova e-mail</string>
+    <string name="new_password">Nuova password</string>
+    <string name="change_password">Modifica password</string>
+    <string name="account_deletion">Eliminazione account</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membro</item>
         <item formatted="false" quantity="other">%1$d membri</item>

@@ -32,23 +32,12 @@
     <string name="not_valid">Non valide</string>
     <string name="details">Détails</string>
     <string name="unique_access_text">Ce lien a un accès unique, il sera automatiquement supprimé lors de la première visualisation.</string>
-    <string name="email">Courriel</string>
-    <string name="password">Mot de passe</string>
-    <string name="language">Langue</string>
-    <string name="theme">Thème</string>
-    <string name="change">Changer</string>
-    <string name="logout">Déconnexion</string>
-    <string name="logout_message">Si vous confirmez, vous serez déconnecté de ce dispositif.</string>
-    <string name="delete_message">Si vous confirmez, votre compte sera définitivement supprimé et vos données ne seront plus récupérables.</string>
-    <string name="change_email">Modifier l'adresse électronique</string>
-    <string name="new_email">Nouveau courriel</string>
-    <string name="new_password">Nouveau mot de passe</string>
-    <string name="change_password">Modifier le mot de passe</string>
+
+
     <string name="disconnect">Déconnexion</string>
     <string name="execute">Exécuter</string>
 
     <string name="server_currently_offline">Le serveur est actuellement hors ligne</string>
-    <string name="account_deletion">Suppression du compte</string>
 
 
     <!-- TODO CHECK OTHER RESOURCES WHETHER ARE TO KEEP -->
@@ -119,6 +108,18 @@
     <string name="must_start_with_at">Doit commencer par @</string>
     <string name="tag_name">Nom du jour</string>
     <string name="tag_name_not_valid">Le nom de l'étiquette n'est pas valide</string>
+    <string name="email">Courriel</string>
+    <string name="password">Mot de passe</string>
+    <string name="language">Langue</string>
+    <string name="theme">Thème</string>
+    <string name="logout">Déconnexion</string>
+    <string name="logout_message">Si vous confirmez, vous serez déconnecté de ce dispositif.</string>
+    <string name="delete_message">Si vous confirmez, votre compte sera définitivement supprimé et vos données ne seront plus récupérables.</string>
+    <string name="change_email">Modifier l'adresse électronique</string>
+    <string name="new_email">Nouveau courriel</string>
+    <string name="new_password">Nouveau mot de passe</string>
+    <string name="change_password">Modifier le mot de passe</string>
+    <string name="account_deletion">Suppression du compte</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membre</item>
         <item formatted="false" quantity="other">%1$d membres</item>

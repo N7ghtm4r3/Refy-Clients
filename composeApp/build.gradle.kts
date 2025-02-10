@@ -88,6 +88,8 @@ kotlin {
                 implementation(libs.lazy.pagination.compose)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.material.kolor)
+                implementation(libs.filekit.core)
+                implementation(libs.filekit.compose)
             }
         }
 

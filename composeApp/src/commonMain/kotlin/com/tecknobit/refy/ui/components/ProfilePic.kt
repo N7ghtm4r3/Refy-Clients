@@ -17,7 +17,9 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.tecknobit.refy.PROFILE_SCREEN
 import com.tecknobit.refy.localUser
+import com.tecknobit.refy.navigator
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.logo
@@ -32,7 +34,8 @@ lateinit var imageLoader: ImageLoader
 fun ProfilePic(
     modifier: Modifier = Modifier,
     profilePic: String = localUser.profilePic,
-    size: Dp
+    size: Dp,
+    onClick: () -> Unit = { navigator.navigate(PROFILE_SCREEN) }
 ) {
     AsyncImage(
         modifier = modifier
@@ -44,7 +47,7 @@ fun ProfilePic(
             )
             .size(size)
             .clickable {
-                // navigator.navigate(PROFILE_SCREEN) TODO: TO SET
+                onClick()
             },
         model = ImageRequest.Builder(LocalPlatformContext.current)
             .data(profilePic)

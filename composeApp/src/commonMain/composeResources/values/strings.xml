@@ -32,23 +32,9 @@
     <string name="not_valid">Not valid</string>
     <string name="details">Details</string>
     <string name="unique_access_text">This link has the unique access, at the first view will be automatically deleted</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="language">Language</string>
-    <string name="theme">Theme</string>
-    <string name="change">Change</string>
-    <string name="logout">Logout</string>
-    <string name="logout_message">If you confirm you will be disconnected from this device</string>
-    <string name="delete_message">If you confirm your account will be permanently deleted and your data will not be more recoverable</string>
-    <string name="change_email">Change email</string>
-    <string name="new_email">New email</string>
-    <string name="new_password">New password</string>
-    <string name="change_password">Change password</string>
     <string name="disconnect">Disconnect</string>
     <string name="execute">Execute</string>
-
     <string name="server_currently_offline">Server currently offline</string>
-    <string name="account_deletion">Account deletion</string>
 
 
     <!-- TODO CHECK OTHER RESOURCES WHETHER ARE TO KEEP -->
@@ -119,6 +105,18 @@
     <string name="must_start_with_at">Must start with @</string>
     <string name="tag_name">Tag name</string>
     <string name="tag_name_not_valid">Tag name not valid</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="logout">Logout</string>
+    <string name="logout_message">If you confirm you will be disconnected from this device</string>
+    <string name="delete_message">If you confirm your account will be permanently deleted and your data will not be more recoverable</string>
+    <string name="change_email">Change email</string>
+    <string name="new_email">New email</string>
+    <string name="new_password">New password</string>
+    <string name="change_password">Change password</string>
+    <string name="account_deletion">Account deletion</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d member</item>
         <item formatted="false" quantity="other">%1$d members</item>

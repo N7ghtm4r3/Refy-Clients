@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
 import com.tecknobit.refy.helpers.RefyLocalUser
+import com.tecknobit.refy.ui.profile.presenter.ProfileScreen
 import com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen
 import com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
@@ -132,6 +133,11 @@ fun App() {
                     route = HOME_SCREEN
                 ) {
                     HomeScreen().ShowContent()
+                }
+                scene(
+                    route = PROFILE_SCREEN
+                ) {
+                    ProfileScreen().ShowContent()
                 }
                 scene(
                     route = "$COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}/{$NAME_KEY}/{$COLLECTION_COLOR_KEY}"
