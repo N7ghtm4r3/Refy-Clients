@@ -44,7 +44,9 @@ import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.refy.UPSERT_LINK_SCREEN
 import com.tecknobit.refy.helpers.shareLink
+import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.components.ProfilePic
@@ -64,7 +66,9 @@ fun LinkCardContainer(
     viewModel: EquinoxViewModel,
     link: RefyLink,
     onClick: (UriHandler) -> Unit = { uriHandler -> uriHandler.openUri(link.reference) },
-    onLongClick: () -> Unit = { /* TODO: NAV TO EDIT*/ },
+    onLongClick: () -> Unit = {
+        navigator.navigate("$UPSERT_LINK_SCREEN/${link.id}")
+    },
     showOwnerData: Boolean = false,
     extraInformation: @Composable() (() -> Unit)? = null,
     extraButton: @Composable() (() -> Unit)? = null,

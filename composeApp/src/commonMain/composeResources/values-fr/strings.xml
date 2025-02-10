@@ -121,6 +121,8 @@
     <string name="change_tag_name">Modifier le nom de la balise</string>
     <string name="account_deletion">Suppression du compte</string>
     <string name="profile">Profil</string>
+    <string name="insert_link">Insérer un lien</string>
+    <string name="update_link">Editer le lien</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membre</item>
         <item formatted="false" quantity="other">%1$d membres</item>

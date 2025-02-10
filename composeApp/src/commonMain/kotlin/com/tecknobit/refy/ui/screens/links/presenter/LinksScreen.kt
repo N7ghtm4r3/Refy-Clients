@@ -2,6 +2,8 @@ package com.tecknobit.refy.ui.screens.links.presenter
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
+import com.tecknobit.refy.UPSERT_LINK_SCREEN
+import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.screens.links.components.LinkCard
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
@@ -26,7 +28,7 @@ class LinksScreen : BaseLinksScreen<RefyLinkImpl, LinksScreenViewModel>(
     }
 
     override fun upsertAction() {
-        // TODO: TO NAV TO CREATE
+        navigator.navigate(UPSERT_LINK_SCREEN)
     }
 
 }

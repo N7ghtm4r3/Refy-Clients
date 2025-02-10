@@ -121,6 +121,8 @@
     <string name="change_tag_name">Cambiar nombre de etiqueta</string>
     <string name="account_deletion">Eliminación de la cuenta</string>
     <string name="profile">Perfil</string>
+    <string name="insert_link">Insertar enlace</string>
+    <string name="update_link">Editar enlace</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>

@@ -15,9 +15,11 @@ import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
 import com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen
 import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
 import com.tecknobit.refy.ui.screens.team.presenter.TeamScreen
+import com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.COLLECTION_IDENTIFIER_KEY
+import com.tecknobit.refycore.LINK_IDENTIFIER_KEY
 import com.tecknobit.refycore.TEAM_IDENTIFIER_KEY
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
@@ -65,6 +67,11 @@ const val AUTH_SCREEN = "AuthScreen"
  * `HOME_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.home.presenter.HomeScreen]
  */
 const val HOME_SCREEN = "HomeScreen"
+
+/**
+ * `UPSERT_LINK_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen]
+ */
+const val UPSERT_LINK_SCREEN = "UpsertLinkScreen"
 
 /**
  * `PROFILE_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen]
@@ -133,6 +140,14 @@ fun App() {
                     route = HOME_SCREEN
                 ) {
                     HomeScreen().ShowContent()
+                }
+                scene(
+                    route = "$UPSERT_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
+                ) { backstackEntry ->
+                    val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
+                    UpsertLinkScreen(
+                        linkId = linkId
+                    ).ShowContent()
                 }
                 scene(
                     route = PROFILE_SCREEN

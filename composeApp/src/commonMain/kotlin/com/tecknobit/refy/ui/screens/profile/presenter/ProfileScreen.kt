@@ -17,7 +17,6 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.AlternateEmail
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Palette
@@ -72,12 +71,12 @@ import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
 import com.tecknobit.refy.SPLASHSCREEN
 import com.tecknobit.refy.bodyFontFamily
-import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.DeleteAccount
 import com.tecknobit.refy.ui.components.Logout
 import com.tecknobit.refy.ui.components.ProfilePic
+import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.AT_SYMBOL
@@ -135,40 +134,14 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                             ),
                         verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
-                        TopBar()
+                        ScreenTopBar(
+                            screenTitle = Res.string.profile
+                        )
                         UserDetails()
                         Settings()
                     }
                 }
             }
-        }
-    }
-
-    @Composable
-    @NonRestartableComposable
-    private fun TopBar() {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            IconButton(
-                onClick = { navigator.goBack() }
-            ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
-                    contentDescription = null
-                )
-            }
-            Text(
-                text = stringResource(Res.string.profile),
-                fontSize = 28.sp,
-                color = MaterialTheme.colorScheme.primary,
-                fontFamily = displayFontFamily,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
         }
     }
 
