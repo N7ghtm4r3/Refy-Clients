@@ -247,6 +247,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                             value = viewModel.tagName,
                             label = stringResource(Res.string.tag_name),
                             keyboardOptions = keyboardOptions,
+                            allowsBlankSpaces = false,
                             placeholder = stringResource(Res.string.must_start_with_at),
                             errorText = stringResource(Res.string.tag_name_not_valid),
                             isError = viewModel.tagNameError,

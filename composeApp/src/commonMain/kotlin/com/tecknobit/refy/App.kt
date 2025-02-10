@@ -9,10 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
 import com.tecknobit.refy.helpers.RefyLocalUser
-import com.tecknobit.refy.ui.profile.presenter.ProfileScreen
 import com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen
 import com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
+import com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen
 import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
 import com.tecknobit.refy.ui.screens.team.presenter.TeamScreen
 import com.tecknobit.refy.ui.theme.RefyTheme

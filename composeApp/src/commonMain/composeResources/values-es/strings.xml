@@ -32,11 +32,8 @@
     <string name="not_valid">No válido</string>
     <string name="details">Detalles</string>
     <string name="unique_access_text">Este enlace tiene el acceso único, en la primera vista se eliminará automáticamente</string>
-
-
     <string name="disconnect">Desconecte</string>
     <string name="execute">Ejecute</string>
-
     <string name="server_currently_offline">Servidor desconectado</string>
 
 
@@ -119,7 +116,11 @@
     <string name="new_email">Nuevo correo electrónico</string>
     <string name="new_password">Nueva contraseña</string>
     <string name="change_password">Cambiar contraseña</string>
+    <string name="change_language">Cambiar de idioma</string>
+    <string name="change_theme">Cambiar de tema</string>
+    <string name="change_tag_name">Cambiar nombre de etiqueta</string>
     <string name="account_deletion">Eliminación de la cuenta</string>
+    <string name="profile">Perfil</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>

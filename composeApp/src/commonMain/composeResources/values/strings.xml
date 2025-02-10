@@ -116,7 +116,11 @@
     <string name="new_email">New email</string>
     <string name="new_password">New password</string>
     <string name="change_password">Change password</string>
+    <string name="change_language">Change language</string>
+    <string name="change_theme">Change theme</string>
+    <string name="change_tag_name">Change tag-name</string>
     <string name="account_deletion">Account deletion</string>
+    <string name="profile">Profile</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d member</item>
         <item formatted="false" quantity="other">%1$d members</item>
