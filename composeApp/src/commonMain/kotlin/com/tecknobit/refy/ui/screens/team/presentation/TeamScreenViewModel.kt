@@ -276,4 +276,11 @@ class TeamScreenViewModel(
         onRemove()
     }
 
+    fun leaveTeam(
+        onLeave: () -> Unit
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        onLeave()
+    }
+
 }

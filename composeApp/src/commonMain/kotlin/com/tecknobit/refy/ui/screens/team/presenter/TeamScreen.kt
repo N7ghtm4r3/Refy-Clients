@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -40,6 +41,7 @@ import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.AttachTeam
 import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.DeleteTeam
+import com.tecknobit.refy.ui.components.LeaveTeam
 import com.tecknobit.refy.ui.components.TeamLogo
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.team.components.TeamCollectionCard
@@ -57,6 +59,7 @@ import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.collections
 import refy.composeapp.generated.resources.delete
 import refy.composeapp.generated.resources.edit
+import refy.composeapp.generated.resources.leave_team
 import refy.composeapp.generated.resources.share_with_the_team
 
 class TeamScreen(
@@ -136,14 +139,34 @@ class TeamScreen(
                         )
                     }
                 }
-                DeleteItemButton(
-                    item = item.value!!,
-                    deleteContent = { delete ->
-                        DeleteItemContent(
-                            delete = delete
+                if (!item.value!!.iAmAnAdmin()) {
+                    val leave = remember { mutableStateOf(false) }
+                    IconButton(
+                        modifier = Modifier
+                            .size(32.dp),
+                        onClick = { leave.value = true }
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ExitToApp,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.error
                         )
                     }
-                )
+                    LeaveTeam(
+                        show = leave,
+                        viewModel = viewModel,
+                        team = item.value!!
+                    )
+                } else {
+                    DeleteItemButton(
+                        item = item.value!!,
+                        deleteContent = { delete ->
+                            DeleteItemContent(
+                                delete = delete
+                            )
+                        }
+                    )
+                }
             }
         }
     }
@@ -205,6 +228,24 @@ class TeamScreen(
                     }
                     DeleteItemContent(
                         delete = delete
+                    )
+                } else {
+                    val leave = remember { mutableStateOf(false) }
+                    Button(
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.error,
+                            contentColor = contentColorFor(MaterialTheme.colorScheme.error)
+                        ),
+                        onClick = { leave.value = true }
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.leave_team)
+                        )
+                    }
+                    LeaveTeam(
+                        show = leave,
+                        viewModel = viewModel,
+                        team = item.value!!
                     )
                 }
                 val state = rememberModalBottomSheetState(

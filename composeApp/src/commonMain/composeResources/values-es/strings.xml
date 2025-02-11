@@ -15,8 +15,6 @@
     <string name="add_links_to_team">Añadir enlaces al equipo</string>
     <string name="invalid_team">Equipo inválido</string>
     <string name="team_name">Nombre del equipo</string>
-    <string name="leave_team">Dejar el equipo</string>
-    <string name="leave_team_message">Al confirmar, el equipo y los datos relacionados dejarán de estar disponibles para usted.</string>
     <string name="invalid_custom_link">Enlace personalizado no válido</string>
     <string name="custom_link_title">Título del enlace</string>
     <string name="options">Opciones</string>
@@ -127,6 +125,8 @@
     <string name="insert_collection">Insertar colección</string>
     <string name="update_collection">Editar colección</string>
     <string name="collection_name">Nombre de la colección</string>
+    <string name="leave_team">Dejar el equipo</string>
+    <string name="leave_team_message">Al confirmar, el equipo y los datos relacionados dejarán de estar disponibles para usted.</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>

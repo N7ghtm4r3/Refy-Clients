@@ -15,8 +15,6 @@
     <string name="add_links_to_team">Add links to team</string>
     <string name="invalid_team">Invalid team</string>
     <string name="team_name">Team name</string>
-    <string name="leave_team">Leave team</string>
-    <string name="leave_team_message">By confirming, the team and related data will no longer be available for you</string>
     <string name="invalid_custom_link">Invalid custom link</string>
     <string name="custom_link_title">Link title</string>
     <string name="options">Options</string>
@@ -127,6 +125,8 @@
     <string name="insert_collection">Insert collection</string>
     <string name="update_collection">Edit collection</string>
     <string name="collection_name">Collection name</string>
+    <string name="leave_team">Leave team</string>
+    <string name="leave_team_message">By confirming, the team and related data will no longer be available for you</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d member</item>
         <item formatted="false" quantity="other">%1$d members</item>

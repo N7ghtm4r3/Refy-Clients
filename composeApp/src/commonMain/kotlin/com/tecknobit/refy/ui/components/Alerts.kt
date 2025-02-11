@@ -18,6 +18,7 @@ import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel
+import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
@@ -31,6 +32,8 @@ import refy.composeapp.generated.resources.delete_link_message
 import refy.composeapp.generated.resources.delete_message
 import refy.composeapp.generated.resources.delete_team
 import refy.composeapp.generated.resources.delete_team_message
+import refy.composeapp.generated.resources.leave_team
+import refy.composeapp.generated.resources.leave_team_message
 import refy.composeapp.generated.resources.logout
 import refy.composeapp.generated.resources.logout_message
 
@@ -118,6 +121,31 @@ fun DeleteTeam(
                 team = team,
                 onDelete = onDelete
             )
+        }
+    )
+}
+
+@Composable
+@NonRestartableComposable
+fun LeaveTeam(
+    show: MutableState<Boolean>,
+    viewModel: TeamScreenViewModel,
+    team: Team
+) {
+    EquinoxAlertDialog(
+        modifier = Modifier
+            .widthIn(
+                max = 400.dp
+            ),
+        show = show,
+        title = Res.string.leave_team,
+        titleStyle = titleStyle,
+        text = Res.string.leave_team_message,
+        confirmAction = {
+            viewModel.leaveTeam {
+                show.value = false
+                navigator.goBack()
+            }
         }
     )
 }

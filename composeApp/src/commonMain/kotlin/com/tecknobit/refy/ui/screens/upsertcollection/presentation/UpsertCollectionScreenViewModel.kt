@@ -9,6 +9,7 @@ import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel
+import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import kotlin.random.Random
 
 class UpsertCollectionScreenViewModel(
@@ -82,6 +83,14 @@ class UpsertCollectionScreenViewModel(
 
             } else "gag"
         )
+    }
+
+    override fun validForm(): Boolean {
+        if (!isTitleValid(collectionTitle.value)) {
+            collectionTitleError.value = true
+            return false
+        }
+        return super.validForm()
     }
 
     override fun insert(
