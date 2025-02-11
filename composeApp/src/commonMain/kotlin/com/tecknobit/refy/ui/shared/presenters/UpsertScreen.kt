@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
@@ -26,8 +27,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.ManagedContent
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
@@ -38,9 +41,12 @@ import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel
 import com.tecknobit.refy.ui.theme.RefyTheme
+import com.tecknobit.refycore.helpers.RefyInputsValidator.isDescriptionValid
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.description
+import refy.composeapp.generated.resources.description_not_valid
 import refy.composeapp.generated.resources.insert
 import refy.composeapp.generated.resources.update
 
@@ -63,7 +69,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
      */
     @Composable
     override fun ArrangeScreenContent() {
-        RefyTheme {
+        ScreenTheme {
             ManagedContent(
                 viewModel = viewModel,
                 initialDelay = 500,
@@ -120,7 +126,41 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
 
     @Composable
     @NonRestartableComposable
+    protected open fun ScreenTheme(
+        content: @Composable() () -> Unit
+    ) {
+        RefyTheme(
+            content = content
+        )
+    }
+
+    @Composable
+    @NonRestartableComposable
     protected abstract fun ColumnScope.UpsertForm()
+
+    @Composable
+    @NonRestartableComposable
+    protected fun ItemDescriptionSection() {
+        SectionTitle(
+            title = Res.string.description
+        )
+        EquinoxOutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(
+                size = 10.dp
+            ),
+            minLines = 10,
+            maxLines = 10,
+            value = viewModel.itemDescription,
+            isError = viewModel.itemDescriptionError,
+            validator = { isDescriptionValid(it) },
+            errorText = Res.string.description_not_valid,
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Done
+            )
+        )
+    }
 
     @Composable
     @NonRestartableComposable

@@ -19,11 +19,8 @@ import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.upsertlink.presentation.UpsertLinkScreenViewModel
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
-import com.tecknobit.refycore.helpers.RefyInputsValidator.isDescriptionValid
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isLinkResourceValid
 import refy.composeapp.generated.resources.Res
-import refy.composeapp.generated.resources.description
-import refy.composeapp.generated.resources.description_not_valid
 import refy.composeapp.generated.resources.insert_link
 import refy.composeapp.generated.resources.link_reference
 import refy.composeapp.generated.resources.link_reference_not_valid
@@ -66,25 +63,7 @@ class UpsertLinkScreen(
                 imeAction = ImeAction.Next
             )
         )
-        SectionTitle(
-            title = Res.string.description
-        )
-        EquinoxOutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(
-                size = 10.dp
-            ),
-            minLines = 10,
-            maxLines = 10,
-            value = viewModel.itemDescription,
-            isError = viewModel.itemDescriptionError,
-            validator = { isDescriptionValid(it) },
-            errorText = Res.string.description_not_valid,
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Done
-            )
-        )
+        ItemDescriptionSection()
         UpsertButton()
     }
 

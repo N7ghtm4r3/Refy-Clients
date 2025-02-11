@@ -9,7 +9,6 @@
     <string name="description_not_valid">Description not valid</string>
     <string name="edit_link">Edit link</string>
     <string name="add_collection_to_team">Add collection to team</string>
-    <string name="collection_name">Collection name</string>
     <string name="invalid_collection">Invalid collection</string>
     <string name="add_links_to_collection">Add links to collection</string>
     <string name="you_re_not_on_any_team">You're not on any team</string>
@@ -125,6 +124,9 @@
     <string name="update_link">Edit link</string>
     <string name="insert">Insert</string>
     <string name="update">Update</string>
+    <string name="insert_collection">Insert collection</string>
+    <string name="update_collection">Edit collection</string>
+    <string name="collection_name">Collection name</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d member</item>
         <item formatted="false" quantity="other">%1$d members</item>

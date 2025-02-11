@@ -1,7 +1,9 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 
 package com.tecknobit.refy.ui.screens.collections.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +24,7 @@ import com.tecknobit.equinoxcompose.utilities.BorderToColor
 import com.tecknobit.equinoxcompose.utilities.colorOneSideBorder
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.refy.COLLECTION_SCREEN
+import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.AttachCollection
 import com.tecknobit.refy.ui.components.AttachItemButton
@@ -50,12 +53,19 @@ fun CollectionCard(
                 width = 45.dp,
                 color = collection.color.toColor(),
                 shape = CardDefaults.shape
-            ),
-        onClick = {
-            navigator.navigate(
-                route = "$COLLECTION_SCREEN/${collection.id}/${collection.title}/${collection.color}"
             )
-        }
+            .combinedClickable(
+                onClick = {
+                    navigator.navigate(
+                        route = "$COLLECTION_SCREEN/${collection.id}/${collection.title}/${collection.color}"
+                    )
+                },
+                onLongClick = if (collection.iAmTheOwner()) {
+                    {
+                        navigator.navigate("$UPSERT_COLLECTION_SCREEN/${collection.id}/${collection.color}")
+                    }
+                } else null
+            )
     ) {
         Column(
             modifier = Modifier

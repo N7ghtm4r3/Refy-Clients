@@ -7,6 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
+import com.tecknobit.equinoxcompose.utilities.generateRandomColor
+import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
 import com.tecknobit.refy.helpers.RefyLocalUser
 import com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen
@@ -15,6 +17,7 @@ import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
 import com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen
 import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
 import com.tecknobit.refy.ui.screens.team.presenter.TeamScreen
+import com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen
 import com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.COLLECTION_COLOR_KEY
@@ -72,6 +75,11 @@ const val HOME_SCREEN = "HomeScreen"
  * `UPSERT_LINK_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen]
  */
 const val UPSERT_LINK_SCREEN = "UpsertLinkScreen"
+
+/**
+ * `UPSERT_COLLECTION_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen]
+ */
+const val UPSERT_COLLECTION_SCREEN = "UpsertCollectionScreen"
 
 /**
  * `PROFILE_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen]
@@ -147,6 +155,17 @@ fun App() {
                     val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
                     UpsertLinkScreen(
                         linkId = linkId
+                    ).ShowContent()
+                }
+                scene(
+                    route = "$UPSERT_COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}?/{$COLLECTION_COLOR_KEY}?"
+                ) { backstackEntry ->
+                    val collectionId = backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)
+                    val collectionColor = backstackEntry.path<String>(COLLECTION_COLOR_KEY)
+                        ?: generateRandomColor().toHex()
+                    UpsertCollectionScreen(
+                        collectionId = collectionId,
+                        collectionColor = collectionColor
                     ).ShowContent()
                 }
                 scene(

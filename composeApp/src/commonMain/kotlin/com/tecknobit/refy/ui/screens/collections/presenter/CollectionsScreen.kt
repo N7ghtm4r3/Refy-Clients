@@ -16,6 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
+import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.EmptyCollections
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
@@ -109,7 +111,7 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
     }
 
     override fun upsertAction() {
-        // TODO: TO NAV TO CREATE
+        navigator.navigate(UPSERT_COLLECTION_SCREEN)
     }
 
     override fun upsertText(): StringResource {

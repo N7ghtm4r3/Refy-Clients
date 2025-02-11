@@ -36,6 +36,7 @@ import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Da
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
+import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.AttachCollection
@@ -196,7 +197,7 @@ class CollectionScreen(
     }
 
     override fun upsertAction() {
-        // TODO: NAV TO EDIT
+        navigator.navigate("$UPSERT_COLLECTION_SCREEN/${item.value!!.id}")
     }
 
     @Composable
