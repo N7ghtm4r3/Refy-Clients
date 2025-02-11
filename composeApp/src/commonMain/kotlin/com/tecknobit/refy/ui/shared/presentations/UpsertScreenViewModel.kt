@@ -3,8 +3,10 @@ package com.tecknobit.refy.ui.shared.presentations
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.ui.shared.data.RefyItem
+import com.tecknobit.refycore.helpers.RefyInputsValidator.isDescriptionValid
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -26,12 +28,37 @@ abstract class UpsertScreenViewModel<I : RefyItem>(
 
     abstract fun retrieveItem()
 
-    abstract fun insert(
+    fun upsert(
+        onUpsertAction: () -> Unit
+    ) {
+        if (!validForm())
+            return
+        if (itemId == null) {
+            insert {
+                onUpsertAction()
+            }
+        } else {
+            update {
+                onUpsertAction()
+            }
+        }
+    }
+
+    protected abstract fun insert(
         onInsert: () -> Unit
     )
 
-    abstract fun add(
-        onAdd: () -> Unit
+    protected abstract fun update(
+        onUpdate: () -> Unit
     )
+
+    @RequiresSuperCall
+    protected open fun validForm(): Boolean {
+        return if (!isDescriptionValid(itemDescription.value)) {
+            itemDescriptionError.value = true
+            return false
+        } else
+            true
+    }
 
 }

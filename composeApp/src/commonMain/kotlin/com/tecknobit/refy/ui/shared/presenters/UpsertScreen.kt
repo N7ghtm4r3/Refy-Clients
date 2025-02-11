@@ -1,12 +1,22 @@
+@file:OptIn(ExperimentalMultiplatform::class)
+
 package com.tecknobit.refy.ui.shared.presenters
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.State
@@ -15,16 +25,24 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.ManagedContent
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
+import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel
 import com.tecknobit.refy.ui.theme.RefyTheme
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
+import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.insert
+import refy.composeapp.generated.resources.update
 
 @Structure
 abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
@@ -85,7 +103,13 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
                                     else
                                         insertTitle
                                 )
-                                UpsertForm()
+                                Column(
+                                    modifier = Modifier
+                                        .verticalScroll(rememberScrollState()),
+                                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                                ) {
+                                    UpsertForm()
+                                }
                             }
                         }
                     }
@@ -96,7 +120,60 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
 
     @Composable
     @NonRestartableComposable
-    protected abstract fun UpsertForm()
+    protected abstract fun ColumnScope.UpsertForm()
+
+    @Composable
+    @NonRestartableComposable
+    protected fun SectionTitle(
+        title: StringResource
+    ) {
+        Text(
+            text = stringResource(title),
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp
+        )
+    }
+
+    @Composable
+    @NonRestartableComposable
+    protected fun ColumnScope.UpsertButton() {
+        Button(
+            modifier = Modifier
+                .then(
+                    responsiveAssignment(
+                        onExpandedSizeClass = {
+                            Modifier.align(Alignment.End)
+                        },
+                        onMediumSizeClass = {
+                            Modifier.align(Alignment.End)
+                        },
+                        onCompactSizeClass = {
+                            Modifier
+                                .height(60.dp)
+                                .fillMaxWidth()
+                        }
+                    )
+                ),
+            shape = RoundedCornerShape(
+                size = 10.dp
+            ),
+            onClick = {
+                viewModel.upsert {
+                    navigator.goBack()
+                }
+            }
+        ) {
+            Text(
+                text = stringResource(
+                    if (isUpdating)
+                        Res.string.update
+                    else
+                        Res.string.insert
+                ),
+                fontSize = 18.sp
+            )
+        }
+    }
 
     override fun onStart() {
         super.onStart()

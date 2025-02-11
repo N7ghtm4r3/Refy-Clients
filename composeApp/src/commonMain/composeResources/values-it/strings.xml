@@ -123,6 +123,8 @@
     <string name="profile">Profilo</string>
     <string name="insert_link">Inserisci link</string>
     <string name="update_link">Modifica link</string>
+    <string name="insert">Inserisci</string>
+    <string name="update">Modifica</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membro</item>
         <item formatted="false" quantity="other">%1$d membri</item>

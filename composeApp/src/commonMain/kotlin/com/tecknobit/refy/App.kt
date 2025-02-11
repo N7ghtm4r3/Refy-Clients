@@ -99,7 +99,7 @@ fun App() {
     // TODO: TO SET
     /*imageLoader = ImageLoader.Builder(LocalPlatformContext.current)
         .components {
-            add(
+            update(
                 OkHttpNetworkFetcherFactory {
                     OkHttpClient.Builder()
                         .sslSocketFactory(sslContext.socketFactory,
@@ -220,7 +220,7 @@ fun startSession() {
     } else
         AUTH_SCREEN*/
     setUserLanguage()
-    navigator.navigate(AUTH_SCREEN)
+    navigator.navigate(HOME_SCREEN)
 }
 
 /**
