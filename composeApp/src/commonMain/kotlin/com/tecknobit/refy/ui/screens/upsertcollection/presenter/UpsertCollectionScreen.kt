@@ -1,8 +1,14 @@
 package com.tecknobit.refy.ui.screens.upsertcollection.presenter
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -13,12 +19,17 @@ import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import com.github.skydoves.colorpicker.compose.ColorEnvelope
+import com.github.skydoves.colorpicker.compose.HsvColorPicker
+import com.github.skydoves.colorpicker.compose.rememberColorPickerController
 import com.materialkolor.rememberDynamicColorScheme
+import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Auto
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
@@ -33,6 +44,7 @@ import com.tecknobit.refy.ui.screens.upsertcollection.presentation.UpsertCollect
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.collection_color
 import refy.composeapp.generated.resources.collection_name
 import refy.composeapp.generated.resources.insert_collection
 import refy.composeapp.generated.resources.links
@@ -52,6 +64,8 @@ class UpsertCollectionScreen(
 ) {
 
     private lateinit var color: MutableState<Color>
+
+    private lateinit var pickColor: MutableState<Boolean>
 
     @Composable
     @NonRestartableComposable
@@ -83,6 +97,17 @@ class UpsertCollectionScreen(
             focusRequester.requestFocus()
         }
         SectionTitle(
+            title = Res.string.collection_color
+        )
+        Box(
+            modifier = Modifier
+                .size(40.dp)
+                .clip(CircleShape)
+                .background(color.value)
+                .clickable { pickColor.value = true }
+        )
+        CollectionColorPicker()
+        SectionTitle(
             title = Res.string.collection_name
         )
         EquinoxOutlinedTextField(
@@ -113,10 +138,30 @@ class UpsertCollectionScreen(
     }
 
     @Composable
+    @NonRestartableComposable
+    private fun CollectionColorPicker() {
+        EquinoxDialog(
+            show = pickColor
+        ) {
+            HsvColorPicker(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp),
+                initialColor = color.value,
+                controller = rememberColorPickerController(),
+                onColorChanged = { colorEnvelope: ColorEnvelope ->
+                    color.value = colorEnvelope.color
+                }
+            )
+        }
+    }
+
+    @Composable
     @RequiresSuperCall
     override fun CollectStates() {
         super.CollectStates()
         color = remember { mutableStateOf(collectionColor.toColor()) }
+        pickColor = remember { mutableStateOf(false) }
         viewModel.collectionTitleError = remember { mutableStateOf(false) }
     }
 

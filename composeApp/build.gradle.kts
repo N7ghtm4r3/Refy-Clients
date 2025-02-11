@@ -90,6 +90,7 @@ kotlin {
                 implementation(libs.material.kolor)
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.compose)
+                implementation(libs.colorpicker.compose)
             }
         }
 

@@ -6,6 +6,7 @@ android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activityCompose = "1.10.0"
 androidx-lifecycle = "2.8.4"
+colorpickerCompose = "1.1.2"
 compose-multiplatform = "1.7.3"
 equinoxCompose = "1.0.7"
 filekitCore = "0.8.8"
@@ -25,6 +26,7 @@ accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+colorpicker-compose = { module = "com.github.skydoves:colorpicker-compose", version.ref = "colorpickerCompose" }
 equinox-compose = { module = "io.github.n7ghtm4r3:equinox-compose", version.ref = "equinoxCompose" }
 equinox-core = { module = "io.github.n7ghtm4r3:equinox-core", version.ref = "equinoxCompose" }
 filekit-compose = { module = "io.github.vinceglb:filekit-compose", version.ref = "filekitCompose" }
