@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
@@ -179,6 +180,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     protected fun ColumnScope.UpsertButton() {
         Button(
             modifier = Modifier
+                .navigationBarsPadding()
                 .then(
                     responsiveAssignment(
                         onExpandedSizeClass = {
@@ -189,7 +191,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
                         },
                         onCompactSizeClass = {
                             Modifier
-                                .height(60.dp)
+                                .height(50.dp)
                                 .fillMaxWidth()
                         }
                     )
@@ -232,7 +234,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     override fun CollectStatesAfterLoading() {
         viewModel.itemDescription = remember {
             mutableStateOf(
-                if (item.value != null)
+                if (isUpdating)
                     item.value!!.description
                 else
                     ""

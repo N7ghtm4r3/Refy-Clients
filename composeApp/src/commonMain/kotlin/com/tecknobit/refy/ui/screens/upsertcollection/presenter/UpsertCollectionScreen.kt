@@ -26,6 +26,7 @@ import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Li
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.localUser
+import com.tecknobit.refy.ui.components.LinksChooser
 import com.tecknobit.refy.ui.screens.collection.helpers.adaptStatusBarToCollectionTheme
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.upsertcollection.presentation.UpsertCollectionScreenViewModel
@@ -34,6 +35,7 @@ import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.collection_name
 import refy.composeapp.generated.resources.insert_collection
+import refy.composeapp.generated.resources.links
 import refy.composeapp.generated.resources.name_not_valid
 import refy.composeapp.generated.resources.update_collection
 
@@ -100,6 +102,13 @@ class UpsertCollectionScreen(
             )
         )
         ItemDescriptionSection()
+        SectionTitle(
+            title = Res.string.links
+        )
+        LinksChooser(
+            currentAttachedLinks = emptyList(),
+            linksAddedSupportList = viewModel.collectionLinks
+        )
         UpsertButton()
     }
 
@@ -108,8 +117,25 @@ class UpsertCollectionScreen(
     override fun CollectStates() {
         super.CollectStates()
         color = remember { mutableStateOf(collectionColor.toColor()) }
-        viewModel.collectionTitle = remember { mutableStateOf("") }
         viewModel.collectionTitleError = remember { mutableStateOf(false) }
+    }
+
+    @Composable
+    @RequiresSuperCall
+    override fun CollectStatesAfterLoading() {
+        super.CollectStatesAfterLoading()
+        viewModel.collectionTitle = remember {
+            mutableStateOf(
+                if (isUpdating)
+                    item.value!!.title
+                else
+                    ""
+            )
+        }
+        LaunchedEffect(Unit) {
+            if (isUpdating)
+                viewModel.collectionLinks.addAll(item.value!!.links)
+        }
     }
 
 }

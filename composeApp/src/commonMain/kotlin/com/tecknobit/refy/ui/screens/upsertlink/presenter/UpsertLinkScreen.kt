@@ -82,7 +82,7 @@ class UpsertLinkScreen(
         super.CollectStatesAfterLoading()
         viewModel.reference = remember {
             mutableStateOf(
-                if (item.value != null)
+                if (isUpdating)
                     item.value!!.reference
                 else
                     ""
