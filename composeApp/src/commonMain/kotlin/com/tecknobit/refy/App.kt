@@ -7,10 +7,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
+import coil3.ImageLoader
+import coil3.compose.LocalPlatformContext
+import coil3.network.ktor3.KtorNetworkFetcherFactory
+import coil3.request.CachePolicy
+import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
 import com.tecknobit.refy.helpers.RefyLocalUser
+import com.tecknobit.refy.helpers.customHttpClient
+import com.tecknobit.refy.ui.components.imageLoader
 import com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen
 import com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
@@ -116,26 +123,19 @@ const val UPSERT_CUSTOM_LINK_SCREEN = "UpsertCustomLinkScreen"
 fun App() {
     bodyFontFamily = FontFamily(Font(Res.font.titillium))
     displayFontFamily = FontFamily(Font(Res.font.ubuntu))
-    // TODO: TO SET
-    /*imageLoader = ImageLoader.Builder(LocalPlatformContext.current)
+    imageLoader = ImageLoader.Builder(LocalPlatformContext.current)
         .components {
-            update(
-                OkHttpNetworkFetcherFactory {
-                    OkHttpClient.Builder()
-                        .sslSocketFactory(sslContext.socketFactory,
-                            validateSelfSignedCertificate()[0] as X509TrustManager
-                        )
-                        .hostnameVerifier { _: String?, _: SSLSession? -> true }
-                        .connectTimeout(5, TimeUnit.SECONDS)
-                        .build()
-                }
+            add(
+                KtorNetworkFetcherFactory(
+                    httpClient = customHttpClient()
+                )
             )
         }
         .addLastModifiedToFileCacheKey(true)
         .diskCachePolicy(CachePolicy.ENABLED)
         .networkCachePolicy(CachePolicy.ENABLED)
         .memoryCachePolicy(CachePolicy.ENABLED)
-        .build()*/
+        .build()
     PreComposeApp {
         navigator = rememberNavigator()
         RefyTheme {
@@ -243,7 +243,6 @@ expect fun CheckForUpdatesAndLaunch()
  *
  */
 fun startSession() {
-    // TODO: MAKE THE REAL NAVIGATION
     /*requester = NeutronRequester(
         host = localUser.hostAddress ?: "",
         userId = localUser.userId,

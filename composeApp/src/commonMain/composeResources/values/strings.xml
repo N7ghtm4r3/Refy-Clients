@@ -1,31 +1,4 @@
 <resources>
-
-    <string name="add_link_to_team">Add link to team</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="add_link_to_collection">Add link to collection</string>
-    <string name="link_reference">Link reference</string>
-    <string name="link_reference_not_valid">Link reference not valid</string>
-    <string name="description">Description</string>
-    <string name="description_not_valid">Description not valid</string>
-    <string name="edit_link">Edit link</string>
-    <string name="add_collection_to_team">Add collection to team</string>
-    <string name="invalid_collection">Invalid collection</string>
-    <string name="add_links_to_collection">Add links to collection</string>
-    <string name="you_re_not_on_any_team">You're not on any team</string>
-    <string name="add_links_to_team">Add links to team</string>
-    <string name="invalid_team">Invalid team</string>
-    <string name="team_name">Team name</string>
-    <string name="invalid_custom_link">Invalid custom link</string>
-    <string name="custom_link_title">Link title</string>
-    <string name="options">Options</string>
-    <string name="fields">Fields</string>
-    <string name="details">Details</string>
-    <string name="disconnect">Disconnect</string>
-    <string name="execute">Execute</string>
-    <string name="server_currently_offline">Server currently offline</string>
-
-
-    <!-- TODO CHECK OTHER RESOURCES WHETHER ARE TO KEEP -->
     <string name="app_name">Refy</string>
     <string name="app_version">1.0.1</string>
     <string name="links">Links</string>
@@ -157,4 +130,9 @@
     </plurals>
     <string name="auth_form_not_valid">The authentication values are not valid</string>
     <string name="resources_not_valid">The resources are not valid</string>
+    <string name="link_reference">Link reference</string>
+    <string name="link_reference_not_valid">Link reference not valid</string>
+    <string name="team_name">Team name</string>
+    <string name="description">Description</string>
+    <string name="description_not_valid">Description not valid</string>
 </resources>

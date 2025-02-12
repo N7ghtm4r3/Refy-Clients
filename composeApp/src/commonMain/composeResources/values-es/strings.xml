@@ -1,31 +1,4 @@
 <resources>
-
-    <string name="add_link_to_team">Añadir enlace al equipo</string>
-    <string name="dismiss">Desestimar</string>
-    <string name="add_link_to_collection">Añadir enlace a la colección</string>
-    <string name="link_reference">Enlace de referencia</string>
-    <string name="link_reference_not_valid">Referencia de enlace no válida</string>
-    <string name="description">Descripción</string>
-    <string name="description_not_valid">Descripción no válida</string>
-    <string name="edit_link">Editar enlace</string>
-    <string name="add_collection_to_team">Añadir colección al equipo</string>
-    <string name="invalid_collection">Recogida no válida</string>
-    <string name="add_links_to_collection">Añadir enlaces a la colección</string>
-    <string name="you_re_not_on_any_team">No estás en ningún equipo</string>
-    <string name="add_links_to_team">Añadir enlaces al equipo</string>
-    <string name="invalid_team">Equipo inválido</string>
-    <string name="team_name">Nombre del equipo</string>
-    <string name="invalid_custom_link">Enlace personalizado no válido</string>
-    <string name="custom_link_title">Título del enlace</string>
-    <string name="options">Opciones</string>
-    <string name="fields">Campos</string>
-    <string name="details">Detalles</string>
-    <string name="disconnect">Desconecte</string>
-    <string name="execute">Ejecute</string>
-    <string name="server_currently_offline">Servidor desconectado</string>
-
-
-    <!-- TODO CHECK OTHER RESOURCES WHETHER ARE TO KEEP -->
     <string name="app_name">Refy</string>
     <string name="app_version">1.0.1</string>
     <string name="links">Enlaces</string>
@@ -157,4 +130,9 @@
     </plurals>
     <string name="auth_form_not_valid">Los valores de autenticación no son válidos</string>
     <string name="resources_not_valid">Los recursos no son válidos</string>
+    <string name="link_reference">Enlace de referencia</string>
+    <string name="link_reference_not_valid">Referencia de enlace no válida</string>
+    <string name="team_name">Nombre del equipo</string>
+    <string name="description">Descripción</string>
+    <string name="description_not_valid">Descripción no válida</string>
 </resources>

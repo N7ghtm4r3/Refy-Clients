@@ -4,6 +4,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.tecknobit.equinoxcompose.session.setUpSession
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -19,6 +20,10 @@ fun main() = application {
             placement = WindowPlacement.Maximized
         )
     ) {
+        setUpSession {
+            localUser.clear()
+            navigator.navigate(SPLASHSCREEN)
+        }
         App()
     }
 }

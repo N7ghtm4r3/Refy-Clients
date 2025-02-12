@@ -1,5 +1,6 @@
 *.iml
 *.config
+gradle.properties
 .kotlin
 .gradle
 **/build/

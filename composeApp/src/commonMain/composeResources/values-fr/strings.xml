@@ -1,31 +1,4 @@
 <resources>
-
-    <string name="add_link_to_team">Ajouter un lien vers l'équipe</string>
-    <string name="dismiss">Rejeter</string>
-    <string name="add_link_to_collection">Ajouter un lien à la collection</string>
-    <string name="link_reference">Référence du lien</string>
-    <string name="link_reference_not_valid">La référence du lien n'est pas valide</string>
-    <string name="description">Description</string>
-    <string name="description_not_valid">Description non valide</string>
-    <string name="edit_link">Editer le lien</string>
-    <string name="add_collection_to_team">Ajouter une collection à l'équipe</string>
-    <string name="invalid_collection">Collection non valide</string>
-    <string name="add_links_to_collection">Ajouter des liens à la collection</string>
-    <string name="you_re_not_on_any_team">Vous ne faites partie d'aucune équipe</string>
-    <string name="add_links_to_team">Ajouter des liens à l'équipe</string>
-    <string name="invalid_team">Équipe non valide</string>
-    <string name="team_name">Nom de l'équipe</string>
-    <string name="invalid_custom_link">Lien personnalisé non valide</string>
-    <string name="custom_link_title">Titre du lien</string>
-    <string name="options">Options</string>
-    <string name="fields">Domaines</string>
-    <string name="details">Détails</string>
-    <string name="disconnect">Déconnexion</string>
-    <string name="execute">Exécuter</string>
-    <string name="server_currently_offline">Le serveur est actuellement hors ligne</string>
-
-
-    <!-- TODO CHECK OTHER RESOURCES WHETHER ARE TO KEEP -->
     <string name="app_name">Refy</string>
     <string name="app_version">1.0.1</string>
     <string name="links">Liens</string>
@@ -157,4 +130,9 @@
     </plurals>
     <string name="auth_form_not_valid">Les valeurs d\'authentification ne sont pas valides</string>
     <string name="resources_not_valid">Les ressources ne sont pas valides</string>
+    <string name="link_reference">Référence du lien</string>
+    <string name="link_reference_not_valid">La référence du lien n'est pas valide</string>
+    <string name="team_name">Nom de l'équipe</string>
+    <string name="description">Description</string>
+    <string name="description_not_valid">Description non valide</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.tecknobit.refy
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
+import kotlinx.browser.document
+import kotlinx.coroutines.delay
 
 /**
  * Method to check whether are available any updates for each platform and then launch the application
@@ -11,8 +14,10 @@ import androidx.compose.runtime.NonRestartableComposable
 @Composable
 @NonRestartableComposable
 actual fun CheckForUpdatesAndLaunch() {
-    // TODO: MAKE THE REAL NAVIGATION
-    startSession()
+    LaunchedEffect(Unit) {
+        delay(1000)
+        startSession()
+    }
 }
 
 /**
@@ -20,7 +25,7 @@ actual fun CheckForUpdatesAndLaunch() {
  *
  */
 actual fun setUserLanguage() {
-    // TODO: TO SET
+    document.documentElement?.setAttribute("lang", localUser.language)
 }
 
 /**

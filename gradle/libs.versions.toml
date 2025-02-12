@@ -1,6 +1,7 @@
 [versions]
 accompanistSystemuicontroller = "0.36.0"
 agp = "8.5.2"
+ametistaEngine = "1.0.2"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
@@ -18,8 +19,11 @@ kotlinxSerializationJson = "1.8.0"
 ktor = "3.0.3"
 lazyPaginationCompose = "1.4.0"
 materialKolor = "2.0.2"
+octocatkdu = "1.0.5"
 precompose = "1.7.0-alpha03"
 refycore = "1.0.1"
+appUpdate = "2.1.0"
+review = "2.0.2"
 
 [libraries]
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
@@ -40,8 +44,13 @@ ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 lazy-pagination-compose = { module = "io.github.ahmad-hamwi:lazy-pagination-compose", version.ref = "lazyPaginationCompose" }
 material-kolor = { module = "com.materialkolor:material-kolor", version.ref = "materialKolor" }
+octocatkdu = { module = "io.github.n7ghtm4r3:octocatkdu", version.ref = "octocatkdu" }
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 refycore = { module = "com.tecknobit.refycore:refycore", version.ref = "refycore" }
+review = { module = "com.google.android.play:review", version.ref = "review" }
+review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "review" }
+app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdate" }
+app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdate" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
