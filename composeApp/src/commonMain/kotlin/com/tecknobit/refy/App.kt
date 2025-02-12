@@ -15,7 +15,10 @@ import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
+import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
+import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.refy.helpers.RefyLocalUser
+import com.tecknobit.refy.helpers.RefyRequester
 import com.tecknobit.refy.helpers.customHttpClient
 import com.tecknobit.refy.ui.components.imageLoader
 import com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen
@@ -33,6 +36,8 @@ import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.COLLECTION_IDENTIFIER_KEY
 import com.tecknobit.refycore.LINK_IDENTIFIER_KEY
 import com.tecknobit.refycore.TEAM_IDENTIFIER_KEY
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
@@ -64,6 +69,11 @@ lateinit var navigator: Navigator
  * the device
  */
 val localUser = RefyLocalUser()
+
+/**
+ *`requester` the instance to manage the requests with the backend
+ */
+lateinit var requester: RefyRequester
 
 /**
  * `SPLASHSCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.splashscreen.Splashscreen]
@@ -243,12 +253,13 @@ expect fun CheckForUpdatesAndLaunch()
  *
  */
 fun startSession() {
-    /*requester = NeutronRequester(
-        host = localUser.hostAddress ?: "",
+    requester = RefyRequester(
+        host = localUser.hostAddress,
         userId = localUser.userId,
         userToken = localUser.userToken
     )
-    val route = if (localUser.isAuthenticated) {
+    val route =
+        if (!localUser.userId.isNullOrBlank()) { // TODO: TO USE localUser.isAuthenticated INSTEAD
         MainScope().launch {
             requester.sendRequest(
                 request = {
@@ -256,17 +267,17 @@ fun startSession() {
                 },
                 onSuccess = { response ->
                     localUser.updateDynamicAccountData(
-                        dynamicdate = response.toResponseData()
+                        dynamicData = response.toResponseData()
                     )
                 },
                 onFailure = {}
             )
         }
-        REVENUES_SCREEN
+            HOME_SCREEN
     } else
-        AUTH_SCREEN*/
+            AUTH_SCREEN
     setUserLanguage()
-    navigator.navigate(HOME_SCREEN)
+    navigator.navigate(route)
 }
 
 /**

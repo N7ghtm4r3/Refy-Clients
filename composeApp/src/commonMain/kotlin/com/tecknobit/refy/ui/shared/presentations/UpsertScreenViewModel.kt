@@ -5,6 +5,7 @@ import androidx.compose.runtime.MutableState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
+import com.tecknobit.refy.helpers.KReviewer
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isDescriptionValid
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,13 +34,18 @@ abstract class UpsertScreenViewModel<I : RefyItem>(
     ) {
         if (!validForm())
             return
+        val kReviewer = KReviewer()
         if (itemId == null) {
             insert {
-                onUpsertAction()
+                kReviewer.reviewInApp {
+                    onUpsertAction()
+                }
             }
         } else {
             update {
-                onUpsertAction()
+                kReviewer.reviewInApp {
+                    onUpsertAction()
+                }
             }
         }
     }
