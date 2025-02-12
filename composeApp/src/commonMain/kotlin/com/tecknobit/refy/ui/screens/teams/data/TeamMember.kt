@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.tecknobit.equinoxcore.helpers.PROFILE_PIC_KEY
+import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refycore.MEMBER_IDENTIFIER_KEY
 import com.tecknobit.refycore.TAG_NAME_KEY
@@ -26,7 +27,7 @@ data class TeamMember(
     @SerialName(TAG_NAME_KEY)
     override val tagName: String,
     @SerialName(TEAM_ROLE_KEY)
-    val role: TeamRole
+    var role: TeamRole
 ) : RefyUser {
 
     companion object {
@@ -39,6 +40,10 @@ data class TeamMember(
             }
         }
 
+    }
+
+    fun isNotMe(): Boolean {
+        return localUser.userId != id
     }
 
 }

@@ -19,6 +19,7 @@ import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
 import com.tecknobit.refy.ui.screens.team.presenter.TeamScreen
 import com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen
 import com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen
+import com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.COLLECTION_IDENTIFIER_KEY
@@ -80,6 +81,11 @@ const val UPSERT_LINK_SCREEN = "UpsertLinkScreen"
  * `UPSERT_COLLECTION_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen]
  */
 const val UPSERT_COLLECTION_SCREEN = "UpsertCollectionScreen"
+
+/**
+ * `UPSERT_TEAM_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen]
+ */
+const val UPSERT_TEAM_SCREEN = "UpsertTeamScreen"
 
 /**
  * `PROFILE_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen]
@@ -158,17 +164,6 @@ fun App() {
                     ).ShowContent()
                 }
                 scene(
-                    route = "$UPSERT_COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}?/{$COLLECTION_COLOR_KEY}?"
-                ) { backstackEntry ->
-                    val collectionId = backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)
-                    val collectionColor = backstackEntry.path<String>(COLLECTION_COLOR_KEY)
-                        ?: generateRandomColor().toHex()
-                    UpsertCollectionScreen(
-                        collectionId = collectionId,
-                        collectionColor = collectionColor
-                    ).ShowContent()
-                }
-                scene(
                     route = PROFILE_SCREEN
                 ) {
                     ProfileScreen().ShowContent()
@@ -187,6 +182,17 @@ fun App() {
                     ).ShowContent()
                 }
                 scene(
+                    route = "$UPSERT_COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}?/{$COLLECTION_COLOR_KEY}?"
+                ) { backstackEntry ->
+                    val collectionId = backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)
+                    val collectionColor = backstackEntry.path<String>(COLLECTION_COLOR_KEY)
+                        ?: generateRandomColor().toHex()
+                    UpsertCollectionScreen(
+                        collectionId = collectionId,
+                        collectionColor = collectionColor
+                    ).ShowContent()
+                }
+                scene(
                     route = "$TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}/{$NAME_KEY}"
                 ) { backstackEntry ->
                     val teamId: String = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)!!
@@ -194,6 +200,14 @@ fun App() {
                     TeamScreen(
                         teamId = teamId,
                         teamName = name
+                    ).ShowContent()
+                }
+                scene(
+                    route = "$UPSERT_TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}?"
+                ) { backstackEntry ->
+                    val teamId = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)
+                    UpsertTeamScreen(
+                        teamId = teamId
                     ).ShowContent()
                 }
             }

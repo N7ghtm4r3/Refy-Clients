@@ -27,6 +27,22 @@ fun TeamLogo(
     onClick: (() -> Unit)? = null,
     team: Team
 ) {
+    TeamLogo(
+        modifier = modifier,
+        size = size,
+        onClick = onClick,
+        teamLogo = team.logoPic
+    )
+}
+
+@Composable
+@NonRestartableComposable
+fun TeamLogo(
+    modifier: Modifier = Modifier,
+    size: Dp = 40.dp,
+    onClick: (() -> Unit)? = null,
+    teamLogo: String?
+) {
     AsyncImage(
         modifier = modifier
             .clip(CircleShape)
@@ -38,13 +54,13 @@ fun TeamLogo(
                 }
             ),
         model = ImageRequest.Builder(LocalPlatformContext.current)
-            .data(team.logoPic)
+            .data(teamLogo)
             .crossfade(true)
             .crossfade(500)
             .build(),
         //imageLoader = imageLoader, TODO: TO SET
         contentScale = ContentScale.Crop,
         error = painterResource(Res.drawable.logo),
-        contentDescription = team.title
+        contentDescription = "Team logo"
     )
 }

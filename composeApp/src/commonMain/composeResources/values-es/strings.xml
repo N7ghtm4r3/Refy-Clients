@@ -127,6 +127,9 @@
     <string name="collection_name">Nombre de la colección</string>
     <string name="leave_team">Dejar el equipo</string>
     <string name="leave_team_message">Al confirmar, el equipo y los datos relacionados dejarán de estar disponibles para usted.</string>
+    <string name="create_team">Crear equipo</string>
+    <string name="update_team">Editar equipo</string>
+    <string name="logo">Logotipo</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>

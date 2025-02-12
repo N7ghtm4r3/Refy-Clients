@@ -16,6 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.tecknobit.refy.UPSERT_TEAM_SCREEN
+import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.EmptyTeams
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
@@ -99,7 +101,7 @@ class TeamsScreen : ItemsScreen<TeamsScreenViewModel>(
     }
 
     override fun upsertAction() {
-        // TODO: TO NAV TO CREATE
+        navigator.navigate(UPSERT_TEAM_SCREEN)
     }
 
     override fun upsertText(): StringResource {

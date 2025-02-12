@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -92,10 +91,16 @@ class UpsertCollectionScreen(
     @Composable
     @NonRestartableComposable
     override fun ColumnScope.UpsertForm() {
-        val focusRequester = remember { FocusRequester() }
-        LaunchedEffect(Unit) {
-            focusRequester.requestFocus()
-        }
+        CollectionColorPicker()
+        CollectionNameSection()
+        ItemDescriptionSection()
+        CollectionLinksSection()
+        UpsertButton()
+    }
+
+    @Composable
+    @NonRestartableComposable
+    private fun CollectionColorPicker() {
         SectionTitle(
             title = Res.string.collection_color
         )
@@ -106,40 +111,6 @@ class UpsertCollectionScreen(
                 .background(color.value)
                 .clickable { pickColor.value = true }
         )
-        CollectionColorPicker()
-        SectionTitle(
-            title = Res.string.collection_name
-        )
-        EquinoxOutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .focusRequester(focusRequester),
-            shape = RoundedCornerShape(
-                size = 10.dp
-            ),
-            value = viewModel.collectionTitle,
-            isError = viewModel.collectionTitleError,
-            allowsBlankSpaces = false,
-            validator = { isTitleValid(it) },
-            errorText = Res.string.name_not_valid,
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Next
-            )
-        )
-        ItemDescriptionSection()
-        SectionTitle(
-            title = Res.string.links
-        )
-        LinksChooser(
-            currentAttachedLinks = emptyList(),
-            linksAddedSupportList = viewModel.collectionLinks
-        )
-        UpsertButton()
-    }
-
-    @Composable
-    @NonRestartableComposable
-    private fun CollectionColorPicker() {
         EquinoxDialog(
             show = pickColor
         ) {
@@ -154,6 +125,44 @@ class UpsertCollectionScreen(
                 }
             )
         }
+    }
+
+    @Composable
+    @NonRestartableComposable
+    private fun CollectionNameSection() {
+        val focusRequester = remember { FocusRequester() }
+        LaunchedEffect(Unit) {
+            focusRequester.requestFocus()
+        }
+        SectionTitle(
+            title = Res.string.collection_name
+        )
+        EquinoxOutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(focusRequester),
+            shape = inputFieldShape,
+            value = viewModel.collectionTitle,
+            isError = viewModel.collectionTitleError,
+            allowsBlankSpaces = false,
+            validator = { isTitleValid(it) },
+            errorText = Res.string.name_not_valid,
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next
+            )
+        )
+    }
+
+    @Composable
+    @NonRestartableComposable
+    private fun CollectionLinksSection() {
+        SectionTitle(
+            title = Res.string.links
+        )
+        LinksChooser(
+            currentAttachedLinks = emptyList(),
+            linksAddedSupportList = viewModel.collectionLinks
+        )
     }
 
     @Composable

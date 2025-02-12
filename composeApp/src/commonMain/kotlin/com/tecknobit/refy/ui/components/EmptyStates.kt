@@ -22,6 +22,7 @@ import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.no_data
 import refy.composeapp.generated.resources.no_links
+import refy.composeapp.generated.resources.no_members
 import refy.composeapp.generated.resources.no_teams
 
 @Composable
@@ -54,6 +55,17 @@ fun EmptyTeams() {
     EmptyState(
         resourceSize = 300.dp,
         resource = Res.drawable.no_teams,
+        contentDescription = null
+    )
+}
+
+@Composable
+@NonRestartableComposable
+// TODO: ADD THE CREDITS IN THE DOCU <a href="https://storyset.com/work">Work illustrations by Storyset</a>
+fun EmptyMembers() {
+    EmptyState(
+        resourceSize = 275.dp,
+        resource = Res.drawable.no_members,
         contentDescription = null
     )
 }

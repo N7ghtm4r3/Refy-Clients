@@ -56,10 +56,19 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     itemId: String? = null,
     private val insertTitle: StringResource,
     private val updateTitle: StringResource,
+    private val insertButtonText: StringResource = Res.string.insert,
     viewModel: V
 ) : EquinoxScreen<V>(
     viewModel = viewModel
 ) {
+
+    protected companion object {
+
+        val inputFieldShape = RoundedCornerShape(
+            size = 10.dp
+        )
+
+    }
 
     protected val isUpdating = itemId != null
 
@@ -148,9 +157,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
         EquinoxOutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            shape = RoundedCornerShape(
-                size = 10.dp
-            ),
+            shape = inputFieldShape,
             minLines = 10,
             maxLines = 10,
             value = viewModel.itemDescription,
@@ -210,7 +217,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
                     if (isUpdating)
                         Res.string.update
                     else
-                        Res.string.insert
+                        insertButtonText
                 ),
                 fontSize = 18.sp
             )

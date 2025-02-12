@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
+import com.tecknobit.refy.UPSERT_TEAM_SCREEN
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.AttachTeam
@@ -356,7 +357,7 @@ class TeamScreen(
     }
 
     override fun upsertAction() {
-        // TODO: NAV TO EDIT
+        navigator.navigate("$UPSERT_TEAM_SCREEN/${item.value!!.id}")
     }
 
     @Composable

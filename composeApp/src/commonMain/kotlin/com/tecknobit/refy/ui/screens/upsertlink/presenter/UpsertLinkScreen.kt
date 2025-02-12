@@ -2,7 +2,6 @@ package com.tecknobit.refy.ui.screens.upsertlink.presenter
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
@@ -40,6 +38,14 @@ class UpsertLinkScreen(
     @Composable
     @NonRestartableComposable
     override fun ColumnScope.UpsertForm() {
+        LinkReferenceSection()
+        ItemDescriptionSection()
+        UpsertButton()
+    }
+
+    @Composable
+    @NonRestartableComposable
+    private fun LinkReferenceSection() {
         val focusRequester = remember { FocusRequester() }
         LaunchedEffect(Unit) {
             focusRequester.requestFocus()
@@ -51,9 +57,7 @@ class UpsertLinkScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester),
-            shape = RoundedCornerShape(
-                size = 10.dp
-            ),
+            shape = inputFieldShape,
             value = viewModel.reference,
             isError = viewModel.referenceError,
             allowsBlankSpaces = false,
@@ -63,8 +67,6 @@ class UpsertLinkScreen(
                 imeAction = ImeAction.Next
             )
         )
-        ItemDescriptionSection()
-        UpsertButton()
     }
 
     @Composable
