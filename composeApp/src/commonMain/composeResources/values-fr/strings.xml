@@ -155,4 +155,6 @@
         <item formatted="false" quantity="one">%1$d semaine</item>
         <item formatted="false" quantity="other">%1$d semaines</item>
     </plurals>
+    <string name="auth_form_not_valid">Les valeurs d\'authentification ne sont pas valides</string>
+    <string name="resources_not_valid">Les ressources ne sont pas valides</string>
 </resources>

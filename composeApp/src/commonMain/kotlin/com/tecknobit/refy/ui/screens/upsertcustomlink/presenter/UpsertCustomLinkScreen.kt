@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -21,7 +22,6 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink
 import com.tecknobit.refy.ui.screens.upsertcustomlink.components.AuthForm
-import com.tecknobit.refy.ui.screens.upsertcustomlink.components.EMPTY_FORM_ROW
 import com.tecknobit.refy.ui.screens.upsertcustomlink.components.ExpirationTimeCheckBox
 import com.tecknobit.refy.ui.screens.upsertcustomlink.components.ResourcesForm
 import com.tecknobit.refy.ui.screens.upsertcustomlink.components.UniqueAccessCheckBox
@@ -197,17 +197,17 @@ class UpsertCustomLinkScreen(
         }
         LaunchedEffect(Unit) {
             if (viewModel.resources.isEmpty())
-                viewModel.resources.add(EMPTY_FORM_ROW)
+                viewModel.resources.add(Pair(mutableStateOf(""), mutableStateOf("")))
         }
     }
 
-    private fun Map<String, String>.toFormData(): SnapshotStateList<Pair<String, String>> {
-        val formData = mutableStateListOf<Pair<String, String>>()
+    private fun Map<String, String>.toFormData(): SnapshotStateList<Pair<MutableState<String>, MutableState<String>>> {
+        val formData = mutableStateListOf<Pair<MutableState<String>, MutableState<String>>>()
         this.forEach { entry ->
             formData.add(
                 element = Pair(
-                    first = entry.key,
-                    second = entry.value
+                    first = mutableStateOf(entry.key),
+                    second = mutableStateOf(entry.value)
                 )
             )
         }

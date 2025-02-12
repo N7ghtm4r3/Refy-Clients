@@ -17,8 +17,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
@@ -32,8 +34,6 @@ import refy.composeapp.generated.resources.key
 import refy.composeapp.generated.resources.not_valid
 import refy.composeapp.generated.resources.value
 import refy.composeapp.generated.resources.value_not_valid
-
-val EMPTY_FORM_ROW = Pair("", "")
 
 @Composable
 @NonRestartableComposable
@@ -58,7 +58,7 @@ fun ResourcesForm(
 @Composable
 @NonRestartableComposable
 private fun DynamicForm(
-    data: SnapshotStateList<Pair<String, String>>
+    data: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>
 ) {
     LazyColumn(
         modifier = Modifier
@@ -69,7 +69,7 @@ private fun DynamicForm(
     ) {
         stickyHeader {
             SmallFloatingActionButton(
-                onClick = { data.add(EMPTY_FORM_ROW) }
+                onClick = { data.add(Pair(mutableStateOf(""), mutableStateOf(""))) }
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -102,7 +102,7 @@ private fun DynamicForm(
                 )
                 SmallFloatingActionButton(
                     containerColor = MaterialTheme.colorScheme.error,
-                    onClick = { data.removeAt(index) }
+                    onClick = { data.remove(pair) }
                 ) {
                     Icon(
                         imageVector = Icons.Default.Delete,
@@ -117,24 +117,23 @@ private fun DynamicForm(
 @Composable
 @NonRestartableComposable
 private fun RowScope.FormInputField(
-    value: String,
+    value: MutableState<String>,
     placeholder: StringResource,
     errorText: StringResource,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         imeAction = ImeAction.Next
     )
 ) {
-    val valueState = mutableStateOf(value)
-    val valueError = mutableStateOf(valueState.value.isNotEmpty())
+    val valueError = remember { mutableStateOf(false) }
     EquinoxOutlinedTextField(
         modifier = Modifier
             .weight(1f),
         shape = inputFieldShape,
-        value = valueState,
+        value = value,
         placeholder = placeholder,
         isError = valueError,
         allowsBlankSpaces = false,
-        validator = { it.isNotBlank() },
+        validator = { it.isNotEmpty() },
         errorText = errorText,
         keyboardOptions = keyboardOptions
     )
