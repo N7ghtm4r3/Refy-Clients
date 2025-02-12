@@ -52,7 +52,18 @@ class RefyLocalUser : EquinoxLocalUser(
             response,
             *custom
         )
-        tagName = custom[0].toString()
+        tagName = custom.extractCustomValue(
+            itemPosition = 0
+        )
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    @Deprecated("USE THE EQUINOX BUILT-IN")
+    protected fun <T> Array<out Any?>.extractCustomValue(
+        indexArray: Int = 0,
+        itemPosition: Int
+    ): T {
+        return (this[indexArray] as Array<*>)[itemPosition] as T
     }
 
 }

@@ -2,6 +2,7 @@ package com.tecknobit.refy.helpers
 
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
 
 /**
  * The `KReviewer` class is useful to manage the biometric authentication
@@ -14,8 +15,7 @@ actual class KReviewer actual constructor() {
     /**
      * `activity` the activity where the review helper has been instantiated
      */
-    private val activity =
-        com.tecknobit.equinoxcore.utilities.context.ContextActivityProvider.getCurrentActivity()!!
+    private val activity = ContextActivityProvider.getCurrentActivity()!!
 
     /**
      * `reviewManager` the manager used to allow the user to review the application in app

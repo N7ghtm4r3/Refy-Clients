@@ -70,6 +70,7 @@ kotlin {
             implementation(libs.app.update.ktx)
             implementation(libs.review)
             implementation(libs.review.ktx)
+            implementation(libs.androidx.startup.runtime)
         }
 
         val commonMain by getting {

@@ -47,6 +47,9 @@ import kotlinx.serialization.json.put
  * @param host The host address where is running the backend
  * @param userId The user identifier
  * @param userToken The user token
+ * @param debugMode Whether the requester is still in development and who is developing needs the log
+ * of the requester's workflow, if it is enabled all the details of the requests sent and the errors
+ * occurred will be printed in the console
  *
  * @author N7ghtm4r3 - Tecknobit
  *
@@ -54,13 +57,15 @@ import kotlinx.serialization.json.put
 class RefyRequester(
     host: String,
     userId: String? = null,
-    userToken: String? = null
+    userToken: String? = null,
+    debugMode: Boolean = false
 ) : EquinoxRequester(
     host = host,
     userId = userId,
     userToken = userToken,
     connectionTimeout = 5000,
     connectionErrorMessage = DEFAULT_CONNECTION_ERROR_MESSAGE,
+    debugMode = debugMode,
     byPassSSLValidation = true
 ) {
 

@@ -53,9 +53,7 @@ import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordVal
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isServerSecretValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isSurnameValid
 import com.tecknobit.refy.CloseApplicationOnNavBack
-import com.tecknobit.refy.HOME_SCREEN
 import com.tecknobit.refy.displayFontFamily
-import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.screens.auth.presentation.AuthScreenViewModel
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.AT_SYMBOL
@@ -244,6 +242,14 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                             validator = { isNameValid(it) }
                         )
                         EquinoxOutlinedTextField(
+                            value = viewModel.surname,
+                            label = stringResource(Res.string.surname),
+                            keyboardOptions = keyboardOptions,
+                            errorText = stringResource(Res.string.surname_not_valid),
+                            isError = viewModel.surnameError,
+                            validator = { isSurnameValid(it) }
+                        )
+                        EquinoxOutlinedTextField(
                             value = viewModel.tagName,
                             label = stringResource(Res.string.tag_name),
                             keyboardOptions = keyboardOptions,
@@ -252,14 +258,6 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                             errorText = stringResource(Res.string.tag_name_not_valid),
                             isError = viewModel.tagNameError,
                             validator = { isTagNameValid(it) }
-                        )
-                        EquinoxOutlinedTextField(
-                            value = viewModel.surname,
-                            label = stringResource(Res.string.surname),
-                            keyboardOptions = keyboardOptions,
-                            errorText = stringResource(Res.string.surname_not_valid),
-                            isError = viewModel.surnameError,
-                            validator = { isSurnameValid(it) }
                         )
                     }
                 }
@@ -320,10 +318,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                     ),
                     onClick = {
                         softwareKeyboardController?.hide()
-                        // TODO: TO REMOVE
-                        navigator.navigate(HOME_SCREEN)
-                        // TODO: TO USE THIS INSTEAD
-                        // viewModel.auth()
+                        viewModel.auth()
                     }
                 ) {
                     Text(

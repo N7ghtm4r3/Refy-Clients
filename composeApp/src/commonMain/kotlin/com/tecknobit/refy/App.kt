@@ -256,7 +256,8 @@ fun startSession() {
     requester = RefyRequester(
         host = localUser.hostAddress,
         userId = localUser.userId,
-        userToken = localUser.userToken
+        userToken = localUser.userToken,
+        debugMode = true // TODO: TO REMOVE 
     )
     val route =
         if (!localUser.userId.isNullOrBlank()) { // TODO: TO USE localUser.isAuthenticated INSTEAD

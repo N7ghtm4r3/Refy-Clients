@@ -326,6 +326,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                         viewModel.changeLanguage(
                             onSuccess = {
                                 visible.value = false
+                                navigator.navigate(SPLASHSCREEN)
                             }
                         )
                     }

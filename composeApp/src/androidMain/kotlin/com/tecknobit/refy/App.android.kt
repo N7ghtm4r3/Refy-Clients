@@ -7,6 +7,7 @@ import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
 import com.google.android.play.core.ktx.isImmediateUpdateAllowed
+import com.tecknobit.equinoxcore.utilities.AppContext
 import com.tecknobit.refy.MainActivity.Companion.appUpdateManager
 import com.tecknobit.refy.MainActivity.Companion.launcher
 import moe.tlaster.precompose.navigation.BackHandler
@@ -43,7 +44,7 @@ actual fun CheckForUpdatesAndLaunch() {
 actual fun setUserLanguage() {
     val locale = Locale(localUser.language)
     Locale.setDefault(locale)
-    val context = com.tecknobit.equinoxcore.utilities.context.AppContext.get()
+    val context = AppContext.get()
     val config = context.resources.configuration
     config.setLocale(locale)
     context.createConfigurationContext(config)
