@@ -18,17 +18,8 @@
     <string name="invalid_custom_link">Enlace personalizado no válido</string>
     <string name="custom_link_title">Título del enlace</string>
     <string name="options">Opciones</string>
-    <string name="unique_access">Acceso único</string>
-    <string name="expires">Expira en</string>
-    <string name="expires_in">en</string>
     <string name="fields">Campos</string>
-    <string name="key">Clave</string>
-    <string name="value">Valor</string>
-    <string name="field">Campo</string>
-    <string name="value_not_valid">Valor no válido</string>
-    <string name="not_valid">No válido</string>
     <string name="details">Detalles</string>
-    <string name="unique_access_text">Este enlace tiene el acceso único, en la primera vista se eliminará automáticamente</string>
     <string name="disconnect">Desconecte</string>
     <string name="execute">Ejecute</string>
     <string name="server_currently_offline">Servidor desconectado</string>
@@ -119,6 +110,7 @@
     <string name="account_deletion">Eliminación de la cuenta</string>
     <string name="profile">Perfil</string>
     <string name="insert_link">Insertar enlace</string>
+    <string name="create_link">Crear enlace</string>
     <string name="update_link">Editar enlace</string>
     <string name="insert">Inserte</string>
     <string name="update">Actualización</string>
@@ -130,6 +122,15 @@
     <string name="create_team">Crear equipo</string>
     <string name="update_team">Editar equipo</string>
     <string name="logo">Logotipo</string>
+    <string name="unique_access">Acceso único</string>
+    <string name="unique_access_text">Este enlace tiene el acceso único, en la primera vista se eliminará automáticamente</string>
+    <string name="expires">Expira en</string>
+    <string name="expires_in">en</string>
+    <string name="key">Clave</string>
+    <string name="value">Valor</string>
+    <string name="field">Campo</string>
+    <string name="value_not_valid">Valor no válido</string>
+    <string name="not_valid">No válido</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d miembro</item>
         <item formatted="false" quantity="other">%1$d miembros</item>

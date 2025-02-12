@@ -10,7 +10,7 @@ import com.tecknobit.refycore.helpers.RefyInputsValidator.isLinkResourceValid
 import kotlin.random.Random
 
 class UpsertLinkScreenViewModel(
-    linkId: String?
+    private val linkId: String?
 ) : UpsertScreenViewModel<RefyLinkImpl>(
     itemId = linkId
 ) {
@@ -20,6 +20,8 @@ class UpsertLinkScreenViewModel(
     lateinit var referenceError: MutableState<Boolean>
 
     override fun retrieveItem() {
+        if (linkId == null)
+            return
         // TODO: MAKE THE REQUEST THEN
         _item.value = RefyLinkImpl(
             id = Random.nextLong().toString(),

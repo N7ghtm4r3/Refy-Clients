@@ -18,17 +18,8 @@
     <string name="invalid_custom_link">Lien personnalisé non valide</string>
     <string name="custom_link_title">Titre du lien</string>
     <string name="options">Options</string>
-    <string name="unique_access">Unique access</string>
-    <string name="expires">Expiration</string>
-    <string name="expires_in">en</string>
     <string name="fields">Domaines</string>
-    <string name="key">Clé</string>
-    <string name="value">Valeur</string>
-    <string name="field">Champ d'application</string>
-    <string name="value_not_valid">Valeur non valide</string>
-    <string name="not_valid">Non valide</string>
     <string name="details">Détails</string>
-    <string name="unique_access_text">Ce lien a un accès unique, il sera automatiquement supprimé lors de la première visualisation.</string>
     <string name="disconnect">Déconnexion</string>
     <string name="execute">Exécuter</string>
     <string name="server_currently_offline">Le serveur est actuellement hors ligne</string>
@@ -119,6 +110,7 @@
     <string name="account_deletion">Suppression du compte</string>
     <string name="profile">Profil</string>
     <string name="insert_link">Insérer un lien</string>
+    <string name="create_link">Créer un lien</string>
     <string name="update_link">Editer le lien</string>
     <string name="insert">Insert</string>
     <string name="update">Mise à jour</string>
@@ -130,6 +122,15 @@
     <string name="create_team">Créer une équipe</string>
     <string name="update_team">Modifier l\'équipe</string>
     <string name="logo">Logo</string>
+    <string name="unique_access">Unique access</string>
+    <string name="unique_access_text">Ce lien a un accès unique, il sera automatiquement supprimé lors de la première visualisation.</string>
+    <string name="expires">Expiration</string>
+    <string name="expires_in">en</string>
+    <string name="key">Clé</string>
+    <string name="value">Valeur</string>
+    <string name="field">Champ d'application</string>
+    <string name="value_not_valid">Valeur non valide</string>
+    <string name="not_valid">Non valide</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membre</item>
         <item formatted="false" quantity="other">%1$d membres</item>

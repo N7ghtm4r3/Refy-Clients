@@ -18,17 +18,8 @@
     <string name="invalid_custom_link">Invalid custom link</string>
     <string name="custom_link_title">Link title</string>
     <string name="options">Options</string>
-    <string name="unique_access">Unique access</string>
-    <string name="expires">Expires</string>
-    <string name="expires_in">in</string>
     <string name="fields">Fields</string>
-    <string name="key">Key</string>
-    <string name="value">Value</string>
-    <string name="field">Field</string>
-    <string name="value_not_valid">Value not valid</string>
-    <string name="not_valid">Not valid</string>
     <string name="details">Details</string>
-    <string name="unique_access_text">This link has the unique access, at the first view will be automatically deleted</string>
     <string name="disconnect">Disconnect</string>
     <string name="execute">Execute</string>
     <string name="server_currently_offline">Server currently offline</string>
@@ -119,6 +110,7 @@
     <string name="account_deletion">Account deletion</string>
     <string name="profile">Profile</string>
     <string name="insert_link">Insert link</string>
+    <string name="create_link">Create link</string>
     <string name="update_link">Edit link</string>
     <string name="insert">Insert</string>
     <string name="update">Update</string>
@@ -130,6 +122,15 @@
     <string name="create_team">Create team</string>
     <string name="update_team">Edit team</string>
     <string name="logo">Logo</string>
+    <string name="unique_access">Unique access</string>
+    <string name="unique_access_text">This link has the unique access, at the first view will be automatically deleted</string>
+    <string name="expires">Expires</string>
+    <string name="expires_in">in</string>
+    <string name="key">Key</string>
+    <string name="value">Value</string>
+    <string name="field">Field</string>
+    <string name="value_not_valid">Value not valid</string>
+    <string name="not_valid">Not valid</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d member</item>
         <item formatted="false" quantity="other">%1$d members</item>

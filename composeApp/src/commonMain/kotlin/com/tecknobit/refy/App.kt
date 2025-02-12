@@ -18,6 +18,7 @@ import com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen
 import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
 import com.tecknobit.refy.ui.screens.team.presenter.TeamScreen
 import com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen
+import com.tecknobit.refy.ui.screens.upsertcustomlink.presenter.UpsertCustomLinkScreen
 import com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen
 import com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
@@ -78,16 +79,6 @@ const val HOME_SCREEN = "HomeScreen"
 const val UPSERT_LINK_SCREEN = "UpsertLinkScreen"
 
 /**
- * `UPSERT_COLLECTION_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen]
- */
-const val UPSERT_COLLECTION_SCREEN = "UpsertCollectionScreen"
-
-/**
- * `UPSERT_TEAM_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen]
- */
-const val UPSERT_TEAM_SCREEN = "UpsertTeamScreen"
-
-/**
  * `PROFILE_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen]
  */
 const val PROFILE_SCREEN = "ProfileScreen"
@@ -98,9 +89,24 @@ const val PROFILE_SCREEN = "ProfileScreen"
 const val COLLECTION_SCREEN = "CollectionScreen"
 
 /**
+ * `UPSERT_COLLECTION_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen]
+ */
+const val UPSERT_COLLECTION_SCREEN = "UpsertCollectionScreen"
+
+/**
  * `TEAM_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.team.presenter.TeamScreen]
  */
 const val TEAM_SCREEN = "TeamScreen"
+
+/**
+ * `UPSERT_TEAM_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen]
+ */
+const val UPSERT_TEAM_SCREEN = "UpsertTeamScreen"
+
+/**
+ * `UPSERT_CUSTOM_LINK_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertcustomlink.presenter.UpsertCustomLinkScreen]
+ */
+const val UPSERT_CUSTOM_LINK_SCREEN = "UpsertCustomLinkScreen"
 
 /**
  * Method to start the `Refy`'s application
@@ -208,6 +214,14 @@ fun App() {
                     val teamId = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)
                     UpsertTeamScreen(
                         teamId = teamId
+                    ).ShowContent()
+                }
+                scene(
+                    route = "$UPSERT_CUSTOM_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
+                ) { backstackEntry ->
+                    val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
+                    UpsertCustomLinkScreen(
+                        linkId = linkId
                     ).ShowContent()
                 }
             }

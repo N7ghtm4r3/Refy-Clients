@@ -18,17 +18,8 @@
     <string name="invalid_custom_link">Link personalizzato non valido</string>
     <string name="custom_link_title">Titolo link</string>
     <string name="options">Opzioni</string>
-    <string name="unique_access">Accesso unico</string>
-    <string name="expires">Scade</string>
-    <string name="expires_in">in</string>
     <string name="fields">Campi</string>
-    <string name="key">Chiave</string>
-    <string name="value">Valore</string>
-    <string name="field">Campo</string>
-    <string name="value_not_valid">Valore non valido</string>
-    <string name="not_valid">Non valido</string>
     <string name="details">Dettagli</string>
-    <string name="unique_access_text">Questo link ha l'accesso unico, alla prima visualizzazione sarà automaticamente cancellato</string>
     <string name="disconnect">Disconnessione</string>
     <string name="execute">Esegui</string>
     <string name="server_currently_offline">Il server è attualmente offline</string>
@@ -119,6 +110,7 @@
     <string name="account_deletion">Eliminazione account</string>
     <string name="profile">Profilo</string>
     <string name="insert_link">Inserisci link</string>
+    <string name="create_link">Crea link</string>
     <string name="update_link">Modifica link</string>
     <string name="insert">Inserisci</string>
     <string name="update">Modifica</string>
@@ -130,6 +122,15 @@
     <string name="create_team">Crea team</string>
     <string name="update_team">Modifica team</string>
     <string name="logo">Logo</string>
+    <string name="unique_access">Accesso unico</string>
+    <string name="unique_access_text">Questo link ha l'accesso unico, alla prima visualizzazione sarà automaticamente cancellato</string>
+    <string name="expires">Scade</string>
+    <string name="expires_in">in</string>
+    <string name="key">Chiave</string>
+    <string name="value">Valore</string>
+    <string name="field">Campo</string>
+    <string name="value_not_valid">Valore non valido</string>
+    <string name="not_valid">Non valido</string>
     <plurals name="members">
         <item formatted="false" quantity="one">%1$d membro</item>
         <item formatted="false" quantity="other">%1$d membri</item>

@@ -62,7 +62,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     viewModel = viewModel
 ) {
 
-    protected companion object {
+    companion object {
 
         val inputFieldShape = RoundedCornerShape(
             size = 10.dp
