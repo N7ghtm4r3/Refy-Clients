@@ -31,6 +31,7 @@ import com.tecknobit.refycore.TITLE_KEY
 import com.tecknobit.refycore.UNIQUE_ACCESS_KEY
 import com.tecknobit.refycore.enums.ExpiredTime
 import com.tecknobit.refycore.enums.TeamRole
+import com.tecknobit.refycore.helpers.RefyEndpointsSet.CHANGE_TAG_NAME_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.CUSTOM_LINKS_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.LEAVE_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.UPDATE_MEMBER_ROLE_ENDPOINT
@@ -123,6 +124,22 @@ class RefyRequester(
         ).toMutableMap()
         payload[TAG_NAME_KEY] = Json.encodeToJsonElement(custom[0]!!.toString())
         return Json.encodeToJsonElement(payload).jsonObject
+    }
+
+    // TODO: TO COMMENT 
+    @RequestPath(path = "/api/v1/users/{id}/changeTagName", method = PATCH)
+    suspend fun changeTagName(
+        tagName: String
+    ): JsonObject {
+        val payload = buildJsonObject {
+            put(TAG_NAME_KEY, tagName)
+        }
+        return execPatch(
+            endpoint = assembleUsersEndpointPath(
+                endpoint = CHANGE_TAG_NAME_ENDPOINT
+            ),
+            payload = payload
+        )
     }
 
     /**

@@ -2,10 +2,13 @@ package com.tecknobit.refy.ui.screens.profile.presentation
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
+import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxProfileViewModel
+import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.requester
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
+import kotlinx.coroutines.launch
 
 class ProfileScreenViewModel : EquinoxProfileViewModel(
     snackbarHostState = SnackbarHostState(),
@@ -35,9 +38,20 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
             newTagNameError.value = true
             return
         }
-        // TODO: TO MAKE REQUEST THEN
-        localUser.tagName = newTagName.value
-        onSuccess.invoke()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    changeTagName(
+                        tagName = newTagName.value
+                    )
+                },
+                onSuccess = {
+                    localUser.tagName = newTagName.value
+                    onSuccess.invoke()
+                },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
 }
