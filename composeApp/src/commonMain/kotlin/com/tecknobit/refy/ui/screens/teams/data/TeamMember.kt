@@ -6,7 +6,6 @@ import androidx.compose.ui.graphics.Color
 import com.tecknobit.equinoxcore.helpers.PROFILE_PIC_KEY
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.shared.data.RefyUser
-import com.tecknobit.refycore.MEMBER_IDENTIFIER_KEY
 import com.tecknobit.refycore.TAG_NAME_KEY
 import com.tecknobit.refycore.TEAM_ROLE_KEY
 import com.tecknobit.refycore.enums.TeamRole
@@ -17,7 +16,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TeamMember(
-    @SerialName(MEMBER_IDENTIFIER_KEY)
     override val id: String,
     override val name: String,
     override val surname: String,

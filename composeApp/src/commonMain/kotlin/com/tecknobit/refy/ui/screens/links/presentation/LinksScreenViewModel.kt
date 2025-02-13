@@ -7,7 +7,6 @@ import com.tecknobit.equinoxcore.network.Requester.Companion.sendPaginatedReques
 import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
 import com.tecknobit.refy.requester
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel
@@ -42,21 +41,41 @@ class LinksScreenViewModel : BaseLinksScreenViewModel<RefyLinkImpl>() {
     }
 
     fun shareLinkWithCollections(
-        link: RefyLink,
-        linksCollection: List<LinksCollection>,
+        link: RefyLinkImpl,
+        collections: List<LinksCollection>,
         afterShared: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        afterShared()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    shareLinkWithCollections(
+                        link = link,
+                        collections = collections.map { collection -> collection.id }
+                    )
+                },
+                onSuccess = { afterShared() },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
     fun shareLinkWithTeams(
-        link: RefyLink,
+        link: RefyLinkImpl,
         teams: List<Team>,
         afterShared: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        afterShared()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    shareLinkWithTeams(
+                        link = link,
+                        teams = teams.map { team -> team.id }
+                    )
+                },
+                onSuccess = { afterShared() },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
     override fun deleteLink(

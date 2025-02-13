@@ -61,7 +61,7 @@ fun AttachLink(
                     confirmAction = { collections ->
                         viewModel.shareLinkWithCollections(
                             link = link,
-                            linksCollection = collections,
+                            collections = collections,
                             afterShared = {
                                 scope.launch {
                                     state.hide()

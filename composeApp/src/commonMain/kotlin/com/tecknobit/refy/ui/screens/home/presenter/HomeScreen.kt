@@ -22,10 +22,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -44,6 +48,7 @@ import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import com.tecknobit.refy.ui.screens.home.data.NavigationTabSaver
 import com.tecknobit.refy.ui.screens.links.presenter.LinksScreen
 import com.tecknobit.refy.ui.screens.teams.presenter.TeamsScreen
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -62,23 +67,19 @@ class HomeScreen : EquinoxNoModelScreen() {
         val tabs = arrayOf(
             NavigationTab(
                 title = Res.string.links,
-                icon = Link45deg,
-                screen = LinksScreen()
+                icon = Link45deg
             ),
             NavigationTab(
                 title = Res.string.collections,
-                icon = Collection,
-                screen = CollectionsScreen()
+                icon = Collection
             ),
             NavigationTab(
                 title = Res.string.teams,
-                icon = Icons.Default.Groups3,
-                screen = TeamsScreen()
+                icon = Icons.Default.Groups3
             ),
             NavigationTab(
                 title = Res.string.custom,
-                icon = TempPreferencesCustom,
-                screen = CustomLinksScreen()
+                icon = TempPreferencesCustom
             )
         )
 
@@ -185,8 +186,21 @@ class HomeScreen : EquinoxNoModelScreen() {
             AnimatedContent(
                 targetState = currentSelectedTab.value
             ) { tab ->
-                tab.screen.ShowContent()
+                var screen by remember { mutableStateOf<RefyScreen<*>?>(null) }
+                LaunchedEffect(Unit) {
+                    screen = tab.tabRelatedScreen()
+                }
+                screen?.ShowContent()
             }
+        }
+    }
+
+    private fun NavigationTab.tabRelatedScreen(): RefyScreen<*> {
+        return when (this.title) {
+            Res.string.links -> LinksScreen()
+            Res.string.collections -> CollectionsScreen()
+            Res.string.teams -> TeamsScreen()
+            else -> CustomLinksScreen()
         }
     }
 

@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.SaverScope
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import org.jetbrains.compose.resources.StringResource
 
 class NavigationTabSaver : Saver<MutableState<NavigationTab>, Array<Any>> {
@@ -20,8 +19,7 @@ class NavigationTabSaver : Saver<MutableState<NavigationTab>, Array<Any>> {
         return mutableStateOf(
             NavigationTab(
                 title = value[0] as StringResource,
-                icon = value[1] as ImageVector,
-                screen = value[2] as RefyScreen<*>
+                icon = value[1] as ImageVector
             )
         )
     }
@@ -33,7 +31,7 @@ class NavigationTabSaver : Saver<MutableState<NavigationTab>, Array<Any>> {
         value: MutableState<NavigationTab>
     ): Array<Any> {
         val tab = value.value
-        return arrayOf(tab.title, tab.icon, tab.screen)
+        return arrayOf(tab.title, tab.icon)
     }
 
 }

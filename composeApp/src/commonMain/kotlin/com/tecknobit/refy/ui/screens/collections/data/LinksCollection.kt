@@ -17,7 +17,7 @@ data class LinksCollection(
     override val date: Long,
     @SerialName(COLLECTION_COLOR_KEY)
     val color: String,
-    val links: List<RefyLinkImpl>,
+    val links: List<RefyLinkImpl> = emptyList(),
     val teams: List<Team> = emptyList()
 ) : RefyItem {
 
