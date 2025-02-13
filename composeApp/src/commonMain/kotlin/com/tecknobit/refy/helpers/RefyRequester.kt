@@ -9,6 +9,10 @@ import com.tecknobit.equinoxcore.network.RequestMethod.GET
 import com.tecknobit.equinoxcore.network.RequestMethod.PATCH
 import com.tecknobit.equinoxcore.network.RequestMethod.POST
 import com.tecknobit.equinoxcore.network.RequestMethod.PUT
+import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
+import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE_SIZE
+import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.PAGE_KEY
+import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.PAGE_SIZE_KEY
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
@@ -19,6 +23,7 @@ import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.DESCRIPTION_KEY
 import com.tecknobit.refycore.EXPIRED_TIME_KEY
 import com.tecknobit.refycore.FIELDS_KEY
+import com.tecknobit.refycore.KEYWORDS_KEY
 import com.tecknobit.refycore.LINKS_KEY
 import com.tecknobit.refycore.MEMBERS_KEY
 import com.tecknobit.refycore.OWNED_ONLY_KEY
@@ -143,27 +148,36 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get the links of the user
+     * Function to request the links of the user
      *
-     * @param ownedOnly: whether to get only the links where the user is the owner
+     * @param ownedOnly Whether to get only the links where the user is the owner
+     * @param page The page to request
+     * @param pageSize The size of the page to request
+     * @param keywords The keywords used to filter the query
      *
      * @return the result of the request as [JsonObject]
      *
      */
     @RequestPath(path = "/api/v1/users/{user_id}/links", method = GET)
     suspend fun getLinks(
-        ownedOnly: Boolean = false
+        ownedOnly: Boolean = false,
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE,
+        keywords: String = ""
     ): JsonObject {
         return execGet(
             endpoint = assembleLinksEndpointPath(),
             query = createOwnedOnlyQuery(
-                ownedOnly = ownedOnly
+                ownedOnly = ownedOnly,
+                page = page,
+                pageSize = pageSize,
+                keywords = keywords
             )
         )
     }
 
     /**
-     * Function to execute the request to create a new link
+     * Function to request to create a new link
      *
      * @param referenceLink The reference link value
      * @param description The description of the link
@@ -187,7 +201,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to edit a link
+     * Function to request to edit a link
      *
      * @param link The link to edit
      * @param referenceLink The reference link value
@@ -210,7 +224,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to edit a link
+     * Function to request to edit a link
      *
      * @param linkId The link identifier to edit
      * @param referenceLink The reference link value
@@ -258,7 +272,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the collections where the link is shared
+     * Function to request to manage the collections where the link is shared
      *
      * @param link The link where manage its collections
      * @param collections The list of collections where share the link
@@ -278,7 +292,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the collections where the link is shared
+     * Function to request to manage the collections where the link is shared
      *
      * @param linkId The link identifier where manage its collections
      * @param collections The list of collections where share the link
@@ -303,7 +317,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the teams where the link is shared
+     * Function to request to manage the teams where the link is shared
      *
      * @param link The link where manage its collections
      * @param teams The list of teams where share the link
@@ -323,7 +337,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the teams where the link is shared
+     * Function to request to manage the teams where the link is shared
      *
      * @param linkId The link identifier where manage its collections
      * @param teams The list of teams where share the link
@@ -348,7 +362,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to delete a link
+     * Function to request to delete a link
      *
      * @param link The link to delete
      *
@@ -359,26 +373,9 @@ class RefyRequester(
     suspend fun deleteLink(
         link: RefyLink
     ): JsonObject {
-        return deleteLink(
-            linkId = link.id
-        )
-    }
-
-    /**
-     * Function to execute the request to delete a link
-     *
-     * @param linkId The link identifier of the link to delete
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/links/{link_id}", method = DELETE)
-    suspend fun deleteLink(
-        linkId: String
-    ): JsonObject {
         return execDelete(
             endpoint = assembleLinksEndpointPath(
-                subEndpoint = linkId
+                subEndpoint = link.id
             )
         )
     }
@@ -401,9 +398,12 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get the collections of the user
+     * Function to request the collections of the user
      *
-     * @param ownedOnly: whether to get only the collections where the user is the owner
+     * @param ownedOnly Whether to get only the collections where the user is the owner
+     * @param page The page to request
+     * @param pageSize The size of the page to request
+     * @param keywords The keywords used to filter the query
      *
      * @return the result of the request as [JsonObject]
      *
@@ -421,7 +421,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to create a collection
+     * Function to request to create a collection
      *
      * @param color: color of the collection
      * @param title Title of the collection
@@ -451,7 +451,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to edit a collection
+     * Function to request to edit a collection
      *
      * @param collection The collection to edit
      * @param color: color of the collection
@@ -480,7 +480,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to edit a collection
+     * Function to request to edit a collection
      *
      * @param collectionId The identifier of the collection to edit
      * @param color: color of the collection
@@ -540,7 +540,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the links shared with the collection
+     * Function to request to manage the links shared with the collection
      *
      * @param collection The collection where manage the shared link
      * @param links The list of links shared with the collection
@@ -560,7 +560,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the links shared with the collection
+     * Function to request to manage the links shared with the collection
      *
      * @param collectionId The identifier of the collection where manage the shared link
      * @param links The list of links shared with the collection
@@ -585,7 +585,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the teams where the collection is shared
+     * Function to request to manage the teams where the collection is shared
      *
      * @param collection The collection where manage the teams list
      * @param teams The list of the teams where the collection is shared
@@ -605,7 +605,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the teams where the collection is shared
+     * Function to request to manage the teams where the collection is shared
      *
      * @param collectionId The identifier of the collection where manage the teams list
      * @param teams The list of the teams where the collection is shared
@@ -630,7 +630,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get a collection
+     * Function to request a collection
      *
      * @param collection The collection to get
      *
@@ -647,7 +647,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get a collection
+     * Function to request a collection
      *
      * @param collectionId The identifier of the collection to get
      *
@@ -666,7 +666,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to delete a collection
+     * Function to request to delete a collection
      *
      * @param collection The collection to delete
      *
@@ -683,7 +683,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to delete a collection
+     * Function to request to delete a collection
      *
      * @param collectionId The identifier of the  collection to delete
      *
@@ -719,9 +719,12 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get the teams where the user is a member
+     * Function to request the teams where the user is a member
      *
-     * @param ownedOnly: whether to get only the teams where the user is the owner
+     * @param ownedOnly Whether to get only the teams where the user is the owner
+     * @param page The page to request
+     * @param pageSize The size of the page to request
+     * @param keywords The keywords used to filter the query
      *
      * @return the result of the request as [JsonObject]
      *
@@ -739,7 +742,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get the potential members to add in a team
+     * Function to request the potential members to add in a team
      *
      * No-any params required
      *
@@ -756,7 +759,7 @@ class RefyRequester(
     }
 
     /*
-     * Function to execute the request to create a team
+     * Function to request to create a team
      *
      * @param title Title of the team
      * @param logoPic The logo of the team
@@ -786,7 +789,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to edit a team
+     * Function to request to edit a team
      *
      * @param team The team to edit
      * @param title Title of the team
@@ -815,7 +818,7 @@ class RefyRequester(
     }
 
 
-     * Function to execute the request to edit a team
+     * Function to request to edit a team
      *
      * @param teamId The identifier of the team to edit
      * @param title Title of the team
@@ -893,7 +896,7 @@ class RefyRequester(
     }*/
 
     /**
-     * Function to execute the request to manage the links shared with the team
+     * Function to request to manage the links shared with the team
      *
      * @param team The team where manage the shared link
      * @param links The list of links shared with the team
@@ -913,7 +916,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the links shared with the team
+     * Function to request to manage the links shared with the team
      *
      * @param teamId The team identifier where manage the shared link
      * @param links The list of links shared with the team
@@ -938,7 +941,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the collections shared with the team
+     * Function to request to manage the collections shared with the team
      *
      * @param team The team where manage the shared collections
      * @param collections The list of collections shared with the team
@@ -958,7 +961,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to manage the collections shared with the team
+     * Function to request to manage the collections shared with the team
      *
      * @param teamId The team identifier where manage the shared collections
      * @param collections The list of collections shared with the team
@@ -983,7 +986,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get a team
+     * Function to request a team
      *
      * @param team The team to get
      *
@@ -1000,7 +1003,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get a team
+     * Function to request a team
      *
      * @param teamId The identifier of the team to get
      *
@@ -1019,7 +1022,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to change the role of a member
+     * Function to request to change the role of a member
      *
      * @param team The team to where change the member role
      * @param member The member to change its role
@@ -1045,7 +1048,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to change the role of a member
+     * Function to request to change the role of a member
      *
      * @param teamId The identifier of the team to where change the member role
      * @param memberId The identifier of the member to change its role
@@ -1075,7 +1078,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to remove a member from the team
+     * Function to request to remove a member from the team
      *
      * @param team The team to where remove the member
      * @param member The member to remove
@@ -1098,7 +1101,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to remove a member from the team
+     * Function to request to remove a member from the team
      *
      * @param teamId The identifier of the team to where remove the member
      * @param memberId The identifier of the member to remove
@@ -1122,7 +1125,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to leave from a team
+     * Function to request to leave from a team
      *
      * @param team The team from leave
      *
@@ -1139,7 +1142,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to leave from a team
+     * Function to request to leave from a team
      *
      * @param teamId The identifier of the team from leave
      *
@@ -1158,7 +1161,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to delete a team
+     * Function to request to delete a team
      *
      * @param team The team to delete
      *
@@ -1175,7 +1178,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to delete a team
+     * Function to request to delete a team
      *
      * @param teamId The identifier of the team to delete
      *
@@ -1213,21 +1216,31 @@ class RefyRequester(
     /**
      * Function to assemble the query to manage the owned only query
      *
-     * @param ownedOnly: whether to get only the teams where the user is the owner
+     * @param ownedOnly Whether to get only the teams where the user is the owner
+     * @param page The page to request
+     * @param pageSize The size of the page to request
+     * @param keywords The keywords used to filter the query
      *
      * @return an endpoint to make the request as [String]
      */
     @Assembler
     private fun createOwnedOnlyQuery(
-        ownedOnly: Boolean
+        ownedOnly: Boolean,
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE,
+        keywords: String = ""
     ): JsonObject {
         return buildJsonObject {
             put(OWNED_ONLY_KEY, ownedOnly)
+            put(PAGE_KEY, page)
+            put(PAGE_SIZE_KEY, pageSize)
+            if (keywords.isNotBlank())
+                put(KEYWORDS_KEY, keywords)
         }
     }
 
     /**
-     * Function to execute the request to get the custom links of the user
+     * Function to request the custom links of the user
      *
      * No-any params
      *
@@ -1242,7 +1255,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to create a custom link
+     * Function to request to create a custom link
      *
      * @param title Title of the link
      * @param description: description of the link
@@ -1278,7 +1291,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to edit a custom link
+     * Function to request to edit a custom link
      *
      * @param link The link to edit
      * @param title Title of the link
@@ -1313,7 +1326,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to edit a custom link
+     * Function to request to edit a custom link
      *
      * @param linkId The identifier of the link to edit
      * @param title Title of the link
@@ -1385,7 +1398,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get a custom link
+     * Function to request a custom link
      *
      * @param link The link to get
      *
@@ -1402,7 +1415,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to get a custom link
+     * Function to request a custom link
      *
      * @param linkId The identifier of the link to get
      *
@@ -1421,7 +1434,7 @@ class RefyRequester(
     }
 
     /**
-     * Function to execute the request to delete a custom link
+     * Function to request to delete a custom link
      *
      * @param link The link to delete
      *
@@ -1432,26 +1445,9 @@ class RefyRequester(
     suspend fun deleteCustomLink(
         link: CustomRefyLink
     ): JsonObject {
-        return deleteCustomLink(
-            linkId = link.id
-        )
-    }
-
-    /**
-     * Function to execute the request to delete a custom link
-     *
-     * @param linkId The identifier of the link to delete
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/customLinks/{link_id}", method = DELETE)
-    suspend fun deleteCustomLink(
-        linkId: String
-    ): JsonObject {
         return execDelete(
             endpoint = assembleCustomLinksEndpointPath(
-                subEndpoint = linkId
+                subEndpoint = link.id
             )
         )
     }

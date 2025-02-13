@@ -73,4 +73,11 @@ class CustomLinksScreenViewModel : BaseLinksScreenViewModel<CustomRefyLink>() {
         )
     }
 
+    override fun deleteLink(
+        link: CustomRefyLink,
+        onDelete: () -> Unit
+    ) {
+        TODO("Not yet implemented")
+    }
+
 }

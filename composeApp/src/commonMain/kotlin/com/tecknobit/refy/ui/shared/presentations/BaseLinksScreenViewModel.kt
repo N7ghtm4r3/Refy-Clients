@@ -17,14 +17,10 @@ abstract class BaseLinksScreenViewModel<L : RefyLink> : RefyScreenViewModel(), L
         }
     )
 
-    fun deleteLink(
+    abstract fun deleteLink(
         link: L,
         onDelete: () -> Unit
-    ) {
-        // TODO: MAKE THE REQUEST THEN
-        refresh()
-        onDelete()
-    }
+    )
 
     override fun refresh() {
         linksState.refresh()
