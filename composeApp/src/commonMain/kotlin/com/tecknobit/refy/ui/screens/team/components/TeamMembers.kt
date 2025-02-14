@@ -35,7 +35,6 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.team_members
-import kotlin.random.Random
 
 @Composable
 @NonRestartableComposable
@@ -76,8 +75,8 @@ fun TeamMembers(
                     items = members,
                     key = { member -> member.id }
                 ) { member ->
-                    val iAmAnAuthorizedMember =
-                        team.iAmAnAdmin() && member.isNotMe() || Random.nextBoolean() // TODO: REMOVE THE RANDOM
+                    val iAmAnAuthorizedMember = team.iAmAnAdmin() && member.isNotMe() &&
+                            team.owner.id != member.id
                     TeamMemberListItem(
                         iAmAnAuthorizedMember = iAmAnAuthorizedMember,
                         member = member,

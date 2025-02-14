@@ -231,15 +231,36 @@ class TeamScreenViewModel(
     fun removeCollection(
         collection: LinksCollection
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        teamCollections.refresh()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    removeCollectionFromTeam(
+                        teamId = teamId,
+                        collection = collection
+                    )
+                },
+                onSuccess = { teamCollections.refresh() },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
     override fun removeLink(
         link: RefyLinkImpl
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        linksState.refresh()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    removeLinkFromTeam(
+                        teamId = teamId,
+                        link = link
+                    )
+                },
+                onSuccess = { linksState.refresh() },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
+
     }
 
     fun changeMemberRole(
@@ -247,23 +268,59 @@ class TeamScreenViewModel(
         role: TeamRole,
         onChange: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        onChange()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    changeMemberRole(
+                        teamId = teamId,
+                        member = member,
+                        role = role
+                    )
+                },
+                onSuccess = {
+                    onChange()
+                    retrieveItem()
+                },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
     fun removeMember(
         member: TeamMember,
         onRemove: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        onRemove()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    removeMember(
+                        teamId = teamId,
+                        member = member,
+                    )
+                },
+                onSuccess = {
+                    onRemove()
+                    retrieveItem()
+                },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
     fun leaveTeam(
         onLeave: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        onLeave()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    leave(
+                        teamId = teamId
+                    )
+                },
+                onSuccess = { onLeave() },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
 }

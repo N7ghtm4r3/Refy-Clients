@@ -40,10 +40,10 @@ import com.tecknobit.refycore.UNIQUE_ACCESS_KEY
 import com.tecknobit.refycore.dtos.AddedMember
 import com.tecknobit.refycore.enums.ExpiredTime
 import com.tecknobit.refycore.enums.TeamRole
+import com.tecknobit.refycore.helpers.RefyEndpointsSet.CHANGE_MEMBER_ROLE_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.CHANGE_TAG_NAME_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.CUSTOM_LINKS_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.LEAVE_ENDPOINT
-import com.tecknobit.refycore.helpers.RefyEndpointsSet.UPDATE_MEMBER_ROLE_ENDPOINT
 import io.ktor.client.request.forms.formData
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
@@ -940,7 +940,7 @@ class RefyRequester(
     }*/
 
     /**
-     * Function to manage the links shared with the team
+     * Function share links with team
      *
      * @param team The team where manage the shared link
      * @param links The list of links shared with the team
@@ -949,28 +949,8 @@ class RefyRequester(
      *
      */
     @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}/links", method = PUT)
-    suspend fun manageTeamLinks(
+    suspend fun shareLinksWithTeam(
         team: Team,
-        links: List<String>
-    ): JsonObject {
-        return manageTeamLinks(
-            teamId = team.id,
-            links = links
-        )
-    }
-
-    /**
-     * Function to manage the links shared with the team
-     *
-     * @param teamId The team identifier where manage the shared link
-     * @param links The list of links shared with the team
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}/links", method = PUT)
-    suspend fun manageTeamLinks(
-        teamId: String,
         links: List<String>
     ): JsonObject {
         val payload = buildJsonObject {
@@ -978,14 +958,14 @@ class RefyRequester(
         }
         return execPut(
             endpoint = assembleTeamsEndpointPath(
-                subEndpoint = "$teamId/$LINKS_KEY"
+                subEndpoint = "${team.id}/$LINKS_KEY"
             ),
             payload = payload
         )
     }
 
     /**
-     * Function to manage the collections shared with the team
+     * Function share collections with team
      *
      * @param team The team where manage the shared collections
      * @param collections The list of collections shared with the team
@@ -994,28 +974,8 @@ class RefyRequester(
      *
      */
     @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}/collections", method = PUT)
-    suspend fun manageTeamCollections(
+    suspend fun shareCollectionsWithTeam(
         team: Team,
-        collections: List<String>
-    ): JsonObject {
-        return manageTeamCollections(
-            teamId = team.id,
-            collections = collections
-        )
-    }
-
-    /**
-     * Function to manage the collections shared with the team
-     *
-     * @param teamId The team identifier where manage the shared collections
-     * @param collections The list of collections shared with the team
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}/collections", method = PUT)
-    suspend fun manageTeamCollections(
-        teamId: String,
         collections: List<String>
     ): JsonObject {
         val payload = buildJsonObject {
@@ -1023,7 +983,7 @@ class RefyRequester(
         }
         return execPut(
             endpoint = assembleTeamsEndpointPath(
-                subEndpoint = "$teamId/$COLLECTIONS_KEY"
+                subEndpoint = "${team.id}/$COLLECTIONS_KEY"
             ),
             payload = payload
         )
@@ -1048,6 +1008,35 @@ class RefyRequester(
         )
     }
 
+    // TODO: TO COMMENT
+    @RequestPath(
+        path = "/api/v1/users/{user_id}/teams/{team_id}/collections/{collection_id}",
+        method = DELETE
+    )
+    suspend fun removeCollectionFromTeam(
+        teamId: String,
+        collection: LinksCollection
+    ): JsonObject {
+        return execDelete(
+            endpoint = assembleTeamsEndpointPath(
+                subEndpoint = "$teamId/$COLLECTIONS_KEY/${collection.id}"
+            )
+        )
+    }
+
+    // TODO: TO COMMENT
+    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}/links/{link_id}", method = DELETE)
+    suspend fun removeLinkFromTeam(
+        teamId: String,
+        link: RefyLinkImpl
+    ): JsonObject {
+        return execDelete(
+            endpoint = assembleTeamsEndpointPath(
+                subEndpoint = "$teamId/$LINKS_KEY/${link.id}"
+            )
+        )
+    }
+
     /**
      * Function to change the role of a member
      *
@@ -1059,38 +1048,12 @@ class RefyRequester(
      *
      */
     @RequestPath(
-        path = "/api/v1/users/{user_id}/teams/{team_id}/members/{member_id}/updateRole",
-        method = PATCH
-    )
-    suspend fun changeMemberRole(
-        team: Team,
-        member: TeamMember,
-        role: TeamRole
-    ): JsonObject {
-        return changeMemberRole(
-            teamId = team.id,
-            memberId = member.id,
-            role = role
-        )
-    }
-
-    /**
-     * Function to change the role of a member
-     *
-     * @param teamId The identifier of the team to where change the member role
-     * @param memberId The identifier of the member to change its role
-     * @param role The role of the member
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(
-        path = "/api/v1/users/{user_id}/teams/{team_id}/members/{member_id}/updateRole",
+        path = "/api/v1/users/{user_id}/teams/{team_id}/members/{member_id}/changeRole",
         method = PATCH
     )
     suspend fun changeMemberRole(
         teamId: String,
-        memberId: String,
+        member: TeamMember,
         role: TeamRole
     ): JsonObject {
         val payload = buildJsonObject {
@@ -1098,7 +1061,7 @@ class RefyRequester(
         }
         return execPatch(
             endpoint = assembleTeamsEndpointPath(
-                subEndpoint = "$teamId/$MEMBERS_KEY/$memberId$UPDATE_MEMBER_ROLE_ENDPOINT"
+                subEndpoint = "${teamId}/$MEMBERS_KEY/${member.id}$CHANGE_MEMBER_ROLE_ENDPOINT"
             ),
             payload = payload
         )
@@ -1107,7 +1070,7 @@ class RefyRequester(
     /**
      * Function to remove a member from the team
      *
-     * @param team The team to where remove the member
+     * @param teamId The identifier of the team to where remove the member
      * @param member The member to remove
      *
      * @return the result of the request as [JsonObject]
@@ -1118,53 +1081,13 @@ class RefyRequester(
         method = DELETE
     )
     suspend fun removeMember(
-        team: Team,
-        member: TeamMember
-    ): JsonObject {
-        return removeMember(
-            teamId = team.id,
-            memberId = member.id
-        )
-    }
-
-    /**
-     * Function to remove a member from the team
-     *
-     * @param teamId The identifier of the team to where remove the member
-     * @param memberId The identifier of the member to remove
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(
-        path = "/api/v1/users/{user_id}/teams/{team_id}/members/{member_id}",
-        method = DELETE
-    )
-    suspend fun removeMember(
         teamId: String,
-        memberId: String
+        member: TeamMember
     ): JsonObject {
         return execDelete(
             endpoint = assembleTeamsEndpointPath(
-                subEndpoint = "$teamId/$MEMBERS_KEY/$memberId"
+                subEndpoint = "$teamId/$MEMBERS_KEY/${member.id}"
             )
-        )
-    }
-
-    /**
-     * Function to leave from a team
-     *
-     * @param team The team from leave
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}/leave}", method = DELETE)
-    suspend fun leave(
-        team: Team
-    ): JsonObject {
-        return leave(
-            teamId = team.id
         )
     }
 

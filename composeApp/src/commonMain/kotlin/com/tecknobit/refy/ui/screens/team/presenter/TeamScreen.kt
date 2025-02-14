@@ -140,7 +140,7 @@ class TeamScreen(
                         )
                     }
                 }
-                if (!item.value!!.iAmAnAdmin()) {
+                if (!item.value!!.iAmTheOwner()) {
                     val leave = remember { mutableStateOf(false) }
                     IconButton(
                         modifier = Modifier

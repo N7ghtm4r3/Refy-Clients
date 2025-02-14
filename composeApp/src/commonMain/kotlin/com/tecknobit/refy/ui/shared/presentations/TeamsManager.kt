@@ -17,9 +17,21 @@ interface TeamsManager {
         links: List<RefyLinkImpl>,
         afterAttached: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        refreshAfterLinksAttached()
-        afterAttached()
+        requestsScope.launch {
+            requester.sendRequest(
+                request = {
+                    shareLinksWithTeam(
+                        team = team,
+                        links = links.map { link -> link.id }
+                    )
+                },
+                onSuccess = {
+                    refreshAfterLinksAttached()
+                    afterAttached()
+                },
+                onFailure = {}
+            )
+        }
     }
 
     fun refreshAfterLinksAttached()
@@ -29,9 +41,21 @@ interface TeamsManager {
         collections: List<LinksCollection>,
         afterAttached: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        refreshAfterCollectionsAttached()
-        afterAttached()
+        requestsScope.launch {
+            requester.sendRequest(
+                request = {
+                    shareCollectionsWithTeam(
+                        team = team,
+                        collections = collections.map { collection -> collection.id }
+                    )
+                },
+                onSuccess = {
+                    refreshAfterCollectionsAttached()
+                    afterAttached()
+                },
+                onFailure = {}
+            )
+        }
     }
 
     fun refreshAfterCollectionsAttached()
