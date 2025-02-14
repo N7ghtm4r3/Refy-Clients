@@ -111,7 +111,6 @@ class UpsertTeamScreen(
             shape = inputFieldShape,
             value = viewModel.teamName,
             isError = viewModel.teamNameError,
-            allowsBlankSpaces = false,
             validator = { isTitleValid(it) },
             errorText = Res.string.name_not_valid,
             keyboardOptions = KeyboardOptions(
@@ -157,7 +156,7 @@ class UpsertTeamScreen(
                         val teamMember = viewModel.teamMembers.find { teamMember ->
                             member.id == teamMember.id
                         }
-                        teamMember!!.role = roleState.value
+                        teamMember?.role = roleState.value
                     },
                     trailingContent = {
                         var added by remember { mutableStateOf(alreadyAdded) }

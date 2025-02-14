@@ -132,7 +132,6 @@ private fun RowScope.FormInputField(
         value = value,
         placeholder = placeholder,
         isError = valueError,
-        allowsBlankSpaces = false,
         validator = { it.isNotEmpty() },
         errorText = errorText,
         keyboardOptions = keyboardOptions

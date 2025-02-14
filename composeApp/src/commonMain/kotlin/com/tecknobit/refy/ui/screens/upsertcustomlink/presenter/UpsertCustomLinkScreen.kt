@@ -74,7 +74,6 @@ class UpsertCustomLinkScreen(
             shape = inputFieldShape,
             value = viewModel.linkName,
             isError = viewModel.linkNameError,
-            allowsBlankSpaces = false,
             validator = { isTitleValid(it) },
             errorText = Res.string.name_not_valid,
             keyboardOptions = KeyboardOptions(

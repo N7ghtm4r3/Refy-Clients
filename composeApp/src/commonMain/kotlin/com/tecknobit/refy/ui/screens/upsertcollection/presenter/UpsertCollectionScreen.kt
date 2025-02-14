@@ -141,7 +141,6 @@ class UpsertCollectionScreen(
             shape = inputFieldShape,
             value = viewModel.collectionTitle,
             isError = viewModel.collectionTitleError,
-            allowsBlankSpaces = false,
             validator = { isTitleValid(it) },
             errorText = Res.string.name_not_valid,
             keyboardOptions = KeyboardOptions(
