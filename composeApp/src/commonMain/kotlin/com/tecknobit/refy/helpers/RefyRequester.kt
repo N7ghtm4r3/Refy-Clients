@@ -367,12 +367,18 @@ class RefyRequester(
      */
     @RequestPath(path = "/api/v1/users/{user_id}/collections", method = GET)
     suspend fun getCollections(
-        ownedOnly: Boolean = false
+        ownedOnly: Boolean = false,
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE,
+        keywords: String = ""
     ): JsonObject {
         return execGet(
             endpoint = assembleCollectionsEndpointPath(),
             query = createOwnedOnlyQuery(
-                ownedOnly = ownedOnly
+                ownedOnly = ownedOnly,
+                page = page,
+                pageSize = pageSize,
+                keywords = keywords
             )
         )
     }
@@ -404,35 +410,6 @@ class RefyRequester(
         return execPost(
             endpoint = assembleCollectionsEndpointPath(),
             payload = payload
-        )
-    }
-
-    /**
-     * Function to edit a collection
-     *
-     * @param collection The collection to edit
-     * @param color: color of the collection
-     * @param title Title of the collection
-     * @param description: description of the collection
-     * @param links: list of links shared in a collection
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}", method = PATCH)
-    suspend fun editCollection(
-        collection: LinksCollection,
-        color: String,
-        title: String,
-        description: String,
-        links: List<String>
-    ): JsonObject {
-        return editCollection(
-            collectionId = collection.id,
-            color = color,
-            title = title,
-            description = description,
-            links = links
         )
     }
 
@@ -589,23 +566,6 @@ class RefyRequester(
     /**
      * Function a collection
      *
-     * @param collection The collection to get
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}", method = GET)
-    suspend fun getCollection(
-        collection: LinksCollection
-    ): JsonObject {
-        return getCollection(
-            collectionId = collection.id
-        )
-    }
-
-    /**
-     * Function a collection
-     *
      * @param collectionId The identifier of the collection to get
      *
      * @return the result of the request as [JsonObject]
@@ -634,26 +594,9 @@ class RefyRequester(
     suspend fun deleteCollection(
         collection: LinksCollection
     ): JsonObject {
-        return deleteCollection(
-            collectionId = collection.id
-        )
-    }
-
-    /**
-     * Function to delete a collection
-     *
-     * @param collectionId The identifier of the  collection to delete
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}", method = DELETE)
-    suspend fun deleteCollection(
-        collectionId: String
-    ): JsonObject {
         return execDelete(
             endpoint = assembleCollectionsEndpointPath(
-                subEndpoint = collectionId
+                subEndpoint = collection.id
             )
         )
     }

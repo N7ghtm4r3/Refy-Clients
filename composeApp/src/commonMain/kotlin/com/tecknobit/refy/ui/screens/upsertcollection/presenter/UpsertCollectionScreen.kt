@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.github.skydoves.colorpicker.compose.ColorEnvelope
@@ -62,8 +61,6 @@ class UpsertCollectionScreen(
     updateTitle = Res.string.update_collection
 ) {
 
-    private lateinit var color: MutableState<Color>
-
     private lateinit var pickColor: MutableState<Boolean>
 
     @Composable
@@ -72,7 +69,7 @@ class UpsertCollectionScreen(
         content: @Composable() () -> Unit
     ) {
         val colorScheme = rememberDynamicColorScheme(
-            primary = color.value,
+            primary = viewModel.color.value,
             isDark = when (localUser.theme) {
                 Dark -> true
                 Light -> false
@@ -108,7 +105,7 @@ class UpsertCollectionScreen(
             modifier = Modifier
                 .size(40.dp)
                 .clip(CircleShape)
-                .background(color.value)
+                .background(viewModel.color.value)
                 .clickable { pickColor.value = true }
         )
         EquinoxDialog(
@@ -118,10 +115,10 @@ class UpsertCollectionScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp),
-                initialColor = color.value,
+                initialColor = viewModel.color.value,
                 controller = rememberColorPickerController(),
                 onColorChanged = { colorEnvelope: ColorEnvelope ->
-                    color.value = colorEnvelope.color
+                    viewModel.color.value = colorEnvelope.color
                 }
             )
         }
@@ -169,7 +166,7 @@ class UpsertCollectionScreen(
     @RequiresSuperCall
     override fun CollectStates() {
         super.CollectStates()
-        color = remember { mutableStateOf(collectionColor.toColor()) }
+        viewModel.color = remember { mutableStateOf(collectionColor.toColor()) }
         pickColor = remember { mutableStateOf(false) }
         viewModel.collectionTitleError = remember { mutableStateOf(false) }
     }

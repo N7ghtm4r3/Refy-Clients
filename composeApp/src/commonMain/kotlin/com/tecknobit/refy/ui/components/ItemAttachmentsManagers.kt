@@ -65,6 +65,7 @@ fun AttachLink(
                             afterShared = {
                                 scope.launch {
                                     state.hide()
+                                    viewModel.refresh()
                                 }
                             }
                         )
@@ -82,6 +83,7 @@ fun AttachLink(
                             afterShared = {
                                 scope.launch {
                                     state.hide()
+                                    viewModel.refresh()
                                 }
                             }
                         )
