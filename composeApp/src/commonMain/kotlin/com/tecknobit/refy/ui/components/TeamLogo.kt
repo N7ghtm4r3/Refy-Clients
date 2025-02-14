@@ -14,6 +14,7 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
@@ -54,11 +55,11 @@ fun TeamLogo(
                 }
             ),
         model = ImageRequest.Builder(LocalPlatformContext.current)
-            .data(teamLogo)
+            .data(localUser.hostAddress + "/" + teamLogo)
             .crossfade(true)
             .crossfade(500)
             .build(),
-        //imageLoader = imageLoader, TODO: TO SET
+        imageLoader = imageLoader,
         contentScale = ContentScale.Crop,
         error = painterResource(Res.drawable.logo),
         contentDescription = "Team logo"

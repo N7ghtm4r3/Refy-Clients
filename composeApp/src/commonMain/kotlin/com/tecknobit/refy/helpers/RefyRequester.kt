@@ -26,7 +26,9 @@ import com.tecknobit.refycore.EXPIRED_TIME_KEY
 import com.tecknobit.refycore.FIELDS_KEY
 import com.tecknobit.refycore.KEYWORDS_KEY
 import com.tecknobit.refycore.LINKS_KEY
+import com.tecknobit.refycore.LOGO_PIC_KEY
 import com.tecknobit.refycore.MEMBERS_KEY
+import com.tecknobit.refycore.MEMBER_IDENTIFIER_KEY
 import com.tecknobit.refycore.OWNED_ONLY_KEY
 import com.tecknobit.refycore.REFERENCE_LINK_KEY
 import com.tecknobit.refycore.RESOURCES_KEY
@@ -35,14 +37,20 @@ import com.tecknobit.refycore.TEAMS_KEY
 import com.tecknobit.refycore.TEAM_ROLE_KEY
 import com.tecknobit.refycore.TITLE_KEY
 import com.tecknobit.refycore.UNIQUE_ACCESS_KEY
+import com.tecknobit.refycore.dtos.AddedMember
 import com.tecknobit.refycore.enums.ExpiredTime
 import com.tecknobit.refycore.enums.TeamRole
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.CHANGE_TAG_NAME_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.CUSTOM_LINKS_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.LEAVE_ENDPOINT
 import com.tecknobit.refycore.helpers.RefyEndpointsSet.UPDATE_MEMBER_ROLE_ENDPOINT
+import io.ktor.client.request.forms.formData
+import io.ktor.http.Headers
+import io.ktor.http.HttpHeaders
+import io.ktor.http.content.PartData
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
@@ -512,7 +520,6 @@ class RefyRequester(
         collection: LinksCollection,
         teams: List<String>
     ): JsonObject {
-
         val payload = buildJsonObject {
             put(TEAMS_KEY, Json.encodeToJsonElement(teams))
         }
@@ -560,6 +567,25 @@ class RefyRequester(
                 page = page,
                 pageSize = pageSize,
                 keywords = keywords
+            )
+        )
+    }
+
+    // TODO: TO COMMENT
+    @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}/teams", method = GET)
+    suspend fun getCollectionTeams(
+        collectionId: String,
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE
+    ): JsonObject {
+        return execGet(
+            endpoint = assembleCollectionsEndpointPath(
+                subEndpoint = "$collectionId/$TEAMS_KEY"
+            ),
+            query = createOwnedOnlyQuery(
+                ownedOnly = false,
+                page = page,
+                pageSize = pageSize
             )
         )
     }
@@ -664,18 +690,116 @@ class RefyRequester(
     /**
      * Function the potential members to add in a team
      *
-     * No-any params required
+     * @param page The page to request
+     * @param pageSize The size of the page to request
      *
      * @return the result of the request as [JsonObject]
-     *
      */
     @RequestPath(path = "/api/v1/users/{user_id}/teams/members", method = GET)
-    suspend fun getPotentialMembers(): JsonObject {
+    suspend fun getPotentialMembers(
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE
+    ): JsonObject {
         return execGet(
             endpoint = assembleTeamsEndpointPath(
                 subEndpoint = MEMBERS_KEY
+            ),
+            query = createPaginationQuery(
+                page = page,
+                pageSize = pageSize
             )
         )
+    }
+
+    // TODO: TO DOCUMENT
+    @RequestPath(path = "/api/v1/users/{user_id}/teams", method = POST)
+    suspend fun createTeam(
+        title: String,
+        logoPicName: String,
+        logoPicBytes: ByteArray,
+        description: String,
+        membersRaw: List<TeamMember>
+    ): JsonObject {
+        val payload = createTeamPayload(
+            title = title,
+            logoPicName = logoPicName,
+            logoPicBytes = logoPicBytes,
+            description = description,
+            membersRaw = membersRaw
+        )
+        return execMultipartRequest(
+            endpoint = assembleTeamsEndpointPath(),
+            payload = payload
+        )
+    }
+
+    // TODO: TO DOCUMENT
+    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}", method = POST)
+    suspend fun editTeam(
+        teamId: String,
+        title: String,
+        logoPicName: String,
+        logoPicBytes: ByteArray,
+        description: String,
+        membersRaw: List<TeamMember>
+    ): JsonObject {
+        val payload = createTeamPayload(
+            title = title,
+            logoPicName = logoPicName,
+            logoPicBytes = logoPicBytes,
+            description = description,
+            membersRaw = membersRaw
+        )
+        return execMultipartRequest(
+            endpoint = assembleTeamsEndpointPath(
+                subEndpoint = teamId
+            ),
+            payload = payload
+        )
+    }
+
+
+    // TODO: TO DOCUMENT
+    @Assembler
+    private fun createTeamPayload(
+        title: String,
+        logoPicName: String?,
+        logoPicBytes: ByteArray?,
+        description: String,
+        membersRaw: List<TeamMember>
+    ): List<PartData> {
+        val members = mutableListOf<AddedMember>()
+        membersRaw.forEach { member ->
+            members.add(
+                AddedMember(
+                    memberId = member.id,
+                    role = member.role
+                )
+            )
+        }
+        return formData {
+            logoPicName?.let {
+                append(LOGO_PIC_KEY, logoPicBytes!!, Headers.build {
+                    append(HttpHeaders.ContentType, "image/*")
+                    append(HttpHeaders.ContentDisposition, "filename=\"$logoPicName\"")
+                })
+            }
+            append(TITLE_KEY, title)
+            append(DESCRIPTION_KEY, description)
+            append(
+                MEMBERS_KEY,
+                buildJsonArray {
+                    members.forEach { member ->
+                        add(
+                            buildJsonObject {
+                                put(MEMBER_IDENTIFIER_KEY, member.memberId)
+                                put(TEAM_ROLE_KEY, member.role.name)
+                            }
+                        )
+                    }
+                }.toString()
+            )
+        }
     }
 
     /*
@@ -908,23 +1032,6 @@ class RefyRequester(
     /**
      * Function a team
      *
-     * @param team The team to get
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}", method = GET)
-    suspend fun getTeam(
-        team: Team
-    ): JsonObject {
-        return getTeam(
-            teamId = team.id
-        )
-    }
-
-    /**
-     * Function a team
-     *
      * @param teamId The identifier of the team to get
      *
      * @return the result of the request as [JsonObject]
@@ -1092,26 +1199,9 @@ class RefyRequester(
     suspend fun deleteTeam(
         team: Team
     ): JsonObject {
-        return deleteTeam(
-            teamId = team.id
-        )
-    }
-
-    /**
-     * Function to delete a team
-     *
-     * @param teamId The identifier of the team to delete
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}", method = DELETE)
-    suspend fun deleteTeam(
-        teamId: String
-    ): JsonObject {
         return execDelete(
             endpoint = assembleTeamsEndpointPath(
-                subEndpoint = teamId
+                subEndpoint = team.id
             )
         )
     }

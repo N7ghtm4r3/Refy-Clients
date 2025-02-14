@@ -154,7 +154,10 @@ class UpsertTeamScreen(
                     member = member,
                     onRoleSelected = { expanded, roleState ->
                         expanded.value = false
-                        member.role = roleState.value
+                        val teamMember = viewModel.teamMembers.find { teamMember ->
+                            member.id == teamMember.id
+                        }
+                        teamMember!!.role = roleState.value
                     },
                     trailingContent = {
                         var added by remember { mutableStateOf(alreadyAdded) }
@@ -163,9 +166,9 @@ class UpsertTeamScreen(
                             onCheckedChange = {
                                 added = it
                                 if (added)
-                                    viewModel.teamMembers.remove(member)
-                                else
                                     viewModel.teamMembers.add(member)
+                                else
+                                    viewModel.teamMembers.remove(member)
                             }
                         )
                     }

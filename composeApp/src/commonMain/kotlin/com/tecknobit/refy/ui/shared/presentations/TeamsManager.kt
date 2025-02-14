@@ -1,9 +1,12 @@
 package com.tecknobit.refy.ui.shared.presentations
 
+import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
+import com.tecknobit.refy.requester
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 interface TeamsManager {
 
@@ -37,8 +40,17 @@ interface TeamsManager {
         team: Team,
         onDelete: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        onDelete()
+        requestsScope.launch {
+            requester.sendRequest(
+                request = {
+                    deleteTeam(
+                        team = team
+                    )
+                },
+                onSuccess = { onDelete() },
+                onFailure = {}
+            )
+        }
     }
 
 }
