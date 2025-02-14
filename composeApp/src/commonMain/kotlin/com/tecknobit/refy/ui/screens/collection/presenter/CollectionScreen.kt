@@ -197,7 +197,7 @@ class CollectionScreen(
     }
 
     override fun upsertAction() {
-        navigator.navigate("$UPSERT_COLLECTION_SCREEN/${item.value!!.id}")
+        navigator.navigate("$UPSERT_COLLECTION_SCREEN/${item.value!!.id}/${item.value!!.color}")
     }
 
     @Composable

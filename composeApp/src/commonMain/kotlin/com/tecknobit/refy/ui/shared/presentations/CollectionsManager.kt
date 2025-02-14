@@ -17,9 +17,21 @@ interface CollectionsManager {
         links: List<RefyLinkImpl>,
         afterAttached: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        refreshAfterLinksAttached()
-        afterAttached()
+        requestsScope.launch {
+            requester.sendRequest(
+                request = {
+                    attachLinksWithCollection(
+                        collection = collection,
+                        links = links.map { link -> link.id }
+                    )
+                },
+                onSuccess = {
+                    refreshAfterLinksAttached()
+                    afterAttached()
+                },
+                onFailure = {}
+            )
+        }
     }
 
     fun refreshAfterLinksAttached()
@@ -29,9 +41,21 @@ interface CollectionsManager {
         teams: List<Team>,
         afterShared: () -> Unit
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        refreshAfterTeamsAttached()
-        afterShared()
+        requestsScope.launch {
+            requester.sendRequest(
+                request = {
+                    shareCollectionWithTeams(
+                        collection = collection,
+                        teams = teams.map { link -> link.id }
+                    )
+                },
+                onSuccess = {
+                    refreshAfterTeamsAttached()
+                    afterShared()
+                },
+                onFailure = {}
+            )
+        }
     }
 
     fun refreshAfterTeamsAttached()
@@ -48,9 +72,7 @@ interface CollectionsManager {
                     )
                 },
                 onSuccess = { onDelete() },
-                onFailure = {
-
-                }
+                onFailure = {}
             )
         }
     }

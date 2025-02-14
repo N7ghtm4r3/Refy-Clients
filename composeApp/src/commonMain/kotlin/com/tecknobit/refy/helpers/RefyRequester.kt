@@ -474,37 +474,17 @@ class RefyRequester(
     }
 
     /**
-     * Function to manage the links shared with the collection
+     * Function to attach links with the collection
      *
-     * @param collection The collection where manage the shared link
+     * @param collection The identifier of the collection where manage the shared link
      * @param links The list of links shared with the collection
      *
      * @return the result of the request as [JsonObject]
      *
      */
     @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}/links", method = PUT)
-    suspend fun manageCollectionLinks(
+    suspend fun attachLinksWithCollection(
         collection: LinksCollection,
-        links: List<String>
-    ): JsonObject {
-        return manageCollectionLinks(
-            collectionId = collection.id,
-            links = links
-        )
-    }
-
-    /**
-     * Function to manage the links shared with the collection
-     *
-     * @param collectionId The identifier of the collection where manage the shared link
-     * @param links The list of links shared with the collection
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}/links", method = PUT)
-    suspend fun manageCollectionLinks(
-        collectionId: String,
         links: List<String>
     ): JsonObject {
         val payload = buildJsonObject {
@@ -512,7 +492,7 @@ class RefyRequester(
         }
         return execPut(
             endpoint = assembleCollectionsEndpointPath(
-                subEndpoint = "$collectionId/$LINKS_KEY"
+                subEndpoint = "${collection.id}/$LINKS_KEY"
             ),
             payload = payload
         )
@@ -528,36 +508,17 @@ class RefyRequester(
      *
      */
     @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}/teams", method = PUT)
-    suspend fun manageCollectionTeams(
+    suspend fun shareCollectionWithTeams(
         collection: LinksCollection,
         teams: List<String>
     ): JsonObject {
-        return manageCollectionTeams(
-            collectionId = collection.id,
-            teams = teams
-        )
-    }
 
-    /**
-     * Function to manage the teams where the collection is shared
-     *
-     * @param collectionId The identifier of the collection where manage the teams list
-     * @param teams The list of the teams where the collection is shared
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}/teams", method = PUT)
-    suspend fun manageCollectionTeams(
-        collectionId: String,
-        teams: List<String>
-    ): JsonObject {
         val payload = buildJsonObject {
             put(TEAMS_KEY, Json.encodeToJsonElement(teams))
         }
         return execPut(
             endpoint = assembleCollectionsEndpointPath(
-                subEndpoint = "$collectionId/$TEAMS_KEY"
+                subEndpoint = "${collection.id}/$TEAMS_KEY"
             ),
             payload = payload
         )
@@ -578,6 +539,59 @@ class RefyRequester(
         return execGet(
             endpoint = assembleCollectionsEndpointPath(
                 subEndpoint = collectionId
+            )
+        )
+    }
+
+    // TODO: TO COMMENT
+    @RequestPath(path = "/api/v1/users/{user_id}/collections/{collection_id}/links", method = GET)
+    suspend fun getCollectionLinks(
+        collectionId: String,
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE,
+        keywords: String = ""
+    ): JsonObject {
+        return execGet(
+            endpoint = assembleCollectionsEndpointPath(
+                subEndpoint = "$collectionId/$LINKS_KEY"
+            ),
+            query = createOwnedOnlyQuery(
+                ownedOnly = false,
+                page = page,
+                pageSize = pageSize,
+                keywords = keywords
+            )
+        )
+    }
+
+    // TODO: TO COMMENT
+    @RequestPath(
+        path = "/api/v1/users/{user_id}/collections/{collection_id}/links/{link_id}",
+        method = DELETE
+    )
+    suspend fun removeLinkFromCollection(
+        collectionId: String,
+        link: RefyLinkImpl
+    ): JsonObject {
+        return execDelete(
+            endpoint = assembleCollectionsEndpointPath(
+                subEndpoint = "$collectionId/$LINKS_KEY/${link.id}"
+            )
+        )
+    }
+
+    // TODO: TO COMMENT
+    @RequestPath(
+        path = "/api/v1/users/{user_id}/collections/{collection_id}/teams/{team_id}",
+        method = DELETE
+    )
+    suspend fun removeTeamFromCollection(
+        collectionId: String,
+        team: Team
+    ): JsonObject {
+        return execDelete(
+            endpoint = assembleCollectionsEndpointPath(
+                subEndpoint = "$collectionId/$TEAMS_KEY/${team.id}"
             )
         )
     }
@@ -631,12 +645,18 @@ class RefyRequester(
      */
     @RequestPath(path = "/api/v1/users/{user_id}/teams", method = GET)
     suspend fun getTeams(
-        ownedOnly: Boolean = false
+        ownedOnly: Boolean = false,
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE,
+        keywords: String = ""
     ): JsonObject {
         return execGet(
             endpoint = assembleTeamsEndpointPath(),
             query = createOwnedOnlyQuery(
-                ownedOnly = ownedOnly
+                ownedOnly = ownedOnly,
+                page = page,
+                pageSize = pageSize,
+                keywords = keywords
             )
         )
     }

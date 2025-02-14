@@ -208,6 +208,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
             ),
             onClick = {
                 viewModel.upsert {
+                    // TODO: FIX THE REFRESHING ON BACK LAYOUT
                     navigator.goBack()
                 }
             }

@@ -33,11 +33,8 @@ abstract class ItemScreenViewModel<I : RefyItem>(
         linksState.refresh()
     }
 
-    fun removeLink(
+    abstract fun removeLink(
         link: RefyLinkImpl
-    ) {
-        // TODO: MAKE THE REQUEST THEN
-        linksState.refresh()
-    }
+    )
 
 }

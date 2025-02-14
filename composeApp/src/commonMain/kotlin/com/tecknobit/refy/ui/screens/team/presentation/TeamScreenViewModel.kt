@@ -259,6 +259,13 @@ class TeamScreenViewModel(
         teamCollections.refresh()
     }
 
+    override fun removeLink(
+        link: RefyLinkImpl
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        linksState.refresh()
+    }
+
     fun changeMemberRole(
         member: TeamMember,
         role: TeamRole,
