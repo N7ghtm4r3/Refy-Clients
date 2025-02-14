@@ -758,7 +758,6 @@ class RefyRequester(
         )
     }
 
-
     // TODO: TO DOCUMENT
     @Assembler
     private fun createTeamPayload(
@@ -801,143 +800,6 @@ class RefyRequester(
             )
         }
     }
-
-    /*
-     * Function to create a team
-     *
-     * @param title Title of the team
-     * @param logoPic The logo of the team
-     * @param description: description of the team
-     * @param members: list of the members in the team
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     *
-    @RequestPath(path = "/api/v1/users/{user_id}/teams", method = POST)
-    fun createTeam(
-        title: String,
-        logoPic: String,
-        description: String,
-        members: List<String>
-    ) : JsonObject {
-        val body = createTeamPayload(
-            title = title,
-            logoPic = File(logoPic),
-            description = description,
-            members = members
-        )
-        return execMultipartRequest(
-            endpoint = assembleTeamsEndpointPath(),
-            body = body
-        )
-    }
-
-    /**
-     * Function to edit a team
-     *
-     * @param team The team to edit
-     * @param title Title of the team
-     * @param logoPic The logo of the team
-     * @param description: description of the team
-     * @param members: list of the members in the team
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}", method = POST)
-    fun editTeam(
-        team: Team,
-        title: String,
-        logoPic: String,
-        description: String,
-        members: List<String>
-    ) : JsonObject {
-        return editTeam(
-            teamId = team.id,
-            title = title,
-            logoPic = logoPic,
-            description = description,
-            members = members
-        )
-    }
-
-
-     * Function to edit a team
-     *
-     * @param teamId The identifier of the team to edit
-     * @param title Title of the team
-     * @param logoPic The logo of the team
-     * @param description: description of the team
-     * @param members: list of the members in the team
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     *
-    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}", method = POST)
-    suspend fun editTeam(
-        teamId: String,
-        title: String,
-        logoPic: String,
-        description: String,
-        members: List<String>
-    ) : JsonObject {
-        val body = createTeamPayload(
-            title = title,
-            logoPic = if(logoPic.contains(teamId))
-                null
-            else
-                File(logoPic),
-            description = description,
-            members = members
-        )
-        return execMultipartRequest(
-            endpoint = assembleTeamsEndpointPath(
-                subEndpoint = teamId
-            ),
-            body = body
-        )
-    }
-
-
-     * Function to create a payload for the team creation/edit actions
-     *
-     * @param title Title of the team
-     * @param logoPic The logo of the team
-     * @param description: description of the team
-     * @param members: list of the members in the team
-     *
-     * @return the payload as [JsonObject]
-     *
-     *
-    @Assembler
-    private fun createTeamPayload(
-        title: String,
-        logoPic: File?,
-        description: String,
-        members: List<String>
-    ) : MultipartBody {
-        val body = MultipartBody.Builder().setType(MultipartBody.FORM)
-            .addFormDataPart(
-                TITLE_KEY,
-                title,
-            )
-            .addFormDataPart(
-                DESCRIPTION_KEY,
-                description,
-            )
-            .addFormDataPart(
-                MEMBERS_KEY,
-                JSONArray(members).toString(),
-            )
-        logoPic?.let {
-            body.addFormDataPart(
-                LOGO_PIC_KEY,
-                logoPic.name,
-                logoPic.readBytes().toRequestBody("*".toMediaType())
-            )
-        }
-        return body.build()
-    }*/
 
     /**
      * Function share links with team
@@ -1004,6 +866,48 @@ class RefyRequester(
         return execGet(
             endpoint = assembleTeamsEndpointPath(
                 subEndpoint = teamId
+            )
+        )
+    }
+
+    // TODO: TO COMMENT
+    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}/collections", method = GET)
+    suspend fun getTeamCollections(
+        teamId: String,
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE,
+        keywords: String = ""
+    ): JsonObject {
+        return execGet(
+            endpoint = assembleTeamsEndpointPath(
+                subEndpoint = "$teamId/$COLLECTIONS_KEY"
+            ),
+            query = createOwnedOnlyQuery(
+                ownedOnly = false,
+                page = page,
+                pageSize = pageSize,
+                keywords = keywords
+            )
+        )
+    }
+
+    // TODO: TO COMMENT
+    @RequestPath(path = "/api/v1/users/{user_id}/teams/{team_id}/links", method = GET)
+    suspend fun getTeamLinks(
+        teamId: String,
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE,
+        keywords: String = ""
+    ): JsonObject {
+        return execGet(
+            endpoint = assembleTeamsEndpointPath(
+                subEndpoint = "$teamId/$LINKS_KEY"
+            ),
+            query = createOwnedOnlyQuery(
+                ownedOnly = false,
+                page = page,
+                pageSize = pageSize,
+                keywords = keywords
             )
         )
     }
