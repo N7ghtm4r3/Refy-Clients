@@ -1071,7 +1071,7 @@ class RefyRequester(
             put(OWNED_ONLY_KEY, ownedOnly)
             put(PAGE_KEY, page)
             put(PAGE_SIZE_KEY, pageSize)
-            if (keywords.isNotBlank())
+            if (keywords.isNotBlank() || keywords.isNotEmpty())
                 put(KEYWORDS_KEY, keywords)
         }
     }

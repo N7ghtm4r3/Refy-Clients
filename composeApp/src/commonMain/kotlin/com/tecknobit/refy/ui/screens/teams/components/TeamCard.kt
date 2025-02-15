@@ -2,6 +2,7 @@
 
 package com.tecknobit.refy.ui.screens.teams.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -122,16 +123,20 @@ private fun TeamBottomBar(
             descriptionLines = descriptionLines,
             expanded = expanded
         )
-        AttachItemButton(
-            attachItemContent = { state, scope ->
-                AttachTeam(
-                    state = state,
-                    scope = scope,
-                    teamsManager = viewModel,
-                    team = team
-                )
-            }
-        )
+        AnimatedVisibility(
+            visible = team.iAmAnAdmin()
+        ) {
+            AttachItemButton(
+                attachItemContent = { state, scope ->
+                    AttachTeam(
+                        state = state,
+                        scope = scope,
+                        teamsManager = viewModel,
+                        team = team
+                    )
+                }
+            )
+        }
         DeleteItemButton(
             modifier = Modifier
                 .weight(1f),

@@ -7,6 +7,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -107,23 +108,28 @@ private fun CollectionBottomBar(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .heightIn(
+                min = 35.dp
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         ExpandCardButton(
             descriptionLines = descriptionLines,
             expanded = expanded
         )
-        AttachItemButton(
-            attachItemContent = { state, scope ->
-                AttachCollection(
-                    state = state,
-                    scope = scope,
-                    collectionsManager = viewModel,
-                    collection = collection
-                )
-            }
-        )
+        if (collection.iAmTheOwner()) {
+            AttachItemButton(
+                attachItemContent = { state, scope ->
+                    AttachCollection(
+                        state = state,
+                        scope = scope,
+                        collectionsManager = viewModel,
+                        collection = collection
+                    )
+                }
+            )
+        }
         DeleteItemButton(
             modifier = Modifier
                 .weight(1f),

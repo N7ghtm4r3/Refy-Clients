@@ -111,10 +111,12 @@ class CollectionScreenViewModel(
 
     override fun refreshAfterLinksAttached() {
         linksState.refresh()
+        retrieveItem()
     }
 
     override fun refreshAfterTeamsAttached() {
         collectionTeams.refresh()
+        retrieveItem()
     }
 
     override fun removeLink(

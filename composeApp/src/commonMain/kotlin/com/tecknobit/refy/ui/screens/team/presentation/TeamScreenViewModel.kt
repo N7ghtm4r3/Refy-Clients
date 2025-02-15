@@ -111,10 +111,12 @@ class TeamScreenViewModel(
 
     override fun refreshAfterLinksAttached() {
         linksState.refresh()
+        retrieveItem()
     }
 
     override fun refreshAfterCollectionsAttached() {
         teamCollections.refresh()
+        retrieveItem()
     }
 
     fun removeCollection(

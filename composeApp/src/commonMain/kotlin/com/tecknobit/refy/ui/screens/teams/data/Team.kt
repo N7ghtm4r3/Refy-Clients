@@ -35,6 +35,8 @@ data class Team(
     }
 
     fun iAmAnAdmin(): Boolean {
+        if (iAmTheOwner())
+            return true
         val role = findMyRole()
         return role == ADMIN
     }

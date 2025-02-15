@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMultiplatform::class, ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.tecknobit.refy.ui.screens.collection.presenter
 

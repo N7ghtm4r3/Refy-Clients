@@ -54,7 +54,7 @@ fun ProfilePic(
             .crossfade(true)
             .crossfade(500)
             .build(),
-        //imageLoader = imageLoader, TODO: TO SET
+        imageLoader = imageLoader,
         contentScale = ContentScale.Crop,
         error = painterResource(Res.drawable.logo),
         contentDescription = "User profile picture"

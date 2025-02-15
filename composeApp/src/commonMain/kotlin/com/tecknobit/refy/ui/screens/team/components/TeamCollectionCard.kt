@@ -6,12 +6,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.refy.COLLECTION_SCREEN
 import com.tecknobit.refy.navigator
@@ -33,7 +33,9 @@ fun TeamCollectionCard(
     collection: LinksCollection
 ) {
     val collectionColor = collection.color.toColor()
-    val contentColor = contentColorFor(collectionColor)
+    val contrasting = getContrastColor(
+        backgroundColor = collectionColor
+    )
     Card(
         modifier = Modifier
             .width(200.dp),
@@ -49,9 +51,9 @@ fun TeamCollectionCard(
         ListItem(
             colors = ListItemDefaults.colors(
                 containerColor = collectionColor,
-                overlineColor = contentColor,
-                headlineColor = contentColor,
-                supportingColor = contentColor
+                overlineColor = contrasting,
+                headlineColor = contrasting,
+                supportingColor = contrasting
             ),
             overlineContent = {
                 Text(
@@ -83,7 +85,7 @@ fun TeamCollectionCard(
                                 collection = collection
                             )
                         },
-                        color = contentColorFor(collectionColor)
+                        color = contrasting
                     )
                 }
             } else

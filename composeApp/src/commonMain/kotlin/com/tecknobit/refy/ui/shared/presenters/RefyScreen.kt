@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.FilterListOff
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -312,7 +313,20 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                         viewModel.keywords.value = it
                         viewModel.refresh()
                     },
-                    placeholder = Res.string.search_by_keywords
+                    placeholder = Res.string.search_by_keywords,
+                    trailingIcon = {
+                        IconButton(
+                            onClick = {
+                                viewModel.keywords.value = ""
+                                viewModel.refresh()
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Clear,
+                                contentDescription = null
+                            )
+                        }
+                    }
                 )
             }
         }

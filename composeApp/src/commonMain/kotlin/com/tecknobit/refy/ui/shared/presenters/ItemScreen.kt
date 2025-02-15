@@ -88,6 +88,17 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
 
     @Composable
     @NonRestartableComposable
+    override fun SubTitleContent() {
+        awaitNullItemLoaded(
+            itemToWait = item.value,
+            extras = { item.value!!.iAmTheOwner() }
+        ) {
+            super.SubTitleContent()
+        }
+    }
+
+    @Composable
+    @NonRestartableComposable
     override fun Content() {
         ManagedContent(
             viewModel = viewModel,

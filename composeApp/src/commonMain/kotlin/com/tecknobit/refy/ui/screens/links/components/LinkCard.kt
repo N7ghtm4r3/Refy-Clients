@@ -27,18 +27,21 @@ fun LinkCard(
         modifier = modifier,
         viewModel = viewModel,
         link = link,
-        extraButton = {
-            AttachItemButton(
-                attachItemContent = { state, scope ->
-                    AttachLink(
-                        state = state,
-                        scope = scope,
-                        viewModel = viewModel,
-                        link = link
-                    )
-                }
-            )
-        },
+        extraButton = if (link.iAmTheOwner()) {
+            {
+                AttachItemButton(
+                    attachItemContent = { state, scope ->
+                        AttachLink(
+                            state = state,
+                            scope = scope,
+                            viewModel = viewModel,
+                            link = link
+                        )
+                    }
+                )
+            }
+        } else
+            null,
         cancelButton = {
             DeleteItemButton(
                 modifier = Modifier

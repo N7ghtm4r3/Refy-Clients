@@ -93,7 +93,7 @@
     <string name="leave_team">Quitter l'équipe</string>
     <string name="leave_team_message">En confirmant, l'équipe et les données qui s'y rapportent ne seront plus disponibles pour vous.</string>
     <string name="create_team">Créer une équipe</string>
-    <string name="update_team">Modifier l\'équipe</string>
+    <string name="update_team">Modifier l'équipe</string>
     <string name="logo">Logo</string>
     <string name="unique_access">Unique access</string>
     <string name="unique_access_text">Ce lien a un accès unique, il sera automatiquement supprimé lors de la première visualisation.</string>
