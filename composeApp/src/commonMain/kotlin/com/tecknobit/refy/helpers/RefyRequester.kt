@@ -1079,15 +1079,26 @@ class RefyRequester(
     /**
      * Function the custom links of the user
      *
-     * No-any params
+     * @param page The page to request
+     * @param pageSize The size of the page to request
+     * @param keywords The keywords used to filter the query
      *
      * @return the result of the request as [JsonObject]
-     *
      */
     @RequestPath(path = "/api/v1/users/{user_id}/customLinks", method = GET)
-    suspend fun getCustomLinks(): JsonObject {
+    suspend fun getCustomLinks(
+        page: Int = DEFAULT_PAGE,
+        pageSize: Int = DEFAULT_PAGE_SIZE,
+        keywords: String = ""
+    ): JsonObject {
         return execGet(
-            endpoint = assembleCustomLinksEndpointPath()
+            endpoint = assembleCustomLinksEndpointPath(),
+            query = buildJsonObject {
+                put(PAGE_KEY, page)
+                put(PAGE_SIZE_KEY, pageSize)
+                if (keywords.isNotBlank())
+                    put(KEYWORDS_KEY, keywords)
+            }
         )
     }
 
@@ -1124,41 +1135,6 @@ class RefyRequester(
         return execPost(
             endpoint = assembleCustomLinksEndpointPath(),
             payload = payload
-        )
-    }
-
-    /**
-     * Function to edit a custom link
-     *
-     * @param link The link to edit
-     * @param title Title of the link
-     * @param description: description of the link
-     * @param resources The resources to share with the link
-     * @param fields The fields used to protect the [resources] with a validation form
-     * @param hasUniqueAccess: whether the link, when requested for the first time, must be deleted and no more accessible
-     * @param expiredTime: when the link expires and automatically deleted
-     *
-     * @return the result of the request as [JsonObject]
-     *
-     */
-    @RequestPath(path = "/api/v1/users/{user_id}/customLinks/{link_id}", method = PATCH)
-    suspend fun editCustomLink(
-        link: CustomRefyLink,
-        title: String,
-        description: String,
-        resources: Map<String, String>,
-        fields: Map<String, String>,
-        hasUniqueAccess: Boolean = false,
-        expiredTime: ExpiredTime = ExpiredTime.NO_EXPIRATION
-    ): JsonObject {
-        return editCustomLink(
-            linkId = link.id,
-            title = title,
-            description = description,
-            resources = resources,
-            fields = fields,
-            hasUniqueAccess = hasUniqueAccess,
-            expiredTime = expiredTime
         )
     }
 

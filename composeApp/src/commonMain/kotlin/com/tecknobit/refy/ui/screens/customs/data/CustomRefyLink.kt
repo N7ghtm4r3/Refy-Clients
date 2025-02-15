@@ -1,5 +1,6 @@
 package com.tecknobit.refy.ui.screens.customs.data
 
+import com.tecknobit.equinoxcore.network.EquinoxBaseEndpointsSet.Companion.BASE_EQUINOX_ENDPOINT
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
@@ -7,7 +8,6 @@ import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refycore.EXPIRED_TIME_KEY
-import com.tecknobit.refycore.LINK_IDENTIFIER_KEY
 import com.tecknobit.refycore.PREVIEW_TOKEN_KEY
 import com.tecknobit.refycore.REFERENCE_LINK_KEY
 import com.tecknobit.refycore.UNIQUE_ACCESS_KEY
@@ -18,7 +18,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CustomRefyLink(
-    @SerialName(LINK_IDENTIFIER_KEY)
     override val id: String,
     override val owner: RefyUser.RefyUserImpl,
     override val title: String,
@@ -38,7 +37,8 @@ data class CustomRefyLink(
     val previewToken: String
 ) : RefyLink {
 
-    override val reference: String = localUser.hostAddress + _reference
+    override val reference: String = localUser.hostAddress + BASE_EQUINOX_ENDPOINT +
+            _reference.replaceFirstChar { "" }
 
     fun expirationDate(): Long {
         return date + expiredTime.gap
