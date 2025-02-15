@@ -20,11 +20,14 @@ data class Team(
     override val description: String,
     override val date: Long,
     @SerialName(LOGO_PIC_KEY)
-    val logoPic: String,
+    private val _logoPic: String,
     val members: List<TeamMember>,
     val links: List<RefyLinkImpl> = emptyList(),
     val collections: List<LinksCollection> = emptyList()
 ) : RefyItem {
+
+    val logoPic: String
+        get() = localUser.hostAddress + "/" + _logoPic
 
     fun findMyRole(): TeamRole {
         members.forEach { member ->

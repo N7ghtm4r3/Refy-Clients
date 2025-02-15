@@ -257,7 +257,7 @@ fun startSession() {
         host = localUser.hostAddress,
         userId = localUser.userId,
         userToken = localUser.userToken,
-        debugMode = true // TODO: TO REMOVE 
+        debugMode = false // TODO: TO REMOVE
     )
     val route =
         if (!localUser.userId.isNullOrBlank()) { // TODO: TO USE localUser.isAuthenticated INSTEAD

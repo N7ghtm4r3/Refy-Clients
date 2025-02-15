@@ -21,12 +21,15 @@ data class TeamMember(
     override val surname: String,
     override val email: String,
     @SerialName(PROFILE_PIC_KEY)
-    override val profilePic: String,
+    private val _profilePic: String,
     @SerialName(TAG_NAME_KEY)
     override val tagName: String,
     @SerialName(TEAM_ROLE_KEY)
     var role: TeamRole
 ) : RefyUser {
+
+    override val profilePic: String
+        get() = localUser.hostAddress + "/" + _profilePic
 
     companion object {
 

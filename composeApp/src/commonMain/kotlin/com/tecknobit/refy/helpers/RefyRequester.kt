@@ -763,7 +763,7 @@ class RefyRequester(
     private fun createTeamPayload(
         title: String,
         logoPicName: String?,
-        logoPicBytes: ByteArray?,
+        logoPicBytes: ByteArray,
         description: String,
         membersRaw: List<TeamMember>
     ): List<PartData> {
@@ -777,8 +777,8 @@ class RefyRequester(
             )
         }
         return formData {
-            logoPicName?.let {
-                append(LOGO_PIC_KEY, logoPicBytes!!, Headers.build {
+            if (logoPicBytes.isNotEmpty()) {
+                append(LOGO_PIC_KEY, logoPicBytes, Headers.build {
                     append(HttpHeaders.ContentType, "image/*")
                     append(HttpHeaders.ContentDisposition, "filename=\"$logoPicName\"")
                 })
