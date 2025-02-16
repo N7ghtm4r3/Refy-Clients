@@ -10,13 +10,19 @@ import kotlinx.coroutines.flow.StateFlow
 
 @Structure
 abstract class ItemScreenViewModel<I : RefyItem>(
-    private val itemId: String
+    private val itemId: String,
+    private val name: String
 ) : RefyScreenViewModel(), LinksRetriever<RefyLinkImpl> {
 
     protected val _item = MutableStateFlow<I?>(
         value = null
     )
     val item: StateFlow<I?> = _item
+
+    protected val _itemName = MutableStateFlow(
+        value = name
+    )
+    val itemName: StateFlow<String> = _itemName
 
     abstract fun retrieveItem()
 

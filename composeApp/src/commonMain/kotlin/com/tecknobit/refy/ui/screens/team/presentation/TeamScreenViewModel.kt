@@ -22,9 +22,11 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
 
 class TeamScreenViewModel(
-    private val teamId: String
+    private val teamId: String,
+    private val teamName: String
 ) : ItemScreenViewModel<Team>(
-    itemId = teamId
+    itemId = teamId,
+    name = teamName
 ), TeamsManager {
 
     override val requestsScope: CoroutineScope = viewModelScope
@@ -40,6 +42,7 @@ class TeamScreenViewModel(
                 onSuccess = {
                     setServerOfflineValue(false)
                     _item.value = Json.decodeFromJsonElement(it.toResponseData())
+                    _itemName.value = _item.value!!.title
                 },
                 onFailure = { setHasBeenDisconnectedValue(true) },
                 onConnectionError = { setServerOfflineValue(true) }

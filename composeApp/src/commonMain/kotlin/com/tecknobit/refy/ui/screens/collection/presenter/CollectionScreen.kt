@@ -23,11 +23,14 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.materialkolor.rememberDynamicColorScheme
@@ -66,17 +69,21 @@ class CollectionScreen(
     private val collectionColor: String
 ) : ItemScreen<LinksCollection, CollectionScreenViewModel>(
     viewModel = CollectionScreenViewModel(
-        collectionId = collectionId
+        collectionId = collectionId,
+        collectionName = collectionName,
+        collectionColor = collectionColor
     ),
-    itemName = collectionName
+    name = collectionName
 ) {
 
     private var isCollectionShared: Boolean = false
 
+    private lateinit var color: State<Color>
+
     @Composable
     override fun ArrangeScreenContent() {
         val colorScheme = rememberDynamicColorScheme(
-            primary = collectionColor.toColor(),
+            primary = color.value,
             isDark = when (localUser.theme) {
                 Dark -> true
                 Light -> false
@@ -264,6 +271,9 @@ class CollectionScreen(
     @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
+        color = viewModel.color.collectAsState(
+            initial = collectionColor.toColor()
+        )
         awaitNullItemLoaded(
             itemToWait = item.value
         ) { collection ->

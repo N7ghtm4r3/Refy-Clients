@@ -68,9 +68,10 @@ class TeamScreen(
     teamName: String
 ) : ItemScreen<Team, TeamScreenViewModel>(
     viewModel = TeamScreenViewModel(
-        teamId = teamId
+        teamId = teamId,
+        teamName = teamName
     ),
-    itemName = teamName
+    name = teamName
 ) {
 
     private lateinit var memberSheetState: SheetState

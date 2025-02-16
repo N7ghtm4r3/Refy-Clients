@@ -1,8 +1,10 @@
 package com.tecknobit.refy.ui.screens.collection.presentation
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
 import com.tecknobit.equinoxcompose.session.setServerOfflineValue
+import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.network.Requester.Companion.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
@@ -17,17 +19,27 @@ import com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.LinksRetriever
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
 
 class CollectionScreenViewModel(
-    private val collectionId: String
+    private val collectionId: String,
+    collectionName: String,
+    collectionColor: String
 ) : ItemScreenViewModel<LinksCollection>(
-    itemId = collectionId
+    itemId = collectionId,
+    name = collectionName
 ), LinksRetriever<RefyLinkImpl>, CollectionsManager {
 
     override val requestsScope: CoroutineScope = viewModelScope
+
+    private val _color = MutableStateFlow(
+        value = collectionColor.toColor()
+    )
+    val color: StateFlow<Color> = _color
 
     override fun retrieveItem() {
         viewModelScope.launch {
@@ -40,6 +52,8 @@ class CollectionScreenViewModel(
                 onSuccess = {
                     setServerOfflineValue(false)
                     _item.value = Json.decodeFromJsonElement(it.toResponseData())
+                    _itemName.value = _item.value!!.title
+                    _color.value = _item.value!!.color.toColor()
                 },
                 onFailure = { setHasBeenDisconnectedValue(true) },
                 onConnectionError = { setServerOfflineValue(true) }

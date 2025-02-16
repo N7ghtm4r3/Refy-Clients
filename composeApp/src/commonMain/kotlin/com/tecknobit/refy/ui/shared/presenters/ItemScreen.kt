@@ -51,7 +51,7 @@ import refy.composeapp.generated.resources.links
 @Structure
 abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     viewModel: V,
-    private val itemName: String
+    private val name: String
 ) : RefyScreen<V>(
     viewModel = viewModel,
     snackbarHostStateBottomPadding = 0.dp,
@@ -59,6 +59,8 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
 ) {
 
     protected lateinit var item: State<I?>
+
+    protected lateinit var itemName: State<String>
 
     @Composable
     @NonRestartableComposable
@@ -78,7 +80,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     @Composable
     @NonRestartableComposable
     override fun title(): String {
-        return itemName
+        return itemName.value
     }
 
     @Composable
@@ -253,6 +255,9 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     override fun CollectStates() {
         super.CollectStates()
         item = viewModel.item.collectAsState()
+        itemName = viewModel.itemName.collectAsState(
+            initial = name
+        )
     }
 
 }

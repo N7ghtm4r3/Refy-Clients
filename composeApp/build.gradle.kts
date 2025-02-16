@@ -96,6 +96,7 @@ kotlin {
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.compose)
                 implementation(libs.colorpicker.compose)
+                implementation("io.github.n7ghtm4r3:Ametista-Engine:1.0.2")
             }
         }
 
