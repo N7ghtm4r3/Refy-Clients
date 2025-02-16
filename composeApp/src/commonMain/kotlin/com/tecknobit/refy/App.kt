@@ -1,9 +1,12 @@
+@file:OptIn(ExperimentalResourceApi::class)
+
 package com.tecknobit.refy
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
@@ -12,6 +15,8 @@ import coil3.compose.LocalPlatformContext
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
+import com.tecknobit.ametistaengine.AmetistaEngine
+import com.tecknobit.ametistaengine.AmetistaEngine.Companion.FILES_AMETISTA_CONFIG_PATHNAME
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
@@ -43,6 +48,7 @@ import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import refy.composeapp.generated.resources.Res
@@ -146,6 +152,7 @@ fun App() {
         .networkCachePolicy(CachePolicy.ENABLED)
         .memoryCachePolicy(CachePolicy.ENABLED)
         .build()
+    InitAmetista()
     PreComposeApp {
         navigator = rememberNavigator()
         RefyTheme {
@@ -236,6 +243,22 @@ fun App() {
                 }
             }
         }
+    }
+}
+
+@Composable
+@NonRestartableComposable
+private fun InitAmetista() {
+    LaunchedEffect(Unit) {
+        val ametistaEngine = AmetistaEngine.ametistaEngine
+        ametistaEngine.fireUp(
+            configData = Res.readBytes(FILES_AMETISTA_CONFIG_PATHNAME),
+            host = AmetistaConfig.HOST,
+            serverSecret = AmetistaConfig.SERVER_SECRET!!,
+            applicationId = AmetistaConfig.APPLICATION_IDENTIFIER!!,
+            bypassSslValidation = AmetistaConfig.BYPASS_SSL_VALIDATION,
+            debugMode = true // TODO: SET TO FALSE
+        )
     }
 }
 

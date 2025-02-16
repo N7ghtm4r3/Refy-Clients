@@ -1,5 +1,6 @@
 package com.tecknobit.refy.helpers
 
+import com.tecknobit.ametistaengine.AmetistaEngine
 import com.tecknobit.equinoxcompose.network.EquinoxRequester
 import com.tecknobit.equinoxcore.annotations.Assembler
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
@@ -83,6 +84,13 @@ class RefyRequester(
     debugMode = debugMode,
     byPassSSLValidation = true
 ) {
+
+    init {
+        attachInterceptorOnRequest {
+            val ametistaEngine = AmetistaEngine.ametistaEngine
+            ametistaEngine.notifyNetworkRequest()
+        }
+    }
 
     /**
      * Method to create the payload for the [signUp] request.
