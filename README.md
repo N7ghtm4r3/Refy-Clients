@@ -81,8 +81,11 @@ dependencies {
 
 <details>
   <summary>Desktop UI</summary>
-  <img src="https://github.com/N7ghtm4r3/Refy-Clients/blob/main/images/revenues_desktop_eng.png" alt="revenues"/>
-  <img src="https://github.com/N7ghtm4r3/Refy-Clients/blob/main/images/project_desktop_eng.png" alt="project"/>
+  <img src="https://github.com/N7ghtm4r3/Refy-Clients/blob/main/images/links_desktop.png" alt="links"/>
+  <img src="https://github.com/N7ghtm4r3/Refy-Clients/blob/main/images/collection_desktop.png" alt="collection"/>
+  <img src="https://github.com/N7ghtm4r3/Refy-Clients/blob/main/images/team_desktop.png" alt="team"/>
+  <img src="https://github.com/N7ghtm4r3/Refy-Clients/blob/main/images/custom_desktop.png" alt="custom_link"/>
+  <img src="https://github.com/N7ghtm4r3/Refy-Clients/blob/main/images/custom_link_web.png" alt="custom_link_web_page"/>
 </details>
 
 ## Support

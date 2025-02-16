@@ -314,7 +314,6 @@ class TeamScreen(
     ) {
         TeamLinkCard(
             viewModel = viewModel,
-            team = item.value!!,
             link = link
         )
     }

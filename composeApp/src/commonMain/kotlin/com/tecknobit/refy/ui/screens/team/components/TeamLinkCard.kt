@@ -8,7 +8,6 @@ import com.tecknobit.refy.ui.components.RemoveItemButton
 import com.tecknobit.refy.ui.components.links.LinkCardContainer
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
-import com.tecknobit.refy.ui.screens.teams.data.Team
 
 @Wrapper
 @Composable
@@ -16,7 +15,6 @@ import com.tecknobit.refy.ui.screens.teams.data.Team
 fun TeamLinkCard(
     modifier: Modifier = Modifier,
     viewModel: TeamScreenViewModel,
-    team: Team,
     link: RefyLinkImpl
 ) {
     LinkCardContainer(
@@ -25,7 +23,7 @@ fun TeamLinkCard(
         link = link,
         showOwnerData = true,
         cancelButton = {
-            if (team.iAmTheOwner() || team.iAmAnAdmin()) {
+            if (link.iAmTheOwner()) {
                 RemoveItemButton(
                     removeAction = {
                         viewModel.removeLink(
