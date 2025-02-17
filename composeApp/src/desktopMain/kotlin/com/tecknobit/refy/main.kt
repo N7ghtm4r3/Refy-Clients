@@ -12,6 +12,10 @@ import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.app_name
 import refy.composeapp.generated.resources.logo
 
+/**
+ * Method to start the of `Refy` desktop app
+ *
+ */
 fun main() {
     AmetistaEngine.intake()
     application {

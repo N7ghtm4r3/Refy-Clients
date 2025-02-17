@@ -236,7 +236,14 @@ val surfaceContainerDarkHighContrast = Color(0xFF1D2024)
 val surfaceContainerHighDarkHighContrast = Color(0xFF282A2F)
 val surfaceContainerHighestDarkHighContrast = Color(0xFF33353A)
 
+/**
+ * `greenLight` the green color used in light theme
+ */
 val greenLight = "#388E3C".toColor()
+
+/**
+ * `greenDark` the green color used in dark theme
+ */
 val greenDark = "#4CAF50".toColor()
 
 
