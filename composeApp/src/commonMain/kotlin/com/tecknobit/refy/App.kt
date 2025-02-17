@@ -7,10 +7,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import coil3.ImageLoader
@@ -134,15 +131,12 @@ const val UPSERT_TEAM_SCREEN = "UpsertTeamScreen"
  */
 const val UPSERT_CUSTOM_LINK_SCREEN = "UpsertCustomLinkScreen"
 
-lateinit var currentSelectedHomeTabIndex: MutableState<Int>
-
 /**
  * Method to start the `Refy`'s application
  */
 @Composable
 @Preview
 fun App() {
-    currentSelectedHomeTabIndex = rememberSaveable { mutableIntStateOf(0) }
     bodyFontFamily = FontFamily(Font(Res.font.titillium))
     displayFontFamily = FontFamily(Font(Res.font.ubuntu))
     imageLoader = ImageLoader.Builder(LocalPlatformContext.current)
@@ -252,6 +246,9 @@ fun App() {
     }
 }
 
+/**
+ * Method to initialize the Ametista system
+ */
 @Composable
 @NonRestartableComposable
 private fun InitAmetista() {

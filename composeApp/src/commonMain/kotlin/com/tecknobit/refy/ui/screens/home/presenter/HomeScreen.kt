@@ -23,10 +23,13 @@ import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
-import com.tecknobit.refy.currentSelectedHomeTabIndex
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.icons.Collection
 import com.tecknobit.refy.ui.icons.Link45deg
@@ -57,6 +59,11 @@ import refy.composeapp.generated.resources.links
 import refy.composeapp.generated.resources.teams
 
 class HomeScreen : EquinoxNoModelScreen() {
+
+    /**
+     * `currentSelectedHomeTabIndex` the index of the tab currently displayed on the [HomeScreen]
+     */
+    private lateinit var currentSelectedHomeTabIndex: MutableState<Int>
 
     private companion object {
 
@@ -206,6 +213,7 @@ class HomeScreen : EquinoxNoModelScreen() {
      */
     @Composable
     override fun CollectStates() {
+        currentSelectedHomeTabIndex = rememberSaveable { mutableIntStateOf(0) }
     }
 
 }
