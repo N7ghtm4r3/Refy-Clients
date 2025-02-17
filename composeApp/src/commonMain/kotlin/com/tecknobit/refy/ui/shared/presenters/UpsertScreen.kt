@@ -51,6 +51,22 @@ import refy.composeapp.generated.resources.description_not_valid
 import refy.composeapp.generated.resources.insert
 import refy.composeapp.generated.resources.update
 
+/**
+ * The [UpsertScreen] class is useful to handle the insertion or updating of an item
+ *
+ * @param itemId The identifier of the item  to update
+ * @param insertTitle The title of the screen when the action is an insert action
+ * @param updateTitle The title of the screen when the action is an update action
+ * @param insertButtonText The text of the button used to upsert the item
+ * @param viewModel The support viewmodel for the screen
+ *
+ * @param I The type of the item displayed
+ * @param V The type of the viewmodel of the screen
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see RefyScreen
+ */
 @Structure
 abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     itemId: String? = null,
@@ -64,14 +80,23 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
 
     companion object {
 
+        /**
+         *`inputFieldShape` the shape to apply to the input fields component
+         */
         val inputFieldShape = RoundedCornerShape(
             size = 10.dp
         )
 
     }
 
+    /**
+     *`isUpdating` whether the action is an updating action
+     */
     protected val isUpdating = itemId != null
 
+    /**
+     *`item` the existing item to update
+     */
     protected lateinit var item: State<I?>
 
     /**
@@ -134,6 +159,11 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
         }
     }
 
+    /**
+     * Method to set the theme for the current screen
+     *
+     * @param content The content to display
+     */
     @Composable
     @NonRestartableComposable
     protected open fun ScreenTheme(
@@ -144,10 +174,16 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
         )
     }
 
+    /**
+     * The form used to insert or update the item details
+     */
     @Composable
     @NonRestartableComposable
     protected abstract fun ColumnScope.UpsertForm()
 
+    /**
+     * The section used to allow the user to insert or update the description of the item
+     */
     @Composable
     @NonRestartableComposable
     protected fun ItemDescriptionSection() {
@@ -170,6 +206,11 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
         )
     }
 
+    /**
+     * Custom component to indicate the start of a new section of the screen
+     *
+     * @param title The title of the section
+     */
     @Composable
     @NonRestartableComposable
     protected fun SectionTitle(
@@ -182,6 +223,9 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
         )
     }
 
+    /**
+     * Custom [Button] used to execute the upsert action for the item
+     */
     @Composable
     @NonRestartableComposable
     protected fun ColumnScope.UpsertButton() {
@@ -224,11 +268,17 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
         }
     }
 
+    /**
+     * Method invoked when the [ShowContent] composable has been started
+     */
     override fun onStart() {
         super.onStart()
         viewModel.retrieveItem()
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     override fun CollectStates() {
@@ -236,6 +286,10 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
         viewModel.itemDescriptionError = remember { mutableStateOf(false) }
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen after a loading required to correctly assign an
+     * initial value to the states
+     */
     @Composable
     @RequiresSuperCall
     override fun CollectStatesAfterLoading() {

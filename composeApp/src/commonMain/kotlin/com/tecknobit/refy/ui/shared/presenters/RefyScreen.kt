@@ -55,6 +55,20 @@ import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.search_by_keywords
 
+/**
+ * The [RefyScreen] class is useful to provides the basic behavior of a Refy's UI screen
+ *
+ * @param title The title of the screen
+ * @param viewModel The support viewmodel for the screen
+ * @param snackbarHostStateBottomPadding The padding to apply from the bottom of the screen to place
+ * the [SnackbarHost]
+ * @param contentBottomPadding The padding to apply from the bottom of the screen
+ *
+ * @param V The type of the viewmodel of the screen
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ */
 @Structure
 abstract class RefyScreen<V : RefyScreenViewModel>(
     private val title: StringResource? = null,
@@ -65,8 +79,14 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
     viewModel = viewModel
 ) {
 
+    /**
+     *`filtersEnabled` the state used to enable or disable the filtering
+     */
     private lateinit var filtersEnabled: MutableState<Boolean>
 
+    /**
+     * Method to arrange the content of the screen to display
+     */
     @Composable
     override fun ArrangeScreenContent() {
         Scaffold(
@@ -113,6 +133,10 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         }
     }
 
+    /**
+     * Custom top bar of the screen to display the information about the screen or to execute
+     * any actions related to the screen
+     */
     @Composable
     @NonRestartableComposable
     protected fun TopBar() {
@@ -153,8 +177,12 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         }
     }
 
+    /**
+     * Custom [ExtendedFloatingActionButton] used to edit the item where needed
+     */
     @Composable
     @NonRestartableComposable
+    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     protected open fun ExtendedFAB() {
         ExtendedFloatingActionButton(
             onClick = { upsertAction() }
@@ -173,16 +201,31 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         }
     }
 
+    /**
+     * The custom content of the screen
+     */
     @Composable
     @NonRestartableComposable
     protected abstract fun Content()
 
+    /**
+     * The representative icon of the upsert action
+     */
     protected abstract fun upsertIcon(): ImageVector
 
+    /**
+     * The representative text of the upsert action
+     */
     protected abstract fun upsertText(): StringResource
 
+    /**
+     * The action to execute to update or insert an item
+     */
     protected abstract fun upsertAction()
 
+    /**
+     * The title of the screen section
+     */
     @Composable
     @NonRestartableComposable
     private fun ScreenTitle() {
@@ -203,6 +246,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         }
     }
 
+    /**
+     * The subtitle of the screen section
+     */
     @Composable
     @NonRestartableComposable
     protected fun SubTitleSection() {
@@ -211,6 +257,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         }
     }
 
+    /**
+     * The content of the [SubTitleSection]
+     */
     @Composable
     @NonRestartableComposable
     protected open fun SubTitleContent() {
@@ -238,11 +287,19 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         }
     }
 
+    /**
+     * Section related to the back navigation from the current screen to a previous one
+     */
     @Composable
     @NonRestartableComposable
     protected open fun RowScope.NavBackButton() {
     }
 
+    /**
+     * Method to get the title of the screen
+     *
+     * @return the title of the screen as [String]
+     */
     @Composable
     @NonRestartableComposable
     protected open fun title(): String {
@@ -252,12 +309,18 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
             ""
     }
 
+    /**
+     * Section related to the filters available for the current screen
+     */
     @Composable
     @NonRestartableComposable
     protected open fun RowScope.Filters() {
         FilterButton()
     }
 
+    /**
+     * Custom [IconButton] used to filter a list displayed in the current screen
+     */
     @Composable
     @NonRestartableComposable
     protected fun FilterButton() {
@@ -280,6 +343,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         }
     }
 
+    /**
+     * Custom trailing content to display in the [TopBar] component
+     */
     @Composable
     @NonRestartableComposable
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
@@ -289,6 +355,10 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         )
     }
 
+    /**
+     * The [EquinoxOutlinedTextField] used to allow the user to insert the data of the filters
+     * to apply
+     */
     @Composable
     @NonRestartableComposable
     protected fun FiltersInputField() {
@@ -332,6 +402,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         }
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     override fun CollectStates() {

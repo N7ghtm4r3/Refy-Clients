@@ -16,6 +16,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.ManagedContent
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
@@ -48,6 +50,19 @@ import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.links
 
+/**
+ * The [ItemScreen] class is useful to display the information of a [RefyItem]
+ *
+ * @param viewModel The support viewmodel for the screen
+ * @param name The name of the item
+ *
+ * @param I The type of the item displayed
+ * @param V The type of the viewmodel of the screen
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see RefyScreen
+ */
 @Structure
 abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     viewModel: V,
@@ -58,10 +73,19 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     contentBottomPadding = 0.dp
 ) {
 
+    /**
+     *`item` the item displayed
+     */
     protected lateinit var item: State<I?>
 
-    protected lateinit var itemName: State<String>
+    /**
+     *`itemName` the name of item displayed
+     */
+    private lateinit var itemName: State<String>
 
+    /**
+     * Section related to the back navigation from the current screen to a previous one
+     */
     @Composable
     @NonRestartableComposable
     override fun RowScope.NavBackButton() {
@@ -77,17 +101,28 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         }
     }
 
+    /**
+     * Method to get the title of the screen
+     *
+     * @return the title of the screen as [String]
+     */
     @Composable
     @NonRestartableComposable
     override fun title(): String {
         return itemName.value
     }
 
+    /**
+     * Section related to the filters available for the current screen
+     */
     @Composable
     @NonRestartableComposable
     override fun RowScope.Filters() {
     }
 
+    /**
+     * The content of the [SubTitleSection]
+     */
     @Composable
     @NonRestartableComposable
     override fun SubTitleContent() {
@@ -99,6 +134,9 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         }
     }
 
+    /**
+     * The custom content of the screen
+     */
     @Composable
     @NonRestartableComposable
     override fun Content() {
@@ -126,10 +164,16 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         )
     }
 
+    /**
+     * Custom section used to display the items with a row layout
+     */
     @Composable
     @NonRestartableComposable
     protected abstract fun ColumnScope.RowItems()
 
+    /**
+     * Section used to display the links attached to the [item] displayed
+     */
     @Composable
     @NonRestartableComposable
     private fun LinksSection() {
@@ -168,6 +212,9 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         )
     }
 
+    /**
+     * The header of the [LinksSection] component
+     */
     @Composable
     @NonRestartableComposable
     private fun LinksHeader() {
@@ -190,6 +237,11 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         }
     }
 
+    /**
+     * Custom card used to display with a properly card the information of a link attached to the [item]
+     *
+     * @param link The link to display
+     */
     @Composable
     @NonRestartableComposable
     protected abstract fun ItemRelatedLinkCard(
@@ -217,6 +269,12 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         }
     }
 
+    /**
+     * The section of the header title of the screen
+     *
+     * @param modifier The modifier to apply to the component
+     * @param header The header information
+     */
     @Composable
     @NonRestartableComposable
     protected fun SectionHeaderTitle(
@@ -230,26 +288,43 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         )
     }
 
+    /**
+     * Content to allow the user to attach items to the current [item]
+     *
+     * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+     * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+     */
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     @Composable
     @NonRestartableComposable
     protected abstract fun AttachContent(
         state: SheetState,
-        scope: CoroutineScope
+        scope: CoroutineScope,
     )
 
+    /**
+     * Content displayed when the user request to delete the [item]
+     *
+     * @param delete The state used to manage the visibility of this component
+     */
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     @Composable
     @NonRestartableComposable
     protected abstract fun DeleteItemContent(
-        delete: MutableState<Boolean>
+        delete: MutableState<Boolean>,
     )
 
+    /**
+     * Method invoked when the [ShowContent] composable has been started
+     */
     override fun onStart() {
         super.onStart()
         viewModel.retrieveItem()
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     override fun CollectStates() {

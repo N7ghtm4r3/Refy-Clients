@@ -128,7 +128,7 @@ class CollectionScreenViewModel(
         retrieveItem()
     }
 
-    override fun refreshAfterTeamsAttached() {
+    override fun refreshAfterTeamsSharing() {
         collectionTeams.refresh()
         retrieveItem()
     }

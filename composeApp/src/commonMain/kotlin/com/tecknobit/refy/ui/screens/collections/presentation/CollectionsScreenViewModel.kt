@@ -60,7 +60,7 @@ class CollectionsScreenViewModel : RefyScreenViewModel(), CollectionsManager {
         refresh()
     }
 
-    override fun refreshAfterTeamsAttached() {
+    override fun refreshAfterTeamsSharing() {
         refresh()
     }
 
