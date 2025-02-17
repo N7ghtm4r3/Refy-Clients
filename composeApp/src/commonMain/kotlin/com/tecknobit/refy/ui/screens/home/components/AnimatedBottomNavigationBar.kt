@@ -61,7 +61,7 @@ import org.jetbrains.compose.resources.stringResource
 fun AnimatedBottomNavigationBar(
     modifier: Modifier,
     tabs: Array<NavigationTab>,
-    currentSelectedTab: MutableState<NavigationTab>,
+    currentSelectedTabIndex: MutableState<Int>,
     barColor: Color = MaterialTheme.colorScheme.surfaceContainer,
     circleColor: Color = MaterialTheme.colorScheme.surfaceContainer,
     selectedColor: Color = MaterialTheme.colorScheme.primary,
@@ -69,9 +69,7 @@ fun AnimatedBottomNavigationBar(
 ) {
     val circleRadius = 26.dp
 
-    var selectedItem by rememberSaveable {
-        mutableIntStateOf(tabs.indexOf(currentSelectedTab.value))
-    }
+    var selectedItem by rememberSaveable { mutableIntStateOf(currentSelectedTabIndex.value) }
     var barSize by remember { mutableStateOf(IntSize(0, 0)) }
     // first item's center offset for Arrangement.SpaceAround
     val offsetStep = remember(barSize) {
@@ -148,7 +146,7 @@ fun AnimatedBottomNavigationBar(
                 NavigationBarItem(
                     selected = isSelected,
                     onClick = {
-                        currentSelectedTab.value = tab
+                        currentSelectedTabIndex.value = index
                         selectedItem = index
                     },
                     icon = {

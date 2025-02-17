@@ -23,12 +23,10 @@ import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
+import com.tecknobit.refy.currentSelectedHomeTabIndex
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.icons.Collection
 import com.tecknobit.refy.ui.icons.Link45deg
@@ -45,7 +44,6 @@ import com.tecknobit.refy.ui.screens.customs.presenter.CustomLinksScreen
 import com.tecknobit.refy.ui.screens.home.components.AnimatedBottomNavigationBar
 import com.tecknobit.refy.ui.screens.home.components.SideNavigationItem
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
-import com.tecknobit.refy.ui.screens.home.data.NavigationTabSaver
 import com.tecknobit.refy.ui.screens.links.presenter.LinksScreen
 import com.tecknobit.refy.ui.screens.teams.presenter.TeamsScreen
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
@@ -61,8 +59,6 @@ import refy.composeapp.generated.resources.teams
 class HomeScreen : EquinoxNoModelScreen() {
 
     private companion object {
-
-        private lateinit var currentSelectedTab: MutableState<NavigationTab>
 
         val tabs = arrayOf(
             NavigationTab(
@@ -126,11 +122,11 @@ class HomeScreen : EquinoxNoModelScreen() {
                     HorizontalDivider()
                 }
             ) {
-                tabs.forEach { tab ->
+                tabs.forEachIndexed { index, tab ->
                     SideNavigationItem(
                         tab = tab,
-                        selected = tab == currentSelectedTab.value,
-                        onClick = { currentSelectedTab.value = tab}
+                        selected = index == currentSelectedHomeTabIndex.value,
+                        onClick = { currentSelectedHomeTabIndex.value = index }
                     )
                 }
                 Column (
@@ -168,7 +164,7 @@ class HomeScreen : EquinoxNoModelScreen() {
                     .align(Alignment.BottomCenter)
                     .navigationBarsPadding(),
                 tabs = tabs,
-                currentSelectedTab = currentSelectedTab
+                currentSelectedTabIndex = currentSelectedHomeTabIndex
             )
         }
     }
@@ -184,8 +180,9 @@ class HomeScreen : EquinoxNoModelScreen() {
                 .background(MaterialTheme.colorScheme.background)
         ) {
             AnimatedContent(
-                targetState = currentSelectedTab.value
-            ) { tab ->
+                targetState = currentSelectedHomeTabIndex.value
+            ) { index ->
+                val tab = tabs[index]
                 var screen by remember { mutableStateOf<RefyScreen<*>?>(null) }
                 LaunchedEffect(Unit) {
                     screen = tab.tabRelatedScreen()
@@ -209,11 +206,6 @@ class HomeScreen : EquinoxNoModelScreen() {
      */
     @Composable
     override fun CollectStates() {
-        currentSelectedTab = rememberSaveable(
-            saver = NavigationTabSaver()
-        ) {
-            mutableStateOf(tabs[0])
-        }
     }
 
 }

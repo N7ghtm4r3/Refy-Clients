@@ -250,25 +250,27 @@ class TeamScreen(
                         team = item.value!!
                     )
                 }
-                val state = rememberModalBottomSheetState(
-                    skipPartiallyExpanded = true
-                )
-                val scope = rememberCoroutineScope()
-                Button(
-                    onClick = {
-                        scope.launch {
-                            state.show()
+                if (item.value!!.iAmAnAdmin()) {
+                    val state = rememberModalBottomSheetState(
+                        skipPartiallyExpanded = true
+                    )
+                    val scope = rememberCoroutineScope()
+                    Button(
+                        onClick = {
+                            scope.launch {
+                                state.show()
+                            }
                         }
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.share_with_the_team)
+                        )
                     }
-                ) {
-                    Text(
-                        text = stringResource(Res.string.share_with_the_team)
+                    AttachContent(
+                        state = state,
+                        scope = scope
                     )
                 }
-                AttachContent(
-                    state = state,
-                    scope = scope
-                )
             }
         }
         AnimatedVisibility(

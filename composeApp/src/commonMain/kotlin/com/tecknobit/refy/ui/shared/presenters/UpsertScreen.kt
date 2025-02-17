@@ -208,7 +208,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
             ),
             onClick = {
                 viewModel.upsert {
-                    onUpsert()
+                    navigator.goBack()
                 }
             }
         ) {
@@ -227,10 +227,6 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     override fun onStart() {
         super.onStart()
         viewModel.retrieveItem()
-    }
-
-    protected open fun onUpsert() {
-        navigator.goBack()
     }
 
     @Composable
