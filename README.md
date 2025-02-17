@@ -21,7 +21,7 @@ contact us to talk about, thanks and good use!
   - [Refy desktop version](https://github.com/N7ghtm4r3/Refy-Clients/releases/tag/1.0.1)
   - iOS -> source code available, but cannot distribute due
     missing [Apple Developer Program license](https://developer.apple.com/programs/)
-  - [Refy webapp version](https://github.com/N7ghtm4r3/Refy-WebApp/releases/tag/1.0.1)
+  - [Refy webapp version](https://github.com/N7ghtm4r3/Refy-WebApp)
 
 ### Backend
 
