@@ -87,6 +87,12 @@ import refy.composeapp.generated.resources.tag_name
 import refy.composeapp.generated.resources.tag_name_not_valid
 import refy.composeapp.generated.resources.welcome_back
 
+/**
+ * The [AuthScreen] class is used to execute the authentication by the user
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ */
 class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
     viewModel = AuthScreenViewModel()
 ) {

@@ -33,7 +33,7 @@ interface RefyUser {
     val email: String
 
     /**
-     *`profilePic` the profilePic of the user
+     *`profilePic` the profile pic of the user
      */
     val profilePic: String
 

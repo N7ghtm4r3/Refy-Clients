@@ -10,6 +10,16 @@ import com.tecknobit.refy.requester
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
 import kotlinx.coroutines.launch
 
+/**
+ * The `ProfileScreenViewModel` class is the support class used to change the user account settings
+ * or preferences
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see androidx.lifecycle.ViewModel
+ * @see com.tecknobit.equinoxcompose.session.Retriever
+ * @see com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+ * @see EquinoxProfileViewModel
+ */
 class ProfileScreenViewModel : EquinoxProfileViewModel(
     snackbarHostState = SnackbarHostState(),
     requester = requester,
@@ -31,6 +41,11 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
      */
     lateinit var newTagNameError: MutableState<Boolean>
 
+    /**
+     * Method to change the tag name of the [localUser]
+     *
+     * @param onSuccess The action to execute when the request ends successfully
+     */
     fun changeTagName(
         onSuccess: () -> Unit
     ) {

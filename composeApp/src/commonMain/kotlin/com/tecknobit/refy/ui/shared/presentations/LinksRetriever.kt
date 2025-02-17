@@ -18,7 +18,7 @@ interface LinksRetriever<L : RefyLink> {
     val linksState: PaginationState<Int, L>
 
     /**
-     * Method used to load and retrieve the links to add in the [linksState]
+     * Method used to load and retrieve the links to append to the [linksState]
      *
      * @param page The page to request
      */

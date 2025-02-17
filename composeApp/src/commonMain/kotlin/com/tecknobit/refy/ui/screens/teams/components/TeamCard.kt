@@ -42,6 +42,12 @@ import com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.team_created_on
 
+/**
+ * Custom card used to display the team information
+ *
+ * @param viewModel The support viewmodel for the screen
+ * @param team The team to display
+ */
 @Composable
 @NonRestartableComposable
 fun TeamCard(
@@ -107,6 +113,14 @@ fun TeamCard(
     }
 }
 
+/**
+ * The bottom bar of the [TeamCard] component
+ *
+ * @param expanded Whether the card is expanded
+ * @param viewModel The support viewmodel for the screen
+ * @param team The team to display
+ * @param descriptionLines The number of the lines occupied by the link description
+ */
 @Composable
 @NonRestartableComposable
 private fun TeamBottomBar(

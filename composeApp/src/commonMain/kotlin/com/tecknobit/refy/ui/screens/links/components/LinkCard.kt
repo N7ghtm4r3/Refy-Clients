@@ -15,6 +15,13 @@ import com.tecknobit.refy.ui.components.links.LinkCardContainer
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 
+/**
+ * Custom card used to display the information of a [RefyLinkImpl]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param viewModel The support viewmodel for the screen
+ * @param link The link to display
+ */
 @Wrapper
 @Composable
 @NonRestartableComposable

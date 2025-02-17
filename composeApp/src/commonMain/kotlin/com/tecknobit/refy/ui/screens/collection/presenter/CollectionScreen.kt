@@ -16,6 +16,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
@@ -37,6 +38,7 @@ import com.materialkolor.rememberDynamicColorScheme
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Auto
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
@@ -54,6 +56,7 @@ import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenVie
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.presenters.ItemScreen
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyRow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -63,6 +66,19 @@ import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.delete
 import refy.composeapp.generated.resources.edit
 
+/**
+ * The [CollectionScreen] class is useful to display the information of a [LinksCollection] and manage
+ * which links are attached and where the collection is shared
+ *
+ * @param collectionId The identifier of the collection
+ * @param collectionName The name of the collection
+ * @param collectionColor The color of the collection
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see RefyScreen
+ * @see ItemScreen
+ */
 class CollectionScreen(
     collectionId: String,
     collectionName: String,
@@ -76,10 +92,19 @@ class CollectionScreen(
     name = collectionName
 ) {
 
+    /**
+     *`isCollectionShared` whether the collection is shared with teams
+     */
     private var isCollectionShared: Boolean = false
 
+    /**
+     *`color` the color of the collection
+     */
     private lateinit var color: State<Color>
 
+    /**
+     * Method to arrange the content of the screen to display
+     */
     @Composable
     override fun ArrangeScreenContent() {
         val colorScheme = rememberDynamicColorScheme(
@@ -99,6 +124,9 @@ class CollectionScreen(
         }
     }
 
+    /**
+     * Custom [ExtendedFloatingActionButton] used to edit the item where needed
+     */
     @Composable
     @NonRestartableComposable
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
@@ -155,12 +183,18 @@ class CollectionScreen(
         }
     }
 
+    /**
+     * Custom section used to display the items with a row layout
+     */
     @Composable
     @NonRestartableComposable
     override fun ColumnScope.RowItems() {
         TeamsSection()
     }
 
+    /**
+     * The section where are displayed the teams where the collection is shared
+     */
     @Composable
     @NonRestartableComposable
     private fun TeamsSection() {
@@ -182,6 +216,11 @@ class CollectionScreen(
         }
     }
 
+    /**
+     * Custom card used to display with a properly card the information of a link attached to the [item]
+     *
+     * @param link The link to display
+     */
     @Composable
     @NonRestartableComposable
     override fun ItemRelatedLinkCard(
@@ -195,18 +234,30 @@ class CollectionScreen(
         )
     }
 
+    /**
+     * The representative icon of the upsert action
+     */
     override fun upsertIcon(): ImageVector {
         return FolderManaged
     }
 
+    /**
+     * The representative text of the upsert action
+     */
     override fun upsertText(): StringResource {
         return Res.string.edit
     }
 
+    /**
+     * The action to execute to update or insert an item
+     */
     override fun upsertAction() {
         navigator.navigate("$UPSERT_COLLECTION_SCREEN/${item.value!!.id}/${item.value!!.color}")
     }
 
+    /**
+     * Custom trailing content to display in the [TopBar] component
+     */
     @Composable
     @NonRestartableComposable
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
@@ -236,6 +287,12 @@ class CollectionScreen(
         }
     }
 
+    /**
+     * Content to allow the user to attach items to the current [item]
+     *
+     * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+     * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+     */
     @Composable
     @NonRestartableComposable
     override fun AttachContent(
@@ -250,6 +307,11 @@ class CollectionScreen(
         )
     }
 
+    /**
+     * Content displayed when the user request to delete the [item]
+     *
+     * @param delete The state used to manage the visibility of this component
+     */
     @Composable
     @NonRestartableComposable
     override fun DeleteItemContent(
@@ -266,6 +328,9 @@ class CollectionScreen(
         )
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     @NonRestartableComposable

@@ -54,8 +54,21 @@ import androidx.compose.ui.zIndex
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import org.jetbrains.compose.resources.stringResource
 
-// credits to https://stackoverflow.com/a/78329710/22902790
-
+/**
+ * Custom bottom navigation bar used to allow the user to navigate in the application on the
+ * compact screen size classes devices
+ *
+ * [Credits](https://stackoverflow.com/a/78329710/22902790)
+ *
+ * @param modifier The modifier to apply to the component
+ * @param tabs The tabs to display
+ * @param currentSelectedTabIndex The index of the current tab selected
+ * @param barColor The color of the bar
+ * @param circleColor The color of the circle indicator
+ * @param selectedColor The color to indicate the tab has been selected
+ * @param unselectedColor The color indicate a tab not selected
+ */
+// TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
 @Composable
 @NonRestartableComposable
 fun AnimatedBottomNavigationBar(

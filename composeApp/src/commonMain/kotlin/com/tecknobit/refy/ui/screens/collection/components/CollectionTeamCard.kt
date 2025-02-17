@@ -25,6 +25,12 @@ import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.members
 import refy.composeapp.generated.resources.team
 
+/**
+ * Custom card used to display the information of a team where the collection is shared
+ *
+ * @param viewModel The support viewmodel for the screen
+ * @param team The team where the collection is shared
+ */
 @Composable
 @NonRestartableComposable
 fun CollectionTeamCard(

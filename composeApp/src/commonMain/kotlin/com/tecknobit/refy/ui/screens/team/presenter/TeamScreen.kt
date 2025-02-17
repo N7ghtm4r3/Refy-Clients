@@ -17,9 +17,11 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
@@ -34,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.UPSERT_TEAM_SCREEN
@@ -51,6 +54,7 @@ import com.tecknobit.refy.ui.screens.team.components.TeamMembers
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.presenters.ItemScreen
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyRow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -63,6 +67,17 @@ import refy.composeapp.generated.resources.edit
 import refy.composeapp.generated.resources.leave_team
 import refy.composeapp.generated.resources.share_with_the_team
 
+/**
+ * The [TeamScreen] class is useful to display the information of a [Team]
+ *
+ * @param teamId The identifier of the team
+ * @param teamName The name of the team
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see RefyScreen
+ * @see ItemScreen
+ */
 class TeamScreen(
     teamId: String,
     teamName: String
@@ -74,10 +89,19 @@ class TeamScreen(
     name = teamName
 ) {
 
+    /**
+     *`memberSheetState` the state used to manage the [TeamMembers] component
+     */
     private lateinit var memberSheetState: SheetState
 
+    /**
+     *`scope` the scope used to manage the [TeamMembers] component
+     */
     private lateinit var scope: CoroutineScope
 
+    /**
+     * Custom trailing content to display in the [TopBar] component
+     */
     @Composable
     @NonRestartableComposable
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
@@ -97,6 +121,9 @@ class TeamScreen(
         }
     }
 
+    /**
+     * Custom [ExtendedFloatingActionButton] used to edit the item where needed
+     */
     @Composable
     @NonRestartableComposable
     override fun ExtendedFAB() {
@@ -108,6 +135,9 @@ class TeamScreen(
         }
     }
 
+    /**
+     * The content of the [SubTitleSection]
+     */
     @Composable
     @NonRestartableComposable
     override fun SubTitleContent() {
@@ -172,6 +202,9 @@ class TeamScreen(
         }
     }
 
+    /**
+     * Custom section used to display the items with a row layout
+     */
     @Composable
     @NonRestartableComposable
     override fun ColumnScope.RowItems() {
@@ -193,6 +226,9 @@ class TeamScreen(
         )
     }
 
+    /**
+     * The section about the team information such logo and action buttons to manage that team
+     */
     @Composable
     @NonRestartableComposable
     private fun TeamInfoSection() {
@@ -284,6 +320,9 @@ class TeamScreen(
         }
     }
 
+    /**
+     * The section where are displayed the collections shared with the team
+     */
     @Composable
     @NonRestartableComposable
     private fun CollectionsSection() {
@@ -307,6 +346,11 @@ class TeamScreen(
         }
     }
 
+    /**
+     * Custom card used to display with a properly card the information of a link attached to the [item]
+     *
+     * @param link The link to display
+     */
     @Composable
     @NonRestartableComposable
     override fun ItemRelatedLinkCard(
@@ -318,6 +362,12 @@ class TeamScreen(
         )
     }
 
+    /**
+     * Content to allow the user to attach items to the current [item]
+     *
+     * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+     * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+     */
     @Composable
     @NonRestartableComposable
     override fun AttachContent(
@@ -332,6 +382,11 @@ class TeamScreen(
         )
     }
 
+    /**
+     * Content displayed when the user request to delete the [item]
+     *
+     * @param delete The state used to manage the visibility of this component
+     */
     @Composable
     @NonRestartableComposable
     override fun DeleteItemContent(
@@ -348,18 +403,30 @@ class TeamScreen(
         )
     }
 
+    /**
+     * The representative icon of the upsert action
+     */
     override fun upsertIcon(): ImageVector {
         return Icons.Default.Edit
     }
 
+    /**
+     * The representative text of the upsert action
+     */
     override fun upsertText(): StringResource {
         return Res.string.edit
     }
 
+    /**
+     * The action to execute to update or insert an item
+     */
     override fun upsertAction() {
         navigator.navigate("$UPSERT_TEAM_SCREEN/${item.value!!.id}")
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     @NonRestartableComposable

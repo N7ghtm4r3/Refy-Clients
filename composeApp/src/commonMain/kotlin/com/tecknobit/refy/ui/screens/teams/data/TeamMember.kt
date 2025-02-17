@@ -14,6 +14,21 @@ import com.tecknobit.refycore.enums.TeamRole.VIEWER
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * The `TeamMember` represent a member of a [Team]
+ *
+ * @property id The identifier of the member
+ * @property name The name of the member
+ * @property surname The surname of the member
+ * @property email The email of the member
+ * @property profilePic The profile pic of the member
+ * @property tagName The tagName of the member
+ * @property role The role of the member in that team
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ *
+ * @see RefyUser
+ */
 @Serializable
 data class TeamMember(
     override val id: String,
@@ -28,11 +43,19 @@ data class TeamMember(
     var role: TeamRole
 ) : RefyUser {
 
+    /**
+     *`profilePic` the profile pic of the user
+     */
     override val profilePic: String
         get() = localUser.hostAddress + "/" + _profilePic
 
     companion object {
 
+        /**
+         * Method to get a representative color for the role of the member
+         *
+         * @return the color of the role as [Color]
+         */
         @Composable
         fun TeamRole.toColor(): Color {
             return when (this) {
@@ -43,6 +66,11 @@ data class TeamMember(
 
     }
 
+    /**
+     * Method to check whether the [localUser] is not the current member
+     *
+     * @return whether the [localUser] is not the current member as [Boolean]
+     */
     fun isNotMe(): Boolean {
         return localUser.userId != id
     }

@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.EmptyCollections
@@ -25,6 +26,7 @@ import com.tecknobit.refy.ui.screens.collection.helpers.restoreDefaultApplicatio
 import com.tecknobit.refy.ui.screens.collections.components.CollectionCard
 import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
 import com.tecknobit.refy.ui.shared.presenters.ItemsScreen
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyVerticalStaggeredGrid
 import org.jetbrains.compose.resources.StringResource
@@ -32,17 +34,33 @@ import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.collections
 import refy.composeapp.generated.resources.create
 
+/**
+ * The [CollectionsScreen] class is useful to display the list of the collections available for the
+ * [com.tecknobit.refy.localUser]
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ *
+ * @see EquinoxScreen
+ * @see RefyScreen
+ * @see ItemsScreen
+ */
 class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
     title = Res.string.collections,
     viewModel = CollectionsScreenViewModel()
 ) {
 
+    /**
+     * Method to arrange the content of the screen to display
+     */
     @Composable
     override fun ArrangeScreenContent() {
         restoreDefaultApplicationThemeStatusBar()
         super.ArrangeScreenContent()
     }
 
+    /**
+     * Custom component used to display the items list as grid
+     */
     @Composable
     @NonRestartableComposable
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
@@ -85,6 +103,9 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
         }
     }
 
+    /**
+     * Custom component used to display the items list as custom [Column]
+     */
     @Composable
     @NonRestartableComposable
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
@@ -110,14 +131,23 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
         }
     }
 
+    /**
+     * The action to execute to update or insert an item
+     */
     override fun upsertAction() {
         navigator.navigate(UPSERT_COLLECTION_SCREEN)
     }
 
+    /**
+     * The representative text of the upsert action
+     */
     override fun upsertText(): StringResource {
         return Res.string.create
     }
 
+    /**
+     * The representative icon of the upsert action
+     */
     override fun upsertIcon(): ImageVector {
         return Icons.Default.CreateNewFolder
     }

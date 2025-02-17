@@ -38,6 +38,13 @@ import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenV
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.collection_created_on
 
+/**
+ * Custom card used to display the information of a [LinksCollection]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param viewModel The support viewmodel for the screen
+ * @param collection The collection to display
+ */
 @Composable
 @NonRestartableComposable
 fun CollectionCard(
@@ -98,6 +105,14 @@ fun CollectionCard(
     }
 }
 
+/**
+ * The bottom bar of the [CollectionCard] component
+ *
+ * @param expanded Whether the card is expanded
+ * @param viewModel The support viewmodel for the screen
+ * @param collection The collection to display
+ * @param descriptionLines The number of the lines occupied by the link description
+ */
 @Composable
 @NonRestartableComposable
 private fun CollectionBottomBar(

@@ -102,6 +102,13 @@ import refy.composeapp.generated.resources.password_not_valid
 import refy.composeapp.generated.resources.profile
 import refy.composeapp.generated.resources.tag_name_not_valid
 
+/**
+ * The [ProfileScreen] display the account settings of the current [localUser],
+ * allow to customize the preferences and settings
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see com.tecknobit.equinoxcompose.session.EquinoxScreen
+ */
 class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
     viewModel = ProfileScreenViewModel()
 ) {
@@ -268,6 +275,9 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         }
     }
 
+    /**
+     * The settings section to customize the [localUser] experience
+     */
     @Composable
     @NonRestartableComposable
     private fun Settings() {

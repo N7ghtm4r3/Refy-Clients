@@ -3,6 +3,7 @@ package com.tecknobit.refy.ui.screens.links.presentation
 import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
 import com.tecknobit.equinoxcompose.session.setServerOfflineValue
+import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.Requester.Companion.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
 import com.tecknobit.refy.requester
@@ -10,10 +11,28 @@ import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel
+import com.tecknobit.refy.ui.shared.presentations.LinksRetriever
+import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
 import kotlinx.coroutines.launch
 
+/**
+ * The `LinksScreenViewModel` class is the support class used by the [com.tecknobit.refy.ui.screens.links.presenter.LinksScreen]
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see androidx.lifecycle.ViewModel
+ * @see com.tecknobit.equinoxcompose.session.Retriever
+ * @see EquinoxViewModel
+ * @see RefyScreenViewModel
+ * @see LinksRetriever
+ * @see BaseLinksScreenViewModel
+ */
 class LinksScreenViewModel : BaseLinksScreenViewModel<RefyLinkImpl>() {
 
+    /**
+     * Method used to load and retrieve the links to append to the [linksState]
+     *
+     * @param page The page to request
+     */
     override fun loadLinks(
         page: Int
     ) {
@@ -40,6 +59,13 @@ class LinksScreenViewModel : BaseLinksScreenViewModel<RefyLinkImpl>() {
         }
     }
 
+    /**
+     * Method to share a link with collections
+     *
+     * @param link The link to share
+     * @param collections The collections where share the link
+     * @param afterShared The action to execute after the link has been shared
+     */
     fun shareLinkWithCollections(
         link: RefyLinkImpl,
         collections: List<LinksCollection>,
@@ -59,6 +85,13 @@ class LinksScreenViewModel : BaseLinksScreenViewModel<RefyLinkImpl>() {
         }
     }
 
+    /**
+     * Method to share a link with teams
+     *
+     * @param link The link to share
+     * @param teams The teams where share the link
+     * @param afterShared The action to execute after the link has been shared
+     */
     fun shareLinkWithTeams(
         link: RefyLinkImpl,
         teams: List<Team>,
@@ -78,6 +111,12 @@ class LinksScreenViewModel : BaseLinksScreenViewModel<RefyLinkImpl>() {
         }
     }
 
+    /**
+     * Method to request to delete a link
+     *
+     * @param link The link to delete
+     * @param onDelete The action to execute when the links has been deleted
+     */
     override fun deleteLink(
         link: RefyLinkImpl,
         onDelete: () -> Unit

@@ -14,6 +14,16 @@ import com.tecknobit.refycore.TAG_NAME_KEY
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
 import kotlinx.serialization.json.JsonObject
 
+/**
+ * The `AuthScreenViewModel` class is the support class used to execute the authentication requests
+ * to the backend
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see androidx.lifecycle.ViewModel
+ * @see com.tecknobit.equinoxcompose.session.Retriever
+ * @see EquinoxViewModel
+ * @see EquinoxAuthViewModel
+ */
 class AuthScreenViewModel : EquinoxAuthViewModel(
     snackbarHostState = SnackbarHostState(),
     requester = requester,
@@ -30,6 +40,11 @@ class AuthScreenViewModel : EquinoxAuthViewModel(
      */
     lateinit var tagNameError: MutableState<Boolean>
 
+    /**
+     * Method to validate the inputs for the [signUp] request
+     *
+     * @return whether the inputs are valid as [Boolean]
+     */
     override fun signUpFormIsValid(): Boolean {
         val validation = super.signUpFormIsValid()
         if (!validation)
@@ -41,11 +56,24 @@ class AuthScreenViewModel : EquinoxAuthViewModel(
         return true
     }
 
+    /**
+     * Method to get the list of the custom parameters to use in the [signUp] request
+     */
     @CustomParametersOrder(order = [TAG_NAME_KEY])
     override fun getSignUpCustomParameters(): Array<out Any?> {
         return arrayOf(tagName.value)
     }
 
+    /**
+     * Method to launch the application after the authentication request, will be instantiated with the user details
+     * both the [requester] and the [localUser]
+     *
+     * @param response The response of the authentication request
+     * @param name The name of the user
+     * @param surname The surname of the user
+     * @param language The language of the user
+     * @param custom The custom parameters added in a customization of the equinox user
+     */
     @RequiresSuperCall
     @CustomParametersOrder(order = [TAG_NAME_KEY])
     override fun launchApp(

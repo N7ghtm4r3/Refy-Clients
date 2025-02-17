@@ -22,6 +22,12 @@ import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.app_name
 
+/**
+ * The [SplashScreen] class is used to retrieve and load the session data and enter the application's workflow
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxNoModelScreen
+ */
 class SplashScreen : EquinoxNoModelScreen() {
 
     /**

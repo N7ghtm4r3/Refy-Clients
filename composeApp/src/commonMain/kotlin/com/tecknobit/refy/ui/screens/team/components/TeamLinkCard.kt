@@ -9,6 +9,13 @@ import com.tecknobit.refy.ui.components.links.LinkCardContainer
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
 
+/**
+ * Custom card used to display the information of a link shared with the team
+ *
+ * @param modifier The modifier to apply to the component
+ * @param viewModel The support viewmodel for the screen
+ * @param link The link shared with the team
+ */
 @Wrapper
 @Composable
 @NonRestartableComposable

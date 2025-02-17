@@ -36,6 +36,14 @@ import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.team_members
 
+/**
+ * Custom component used to display the members joined in the team
+ *
+ * @param viewModel The support viewmodel for the screen
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param team The team to display
+ */
 @Composable
 @NonRestartableComposable
 fun TeamMembers(

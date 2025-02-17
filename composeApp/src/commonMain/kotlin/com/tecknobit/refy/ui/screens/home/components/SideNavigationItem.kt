@@ -19,6 +19,14 @@ import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom component used to represent a tab of a side navigation bar
+ *
+ * @param tab The tab to represent
+ * @param selected Whether the tab is currently selected
+ * @param onClick The action to execute when a tab is clicked
+ */
+// TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
 @Composable
 @NonRestartableComposable
 fun SideNavigationItem(
@@ -73,5 +81,4 @@ fun SideNavigationItem(
             }
         }
     }
-    //HorizontalDivider()
 }

@@ -58,6 +58,13 @@ import refy.composeapp.generated.resources.the_link_will_expire_on
 import refy.composeapp.generated.resources.this_link_is
 import refy.composeapp.generated.resources.this_link_not_expires
 
+/**
+ * Custom card used to display the information of a [CustomRefyLink]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param viewModel The support viewmodel for the screen
+ * @param link The link to display
+ */
 @Composable
 @NonRestartableComposable
 fun CustomLinkCard(
@@ -134,6 +141,13 @@ fun CustomLinkCard(
     )
 }
 
+/**
+ * Custom [ModalBottomSheet] used to display the details of the custom link
+ *
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param link The link to display
+ */
 @Composable
 @NonRestartableComposable
 private fun CustomLinkDetails(
@@ -184,6 +198,11 @@ private fun CustomLinkDetails(
     }
 }
 
+/**
+ * Section to display the access method of the link
+ *
+ * @param link The custom link displayed
+ */
 @Composable
 @NonRestartableComposable
 private fun AccessMethod(
@@ -214,6 +233,11 @@ private fun AccessMethod(
     }
 }
 
+/**
+ * Section to display the authentication fields of the custom link
+ *
+ * @param link The custom link displayed
+ */
 @Composable
 @NonRestartableComposable
 private fun Auth(
@@ -232,6 +256,11 @@ private fun Auth(
     }
 }
 
+/**
+ * Section to display the resources shared by the the custom link
+ *
+ * @param link The custom link displayed
+ */
 @Composable
 @NonRestartableComposable
 private fun Resources(
@@ -250,6 +279,12 @@ private fun Resources(
     }
 }
 
+/**
+ * Custom component used to display the [Map] data of the [Auth] and [Resources] section of the
+ * custom link
+ *
+ * @param payload The data to display
+ */
 @Composable
 @NonRestartableComposable
 private fun CustomLinkPayload(

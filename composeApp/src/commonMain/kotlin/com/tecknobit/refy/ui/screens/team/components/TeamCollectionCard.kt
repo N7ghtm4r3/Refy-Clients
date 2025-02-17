@@ -25,6 +25,13 @@ import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.collection
 import refy.composeapp.generated.resources.links_contained
 
+/**
+ * Custom card used to display the information of a collection shared with the team
+ *
+ * @param viewModel The support viewmodel for the screen
+ * @param iAmAnAdmin Whether the [com.tecknobit.refy.localUser] is an [com.tecknobit.refycore.enums.TeamRole.ADMIN] of the team
+ * @param collection The collection shared with the team
+ */
 @Composable
 @NonRestartableComposable
 fun TeamCollectionCard(

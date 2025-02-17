@@ -10,6 +10,15 @@ import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenVie
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 
+/**
+ * Custom card used to display the information of a link shared with the [collection]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param viewModel The support viewmodel for the screen
+ * @param collection The collection to where the link is shared
+ * @param showOwnerData Whether show the data of the owner
+ * @param link The link to display
+ */
 @Wrapper
 @Composable
 @NonRestartableComposable

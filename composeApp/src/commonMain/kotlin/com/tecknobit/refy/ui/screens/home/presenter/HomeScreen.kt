@@ -58,15 +58,25 @@ import refy.composeapp.generated.resources.custom
 import refy.composeapp.generated.resources.links
 import refy.composeapp.generated.resources.teams
 
+/**
+ * The [HomeScreen] class is used to display the main screen of the application allowing the user
+ * to navigate in the screens of that application
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxNoModelScreen
+ */
 class HomeScreen : EquinoxNoModelScreen() {
 
     /**
-     * `currentSelectedHomeTabIndex` the index of the tab currently displayed on the [HomeScreen]
+     * `currentSelectedTabIndex` the index of the tab currently displayed on the [HomeScreen]
      */
-    private lateinit var currentSelectedHomeTabIndex: MutableState<Int>
+    private lateinit var currentSelectedTabIndex: MutableState<Int>
 
     private companion object {
 
+        /**
+         * `tabs` the available tabs and screen to reach
+         */
         val tabs = arrayOf(
             NavigationTab(
                 title = Res.string.links,
@@ -108,8 +118,13 @@ class HomeScreen : EquinoxNoModelScreen() {
         }
     }
 
+    /**
+     * Custom [NavigationRail] component used to navigate in the application on extended or medium
+     * screen size classes devices
+     */
     @Composable
     @NonRestartableComposable
+    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     private fun SideNavigationBar() {
         Row {
             NavigationRail(
@@ -132,8 +147,8 @@ class HomeScreen : EquinoxNoModelScreen() {
                 tabs.forEachIndexed { index, tab ->
                     SideNavigationItem(
                         tab = tab,
-                        selected = index == currentSelectedHomeTabIndex.value,
-                        onClick = { currentSelectedHomeTabIndex.value = index }
+                        selected = index == currentSelectedTabIndex.value,
+                        onClick = { currentSelectedTabIndex.value = index }
                     )
                 }
                 Column (
@@ -155,8 +170,13 @@ class HomeScreen : EquinoxNoModelScreen() {
         }
     }
 
+    /**
+     * Component used to navigate in the application on compact
+     * screen size class devices
+     */
     @Composable
     @NonRestartableComposable
+    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     private fun BottomNavigationBar() {
         Box (
           modifier = Modifier
@@ -171,11 +191,16 @@ class HomeScreen : EquinoxNoModelScreen() {
                     .align(Alignment.BottomCenter)
                     .navigationBarsPadding(),
                 tabs = tabs,
-                currentSelectedTabIndex = currentSelectedHomeTabIndex
+                currentSelectedTabIndex = currentSelectedTabIndex
             )
         }
     }
 
+    /**
+     * The content of the current tab selected
+     *
+     * @param modifier The modifier to apply to the content
+     */
     @Composable
     @NonRestartableComposable
     private fun CurrentTabContent(
@@ -187,7 +212,7 @@ class HomeScreen : EquinoxNoModelScreen() {
                 .background(MaterialTheme.colorScheme.background)
         ) {
             AnimatedContent(
-                targetState = currentSelectedHomeTabIndex.value
+                targetState = currentSelectedTabIndex.value
             ) { index ->
                 val tab = tabs[index]
                 var screen by remember { mutableStateOf<RefyScreen<*>?>(null) }
@@ -199,6 +224,11 @@ class HomeScreen : EquinoxNoModelScreen() {
         }
     }
 
+    /**
+     * Method to get the related screen of a [NavigationTab]
+     *
+     * @return the related screen of a tab as [RefyScreen]
+     */
     private fun NavigationTab.tabRelatedScreen(): RefyScreen<*> {
         return when (this.title) {
             Res.string.links -> LinksScreen()
@@ -213,7 +243,7 @@ class HomeScreen : EquinoxNoModelScreen() {
      */
     @Composable
     override fun CollectStates() {
-        currentSelectedHomeTabIndex = rememberSaveable { mutableIntStateOf(0) }
+        currentSelectedTabIndex = rememberSaveable { mutableIntStateOf(0) }
     }
 
 }
