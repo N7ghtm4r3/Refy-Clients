@@ -18,6 +18,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink
@@ -26,6 +27,7 @@ import com.tecknobit.refy.ui.screens.upsertcustomlink.components.ExpirationTimeC
 import com.tecknobit.refy.ui.screens.upsertcustomlink.components.ResourcesForm
 import com.tecknobit.refy.ui.screens.upsertcustomlink.components.UniqueAccessCheckBox
 import com.tecknobit.refy.ui.screens.upsertcustomlink.presentation.UpsertCustomLinkScreenViewModel
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
 import com.tecknobit.refycore.enums.ExpiredTime
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
@@ -39,6 +41,16 @@ import refy.composeapp.generated.resources.name_not_valid
 import refy.composeapp.generated.resources.resources
 import refy.composeapp.generated.resources.update_link
 
+/**
+ * The [UpsertCustomLinkScreen] class is useful to insert a new custom link or update an exiting one
+ *
+ * @param linkId The identifier of the link to update
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see RefyScreen
+ * @see UpsertScreen
+ */
 class UpsertCustomLinkScreen(
     linkId: String?
 ) : UpsertScreen<CustomRefyLink, UpsertCustomLinkScreenViewModel>(
@@ -51,6 +63,9 @@ class UpsertCustomLinkScreen(
     )
 ) {
 
+    /**
+     * The form used to insert or update the item details
+     */
     @Composable
     @NonRestartableComposable
     override fun ColumnScope.UpsertForm() {
@@ -62,6 +77,9 @@ class UpsertCustomLinkScreen(
         UpsertButton()
     }
 
+    /**
+     * Section where the user can insert the name of the link
+     */
     @Composable
     @NonRestartableComposable
     private fun LinkNameSection() {
@@ -82,6 +100,9 @@ class UpsertCustomLinkScreen(
         )
     }
 
+    /**
+     * Section where the user select the access method for the link
+     */
     @Composable
     @NonRestartableComposable
     private fun AccessMethod() {
@@ -95,6 +116,9 @@ class UpsertCustomLinkScreen(
         )
     }
 
+    /**
+     * The [AccessMethod] displayed as [Row] layout
+     */
     @Composable
     @NonRestartableComposable
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
@@ -109,6 +133,9 @@ class UpsertCustomLinkScreen(
         }
     }
 
+    /**
+     * The [AccessMethod] displayed as [Column] layout
+     */
     @Composable
     @NonRestartableComposable
     // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
@@ -123,6 +150,9 @@ class UpsertCustomLinkScreen(
         }
     }
 
+    /**
+     * Section where the user can insert the authentication fields to protect the resources shared by the link
+     */
     @Composable
     @NonRestartableComposable
     private fun Auth() {
@@ -134,6 +164,9 @@ class UpsertCustomLinkScreen(
         )
     }
 
+    /**
+     * Section where the user can insert the resources to share with the link
+     */
     @Composable
     @NonRestartableComposable
     private fun Resources() {
@@ -145,6 +178,9 @@ class UpsertCustomLinkScreen(
         )
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     @NonRestartableComposable
@@ -153,6 +189,10 @@ class UpsertCustomLinkScreen(
         viewModel.linkNameError = remember { mutableStateOf(false) }
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen after a loading required to correctly assign an
+     * initial value to the states
+     */
     @Composable
     @RequiresSuperCall
     @NonRestartableComposable
@@ -200,6 +240,12 @@ class UpsertCustomLinkScreen(
         }
     }
 
+    /**
+     * Method to convert a [Map] to a data structure as [SnapshotStateList] to allow its handling
+     * during the upsert action
+     *
+     * @return the form data converted as [SnapshotStateList]
+     */
     private fun Map<String, String>.toFormData(): SnapshotStateList<Pair<MutableState<String>, MutableState<String>>> {
         val formData = mutableStateListOf<Pair<MutableState<String>, MutableState<String>>>()
         this.forEach { entry ->

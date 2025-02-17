@@ -13,9 +13,11 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.input.ImeAction
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.upsertlink.presentation.UpsertLinkScreenViewModel
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isLinkResourceValid
 import refy.composeapp.generated.resources.Res
@@ -24,6 +26,16 @@ import refy.composeapp.generated.resources.link_reference
 import refy.composeapp.generated.resources.link_reference_not_valid
 import refy.composeapp.generated.resources.update_link
 
+/**
+ * The [UpsertLinkScreen] class is useful to insert a new link or edit an exiting ong
+ *
+ * @param linkId The identifier of the link to update
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see RefyScreen
+ * @see UpsertScreen
+ */
 class UpsertLinkScreen(
     linkId: String?
 ) : UpsertScreen<RefyLinkImpl, UpsertLinkScreenViewModel>(
@@ -35,6 +47,9 @@ class UpsertLinkScreen(
     )
 ) {
 
+    /**
+     * The form used to insert or update the item details
+     */
     @Composable
     @NonRestartableComposable
     override fun ColumnScope.UpsertForm() {
@@ -43,6 +58,9 @@ class UpsertLinkScreen(
         UpsertButton()
     }
 
+    /**
+     * Section where the user can insert the link reference
+     */
     @Composable
     @NonRestartableComposable
     private fun LinkReferenceSection() {
@@ -69,6 +87,9 @@ class UpsertLinkScreen(
         )
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     @NonRestartableComposable
@@ -77,6 +98,10 @@ class UpsertLinkScreen(
         viewModel.referenceError = remember { mutableStateOf(false) }
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen after a loading required to correctly assign an
+     * initial value to the states
+     */
     @Composable
     @RequiresSuperCall
     @NonRestartableComposable

@@ -82,6 +82,20 @@ abstract class UpsertScreenViewModel<I : RefyItem>(
     }
 
     /**
+     * Method to check the validity of the form data to insert or update an item
+     *
+     * @return the validity of the form as [Boolean]
+     */
+    @RequiresSuperCall
+    protected open fun validForm(): Boolean {
+        return if (!isDescriptionValid(itemDescription.value)) {
+            itemDescriptionError.value = true
+            return false
+        } else
+            true
+    }
+
+    /**
      * Method to insert a new item
      *
      * @param onInsert The action to execute after the item inserted
@@ -98,19 +112,5 @@ abstract class UpsertScreenViewModel<I : RefyItem>(
     protected abstract fun update(
         onUpdate: () -> Unit,
     )
-
-    /**
-     * Method to check the validity of the form data to insert or update an item
-     *
-     * @return the validity of the form as [Boolean]
-     */
-    @RequiresSuperCall
-    protected open fun validForm(): Boolean {
-        return if (!isDescriptionValid(itemDescription.value)) {
-            itemDescriptionError.value = true
-            return false
-        } else
-            true
-    }
 
 }

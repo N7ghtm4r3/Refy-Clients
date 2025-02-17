@@ -35,6 +35,11 @@ import refy.composeapp.generated.resources.not_valid
 import refy.composeapp.generated.resources.value
 import refy.composeapp.generated.resources.value_not_valid
 
+/**
+ * Custom component used to insert the authentication fields
+ *
+ * @param viewModel The support viewmodel for the screen
+ */
 @Composable
 @NonRestartableComposable
 fun AuthForm(
@@ -45,6 +50,11 @@ fun AuthForm(
     )
 }
 
+/**
+ * Custom component used to insert the resources shared by the link
+ *
+ * @param viewModel The support viewmodel for the screen
+ */
 @Composable
 @NonRestartableComposable
 fun ResourcesForm(
@@ -55,6 +65,11 @@ fun ResourcesForm(
     )
 }
 
+/**
+ * Custom component used to manage the [data] such adding, editing or removing row
+ *
+ * @param data The data to display and to manage
+ */
 @Composable
 @NonRestartableComposable
 private fun DynamicForm(
@@ -114,6 +129,15 @@ private fun DynamicForm(
     }
 }
 
+/**
+ * Custom [EquinoxOutlinedTextField] used to insert the key or the value requested by the user
+ * via the [DynamicForm] component
+ *
+ * @param value The value inserted by the user
+ * @param placeholder The placeholder to display
+ * @param errorText The error text to display
+ * @param keyboardOptions The options of the keyboards
+ */
 @Composable
 @NonRestartableComposable
 private fun RowScope.FormInputField(

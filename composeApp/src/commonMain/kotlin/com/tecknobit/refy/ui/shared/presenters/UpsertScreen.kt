@@ -54,7 +54,7 @@ import refy.composeapp.generated.resources.update
 /**
  * The [UpsertScreen] class is useful to handle the insertion or updating of an item
  *
- * @param itemId The identifier of the item  to update
+ * @param itemId The identifier of the item to update
  * @param insertTitle The title of the screen when the action is an insert action
  * @param updateTitle The title of the screen when the action is an update action
  * @param insertButtonText The text of the button used to upsert the item

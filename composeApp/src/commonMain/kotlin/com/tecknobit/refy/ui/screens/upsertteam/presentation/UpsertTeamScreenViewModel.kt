@@ -5,6 +5,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
 import com.tecknobit.equinoxcompose.session.setServerOfflineValue
+import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.Requester.Companion.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
@@ -20,24 +21,57 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
 
+/**
+ * The `UpsertTeamScreenViewModel` class is the support class used by the [com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen]
+ *
+ * @param teamId The identifier of the item to update
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see androidx.lifecycle.ViewModel
+ * @see com.tecknobit.equinoxcompose.session.Retriever
+ * @see EquinoxViewModel
+ * @see UpsertScreenViewModel
+ *
+ */
 class UpsertTeamScreenViewModel(
     private val teamId: String?
 ) : UpsertScreenViewModel<Team>(
     itemId = teamId
 ) {
 
+    /**
+     *`logoPic` the logo of the team
+     */
     lateinit var logoPic: MutableState<String?>
 
+    /**
+     * `logoPicError` whether the [logoPic] field is not valid
+     */
     lateinit var logoPicError: MutableState<Boolean>
 
+    /**
+     * `logoBytes` the array of bytes made up the [logoPic]
+     */
     private var logoBytes: ByteArray = byteArrayOf()
 
+    /**
+     *`teamName` the name of the team
+     */
     lateinit var teamName: MutableState<String>
 
+    /**
+     * `teamNameError` whether the [teamName] field is not valid
+     */
     lateinit var teamNameError: MutableState<Boolean>
 
+    /**
+     * `teamMembers` the members of the team
+     */
     lateinit var teamMembers: SnapshotStateList<TeamMember>
 
+    /**
+     * Method to retrieve the information of the item to display
+     */
     override fun retrieveItem() {
         if (teamId == null)
             return
@@ -58,6 +92,9 @@ class UpsertTeamScreenViewModel(
         }
     }
 
+    /**
+     * Method to pick the logo of the team
+     */
     fun pickTeamLogo(
         logoAsset: PlatformFile?
     ) {
@@ -70,6 +107,10 @@ class UpsertTeamScreenViewModel(
         }
     }
 
+    /**
+     *`potentialMembers` the state used to handle the pagination of the potential members to add
+     * in the team list
+     */
     val potentialMembers = PaginationState<Int, TeamMember>(
         initialPageKey = DEFAULT_PAGE,
         onRequestPage = { page ->
@@ -79,6 +120,11 @@ class UpsertTeamScreenViewModel(
         }
     )
 
+    /**
+     * Method used to load and retrieve the potential members to append to the [potentialMembers]
+     *
+     * @param page The page to request
+     */
     private fun loadPotentialMembers(
         page: Int
     ) {
@@ -102,6 +148,11 @@ class UpsertTeamScreenViewModel(
         }
     }
 
+    /**
+     * Method to check the validity of the form data to insert or update an item
+     *
+     * @return the validity of the form as [Boolean]
+     */
     override fun validForm(): Boolean {
         if (logoPic.value.isNullOrBlank()) {
             logoPicError.value = true
@@ -114,6 +165,11 @@ class UpsertTeamScreenViewModel(
         return super.validForm()
     }
 
+    /**
+     * Method to insert a new item
+     *
+     * @param onInsert The action to execute after the item inserted
+     */
     override fun insert(
         onInsert: () -> Unit
     ) {
@@ -134,6 +190,11 @@ class UpsertTeamScreenViewModel(
         }
     }
 
+    /**
+     * Method to update an existing item
+     *
+     * @param onUpdate The action to execute after the item updated
+     */
     override fun update(
         onUpdate: () -> Unit
     ) {

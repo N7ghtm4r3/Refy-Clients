@@ -32,6 +32,7 @@ import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Auto
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.localUser
@@ -39,6 +40,7 @@ import com.tecknobit.refy.ui.components.LinksChooser
 import com.tecknobit.refy.ui.screens.collection.helpers.adaptStatusBarToCollectionTheme
 import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.upsertcollection.presentation.UpsertCollectionScreenViewModel
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import refy.composeapp.generated.resources.Res
@@ -49,6 +51,18 @@ import refy.composeapp.generated.resources.links
 import refy.composeapp.generated.resources.name_not_valid
 import refy.composeapp.generated.resources.update_collection
 
+/**
+ * The [UpsertCollectionScreen] class is useful to insert a new collection of updated an existing
+ * one
+ *
+ * @param collectionId The identifier of the collection to update
+ * @param collectionColor The color of the collection
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see RefyScreen
+ * @see UpsertScreen
+ */
 class UpsertCollectionScreen(
     collectionId: String?,
     private val collectionColor: String
@@ -61,8 +75,16 @@ class UpsertCollectionScreen(
     updateTitle = Res.string.update_collection
 ) {
 
+    /**
+     *`pickColor` whether the [CollectionColorPicker] is visible
+     */
     private lateinit var pickColor: MutableState<Boolean>
 
+    /**
+     * Method to set the theme for the current screen
+     *
+     * @param content The content to display
+     */
     @Composable
     @NonRestartableComposable
     override fun ScreenTheme(
@@ -85,6 +107,9 @@ class UpsertCollectionScreen(
         }
     }
 
+    /**
+     * The form used to insert or update the item details
+     */
     @Composable
     @NonRestartableComposable
     override fun ColumnScope.UpsertForm() {
@@ -95,6 +120,9 @@ class UpsertCollectionScreen(
         UpsertButton()
     }
 
+    /**
+     * Custom color picker used to pick the color for the collection
+     */
     @Composable
     @NonRestartableComposable
     private fun CollectionColorPicker() {
@@ -124,6 +152,9 @@ class UpsertCollectionScreen(
         }
     }
 
+    /**
+     * Section where the user can insert the name of the collection
+     */
     @Composable
     @NonRestartableComposable
     private fun CollectionNameSection() {
@@ -149,6 +180,9 @@ class UpsertCollectionScreen(
         )
     }
 
+    /**
+     * Section where the user can select the links to share in the collection
+     */
     @Composable
     @NonRestartableComposable
     private fun CollectionLinksSection() {
@@ -161,6 +195,9 @@ class UpsertCollectionScreen(
         )
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     override fun CollectStates() {
@@ -170,6 +207,10 @@ class UpsertCollectionScreen(
         viewModel.collectionTitleError = remember { mutableStateOf(false) }
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen after a loading required to correctly assign an
+     * initial value to the states
+     */
     @Composable
     @RequiresSuperCall
     override fun CollectStatesAfterLoading() {

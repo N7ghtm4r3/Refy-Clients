@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.ui.components.EmptyMembers
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
@@ -32,6 +33,7 @@ import com.tecknobit.refy.ui.components.TeamLogo
 import com.tecknobit.refy.ui.components.TeamMemberListItem
 import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.screens.upsertteam.presentation.UpsertTeamScreenViewModel
+import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
@@ -47,6 +49,16 @@ import refy.composeapp.generated.resources.team_members
 import refy.composeapp.generated.resources.team_name
 import refy.composeapp.generated.resources.update_team
 
+/**
+ * The [UpsertTeamScreen] class is useful to insert a new team or update an existing one
+ *
+ * @param teamId The identifier of the team
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see RefyScreen
+ * @see UpsertScreen
+ */
 class UpsertTeamScreen(
     teamId: String?
 ) : UpsertScreen<Team, UpsertTeamScreenViewModel>(
@@ -59,6 +71,9 @@ class UpsertTeamScreen(
     )
 ) {
 
+    /**
+     * The form used to insert or update the item details
+     */
     @Composable
     @NonRestartableComposable
     override fun ColumnScope.UpsertForm() {
@@ -69,6 +84,9 @@ class UpsertTeamScreen(
         UpsertButton()
     }
 
+    /**
+     * Custom picker to pick the logo of the team
+     */
     @Composable
     @NonRestartableComposable
     private fun LogoPicker() {
@@ -99,6 +117,9 @@ class UpsertTeamScreen(
         )
     }
 
+    /**
+     * The section where the user can insert the name of the team
+     */
     @Composable
     @NonRestartableComposable
     private fun TeamNameSection() {
@@ -119,6 +140,9 @@ class UpsertTeamScreen(
         )
     }
 
+    /**
+     * The section where are displayed the members joined or not in the team
+     */
     @Composable
     @NonRestartableComposable
     private fun TeamMembersSection() {
@@ -176,6 +200,9 @@ class UpsertTeamScreen(
         }
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen
+     */
     @Composable
     @RequiresSuperCall
     @NonRestartableComposable
@@ -185,6 +212,10 @@ class UpsertTeamScreen(
         viewModel.teamNameError = remember { mutableStateOf(false) }
     }
 
+    /**
+     * Method to collect or instantiate the states of the screen after a loading required to correctly assign an
+     * initial value to the states
+     */
     @Composable
     @RequiresSuperCall
     @NonRestartableComposable

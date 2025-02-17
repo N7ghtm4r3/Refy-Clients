@@ -44,6 +44,12 @@ import refy.composeapp.generated.resources.expires
 import refy.composeapp.generated.resources.expires_in
 import refy.composeapp.generated.resources.unique_access
 
+/**
+ * Custom [Checkbox] used to flag the [com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink.uniqueAccess]
+ * property
+ *
+ * @param viewModel The support viewmodel for the screen
+ */
 @Composable
 @NonRestartableComposable
 fun UniqueAccessCheckBox(
@@ -62,6 +68,12 @@ fun UniqueAccessCheckBox(
     }
 }
 
+/**
+ * Custom [Checkbox] used to select the [com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink.expiredTime]
+ * property
+ *
+ * @param viewModel The support viewmodel for the screen
+ */
 @Composable
 @NonRestartableComposable
 fun ExpirationTimeCheckBox(
@@ -126,6 +138,12 @@ fun ExpirationTimeCheckBox(
     }
 }
 
+/**
+ * Menu used to select the [ExpiredTime] value
+ *
+ * @param expanded Whether the menu is visible
+ * @param viewModel The support viewmodel for the screen
+ */
 @Composable
 @NonRestartableComposable
 private fun ExpiredTimesMenu(
@@ -154,6 +172,12 @@ private fun ExpiredTimesMenu(
     }
 }
 
+/**
+ * Custom [Text] component used to display the [ExpiredTime] value
+ *
+ * @param modifier The modifier to apply to the component
+ * @param expiredTime The value of the expired time chosen
+ */
 @Composable
 @NonRestartableComposable
 private fun ExpiredTimeText(
@@ -171,6 +195,11 @@ private fun ExpiredTimeText(
     )
 }
 
+/**
+ * Method to convert a [ExpiredTime] value as [PluralStringResource]
+ *
+ * @return the expired time value converted as [PluralStringResource]
+ */
 @Composable
 @NonRestartableComposable
 private fun ExpiredTime.asText(): PluralStringResource {
