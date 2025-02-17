@@ -20,6 +20,11 @@ import com.tecknobit.refy.navigator
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom top bar used in the [com.tecknobit.refy.ui.shared.presenters.RefyScreen]
+ *
+ * @param screenTitle The title of the screen
+ */
 @Composable
 @NonRestartableComposable
 fun ScreenTopBar(

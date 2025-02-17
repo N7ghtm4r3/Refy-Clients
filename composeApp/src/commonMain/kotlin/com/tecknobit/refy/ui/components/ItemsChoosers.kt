@@ -75,8 +75,17 @@ import refy.composeapp.generated.resources.confirm
 import refy.composeapp.generated.resources.with_collections
 import refy.composeapp.generated.resources.with_teams
 
+/**
+ * `CHOOSER_PAGES` constant value of the number of the pages displayed in the choosers
+ */
 const val CHOOSER_PAGES = 2
 
+/**
+ * Custom component used to choose the links to share in collections or teams
+ *
+ * @param currentAttachedLinks The list of the current links attached in collections or teams
+ * @param linksAddedSupportList The list used to contains the links added to be attached
+ */
 @Wrapper
 @Composable
 @NonRestartableComposable
@@ -93,6 +102,15 @@ fun LinksChooser(
     )
 }
 
+/**
+ * Custom component used to choose the links to share in collections or teams
+ *
+ * @param lazyColumSize The size of the [PaginatedLazyColumn] used to display the links
+ * @param mainTitle The main title of the chooser
+ * @param currentAttachedLinks The list of the current links attached in collections or teams
+ * @param linksAddedSupportList The list used to contains the links added to be attached
+ * @param confirmAction The action to execute when the user confirm the choose
+ */
 @Wrapper
 @Composable
 @NonRestartableComposable
@@ -151,6 +169,14 @@ fun LinksChooser(
     )
 }
 
+/**
+ * Custom component used to choose the collections where share the links or to share in teams
+ *
+ * @param mainTitle The main title of the chooser
+ * @param subTitle The subtitle title of the chooser
+ * @param currentLinksCollectionsAttached The list of the current collections attached or shared
+ * @param confirmAction The action to execute when the user confirm the choose
+ */
 @Wrapper
 @Composable
 @NonRestartableComposable
@@ -216,6 +242,13 @@ fun LinksCollectionsChooser(
     )
 }
 
+/**
+ * Custom component used to choose the teams where share links or collections
+ *
+ * @param mainTitle The main title of the chooser
+ * @param currentTeamsAttached The list of the current teams attached
+ * @param confirmAction The action to execute when the user confirm the choose
+ */
 @Wrapper
 @Composable
 @NonRestartableComposable
@@ -265,6 +298,13 @@ fun TeamsChooser(
     )
 }
 
+/**
+ * The header of the [ItemsChooser]
+ *
+ * @param mainTitle The main title of the chooser
+ * @param subTitle The subtitle title of the chooser
+ * @param confirmAction The action to execute when the user confirm the choose
+ */
 @Composable
 @NonRestartableComposable
 private fun ChooserHeader(
@@ -319,6 +359,19 @@ private fun ChooserHeader(
     HorizontalDivider()
 }
 
+/**
+ * Custom component used to choose the items to share or the items where share
+ *
+ * @param lazyColumSize The size of the [PaginatedLazyColumn] used to display the links
+ * @param mainTitle The main title of the chooser
+ * @param subTitle The subtitle title of the chooser
+ * @param currentItemsAttached The list of the current items attached
+ * @param itemsAddedSupportList The list used to contains the items added to be attached or shared
+ * @param itemsState The state used to handle the pagination of the items list
+ * @param confirmAction The action to execute when the user confirm the choose
+ * @param pageEmptyIndicator The indicator to use when the items are no available
+ * @param overlineContent Custom content to display in the overline section
+ */
 @Composable
 @NonRestartableComposable
 private fun <T : RefyItem> ItemsChooser(
@@ -376,6 +429,13 @@ private fun <T : RefyItem> ItemsChooser(
     }
 }
 
+/**
+ * The chooser of the item to share or where attach
+ *
+ * @param itemsAdded The list used to contains the items added to be attached or shared
+ * @param mainItem The item where attach or share the [itemsAdded]
+ * @param overlineContent Custom content to display in the overline section
+ */
 @Composable
 @NonRestartableComposable
 private fun <T : RefyItem> ChooserItem(

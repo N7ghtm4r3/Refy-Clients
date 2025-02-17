@@ -42,8 +42,21 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * `MINIMUM_DESCRIPTION_LINES` the minimum number of lines occupied by the description of an item
+ */
 const val MINIMUM_DESCRIPTION_LINES = 3
 
+/**
+ * Container used to display a custom card with the details of a [RefyItem]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param expanded Whether the card is expanded
+ * @param item The item to display
+ * @param info The info header
+ * @param extraInformation Extra content to display
+ * @param descriptionLines The number of the lines occupied by the link description
+ */
 @Composable
 @NonRestartableComposable
 fun ItemCardDetails(
@@ -51,7 +64,7 @@ fun ItemCardDetails(
     expanded: MutableState<Boolean>,
     item: RefyItem,
     info: StringResource,
-    extraInformation: @Composable() (() -> Unit)? = null,
+    extraInformation: @Composable (() -> Unit)? = null,
     descriptionLines: MutableState<Int>
 ) {
     Column(
@@ -87,6 +100,11 @@ fun ItemCardDetails(
     }
 }
 
+/**
+ * The title of the item
+ *
+ * @param item The item displayed
+ */
 @Composable
 @NonRestartableComposable
 fun ItemTitle(
@@ -101,6 +119,12 @@ fun ItemTitle(
     )
 }
 
+/**
+ * Section to display a custom information about a [RefyItem]
+ *
+ * @param info The info header
+ * @param color The color to apply to the text
+ */
 @Composable
 @NonRestartableComposable
 fun ItemInfo(
@@ -116,6 +140,12 @@ fun ItemInfo(
     )
 }
 
+/**
+ * Custom button used to expand the [ItemCardDetails]
+ *
+ * @param expanded Whether the card is expanded
+ * @param descriptionLines The number of the lines occupied by the link description
+ */
 @Composable
 @NonRestartableComposable
 fun ExpandCardButton(
@@ -139,10 +169,15 @@ fun ExpandCardButton(
     }
 }
 
+/**
+ * Custom button used to attach, or to share, items with a [RefyItem]
+ *
+ * @param attachItemContent The content used to select the items to attach or to share
+ */
 @Composable
 @NonRestartableComposable
 fun AttachItemButton(
-    attachItemContent: @Composable() (SheetState, CoroutineScope) -> Unit
+    attachItemContent: @Composable (SheetState, CoroutineScope) -> Unit
 ) {
     val state = rememberModalBottomSheetState(
         skipPartiallyExpanded = true
@@ -165,6 +200,12 @@ fun AttachItemButton(
     attachItemContent(state, scope)
 }
 
+/**
+ * Custom button used to remove the item from collections or teams
+ *
+ * @param removeAction The action to execute to remove that item
+ * @param color The color of the representative icon of the action
+ */
 @Composable
 @NonRestartableComposable
 fun RemoveItemButton(
@@ -184,12 +225,19 @@ fun RemoveItemButton(
     }
 }
 
+/**
+ * Custom button used to delete an [item]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param item The item to delete
+ * @param deleteContent The content used to delete the item
+ */
 @Composable
 @NonRestartableComposable
 fun DeleteItemButton(
     modifier: Modifier = Modifier,
     item: RefyItem,
-    deleteContent: @Composable() (MutableState<Boolean>) -> Unit
+    deleteContent: @Composable (MutableState<Boolean>) -> Unit
 ) {
     if (item.iAmTheOwner()) {
         val deleteItem = remember { mutableStateOf(false) }

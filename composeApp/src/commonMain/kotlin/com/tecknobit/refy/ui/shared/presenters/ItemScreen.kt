@@ -204,7 +204,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     protected fun <T> awaitNullItemLoaded(
         itemToWait: T?,
         extras: (T) -> Boolean = { true },
-        loadedContent: @Composable() (T) -> Unit
+        loadedContent: @Composable (T) -> Unit
     ) {
         var loaded by remember { mutableStateOf(false) }
         LaunchedEffect(itemToWait) {

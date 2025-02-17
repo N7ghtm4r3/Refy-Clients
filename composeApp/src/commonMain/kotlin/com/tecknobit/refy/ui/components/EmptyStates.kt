@@ -25,9 +25,13 @@ import refy.composeapp.generated.resources.no_links
 import refy.composeapp.generated.resources.no_members
 import refy.composeapp.generated.resources.no_teams
 
+/**
+ * Custom layout used to display the empty state about the no links availability
+ *
+ * Credits to [undraw](https://undraw.co/search/No%20data)
+ */
 @Composable
 @NonRestartableComposable
-// TODO: ADD THE CREDITS IN THE DOCU https://undraw.co/search/No%20data
 fun EmptyLinks() {
     EmptyState(
         resource = Res.drawable.no_links,
@@ -35,9 +39,15 @@ fun EmptyLinks() {
     )
 }
 
+/**
+ * Custom layout used to display the empty state about the no collections availability
+ *
+ * Credits to [Data illustrations by Storyset](https://storyset.com/data)
+ *
+ * @param size The size of the empty state
+ */
 @Composable
 @NonRestartableComposable
-// TODO: ADD THE CREDITS IN THE DOCU <a href="https://storyset.com/data">Data illustrations by Storyset</a>
 fun EmptyCollections(
     size: Dp = 300.dp
 ) {
@@ -48,9 +58,13 @@ fun EmptyCollections(
     )
 }
 
+/**
+ * Custom layout used to display the empty state about the no teams availability
+ *
+ * Credits to [People illustrations by Storyset](https://storyset.com/people)
+ */
 @Composable
 @NonRestartableComposable
-// TODO: ADD THE CREDITS IN THE DOCU <a href="https://storyset.com/people">People illustrations by Storyset</a>
 fun EmptyTeams() {
     EmptyState(
         resourceSize = 300.dp,
@@ -59,9 +73,13 @@ fun EmptyTeams() {
     )
 }
 
+/**
+ * Custom layout used to display the empty state about the no members are joined in the team scenario
+ *
+ * Credits to [Work illustrations by Storyset](https://storyset.com/work")
+ */
 @Composable
 @NonRestartableComposable
-// TODO: ADD THE CREDITS IN THE DOCU <a href="https://storyset.com/work">Work illustrations by Storyset</a>
 fun EmptyMembers() {
     EmptyState(
         resourceSize = 275.dp,

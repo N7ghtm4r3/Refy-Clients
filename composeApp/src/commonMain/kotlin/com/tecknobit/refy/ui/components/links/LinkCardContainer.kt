@@ -58,7 +58,22 @@ import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.inserted_on
 import refy.composeapp.generated.resources.no_preview_available
 
-// credits to https://cdn.prod.website-files.com/64c7b734b044b679c715bc30/6674b58d32fbc146194c888a_5%20best%20practices%20to%20design%20UI%20Cards%20for%20your%20website%402x.webp
+/**
+ * Container used to display a custom card with the details of a [RefyLink].
+ *
+ * Design inspired by [this](https://cdn.prod.website-files.com/64c7b734b044b679c715bc30/6674b58d32fbc146194c888a_5%20best%20practices%20to%20design%20UI%20Cards%20for%20your%20website%402x.webp)
+ *
+ * @param modifier The modifier to apply to the component
+ * @param viewModel The support viewmodel for the screen
+ * @param link The link to display
+ * @param onClick The action to execute when the card has been clicked
+ * @param onLongClick The action to execute when the card has been long clicked
+ * @param showOwnerData Whether show the data of the owner of the link, for example when it is shared
+ * in a team
+ * @param extraInformation Extra content to display
+ * @param extraButton Extra button to handle actions
+ * @param cancelButton The button used to remove or delete a link
+ */
 @Composable
 @NonRestartableComposable
 fun LinkCardContainer(
@@ -70,9 +85,9 @@ fun LinkCardContainer(
         navigator.navigate("$UPSERT_LINK_SCREEN/${link.id}")
     },
     showOwnerData: Boolean = false,
-    extraInformation: @Composable() (() -> Unit)? = null,
-    extraButton: @Composable() (() -> Unit)? = null,
-    cancelButton: @Composable() RowScope.() -> Unit
+    extraInformation: @Composable (() -> Unit)? = null,
+    extraButton: @Composable (() -> Unit)? = null,
+    cancelButton: @Composable RowScope.() -> Unit
 ) {
     val expanded = remember { mutableStateOf(false) }
     val descriptionLines = remember { mutableIntStateOf(0) }
@@ -136,6 +151,11 @@ fun LinkCardContainer(
     }
 }
 
+/**
+ * The data of the owner of the [LinkCardContainer]
+ *
+ * @param owner The owner of the link
+ */
 @Composable
 @NonRestartableComposable
 private fun OwnerData(
@@ -172,6 +192,11 @@ private fun OwnerData(
     )
 }
 
+/**
+ * The thumbnail of the link fetched from the **og:image** metadata
+ *
+ * @param link The link from fetch its **og:image**
+ */
 @Composable
 @NonRestartableComposable
 private fun LinkThumbnail(
@@ -198,14 +223,25 @@ private fun LinkThumbnail(
     )
 }
 
+/**
+ * The bottom bar of the [LinkCardContainer]
+ *
+ * @param expanded Whether the card is expanded
+ * @param viewModel The support viewmodel for the screen
+ * @param link The link to display
+ * in a team
+ * @param extraButton Extra button to handle actions
+ * @param cancelButton The button used to remove or delete a link
+ * @param descriptionLines The number of the lines occupied by the link description
+ */
 @Composable
 @NonRestartableComposable
 private fun LinkBottomBar(
     expanded: MutableState<Boolean>,
     viewModel: EquinoxViewModel,
     link: RefyLink,
-    extraButton: @Composable() (() -> Unit)? = null,
-    cancelButton: @Composable() RowScope.() -> Unit,
+    extraButton: @Composable (() -> Unit)? = null,
+    cancelButton: @Composable RowScope.() -> Unit,
     descriptionLines: MutableState<Int>
 ) {
     Row(

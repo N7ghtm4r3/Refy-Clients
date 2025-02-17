@@ -19,6 +19,14 @@ import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.logo
 
+/**
+ * Custom [AsyncImage] used to display the logo of a [Team]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param size The size of the profile pic
+ * @param onClick The action to execute when the component has been clicked
+ * @param team The team to display its logo
+ */
 @Composable
 @NonRestartableComposable
 fun TeamLogo(
@@ -35,6 +43,14 @@ fun TeamLogo(
     )
 }
 
+/**
+ * Custom [AsyncImage] used to display the logo of a [Team]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param size The size of the profile pic
+ * @param onClick The action to execute when the component has been clicked
+ * @param teamLogo The team logo to display
+ */
 @Composable
 @NonRestartableComposable
 fun TeamLogo(

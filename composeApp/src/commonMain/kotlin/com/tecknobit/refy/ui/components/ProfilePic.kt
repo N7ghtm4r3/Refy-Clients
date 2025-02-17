@@ -29,6 +29,14 @@ import refy.composeapp.generated.resources.logo
  */
 lateinit var imageLoader: ImageLoader
 
+/**
+ * Custom [AsyncImage] used to display the profile pic of the [localUser] or the member of a team
+ *
+ * @param modifier The modifier to apply to the component
+ * @param profilePic The data of the profile pic to display
+ * @param size The size of the profile pic
+ * @param onClick The action to execute when the component has been clicked
+ */
 @Composable
 @NonRestartableComposable
 fun ProfilePic(

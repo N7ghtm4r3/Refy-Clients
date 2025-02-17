@@ -137,7 +137,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     @Composable
     @NonRestartableComposable
     protected open fun ScreenTheme(
-        content: @Composable() () -> Unit
+        content: @Composable () -> Unit
     ) {
         RefyTheme(
             content = content

@@ -156,8 +156,7 @@ class TeamScreen(
                     }
                     LeaveTeam(
                         show = leave,
-                        viewModel = viewModel,
-                        team = item.value!!
+                        viewModel = viewModel
                     )
                 } else {
                     DeleteItemButton(
@@ -246,8 +245,7 @@ class TeamScreen(
                     }
                     LeaveTeam(
                         show = leave,
-                        viewModel = viewModel,
-                        team = item.value!!
+                        viewModel = viewModel
                     )
                 }
                 if (item.value!!.iAmAnAdmin()) {

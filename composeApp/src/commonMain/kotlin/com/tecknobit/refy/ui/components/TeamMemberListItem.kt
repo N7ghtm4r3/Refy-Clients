@@ -23,13 +23,21 @@ import com.tecknobit.refy.ui.screens.teams.data.TeamMember
 import com.tecknobit.refy.ui.screens.teams.data.TeamMember.Companion.toColor
 import com.tecknobit.refycore.enums.TeamRole
 
+/**
+ * Custom [ListItem] used to display the information of a [TeamMember]
+ *
+ * @param iAmAnAuthorizedMember Whether the [member] is an [TeamRole.ADMIN]
+ * @param member The member to display
+ * @param onRoleSelected The action to execute when the role has been selected
+ * @param trailingContent Custom trailing content to display
+ */
 @Composable
 @NonRestartableComposable
 fun TeamMemberListItem(
     iAmAnAuthorizedMember: Boolean,
     member: TeamMember,
     onRoleSelected: (MutableState<Boolean>, MutableState<TeamRole>) -> Unit,
-    trailingContent: @Composable() () -> Unit
+    trailingContent: @Composable () -> Unit
 ) {
     ListItem(
         colors = ListItemDefaults.colors(
@@ -90,6 +98,13 @@ fun TeamMemberListItem(
     )
 }
 
+/**
+ * The menu used to display and to select the role for a member
+ *
+ * @param expanded Whether the menu is visible
+ * @param roleState The state used to display the role selected
+ * @param onRoleSelected The action to execute when the role has been selected
+ */
 @Composable
 @NonRestartableComposable
 private fun RolesMenu(

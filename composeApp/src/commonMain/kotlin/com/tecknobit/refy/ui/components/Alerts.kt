@@ -45,6 +45,13 @@ val titleStyle = TextStyle(
     fontSize = 20.sp
 )
 
+/**
+ * Custom [EquinoxAlertDialog] used to warn the user about the deletion of a [RefyLink]
+ *
+ * @param show Whether the dialog is shown
+ * @param viewModel The support viewmodel for the screen
+ * @param link The link to delete
+ */
 @Composable
 @NonRestartableComposable
 fun <T : RefyLink> DeleteLink(
@@ -73,6 +80,14 @@ fun <T : RefyLink> DeleteLink(
     )
 }
 
+/**
+ * Custom [EquinoxAlertDialog] used to warn the user about the deletion of a [LinksCollection]
+ *
+ * @param show Whether the dialog is shown
+ * @param collectionsManager The manager of the collections list data
+ * @param collection The collection to delete
+ * @param onDelete The action to execute when the collection has been deleted
+ */
 @Composable
 @NonRestartableComposable
 fun DeleteCollection(
@@ -99,6 +114,14 @@ fun DeleteCollection(
     )
 }
 
+/**
+ * Custom [EquinoxAlertDialog] used to warn the user about the deletion of a [Team]
+ *
+ * @param show Whether the dialog is shown
+ * @param teamsManager The manager of the teams list data
+ * @param team The team to delete
+ * @param onDelete The action to execute when the team has been deleted
+ */
 @Composable
 @NonRestartableComposable
 fun DeleteTeam(
@@ -125,12 +148,17 @@ fun DeleteTeam(
     )
 }
 
+/**
+ * Alert to warn about the leaving from a team action
+ *
+ * @param viewModel The support viewmodel for the screen
+ * @param show Whether the alert is shown
+ */
 @Composable
 @NonRestartableComposable
 fun LeaveTeam(
     show: MutableState<Boolean>,
-    viewModel: TeamScreenViewModel,
-    team: Team
+    viewModel: TeamScreenViewModel
 ) {
     EquinoxAlertDialog(
         modifier = Modifier

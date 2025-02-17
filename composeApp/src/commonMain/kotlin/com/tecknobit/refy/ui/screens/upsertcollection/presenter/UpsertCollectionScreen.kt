@@ -66,7 +66,7 @@ class UpsertCollectionScreen(
     @Composable
     @NonRestartableComposable
     override fun ScreenTheme(
-        content: @Composable() () -> Unit
+        content: @Composable () -> Unit
     ) {
         val colorScheme = rememberDynamicColorScheme(
             primary = viewModel.color.value,

@@ -42,6 +42,14 @@ import refy.composeapp.generated.resources.add_related_collections
 import refy.composeapp.generated.resources.share_collection
 import refy.composeapp.generated.resources.share_link
 
+/**
+ * Component used to attach, so share, the [link] in collections or in teams
+ *
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param viewModel The support viewmodel for the screen
+ * @param link The link to share
+ */
 @Composable
 @NonRestartableComposable
 fun AttachLink(
@@ -94,6 +102,14 @@ fun AttachLink(
     )
 }
 
+/**
+ * Component used to attach links to the [collection] or share it in teams
+ *
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param collectionsManager The manager of the collections list data
+ * @param collection The collection where share or to share
+ */
 @Composable
 @NonRestartableComposable
 fun AttachCollection(
@@ -144,6 +160,14 @@ fun AttachCollection(
     )
 }
 
+/**
+ * Component used to attach links or collections to the [team]
+ *
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param teamsManager The manager of the teams list data
+ * @param team The team where share the items
+ */
 @Composable
 @NonRestartableComposable
 fun AttachTeam(
@@ -195,6 +219,13 @@ fun AttachTeam(
     )
 }
 
+/**
+ * Component used to handle the attach or sharing actions
+ *
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param pages The pages to display where the user can select the items to attach or to share
+ */
 @Composable
 @NonRestartableComposable
 private fun AttachItem(
@@ -250,6 +281,12 @@ private fun AttachItem(
     }
 }
 
+/**
+ * Component used to indicate the current page displayed by the [AttachItem] component
+ *
+ * @param state The state of the pager
+ * @param currentPage The current page displayed
+ */
 @Composable
 @NonRestartableComposable
 private fun PagerIndicator(

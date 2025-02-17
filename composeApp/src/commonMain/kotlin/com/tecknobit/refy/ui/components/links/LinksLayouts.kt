@@ -22,11 +22,17 @@ import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyVerticalStaggeredGrid
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 
+/**
+ * Custom layout used to display a list of links as grid
+ *
+ * @param linksState The state used to load the links
+ * @param linkCard The card used to display the link details
+ */
 @Composable
 @NonRestartableComposable
 fun <T : RefyLink> LinksGrid(
     linksState: PaginationState<Int, T>,
-    linkCard: @Composable() (T) -> Unit
+    linkCard: @Composable (T) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -59,11 +65,17 @@ fun <T : RefyLink> LinksGrid(
     }
 }
 
+/**
+ * Custom layout used to display a list of links as [PaginatedLazyColumn]
+ *
+ * @param linksState The state used to load the links
+ * @param linkCard The card used to display the link details
+ */
 @Composable
 @NonRestartableComposable
 fun <T : RefyLink> LinksList(
     linksState: PaginationState<Int, T>,
-    linkCard: @Composable() (T) -> Unit
+    linkCard: @Composable (T) -> Unit
 ) {
     PaginatedLazyColumn(
         modifier = Modifier
