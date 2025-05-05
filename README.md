@@ -88,6 +88,11 @@ dependencies {
   <img src="https://github.com/N7ghtm4r3/Refy-Clients/blob/main/images/custom_link_web.png" alt="custom_link_web_page"/>
 </details>
 
+## Illustrations
+
+The illustrations were sourced from [undraw](https://undraw.co/)
+and [storyset](https://storyset.com/)!
+
 ## Support
 
 If you need help using the library or encounter any problems or bugs, please contact us via the
