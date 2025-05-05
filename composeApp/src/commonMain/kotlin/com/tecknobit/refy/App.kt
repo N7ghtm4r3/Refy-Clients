@@ -294,14 +294,14 @@ fun startSession() {
                     localUser.updateDynamicAccountData(
                         dynamicData = response.toResponseData()
                     )
+                    setUserLanguage()
                 },
-                onFailure = {}
+                onFailure = { setUserLanguage() }
             )
         }
         HOME_SCREEN
     } else
         AUTH_SCREEN
-    setUserLanguage()
     navigator.navigate(route)
 }
 
