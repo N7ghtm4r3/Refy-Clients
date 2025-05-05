@@ -12,7 +12,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CreateNewFolder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -63,7 +62,6 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
      * Custom component used to display the items list as grid
      */
     @Composable
-    @NonRestartableComposable
     override fun Items() {
         Column(
             modifier = Modifier

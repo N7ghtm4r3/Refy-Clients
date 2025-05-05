@@ -164,7 +164,6 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      * Custom section used to display the items with a row layout
      */
     @Composable
-    @NonRestartableComposable
     protected abstract fun ColumnScope.RowItems()
 
     /**
@@ -215,7 +214,6 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      * @param link The link to display
      */
     @Composable
-    @NonRestartableComposable
     protected abstract fun ItemRelatedLinkCard(
         link: RefyLinkImpl
     )
@@ -227,7 +225,6 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      * @param header The header information
      */
     @Composable
-    @NonRestartableComposable
     protected fun SectionHeaderTitle(
         modifier: Modifier = Modifier,
         header: StringResource

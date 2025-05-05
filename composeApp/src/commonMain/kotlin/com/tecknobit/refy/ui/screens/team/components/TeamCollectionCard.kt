@@ -7,7 +7,6 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -33,7 +32,6 @@ import refy.composeapp.generated.resources.links_contained
  * @param collection The collection shared with the team
  */
 @Composable
-@NonRestartableComposable
 fun TeamCollectionCard(
     viewModel: TeamScreenViewModel,
     iAmAnAdmin: Boolean,

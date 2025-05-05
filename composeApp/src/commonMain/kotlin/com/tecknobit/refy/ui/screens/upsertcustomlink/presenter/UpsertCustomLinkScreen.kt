@@ -85,7 +85,6 @@ class UpsertCustomLinkScreen(
      * Section where the user can insert the name of the link
      */
     @Composable
-    @NonRestartableComposable
     private fun LinkNameSection() {
         SectionTitle(
             title = Res.string.name
@@ -108,7 +107,6 @@ class UpsertCustomLinkScreen(
      * Section where the user select the access method for the link
      */
     @Composable
-    @NonRestartableComposable
     private fun AccessMethod() {
         SectionTitle(
             title = Res.string.access_method
@@ -189,7 +187,6 @@ class UpsertCustomLinkScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         viewModel.linkNameError = remember { mutableStateOf(false) }
@@ -201,7 +198,6 @@ class UpsertCustomLinkScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStatesAfterLoading() {
         super.CollectStatesAfterLoading()
         viewModel.linkName = remember {

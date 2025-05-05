@@ -156,7 +156,6 @@ fun LinkCardContainer(
  * @param owner The owner of the link
  */
 @Composable
-@NonRestartableComposable
 private fun OwnerData(
     owner: RefyUser
 ) {
@@ -197,7 +196,6 @@ private fun OwnerData(
  * @param link The link from fetch its **og:image**
  */
 @Composable
-@NonRestartableComposable
 private fun LinkThumbnail(
     link: RefyLinkImpl
 ) {

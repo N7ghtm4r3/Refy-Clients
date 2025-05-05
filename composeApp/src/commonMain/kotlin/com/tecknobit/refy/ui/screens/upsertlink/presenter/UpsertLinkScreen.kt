@@ -62,7 +62,6 @@ class UpsertLinkScreen(
      * Section where the user can insert the link reference
      */
     @Composable
-    @NonRestartableComposable
     private fun LinkReferenceSection() {
         val focusRequester = remember { FocusRequester() }
         LaunchedEffect(Unit) {
@@ -92,7 +91,6 @@ class UpsertLinkScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         viewModel.referenceError = remember { mutableStateOf(false) }
@@ -104,7 +102,6 @@ class UpsertLinkScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStatesAfterLoading() {
         super.CollectStatesAfterLoading()
         viewModel.reference = remember {

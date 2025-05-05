@@ -24,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -206,7 +205,6 @@ class HomeScreen : EquinoxNoModelScreen() {
      * @param modifier The modifier to apply to the content
      */
     @Composable
-    @NonRestartableComposable
     private fun CurrentTabContent(
         modifier: Modifier = Modifier
     ) {

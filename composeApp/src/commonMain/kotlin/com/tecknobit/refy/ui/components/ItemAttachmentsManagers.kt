@@ -227,7 +227,6 @@ fun AttachTeam(
  * @param pages The pages to display where the user can select the items to attach or to share
  */
 @Composable
-@NonRestartableComposable
 private fun AttachItem(
     state: SheetState,
     scope: CoroutineScope,
@@ -288,7 +287,6 @@ private fun AttachItem(
  * @param currentPage The current page displayed
  */
 @Composable
-@NonRestartableComposable
 private fun PagerIndicator(
     state: PagerState,
     currentPage: Int

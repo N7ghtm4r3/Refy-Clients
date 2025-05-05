@@ -6,7 +6,6 @@ import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -53,7 +52,6 @@ val titleStyle = TextStyle(
  * @param link The link to delete
  */
 @Composable
-@NonRestartableComposable
 fun <T : RefyLink> DeleteLink(
     show: MutableState<Boolean>,
     viewModel: BaseLinksScreenViewModel<T>,
@@ -89,7 +87,6 @@ fun <T : RefyLink> DeleteLink(
  * @param onDelete The action to execute when the collection has been deleted
  */
 @Composable
-@NonRestartableComposable
 fun DeleteCollection(
     show: MutableState<Boolean>,
     collectionsManager: CollectionsManager,
@@ -123,7 +120,6 @@ fun DeleteCollection(
  * @param onDelete The action to execute when the team has been deleted
  */
 @Composable
-@NonRestartableComposable
 fun DeleteTeam(
     show: MutableState<Boolean>,
     teamsManager: TeamsManager,
@@ -155,7 +151,6 @@ fun DeleteTeam(
  * @param show Whether the alert is shown
  */
 @Composable
-@NonRestartableComposable
 fun LeaveTeam(
     show: MutableState<Boolean>,
     viewModel: TeamScreenViewModel
@@ -185,7 +180,6 @@ fun LeaveTeam(
  * @param show Whether the alert is shown
  */
 @Composable
-@NonRestartableComposable
 fun Logout(
     viewModel: ProfileScreenViewModel,
     show: MutableState<Boolean>
@@ -217,7 +211,6 @@ fun Logout(
  * @param show Whether the alert is shown
  */
 @Composable
-@NonRestartableComposable
 fun DeleteAccount(
     viewModel: ProfileScreenViewModel,
     show: MutableState<Boolean>

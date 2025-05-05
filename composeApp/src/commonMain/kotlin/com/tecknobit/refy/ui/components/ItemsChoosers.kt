@@ -113,7 +113,6 @@ fun LinksChooser(
  */
 @Wrapper
 @Composable
-@NonRestartableComposable
 fun LinksChooser(
     lazyColumSize: Dp = (-1).dp,
     mainTitle: StringResource?,
@@ -179,7 +178,6 @@ fun LinksChooser(
  */
 @Wrapper
 @Composable
-@NonRestartableComposable
 fun LinksCollectionsChooser(
     mainTitle: StringResource,
     subTitle: StringResource = Res.string.with_collections,
@@ -251,7 +249,6 @@ fun LinksCollectionsChooser(
  */
 @Wrapper
 @Composable
-@NonRestartableComposable
 fun TeamsChooser(
     mainTitle: StringResource,
     currentTeamsAttached: List<Team>,

@@ -46,7 +46,6 @@ import refy.composeapp.generated.resources.collection_created_on
  * @param collection The collection to display
  */
 @Composable
-@NonRestartableComposable
 fun CollectionCard(
     modifier: Modifier = Modifier,
     viewModel: CollectionsScreenViewModel,

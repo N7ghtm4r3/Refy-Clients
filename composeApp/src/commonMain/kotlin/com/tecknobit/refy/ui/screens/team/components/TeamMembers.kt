@@ -18,7 +18,6 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -45,7 +44,6 @@ import refy.composeapp.generated.resources.team_members
  * @param team The team to display
  */
 @Composable
-@NonRestartableComposable
 fun TeamMembers(
     viewModel: TeamScreenViewModel,
     state: SheetState,

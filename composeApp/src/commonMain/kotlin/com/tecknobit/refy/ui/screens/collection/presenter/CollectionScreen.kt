@@ -202,16 +202,15 @@ class CollectionScreen(
      * The section where are displayed the teams where the collection is shared
      */
     @Composable
-    @NonRestartableComposable
     private fun TeamsSection() {
         PaginatedLazyRow(
             modifier = Modifier
                 .fillMaxWidth(),
-            paginationState = this@CollectionScreen.viewModel.collectionTeams,
+            paginationState = viewModel.collectionTeams,
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             this.items(
-                items = this@CollectionScreen.viewModel.collectionTeams.allItems!!,
+                items = viewModel.collectionTeams.allItems!!,
                 key = { team -> team.id }
             ) { team ->
                 CollectionTeamCard(
@@ -228,7 +227,6 @@ class CollectionScreen(
      * @param link The link to display
      */
     @Composable
-    @NonRestartableComposable
     override fun ItemRelatedLinkCard(
         link: RefyLinkImpl
     ) {
@@ -345,7 +343,6 @@ class CollectionScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         color = viewModel.color.collectAsState(

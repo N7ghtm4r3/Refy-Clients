@@ -49,7 +49,6 @@ import refy.composeapp.generated.resources.team_created_on
  * @param team The team to display
  */
 @Composable
-@NonRestartableComposable
 fun TeamCard(
     viewModel: TeamsScreenViewModel,
     team: Team

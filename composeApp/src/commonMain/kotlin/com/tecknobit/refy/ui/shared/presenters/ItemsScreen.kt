@@ -62,7 +62,6 @@ abstract class ItemsScreen<V : RefyScreenViewModel>(
      * Custom component used to display the items list as grid
      */
     @Composable
-    @NonRestartableComposable
     protected abstract fun Items()
 
 }

@@ -88,7 +88,6 @@ class UpsertTeamScreen(
      * Custom picker to pick the logo of the team
      */
     @Composable
-    @NonRestartableComposable
     private fun LogoPicker() {
         val launcher = rememberFilePickerLauncher(
             type = PickerType.Image,
@@ -121,7 +120,6 @@ class UpsertTeamScreen(
      * The section where the user can insert the name of the team
      */
     @Composable
-    @NonRestartableComposable
     private fun TeamNameSection() {
         SectionTitle(
             title = Res.string.team_name
@@ -144,7 +142,6 @@ class UpsertTeamScreen(
      * The section where are displayed the members joined or not in the team
      */
     @Composable
-    @NonRestartableComposable
     private fun TeamMembersSection() {
         SectionTitle(
             title = Res.string.team_members
@@ -206,7 +203,6 @@ class UpsertTeamScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         viewModel.logoPicError = remember { mutableStateOf(false) }
@@ -219,7 +215,6 @@ class UpsertTeamScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStatesAfterLoading() {
         super.CollectStatesAfterLoading()
         viewModel.logoPic = remember {

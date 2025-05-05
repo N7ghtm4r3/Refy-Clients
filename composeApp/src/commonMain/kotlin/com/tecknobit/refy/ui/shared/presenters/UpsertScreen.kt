@@ -179,14 +179,12 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
      * The form used to insert or update the item details
      */
     @Composable
-    @NonRestartableComposable
     protected abstract fun ColumnScope.UpsertForm()
 
     /**
      * The section used to allow the user to insert or update the description of the item
      */
     @Composable
-    @NonRestartableComposable
     protected fun ItemDescriptionSection() {
         SectionTitle(
             title = Res.string.description
@@ -213,7 +211,6 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
      * @param title The title of the section
      */
     @Composable
-    @NonRestartableComposable
     protected fun SectionTitle(
         title: StringResource
     ) {
@@ -228,7 +225,6 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
      * Custom [Button] used to execute the upsert action for the item
      */
     @Composable
-    @NonRestartableComposable
     protected fun ColumnScope.UpsertButton() {
         Button(
             modifier = Modifier

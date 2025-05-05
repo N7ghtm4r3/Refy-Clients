@@ -18,7 +18,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -41,7 +40,6 @@ import refy.composeapp.generated.resources.value_not_valid
  * @param viewModel The support viewmodel for the screen
  */
 @Composable
-@NonRestartableComposable
 fun AuthForm(
     viewModel: UpsertCustomLinkScreenViewModel
 ) {
@@ -56,7 +54,6 @@ fun AuthForm(
  * @param viewModel The support viewmodel for the screen
  */
 @Composable
-@NonRestartableComposable
 fun ResourcesForm(
     viewModel: UpsertCustomLinkScreenViewModel
 ) {
@@ -71,7 +68,6 @@ fun ResourcesForm(
  * @param data The data to display and to manage
  */
 @Composable
-@NonRestartableComposable
 private fun DynamicForm(
     data: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>
 ) {
@@ -139,7 +135,6 @@ private fun DynamicForm(
  * @param keyboardOptions The options of the keyboards
  */
 @Composable
-@NonRestartableComposable
 private fun RowScope.FormInputField(
     value: MutableState<String>,
     placeholder: StringResource,

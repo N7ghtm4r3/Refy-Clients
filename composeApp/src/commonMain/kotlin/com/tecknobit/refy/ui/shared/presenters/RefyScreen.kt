@@ -144,7 +144,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * any actions related to the screen
      */
     @Composable
-    @NonRestartableComposable
     protected fun TopBar() {
         Column {
             Row(

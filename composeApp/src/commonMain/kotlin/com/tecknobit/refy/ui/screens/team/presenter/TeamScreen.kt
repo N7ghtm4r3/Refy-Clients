@@ -213,15 +213,10 @@ class TeamScreen(
      * Custom section used to display the items with a row layout
      */
     @Composable
-    @NonRestartableComposable
     override fun ColumnScope.RowItems() {
         ResponsiveContent(
-            onExpandedSizeClass = {
-                TeamInfoSection()
-            },
-            onMediumSizeClass = {
-                TeamInfoSection()
-            },
+            onExpandedSizeClass = { TeamInfoSection() },
+            onMediumSizeClass = { TeamInfoSection() },
             onCompactSizeClass = {}
         )
         CollectionsSection()
@@ -237,7 +232,6 @@ class TeamScreen(
      * The section about the team information such logo and action buttons to manage that team
      */
     @Composable
-    @NonRestartableComposable
     private fun TeamInfoSection() {
         Row(
             modifier = Modifier
@@ -331,7 +325,6 @@ class TeamScreen(
      * The section where are displayed the collections shared with the team
      */
     @Composable
-    @NonRestartableComposable
     private fun CollectionsSection() {
         val iAmAnAdmin = item.value!!.iAmAnAdmin()
         PaginatedLazyRow(
@@ -436,7 +429,6 @@ class TeamScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         memberSheetState = rememberModalBottomSheetState(
