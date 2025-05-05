@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
+import com.tecknobit.equinoxcompose.components.DebouncedOutlinedTextField
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
@@ -377,15 +378,12 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                     onCompactSizeClass = { Alignment.Start }
                 )
             ) {
-                EquinoxOutlinedTextField(
+                DebouncedOutlinedTextField(
                     shape = RoundedCornerShape(
                         size = 12.dp
                     ),
                     value = viewModel.keywords,
-                    onValueChange = {
-                        viewModel.keywords.value = it
-                        viewModel.refresh()
-                    },
+                    debounce = { viewModel.refresh() },
                     placeholder = Res.string.search_by_keywords,
                     trailingIcon = {
                         IconButton(
