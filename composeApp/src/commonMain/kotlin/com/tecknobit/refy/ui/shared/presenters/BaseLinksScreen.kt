@@ -1,6 +1,5 @@
 package com.tecknobit.refy.ui.shared.presenters
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddLink
 import androidx.compose.runtime.Composable
@@ -9,7 +8,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.ui.components.links.LinksGrid
-import com.tecknobit.refy.ui.components.links.LinksList
 import com.tecknobit.refy.ui.screens.links.data.RefyLink
 import com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel
 import org.jetbrains.compose.resources.StringResource
@@ -45,26 +43,8 @@ abstract class BaseLinksScreen<L : RefyLink, V : BaseLinksScreenViewModel<L>>(
      */
     @Composable
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
-    override fun ItemsGrid() {
+    override fun Items() {
         LinksGrid(
-            linksState = viewModel.linksState,
-            linkCard = { link ->
-                RelatedLinkCard(
-                    link = link
-                )
-            }
-        )
-    }
-
-    /**
-     * Custom component used to display the items list as custom [Column]
-     */
-    @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
-    override fun ItemsList() {
-        LinksList(
             linksState = viewModel.linksState,
             linkCard = { link ->
                 RelatedLinkCard(
@@ -80,7 +60,6 @@ abstract class BaseLinksScreen<L : RefyLink, V : BaseLinksScreenViewModel<L>>(
      * @param link The link to display
      */
     @Composable
-    @NonRestartableComposable
     abstract fun RelatedLinkCard(
         link: L,
     )

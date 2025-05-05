@@ -39,6 +39,11 @@ import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Au
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
+import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
@@ -128,8 +133,9 @@ class CollectionScreen(
      * Custom [ExtendedFloatingActionButton] used to edit the item where needed
      */
     @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun ExtendedFAB() {
         awaitNullItemLoaded(
             itemToWait = item.value,
@@ -259,8 +265,8 @@ class CollectionScreen(
      * Custom trailing content to display in the [TopBar] component
      */
     @Composable
+    @CompactClassComponent
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     override fun ColumnScope.TrailingContent() {
         awaitNullItemLoaded(
             itemToWait = item.value,
@@ -295,6 +301,9 @@ class CollectionScreen(
      */
     @Composable
     @NonRestartableComposable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun AttachContent(
         state: SheetState,
         scope: CoroutineScope
@@ -314,6 +323,9 @@ class CollectionScreen(
      */
     @Composable
     @NonRestartableComposable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun DeleteItemContent(
         delete: MutableState<Boolean>
     ) {

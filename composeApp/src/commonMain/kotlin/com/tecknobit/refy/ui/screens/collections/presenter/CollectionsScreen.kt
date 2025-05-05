@@ -1,22 +1,24 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.collections.presenter
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CreateNewFolder
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.EmptyCollections
@@ -27,7 +29,6 @@ import com.tecknobit.refy.ui.screens.collections.components.CollectionCard
 import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
 import com.tecknobit.refy.ui.shared.presenters.ItemsScreen
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
-import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyVerticalStaggeredGrid
 import org.jetbrains.compose.resources.StringResource
 import refy.composeapp.generated.resources.Res
@@ -63,8 +64,7 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
      */
     @Composable
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
-    override fun ItemsGrid() {
+    override fun Items() {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -72,10 +72,7 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
         ) {
             PaginatedLazyVerticalStaggeredGrid(
                 modifier = Modifier
-                    // TODO: TO CHANGE
-                    .widthIn(
-                        max = 1280.dp
-                    )
+                    .responsiveMaxWidth()
                     .animateContentSize(),
                 paginationState = viewModel.collectionsState,
                 columns = StaggeredGridCells.Adaptive(
@@ -85,11 +82,7 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 firstPageProgressIndicator = { FirstPageProgressIndicator() },
                 newPageProgressIndicator = { NewPageProgressIndicator() },
-                firstPageEmptyIndicator = {
-                    EmptyCollections(
-                        size = 400.dp
-                    )
-                }
+                firstPageEmptyIndicator = { EmptyCollections() }
             ) {
                 items(
                     items = viewModel.collectionsState.allItems!!,
@@ -100,34 +93,6 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
                         collection = collection
                     )
                 }
-            }
-        }
-    }
-
-    /**
-     * Custom component used to display the items list as custom [Column]
-     */
-    @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
-    override fun ItemsList() {
-        PaginatedLazyColumn(
-            modifier = Modifier
-                .animateContentSize(),
-            paginationState = viewModel.collectionsState,
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            firstPageProgressIndicator = { FirstPageProgressIndicator() },
-            newPageProgressIndicator = { NewPageProgressIndicator() },
-            firstPageEmptyIndicator = { EmptyCollections() }
-        ) {
-            items(
-                items = viewModel.collectionsState.allItems!!,
-                key = { collection -> collection.id }
-            ) { collection ->
-                CollectionCard(
-                    viewModel = viewModel,
-                    collection = collection
-                )
             }
         }
     }

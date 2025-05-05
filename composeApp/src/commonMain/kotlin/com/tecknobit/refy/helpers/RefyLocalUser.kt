@@ -20,13 +20,13 @@ class RefyLocalUser : EquinoxLocalUser(
      */
     var tagName: String = ""
         set(value) {
-            //if (field != value) { // TODO: FIX THE ISSUE HERE OR REMOVE JUST THE COMMENT AND SEE THE PRODUCTION WEB BINARY
+            if (field != value) {
                 setPreference(
                     key = TAG_NAME_KEY,
                     value = value
                 )
                 field = value
-            //}
+            }
         }
 
     /**

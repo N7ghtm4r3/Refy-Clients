@@ -282,10 +282,10 @@ fun startSession() {
     requester = RefyRequester(
         host = localUser.hostAddress,
         userId = localUser.userId,
-        userToken = localUser.userToken
+        userToken = localUser.userToken,
+        debugMode = true // TODO: TO REMOVE
     )
-    val route =
-        if (!localUser.userId.isNullOrBlank()) { // TODO: TO USE localUser.isAuthenticated INSTEAD
+    val route = if (localUser.isAuthenticated) {
         MainScope().launch {
             requester.sendRequest(
                 request = {
@@ -299,9 +299,9 @@ fun startSession() {
                 onFailure = {}
             )
         }
-            HOME_SCREEN
+        HOME_SCREEN
     } else
-            AUTH_SCREEN
+        AUTH_SCREEN
     setUserLanguage()
     navigator.navigate(route)
 }

@@ -187,6 +187,7 @@ class UpsertTeamScreen(
                         Checkbox(
                             checked = added,
                             onCheckedChange = {
+                                // TODO: TO FIX 
                                 added = it
                                 if (added)
                                     viewModel.teamMembers.add(member)

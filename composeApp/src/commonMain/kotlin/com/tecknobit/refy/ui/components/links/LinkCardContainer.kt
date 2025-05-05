@@ -75,7 +75,6 @@ import refy.composeapp.generated.resources.no_preview_available
  * @param cancelButton The button used to remove or delete a link
  */
 @Composable
-@NonRestartableComposable
 fun LinkCardContainer(
     modifier: Modifier = Modifier,
     viewModel: EquinoxViewModel,

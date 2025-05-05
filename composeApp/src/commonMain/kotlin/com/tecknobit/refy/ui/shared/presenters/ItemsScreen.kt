@@ -4,12 +4,13 @@ package com.tecknobit.refy.ui.shared.presenters
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.ManagedContent
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
-import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
 import org.jetbrains.compose.resources.StringResource
@@ -43,17 +44,15 @@ abstract class ItemsScreen<V : RefyScreenViewModel>(
     @NonRestartableComposable
     override fun Content() {
         ManagedContent(
+            modifier = Modifier
+                .fillMaxSize(),
             viewModel = viewModel,
             content = {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     FiltersInputField()
-                    ResponsiveContent(
-                        onExpandedSizeClass = { ItemsGrid() },
-                        onMediumSizeClass = { ItemsGrid() },
-                        onCompactSizeClass = { ItemsList() }
-                    )
+                    Items()
                 }
             }
         )
@@ -64,15 +63,6 @@ abstract class ItemsScreen<V : RefyScreenViewModel>(
      */
     @Composable
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
-    protected abstract fun ItemsGrid()
-
-    /**
-     * Custom component used to display the items list as custom [Column]
-     */
-    @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
-    protected abstract fun ItemsList()
+    protected abstract fun Items()
 
 }

@@ -36,6 +36,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
+import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.icons.Collection
@@ -123,8 +127,9 @@ class HomeScreen : EquinoxNoModelScreen() {
      * screen size classes devices
      */
     @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     private fun SideNavigationBar() {
         Row {
             NavigationRail(
@@ -175,8 +180,7 @@ class HomeScreen : EquinoxNoModelScreen() {
      * screen size class devices
      */
     @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    @CompactClassComponent
     private fun BottomNavigationBar() {
         Box (
           modifier = Modifier

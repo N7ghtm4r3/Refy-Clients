@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.ChameleonText
 import com.tecknobit.equinoxcompose.components.getContrastColor
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import org.jetbrains.compose.resources.stringResource
 
@@ -26,9 +28,10 @@ import org.jetbrains.compose.resources.stringResource
  * @param selected Whether the tab is currently selected
  * @param onClick The action to execute when a tab is clicked
  */
-// TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
 @Composable
-@NonRestartableComposable
+@ResponsiveClassComponent(
+    classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+)
 fun SideNavigationItem(
     tab: NavigationTab,
     selected: Boolean,

@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMultiplatform::class)
+@file:OptIn(ExperimentalMultiplatform::class, ExperimentalComposeApi::class)
 
 package com.tecknobit.refy.ui.shared.presenters
 
@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -20,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
@@ -35,6 +35,7 @@ import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.ManagedContent
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
+import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.navigator
@@ -106,6 +107,8 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     override fun ArrangeScreenContent() {
         ScreenTheme {
             ManagedContent(
+                modifier = Modifier
+                    .fillMaxSize(),
                 viewModel = viewModel,
                 initialDelay = 500,
                 loadingRoutine = if (isUpdating) {
@@ -130,10 +133,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
                         ) {
                             Column(
                                 modifier = Modifier
-                                    // TODO: TO CHANGE
-                                    .widthIn(
-                                        max = 1280.dp
-                                    )
+                                    .responsiveMaxWidth()
                                     .padding(
                                         all = 16.dp
                                     ),
