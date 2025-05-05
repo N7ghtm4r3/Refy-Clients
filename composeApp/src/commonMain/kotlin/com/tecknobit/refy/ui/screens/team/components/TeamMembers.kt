@@ -27,8 +27,8 @@ import androidx.compose.ui.unit.sp
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.components.TeamMemberListItem
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
-import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.screens.teams.data.TeamMember
+import com.tecknobit.refy.ui.shared.data.Team
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource

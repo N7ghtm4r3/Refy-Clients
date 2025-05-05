@@ -7,8 +7,8 @@ import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.refy.ui.components.RemoveItemButton
 import com.tecknobit.refy.ui.components.links.LinkCardContainer
 import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenViewModel
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.LinksCollection
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 
 /**
  * Custom card used to display the information of a link shared with the [collection]

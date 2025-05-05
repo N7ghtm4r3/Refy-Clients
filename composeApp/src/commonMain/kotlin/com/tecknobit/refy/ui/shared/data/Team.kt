@@ -1,9 +1,8 @@
-package com.tecknobit.refy.ui.screens.teams.data
+package com.tecknobit.refy.ui.shared.data
 
 import com.tecknobit.refy.localUser
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
-import com.tecknobit.refy.ui.shared.data.RefyItem
+import com.tecknobit.refy.ui.screens.teams.data.TeamMember
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.RefyUser.RefyUserImpl
 import com.tecknobit.refycore.LOGO_PIC_KEY
 import com.tecknobit.refycore.enums.TeamRole

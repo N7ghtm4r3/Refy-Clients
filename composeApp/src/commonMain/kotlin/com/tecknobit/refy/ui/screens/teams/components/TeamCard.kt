@@ -36,9 +36,9 @@ import com.tecknobit.refy.ui.components.DeleteTeam
 import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.components.TeamLogo
-import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.screens.teams.data.TeamMember.Companion.toColor
 import com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel
+import com.tecknobit.refy.ui.shared.data.Team
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.team_created_on
 

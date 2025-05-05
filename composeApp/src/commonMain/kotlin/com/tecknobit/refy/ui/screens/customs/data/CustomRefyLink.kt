@@ -3,10 +3,10 @@ package com.tecknobit.refy.ui.screens.customs.data
 import com.tecknobit.equinoxcore.network.EquinoxBaseEndpointsSet.Companion.BASE_EQUINOX_ENDPOINT
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.refy.localUser
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
-import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.data.LinksCollection
+import com.tecknobit.refy.ui.shared.data.RefyLink
 import com.tecknobit.refy.ui.shared.data.RefyUser
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refycore.EXPIRED_TIME_KEY
 import com.tecknobit.refycore.PREVIEW_TOKEN_KEY
 import com.tecknobit.refycore.REFERENCE_LINK_KEY

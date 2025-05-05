@@ -11,8 +11,8 @@ import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
 import com.tecknobit.refy.requester
-import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.screens.teams.data.TeamMember
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import io.github.ahmad_hamwi.compose.pagination.PaginationState

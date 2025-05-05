@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.ui.components.links.LinksGrid
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
+import com.tecknobit.refy.ui.shared.data.RefyLink
 import com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel
 import org.jetbrains.compose.resources.StringResource
 import refy.composeapp.generated.resources.Res

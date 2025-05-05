@@ -38,8 +38,8 @@ import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.components.LinksChooser
 import com.tecknobit.refy.ui.screens.collection.helpers.adaptStatusBarToCollectionTheme
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.upsertcollection.presentation.UpsertCollectionScreenViewModel
+import com.tecknobit.refy.ui.shared.data.LinksCollection
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid

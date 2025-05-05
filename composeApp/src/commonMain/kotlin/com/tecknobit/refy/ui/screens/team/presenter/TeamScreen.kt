@@ -52,12 +52,12 @@ import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.DeleteTeam
 import com.tecknobit.refy.ui.components.LeaveTeam
 import com.tecknobit.refy.ui.components.TeamLogo
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.team.components.TeamCollectionCard
 import com.tecknobit.refy.ui.screens.team.components.TeamLinkCard
 import com.tecknobit.refy.ui.screens.team.components.TeamMembers
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
-import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presenters.ItemScreen
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyRow

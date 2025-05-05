@@ -12,8 +12,8 @@ import com.tecknobit.refy.ui.components.AttachLink
 import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.DeleteLink
 import com.tecknobit.refy.ui.components.links.LinkCardContainer
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 
 /**
  * Custom card used to display the information of a [RefyLinkImpl]

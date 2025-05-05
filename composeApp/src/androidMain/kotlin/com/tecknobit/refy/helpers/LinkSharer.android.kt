@@ -3,7 +3,7 @@ package com.tecknobit.refy.helpers
 import android.content.Intent
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
+import com.tecknobit.refy.ui.shared.data.RefyLink
 
 /**
  * `INTENT_TYPE` the type of the intent to apply to correctly share the link

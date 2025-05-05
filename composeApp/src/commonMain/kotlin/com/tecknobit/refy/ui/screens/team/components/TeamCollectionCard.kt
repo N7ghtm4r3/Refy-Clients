@@ -16,8 +16,8 @@ import com.tecknobit.refy.COLLECTION_SCREEN
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.ItemTitle
 import com.tecknobit.refy.ui.components.RemoveItemButton
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
+import com.tecknobit.refy.ui.shared.data.LinksCollection
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res

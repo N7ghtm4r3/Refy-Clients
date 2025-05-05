@@ -1,9 +1,5 @@
-package com.tecknobit.refy.ui.screens.links.data
+package com.tecknobit.refy.ui.shared.data
 
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.teams.data.Team
-import com.tecknobit.refy.ui.shared.data.RefyItem
-import com.tecknobit.refy.ui.shared.data.RefyUser
 import com.tecknobit.refycore.REFERENCE_LINK_KEY
 import com.tecknobit.refycore.THUMBNAIL_PREVIEW_KEY
 import kotlinx.serialization.SerialName

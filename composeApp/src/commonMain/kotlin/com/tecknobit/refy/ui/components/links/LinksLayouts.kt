@@ -17,7 +17,7 @@ import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.refy.ui.components.EmptyLinks
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
+import com.tecknobit.refy.ui.shared.data.RefyLink
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyVerticalStaggeredGrid
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 

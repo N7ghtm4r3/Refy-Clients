@@ -33,8 +33,8 @@ import com.tecknobit.refy.ui.components.DeleteCollection
 import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel
+import com.tecknobit.refy.ui.shared.data.LinksCollection
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.collection_created_on
 
