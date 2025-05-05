@@ -130,8 +130,9 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
                         ) {
                             Column(
                                 modifier = Modifier
+                                    // TODO: TO CHANGE
                                     .widthIn(
-                                        max = MAX_CONTAINER_WIDTH
+                                        max = 1280.dp
                                     )
                                     .padding(
                                         all = 16.dp

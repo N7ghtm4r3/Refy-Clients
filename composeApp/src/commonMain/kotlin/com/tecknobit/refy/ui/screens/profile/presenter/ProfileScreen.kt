@@ -133,8 +133,9 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                 ) {
                     Column(
                         modifier = Modifier
+                            // TODO: TO CHANGE
                             .widthIn(
-                                max = MAX_CONTAINER_WIDTH
+                                max = 1280.dp
                             )
                             .padding(
                                 all = 16.dp
@@ -306,7 +307,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     dismissAction = { viewModel.newEmail.value = "" },
                     confirmAction = { visible ->
                         viewModel.changeEmail(
-                            onSuccess = {
+                            onChange = {
                                 visible.value = false
                             }
                         )
@@ -320,7 +321,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     dismissAction = { viewModel.newPassword.value = "" },
                     confirmAction = { visible ->
                         viewModel.changePassword(
-                            onSuccess = {
+                            onChange = {
                                 visible.value = false
                             }
                         )
@@ -334,7 +335,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     dismissAction = { viewModel.language.value = localUser.language },
                     confirmAction = { visible ->
                         viewModel.changeLanguage(
-                            onSuccess = {
+                            onChange = {
                                 visible.value = false
                                 navigator.navigate(SPLASHSCREEN)
                             }

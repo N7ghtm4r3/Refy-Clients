@@ -72,8 +72,9 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
         ) {
             PaginatedLazyVerticalStaggeredGrid(
                 modifier = Modifier
+                    // TODO: TO CHANGE
                     .widthIn(
-                        max = MAX_CONTAINER_WIDTH
+                        max = 1280.dp
                     )
                     .animateContentSize(),
                 paginationState = viewModel.collectionsState,

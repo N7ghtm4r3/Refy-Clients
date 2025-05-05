@@ -20,8 +20,8 @@ import com.tecknobit.ametistaengine.AmetistaEngine.Companion.FILES_AMETISTA_CONF
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
-import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
+import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.helpers.RefyLocalUser
 import com.tecknobit.refy.helpers.RefyRequester
 import com.tecknobit.refy.helpers.customHttpClient
@@ -260,7 +260,7 @@ private fun InitAmetista() {
             serverSecret = AmetistaConfig.SERVER_SECRET!!,
             applicationId = AmetistaConfig.APPLICATION_IDENTIFIER!!,
             bypassSslValidation = AmetistaConfig.BYPASS_SSL_VALIDATION,
-            debugMode = false
+            debugMode = true // TODO: TO SET ON FALSE
         )
     }
 }

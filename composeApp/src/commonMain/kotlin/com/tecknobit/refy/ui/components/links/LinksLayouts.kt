@@ -13,7 +13,6 @@ import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen.Companion.MAX_CONTAINER_WIDTH
 import com.tecknobit.refy.ui.components.EmptyLinks
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
@@ -41,8 +40,9 @@ fun <T : RefyLink> LinksGrid(
     ) {
         PaginatedLazyVerticalStaggeredGrid(
             modifier = Modifier
+                // TODO: TO CHANGE
                 .widthIn(
-                    max = MAX_CONTAINER_WIDTH
+                    max = 1280.dp
                 )
                 .animateContentSize(),
             paginationState = linksState,

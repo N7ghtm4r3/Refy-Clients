@@ -152,8 +152,9 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
                 ) {
                     Column(
                         modifier = Modifier
+                            // TODO: TO CHANGE
                             .widthIn(
-                                max = MAX_CONTAINER_WIDTH
+                                max = 1280.dp
                             )
                     ) {
                         RowItems()
