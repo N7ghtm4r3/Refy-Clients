@@ -3,7 +3,6 @@ package com.tecknobit.refy
 import OctocatKDUConfig
 import UpdaterDialog
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,7 +20,6 @@ import java.util.Locale
  *
  */
 @Composable
-@NonRestartableComposable
 actual fun CheckForUpdatesAndLaunch() {
     var launchApp by remember { mutableStateOf(true) }
     RefyTheme {
@@ -51,7 +49,6 @@ actual fun setUserLanguage() {
  * Method to manage correctly the back navigation from the current screen
  *
  */
-@NonRestartableComposable
 @Composable
 actual fun CloseApplicationOnNavBack() {
 }

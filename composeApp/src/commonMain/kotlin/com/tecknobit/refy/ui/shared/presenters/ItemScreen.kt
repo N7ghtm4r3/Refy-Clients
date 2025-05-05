@@ -1,8 +1,10 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMultiplatform::class)
+@file:OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalMultiplatform::class,
+    ExperimentalComposeApi::class
+)
 
 package com.tecknobit.refy.ui.shared.presenters
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -10,7 +12,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,28 +21,24 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.ManagedContent
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
-import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
+import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
+import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.links.LinksGrid
-import com.tecknobit.refy.ui.components.links.LinksList
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.RefyItem
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel
 import com.tecknobit.refy.ui.theme.AppTypography
 import kotlinx.coroutines.CoroutineScope
@@ -107,7 +104,6 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      * @return the title of the screen as [String]
      */
     @Composable
-    @NonRestartableComposable
     override fun title(): String {
         return itemName.value
     }
@@ -141,6 +137,8 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     @NonRestartableComposable
     override fun Content() {
         ManagedContent(
+            modifier = Modifier
+                .fillMaxSize(),
             viewModel = viewModel,
             initialDelay = 500,
             loadingRoutine = { item.value != null },
@@ -152,9 +150,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
                 ) {
                     Column(
                         modifier = Modifier
-                            .widthIn(
-                                max = MAX_CONTAINER_WIDTH
-                            )
+                            .responsiveMaxWidth()
                     ) {
                         RowItems()
                         LinksSection()
@@ -168,7 +164,6 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      * Custom section used to display the items with a row layout
      */
     @Composable
-    @NonRestartableComposable
     protected abstract fun ColumnScope.RowItems()
 
     /**
@@ -178,35 +173,11 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     @NonRestartableComposable
     private fun LinksSection() {
         LinksHeader()
-        ResponsiveContent(
-            onExpandedSizeClass = {
-                LinksGrid(
-                    linksState = viewModel.linksState,
-                    linkCard = { link ->
-                        ItemRelatedLinkCard(
-                            link = link
-                        )
-                    }
-                )
-            },
-            onMediumSizeClass = {
-                LinksGrid(
-                    linksState = viewModel.linksState,
-                    linkCard = { link ->
-                        ItemRelatedLinkCard(
-                            link = link
-                        )
-                    }
-                )
-            },
-            onCompactSizeClass = {
-                LinksList(
-                    linksState = viewModel.linksState,
-                    linkCard = { link ->
-                        ItemRelatedLinkCard(
-                            link = link
-                        )
-                    }
+        LinksGrid(
+            linksState = viewModel.linksState,
+            linkCard = { link ->
+                ItemRelatedLinkCard(
+                    link = link
                 )
             }
         )
@@ -243,31 +214,9 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      * @param link The link to display
      */
     @Composable
-    @NonRestartableComposable
     protected abstract fun ItemRelatedLinkCard(
         link: RefyLinkImpl
     )
-
-    @Composable
-    @NonRestartableComposable
-    @Deprecated("USE THE EQUINOX BUILT-IN")
-    // TODO: TO INDICATE IN THE DOCU THAT IS USEFUL WITHOUT AN UI AND FOR THOSE SCENARIOS TO MANAGE
-    // OTHER PARTS OF THE UI DEPENDS ON THAT ITEM NOT BE NULL
-    protected fun <T> awaitNullItemLoaded(
-        itemToWait: T?,
-        extras: (T) -> Boolean = { true },
-        loadedContent: @Composable (T) -> Unit
-    ) {
-        var loaded by remember { mutableStateOf(false) }
-        LaunchedEffect(itemToWait) {
-            loaded = itemToWait != null && extras(itemToWait)
-        }
-        AnimatedVisibility(
-            visible = loaded
-        ) {
-            loadedContent(itemToWait!!)
-        }
-    }
 
     /**
      * The section of the header title of the screen
@@ -276,7 +225,6 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      * @param header The header information
      */
     @Composable
-    @NonRestartableComposable
     protected fun SectionHeaderTitle(
         modifier: Modifier = Modifier,
         header: StringResource
@@ -294,9 +242,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      * @param state The state useful to manage the visibility of the [ModalBottomSheet]
      * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
      */
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     @Composable
-    @NonRestartableComposable
     protected abstract fun AttachContent(
         state: SheetState,
         scope: CoroutineScope,
@@ -307,9 +253,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
      *
      * @param delete The state used to manage the visibility of this component
      */
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     @Composable
-    @NonRestartableComposable
     protected abstract fun DeleteItemContent(
         delete: MutableState<Boolean>,
     )

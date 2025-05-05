@@ -6,8 +6,8 @@ import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.refy.UPSERT_LINK_SCREEN
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.screens.links.components.LinkCard
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.presenters.BaseLinksScreen
 import com.tecknobit.refy.ui.shared.presenters.ItemsScreen
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen

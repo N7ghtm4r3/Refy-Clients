@@ -24,7 +24,6 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
@@ -66,7 +65,6 @@ import refy.composeapp.generated.resources.this_link_not_expires
  * @param link The link to display
  */
 @Composable
-@NonRestartableComposable
 fun CustomLinkCard(
     modifier: Modifier = Modifier,
     viewModel: CustomLinksScreenViewModel,
@@ -149,7 +147,6 @@ fun CustomLinkCard(
  * @param link The link to display
  */
 @Composable
-@NonRestartableComposable
 private fun CustomLinkDetails(
     state: SheetState,
     scope: CoroutineScope,
@@ -204,7 +201,6 @@ private fun CustomLinkDetails(
  * @param link The custom link displayed
  */
 @Composable
-@NonRestartableComposable
 private fun AccessMethod(
     link: CustomRefyLink
 ) {
@@ -239,7 +235,6 @@ private fun AccessMethod(
  * @param link The custom link displayed
  */
 @Composable
-@NonRestartableComposable
 private fun Auth(
     link: CustomRefyLink
 ) {
@@ -262,7 +257,6 @@ private fun Auth(
  * @param link The custom link displayed
  */
 @Composable
-@NonRestartableComposable
 private fun Resources(
     link: CustomRefyLink
 ) {
@@ -286,7 +280,6 @@ private fun Resources(
  * @param payload The data to display
  */
 @Composable
-@NonRestartableComposable
 private fun CustomLinkPayload(
     payload: Map<String, String>
 ) {

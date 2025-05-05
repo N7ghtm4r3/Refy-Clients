@@ -201,12 +201,12 @@
   },
   {
     "name": "abstract val collections: List<LinksCollection>",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.collections",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/collections.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.collections",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/collections.html",
     "searchKeys": [
       "collections",
       "abstract val collections: List<LinksCollection>",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.collections"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.collections"
     ]
   },
   {
@@ -301,12 +301,12 @@
   },
   {
     "name": "abstract val reference: String",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.reference",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/reference.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.reference",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/reference.html",
     "searchKeys": [
       "reference",
       "abstract val reference: String",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.reference"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.reference"
     ]
   },
   {
@@ -351,12 +351,12 @@
   },
   {
     "name": "abstract val teams: List<Team>",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.teams",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/teams.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.teams",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/teams.html",
     "searchKeys": [
       "teams",
       "abstract val teams: List<Team>",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.teams"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.teams"
     ]
   },
   {
@@ -367,16 +367,6 @@
       "title",
       "abstract val title: String",
       "com.tecknobit.refy.ui.shared.data.RefyItem.title"
-    ]
-  },
-  {
-    "name": "class AppContextInitializer : Initializer<Context> ",
-    "description": "com.tecknobit.equinoxcompose.utilities.context.AppContextInitializer",
-    "location": "-refy/com.tecknobit.equinoxcompose.utilities.context/-app-context-initializer/index.html",
-    "searchKeys": [
-      "AppContextInitializer",
-      "class AppContextInitializer : Initializer<Context> ",
-      "com.tecknobit.equinoxcompose.utilities.context.AppContextInitializer"
     ]
   },
   {
@@ -791,16 +781,6 @@
   },
   {
     "name": "constructor()",
-    "description": "com.tecknobit.equinoxcompose.utilities.context.AppContextInitializer.AppContextInitializer",
-    "location": "-refy/com.tecknobit.equinoxcompose.utilities.context/-app-context-initializer/-app-context-initializer.html",
-    "searchKeys": [
-      "AppContextInitializer",
-      "constructor()",
-      "com.tecknobit.equinoxcompose.utilities.context.AppContextInitializer.AppContextInitializer"
-    ]
-  },
-  {
-    "name": "constructor()",
     "description": "com.tecknobit.refy.MainActivity.MainActivity",
     "location": "-refy/com.tecknobit.refy/-main-activity/-main-activity.html",
     "searchKeys": [
@@ -1051,12 +1031,12 @@
   },
   {
     "name": "constructor(id: String, owner: RefyUser.RefyUserImpl, title: String, description: String, date: Long, _logoPic: String, members: List<TeamMember>, links: List<RefyLink.RefyLinkImpl> = emptyList(), collections: List<LinksCollection> = emptyList())",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.Team",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/-team.html",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.Team",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/-team.html",
     "searchKeys": [
       "Team",
       "constructor(id: String, owner: RefyUser.RefyUserImpl, title: String, description: String, date: Long, _logoPic: String, members: List<TeamMember>, links: List<RefyLink.RefyLinkImpl> = emptyList(), collections: List<LinksCollection> = emptyList())",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.Team"
+      "com.tecknobit.refy.ui.shared.data.Team.Team"
     ]
   },
   {
@@ -1071,22 +1051,22 @@
   },
   {
     "name": "constructor(id: String, owner: RefyUser.RefyUserImpl, title: String, description: String, date: Long, color: String, links: List<RefyLink.RefyLinkImpl> = emptyList(), teams: List<Team> = emptyList())",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.LinksCollection",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/-links-collection.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.LinksCollection",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/-links-collection.html",
     "searchKeys": [
       "LinksCollection",
       "constructor(id: String, owner: RefyUser.RefyUserImpl, title: String, description: String, date: Long, color: String, links: List<RefyLink.RefyLinkImpl> = emptyList(), teams: List<Team> = emptyList())",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.LinksCollection"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.LinksCollection"
     ]
   },
   {
     "name": "constructor(id: String, owner: RefyUser.RefyUserImpl, title: String, description: String, date: Long, reference: String, teams: List<Team> = emptyList(), collections: List<LinksCollection> = emptyList(), thumbnailPreview: String? = null)",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.RefyLinkImpl",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/-refy-link-impl.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.RefyLinkImpl",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/-refy-link-impl.html",
     "searchKeys": [
       "RefyLinkImpl",
       "constructor(id: String, owner: RefyUser.RefyUserImpl, title: String, description: String, date: Long, reference: String, teams: List<Team> = emptyList(), collections: List<LinksCollection> = emptyList(), thumbnailPreview: String? = null)",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.RefyLinkImpl"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.RefyLinkImpl"
     ]
   },
   {
@@ -1261,12 +1241,12 @@
   },
   {
     "name": "data class LinksCollection(val id: String, val owner: RefyUser.RefyUserImpl, val title: String, val description: String, val date: Long, val color: String, val links: List<RefyLink.RefyLinkImpl> = emptyList(), val teams: List<Team> = emptyList()) : RefyItem",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/index.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/index.html",
     "searchKeys": [
       "LinksCollection",
       "data class LinksCollection(val id: String, val owner: RefyUser.RefyUserImpl, val title: String, val description: String, val date: Long, val color: String, val links: List<RefyLink.RefyLinkImpl> = emptyList(), val teams: List<Team> = emptyList()) : RefyItem",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection"
     ]
   },
   {
@@ -1281,12 +1261,12 @@
   },
   {
     "name": "data class RefyLinkImpl(val id: String, val owner: RefyUser.RefyUserImpl, val title: String, val description: String, val date: Long, val reference: String, val teams: List<Team> = emptyList(), val collections: List<LinksCollection> = emptyList(), val thumbnailPreview: String? = null) : RefyLink",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/index.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/index.html",
     "searchKeys": [
       "RefyLinkImpl",
       "data class RefyLinkImpl(val id: String, val owner: RefyUser.RefyUserImpl, val title: String, val description: String, val date: Long, val reference: String, val teams: List<Team> = emptyList(), val collections: List<LinksCollection> = emptyList(), val thumbnailPreview: String? = null) : RefyLink",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl"
     ]
   },
   {
@@ -1301,12 +1281,12 @@
   },
   {
     "name": "data class Team(val id: String, val owner: RefyUser.RefyUserImpl, val title: String, val description: String, val date: Long, _logoPic: String, val members: List<TeamMember>, val links: List<RefyLink.RefyLinkImpl> = emptyList(), val collections: List<LinksCollection> = emptyList()) : RefyItem",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/index.html",
+    "description": "com.tecknobit.refy.ui.shared.data.Team",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/index.html",
     "searchKeys": [
       "Team",
       "data class Team(val id: String, val owner: RefyUser.RefyUserImpl, val title: String, val description: String, val date: Long, _logoPic: String, val members: List<TeamMember>, val links: List<RefyLink.RefyLinkImpl> = emptyList(), val collections: List<LinksCollection> = emptyList()) : RefyItem",
-      "com.tecknobit.refy.ui.screens.teams.data.Team"
+      "com.tecknobit.refy.ui.shared.data.Team"
     ]
   },
   {
@@ -1427,16 +1407,6 @@
       "LinksGrid",
       "fun <T : RefyLink> LinksGrid(linksState: PaginationState<Int, T>, linkCard: (T) -> Unit)",
       "com.tecknobit.refy.ui.components.links.LinksGrid"
-    ]
-  },
-  {
-    "name": "fun <T : RefyLink> LinksList(linksState: PaginationState<Int, T>, linkCard: (T) -> Unit)",
-    "description": "com.tecknobit.refy.ui.components.links.LinksList",
-    "location": "-refy/com.tecknobit.refy.ui.components.links/-links-list.html",
-    "searchKeys": [
-      "LinksList",
-      "fun <T : RefyLink> LinksList(linksState: PaginationState<Int, T>, linkCard: (T) -> Unit)",
-      "com.tecknobit.refy.ui.components.links.LinksList"
     ]
   },
   {
@@ -1590,12 +1560,12 @@
     ]
   },
   {
-    "name": "fun EmptyCollections(size: Dp = 300.dp)",
+    "name": "fun EmptyCollections()",
     "description": "com.tecknobit.refy.ui.components.EmptyCollections",
     "location": "-refy/com.tecknobit.refy.ui.components/-empty-collections.html",
     "searchKeys": [
       "EmptyCollections",
-      "fun EmptyCollections(size: Dp = 300.dp)",
+      "fun EmptyCollections()",
       "com.tecknobit.refy.ui.components.EmptyCollections"
     ]
   },
@@ -1961,22 +1931,12 @@
   },
   {
     "name": "fun findMyRole(): TeamRole",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.findMyRole",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/find-my-role.html",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.findMyRole",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/find-my-role.html",
     "searchKeys": [
       "findMyRole",
       "fun findMyRole(): TeamRole",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.findMyRole"
-    ]
-  },
-  {
-    "name": "fun get(): Context",
-    "description": "com.tecknobit.equinoxcompose.utilities.context.AppContext.get",
-    "location": "-refy/com.tecknobit.equinoxcompose.utilities.context/-app-context/get.html",
-    "searchKeys": [
-      "get",
-      "fun get(): Context",
-      "com.tecknobit.equinoxcompose.utilities.context.AppContext.get"
+      "com.tecknobit.refy.ui.shared.data.Team.findMyRole"
     ]
   },
   {
@@ -1991,12 +1951,12 @@
   },
   {
     "name": "fun iAmAnAdmin(): Boolean",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.iAmAnAdmin",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/i-am-an-admin.html",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.iAmAnAdmin",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/i-am-an-admin.html",
     "searchKeys": [
       "iAmAnAdmin",
       "fun iAmAnAdmin(): Boolean",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.iAmAnAdmin"
+      "com.tecknobit.refy.ui.shared.data.Team.iAmAnAdmin"
     ]
   },
   {
@@ -2021,12 +1981,12 @@
   },
   {
     "name": "fun isShared(): Boolean",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.isShared",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/is-shared.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.isShared",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/is-shared.html",
     "searchKeys": [
       "isShared",
       "fun isShared(): Boolean",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.isShared"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.isShared"
     ]
   },
   {
@@ -2120,16 +2080,6 @@
     ]
   },
   {
-    "name": "fun setUp(context: Context)",
-    "description": "com.tecknobit.equinoxcompose.utilities.context.AppContext.setUp",
-    "location": "-refy/com.tecknobit.equinoxcompose.utilities.context/-app-context/set-up.html",
-    "searchKeys": [
-      "setUp",
-      "fun setUp(context: Context)",
-      "com.tecknobit.equinoxcompose.utilities.context.AppContext.setUp"
-    ]
-  },
-  {
     "name": "fun shareLinkWithCollections(link: RefyLink.RefyLinkImpl, collections: List<LinksCollection>, afterShared: () -> Unit)",
     "description": "com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel.shareLinkWithCollections",
     "location": "-refy/com.tecknobit.refy.ui.screens.links.presentation/-links-screen-view-model/share-link-with-collections.html",
@@ -2201,12 +2151,12 @@
   },
   {
     "name": "interface RefyLink : RefyItem",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/index.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/index.html",
     "searchKeys": [
       "RefyLink",
       "interface RefyLink : RefyItem",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink"
+      "com.tecknobit.refy.ui.shared.data.RefyLink"
     ]
   },
   {
@@ -2540,16 +2490,6 @@
     ]
   },
   {
-    "name": "object AppContext",
-    "description": "com.tecknobit.equinoxcompose.utilities.context.AppContext",
-    "location": "-refy/com.tecknobit.equinoxcompose.utilities.context/-app-context/index.html",
-    "searchKeys": [
-      "AppContext",
-      "object AppContext",
-      "com.tecknobit.equinoxcompose.utilities.context.AppContext"
-    ]
-  },
-  {
     "name": "object Companion",
     "description": "com.tecknobit.refy.MainActivity.Companion",
     "location": "-refy/com.tecknobit.refy/-main-activity/-companion/index.html",
@@ -2680,16 +2620,6 @@
     ]
   },
   {
-    "name": "open override fun create(context: Context): Context",
-    "description": "com.tecknobit.equinoxcompose.utilities.context.AppContextInitializer.create",
-    "location": "-refy/com.tecknobit.equinoxcompose.utilities.context/-app-context-initializer/create.html",
-    "searchKeys": [
-      "create",
-      "open override fun create(context: Context): Context",
-      "com.tecknobit.equinoxcompose.utilities.context.AppContextInitializer.create"
-    ]
-  },
-  {
     "name": "open override fun deleteLink(link: CustomRefyLink, onDelete: () -> Unit)",
     "description": "com.tecknobit.refy.ui.screens.customs.presentation.CustomLinksScreenViewModel.deleteLink",
     "location": "-refy/com.tecknobit.refy.ui.screens.customs.presentation/-custom-links-screen-view-model/delete-link.html",
@@ -2707,16 +2637,6 @@
       "deleteLink",
       "open override fun deleteLink(link: RefyLink.RefyLinkImpl, onDelete: () -> Unit)",
       "com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel.deleteLink"
-    ]
-  },
-  {
-    "name": "open override fun dependencies(): List<Class<out Initializer<*>>>",
-    "description": "com.tecknobit.equinoxcompose.utilities.context.AppContextInitializer.dependencies",
-    "location": "-refy/com.tecknobit.equinoxcompose.utilities.context/-app-context-initializer/dependencies.html",
-    "searchKeys": [
-      "dependencies",
-      "open override fun dependencies(): List<Class<out Initializer<*>>>",
-      "com.tecknobit.equinoxcompose.utilities.context.AppContextInitializer.dependencies"
     ]
   },
   {
@@ -2981,22 +2901,12 @@
   },
   {
     "name": "open override val collections: List<LinksCollection>",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.collections",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/collections.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.collections",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/collections.html",
     "searchKeys": [
       "collections",
       "open override val collections: List<LinksCollection>",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.collections"
-    ]
-  },
-  {
-    "name": "open override val date: Long",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.date",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/date.html",
-    "searchKeys": [
-      "date",
-      "open override val date: Long",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.date"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.collections"
     ]
   },
   {
@@ -3011,32 +2921,32 @@
   },
   {
     "name": "open override val date: Long",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.date",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/date.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.date",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/date.html",
     "searchKeys": [
       "date",
       "open override val date: Long",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.date"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.date"
     ]
   },
   {
     "name": "open override val date: Long",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.date",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/date.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.date",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/date.html",
     "searchKeys": [
       "date",
       "open override val date: Long",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.date"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.date"
     ]
   },
   {
-    "name": "open override val description: String",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.description",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/description.html",
+    "name": "open override val date: Long",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.date",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/date.html",
     "searchKeys": [
-      "description",
-      "open override val description: String",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.description"
+      "date",
+      "open override val date: Long",
+      "com.tecknobit.refy.ui.shared.data.Team.date"
     ]
   },
   {
@@ -3051,22 +2961,32 @@
   },
   {
     "name": "open override val description: String",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.description",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/description.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.description",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/description.html",
     "searchKeys": [
       "description",
       "open override val description: String",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.description"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.description"
     ]
   },
   {
     "name": "open override val description: String",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.description",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/description.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.description",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/description.html",
     "searchKeys": [
       "description",
       "open override val description: String",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.description"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.description"
+    ]
+  },
+  {
+    "name": "open override val description: String",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.description",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/description.html",
+    "searchKeys": [
+      "description",
+      "open override val description: String",
+      "com.tecknobit.refy.ui.shared.data.Team.description"
     ]
   },
   {
@@ -3091,42 +3011,12 @@
   },
   {
     "name": "open override val id: String",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.id",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/id.html",
-    "searchKeys": [
-      "id",
-      "open override val id: String",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.id"
-    ]
-  },
-  {
-    "name": "open override val id: String",
     "description": "com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink.id",
     "location": "-refy/com.tecknobit.refy.ui.screens.customs.data/-custom-refy-link/id.html",
     "searchKeys": [
       "id",
       "open override val id: String",
       "com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink.id"
-    ]
-  },
-  {
-    "name": "open override val id: String",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.id",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/id.html",
-    "searchKeys": [
-      "id",
-      "open override val id: String",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.id"
-    ]
-  },
-  {
-    "name": "open override val id: String",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.id",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/id.html",
-    "searchKeys": [
-      "id",
-      "open override val id: String",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.id"
     ]
   },
   {
@@ -3141,12 +3031,42 @@
   },
   {
     "name": "open override val id: String",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.id",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/id.html",
+    "searchKeys": [
+      "id",
+      "open override val id: String",
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.id"
+    ]
+  },
+  {
+    "name": "open override val id: String",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.id",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/id.html",
+    "searchKeys": [
+      "id",
+      "open override val id: String",
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.id"
+    ]
+  },
+  {
+    "name": "open override val id: String",
     "description": "com.tecknobit.refy.ui.shared.data.RefyUser.RefyUserImpl.id",
     "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-user/-refy-user-impl/id.html",
     "searchKeys": [
       "id",
       "open override val id: String",
       "com.tecknobit.refy.ui.shared.data.RefyUser.RefyUserImpl.id"
+    ]
+  },
+  {
+    "name": "open override val id: String",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.id",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/id.html",
+    "searchKeys": [
+      "id",
+      "open override val id: String",
+      "com.tecknobit.refy.ui.shared.data.Team.id"
     ]
   },
   {
@@ -3191,16 +3111,6 @@
   },
   {
     "name": "open override val owner: RefyUser.RefyUserImpl",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.owner",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/owner.html",
-    "searchKeys": [
-      "owner",
-      "open override val owner: RefyUser.RefyUserImpl",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.owner"
-    ]
-  },
-  {
-    "name": "open override val owner: RefyUser.RefyUserImpl",
     "description": "com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink.owner",
     "location": "-refy/com.tecknobit.refy.ui.screens.customs.data/-custom-refy-link/owner.html",
     "searchKeys": [
@@ -3211,22 +3121,32 @@
   },
   {
     "name": "open override val owner: RefyUser.RefyUserImpl",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.owner",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/owner.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.owner",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/owner.html",
     "searchKeys": [
       "owner",
       "open override val owner: RefyUser.RefyUserImpl",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.owner"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.owner"
     ]
   },
   {
     "name": "open override val owner: RefyUser.RefyUserImpl",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.owner",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/owner.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.owner",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/owner.html",
     "searchKeys": [
       "owner",
       "open override val owner: RefyUser.RefyUserImpl",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.owner"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.owner"
+    ]
+  },
+  {
+    "name": "open override val owner: RefyUser.RefyUserImpl",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.owner",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/owner.html",
+    "searchKeys": [
+      "owner",
+      "open override val owner: RefyUser.RefyUserImpl",
+      "com.tecknobit.refy.ui.shared.data.Team.owner"
     ]
   },
   {
@@ -3261,12 +3181,12 @@
   },
   {
     "name": "open override val reference: String",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.reference",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/reference.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.reference",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/reference.html",
     "searchKeys": [
       "reference",
       "open override val reference: String",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.reference"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.reference"
     ]
   },
   {
@@ -3361,22 +3281,12 @@
   },
   {
     "name": "open override val teams: List<Team>",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.teams",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/teams.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.teams",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/teams.html",
     "searchKeys": [
       "teams",
       "open override val teams: List<Team>",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.teams"
-    ]
-  },
-  {
-    "name": "open override val title: String",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.title",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/title.html",
-    "searchKeys": [
-      "title",
-      "open override val title: String",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.title"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.teams"
     ]
   },
   {
@@ -3391,22 +3301,32 @@
   },
   {
     "name": "open override val title: String",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.title",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/title.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.title",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/title.html",
     "searchKeys": [
       "title",
       "open override val title: String",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.title"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.title"
     ]
   },
   {
     "name": "open override val title: String",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.title",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/title.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.title",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/title.html",
     "searchKeys": [
       "title",
       "open override val title: String",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.title"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.title"
+    ]
+  },
+  {
+    "name": "open override val title: String",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.title",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/title.html",
+    "searchKeys": [
+      "title",
+      "open override val title: String",
+      "com.tecknobit.refy.ui.shared.data.Team.title"
     ]
   },
   {
@@ -3971,12 +3891,12 @@
   },
   {
     "name": "val collections: List<LinksCollection>",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.collections",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/collections.html",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.collections",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/collections.html",
     "searchKeys": [
       "collections",
       "val collections: List<LinksCollection>",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.collections"
+      "com.tecknobit.refy.ui.shared.data.Team.collections"
     ]
   },
   {
@@ -4001,12 +3921,12 @@
   },
   {
     "name": "val color: String",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.color",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/color.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.color",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/color.html",
     "searchKeys": [
       "color",
       "val color: String",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.color"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.color"
     ]
   },
   {
@@ -4401,22 +4321,22 @@
   },
   {
     "name": "val links: List<RefyLink.RefyLinkImpl>",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.links",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/links.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.links",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/links.html",
     "searchKeys": [
       "links",
       "val links: List<RefyLink.RefyLinkImpl>",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.links"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.links"
     ]
   },
   {
     "name": "val links: List<RefyLink.RefyLinkImpl>",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.links",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/links.html",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.links",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/links.html",
     "searchKeys": [
       "links",
       "val links: List<RefyLink.RefyLinkImpl>",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.links"
+      "com.tecknobit.refy.ui.shared.data.Team.links"
     ]
   },
   {
@@ -4431,22 +4351,22 @@
   },
   {
     "name": "val logoPic: String",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.logoPic",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/logo-pic.html",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.logoPic",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/logo-pic.html",
     "searchKeys": [
       "logoPic",
       "val logoPic: String",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.logoPic"
+      "com.tecknobit.refy.ui.shared.data.Team.logoPic"
     ]
   },
   {
     "name": "val members: List<TeamMember>",
-    "description": "com.tecknobit.refy.ui.screens.teams.data.Team.members",
-    "location": "-refy/com.tecknobit.refy.ui.screens.teams.data/-team/members.html",
+    "description": "com.tecknobit.refy.ui.shared.data.Team.members",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-team/members.html",
     "searchKeys": [
       "members",
       "val members: List<TeamMember>",
-      "com.tecknobit.refy.ui.screens.teams.data.Team.members"
+      "com.tecknobit.refy.ui.shared.data.Team.members"
     ]
   },
   {
@@ -6111,12 +6031,12 @@
   },
   {
     "name": "val teams: List<Team>",
-    "description": "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.teams",
-    "location": "-refy/com.tecknobit.refy.ui.screens.collections.data/-links-collection/teams.html",
+    "description": "com.tecknobit.refy.ui.shared.data.LinksCollection.teams",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-links-collection/teams.html",
     "searchKeys": [
       "teams",
       "val teams: List<Team>",
-      "com.tecknobit.refy.ui.screens.collections.data.LinksCollection.teams"
+      "com.tecknobit.refy.ui.shared.data.LinksCollection.teams"
     ]
   },
   {
@@ -6251,12 +6171,12 @@
   },
   {
     "name": "val thumbnailPreview: String? = null",
-    "description": "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.thumbnailPreview",
-    "location": "-refy/com.tecknobit.refy.ui.screens.links.data/-refy-link/-refy-link-impl/thumbnail-preview.html",
+    "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.thumbnailPreview",
+    "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/thumbnail-preview.html",
     "searchKeys": [
       "thumbnailPreview",
       "val thumbnailPreview: String? = null",
-      "com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl.thumbnailPreview"
+      "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.thumbnailPreview"
     ]
   },
   {

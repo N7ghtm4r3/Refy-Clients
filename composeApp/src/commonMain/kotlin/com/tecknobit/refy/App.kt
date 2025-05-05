@@ -20,8 +20,8 @@ import com.tecknobit.ametistaengine.AmetistaEngine.Companion.FILES_AMETISTA_CONF
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
-import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
+import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.helpers.RefyLocalUser
 import com.tecknobit.refy.helpers.RefyRequester
 import com.tecknobit.refy.helpers.customHttpClient
@@ -271,7 +271,6 @@ private fun InitAmetista() {
  *
  */
 @Composable
-@NonRestartableComposable
 expect fun CheckForUpdatesAndLaunch()
 
 /**
@@ -284,8 +283,7 @@ fun startSession() {
         userId = localUser.userId,
         userToken = localUser.userToken
     )
-    val route =
-        if (!localUser.userId.isNullOrBlank()) { // TODO: TO USE localUser.isAuthenticated INSTEAD
+    val route = if (localUser.isAuthenticated) {
         MainScope().launch {
             requester.sendRequest(
                 request = {
@@ -295,14 +293,14 @@ fun startSession() {
                     localUser.updateDynamicAccountData(
                         dynamicData = response.toResponseData()
                     )
+                    setUserLanguage()
                 },
-                onFailure = {}
+                onFailure = { setUserLanguage() }
             )
         }
-            HOME_SCREEN
+        HOME_SCREEN
     } else
-            AUTH_SCREEN
-    setUserLanguage()
+        AUTH_SCREEN
     navigator.navigate(route)
 }
 
@@ -317,5 +315,4 @@ expect fun setUserLanguage()
  *
  */
 @Composable
-@NonRestartableComposable
 expect fun CloseApplicationOnNavBack()

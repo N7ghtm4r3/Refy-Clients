@@ -26,13 +26,14 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
+import com.tecknobit.equinoxcore.toggle
 import com.tecknobit.refy.ui.components.EmptyMembers
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
 import com.tecknobit.refy.ui.components.TeamLogo
 import com.tecknobit.refy.ui.components.TeamMemberListItem
-import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.screens.upsertteam.presentation.UpsertTeamScreenViewModel
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
@@ -88,7 +89,6 @@ class UpsertTeamScreen(
      * Custom picker to pick the logo of the team
      */
     @Composable
-    @NonRestartableComposable
     private fun LogoPicker() {
         val launcher = rememberFilePickerLauncher(
             type = PickerType.Image,
@@ -121,7 +121,6 @@ class UpsertTeamScreen(
      * The section where the user can insert the name of the team
      */
     @Composable
-    @NonRestartableComposable
     private fun TeamNameSection() {
         SectionTitle(
             title = Res.string.team_name
@@ -144,7 +143,6 @@ class UpsertTeamScreen(
      * The section where are displayed the members joined or not in the team
      */
     @Composable
-    @NonRestartableComposable
     private fun TeamMembersSection() {
         SectionTitle(
             title = Res.string.team_members
@@ -188,10 +186,9 @@ class UpsertTeamScreen(
                             checked = added,
                             onCheckedChange = {
                                 added = it
-                                if (added)
-                                    viewModel.teamMembers.add(member)
-                                else
-                                    viewModel.teamMembers.remove(member)
+                                viewModel.teamMembers.toggle(
+                                    element = member
+                                )
                             }
                         )
                     }
@@ -205,7 +202,6 @@ class UpsertTeamScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         viewModel.logoPicError = remember { mutableStateOf(false) }
@@ -218,7 +214,6 @@ class UpsertTeamScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStatesAfterLoading() {
         super.CollectStatesAfterLoading()
         viewModel.logoPic = remember {

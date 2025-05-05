@@ -37,7 +37,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
+import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.UPSERT_TEAM_SCREEN
 import com.tecknobit.refy.navigator
@@ -47,12 +52,12 @@ import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.DeleteTeam
 import com.tecknobit.refy.ui.components.LeaveTeam
 import com.tecknobit.refy.ui.components.TeamLogo
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.team.components.TeamCollectionCard
 import com.tecknobit.refy.ui.screens.team.components.TeamLinkCard
 import com.tecknobit.refy.ui.screens.team.components.TeamMembers
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
-import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presenters.ItemScreen
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyRow
@@ -103,8 +108,8 @@ class TeamScreen(
      * Custom trailing content to display in the [TopBar] component
      */
     @Composable
+    @CompactClassComponent
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     override fun ColumnScope.TrailingContent() {
         awaitNullItemLoaded(
             itemToWait = item.value
@@ -125,7 +130,9 @@ class TeamScreen(
      * Custom [ExtendedFloatingActionButton] used to edit the item where needed
      */
     @Composable
-    @NonRestartableComposable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun ExtendedFAB() {
         awaitNullItemLoaded(
             itemToWait = item.value,
@@ -206,15 +213,10 @@ class TeamScreen(
      * Custom section used to display the items with a row layout
      */
     @Composable
-    @NonRestartableComposable
     override fun ColumnScope.RowItems() {
         ResponsiveContent(
-            onExpandedSizeClass = {
-                TeamInfoSection()
-            },
-            onMediumSizeClass = {
-                TeamInfoSection()
-            },
+            onExpandedSizeClass = { TeamInfoSection() },
+            onMediumSizeClass = { TeamInfoSection() },
             onCompactSizeClass = {}
         )
         CollectionsSection()
@@ -230,7 +232,6 @@ class TeamScreen(
      * The section about the team information such logo and action buttons to manage that team
      */
     @Composable
-    @NonRestartableComposable
     private fun TeamInfoSection() {
         Row(
             modifier = Modifier
@@ -324,7 +325,6 @@ class TeamScreen(
      * The section where are displayed the collections shared with the team
      */
     @Composable
-    @NonRestartableComposable
     private fun CollectionsSection() {
         val iAmAnAdmin = item.value!!.iAmAnAdmin()
         PaginatedLazyRow(
@@ -429,7 +429,6 @@ class TeamScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         memberSheetState = rememberModalBottomSheetState(

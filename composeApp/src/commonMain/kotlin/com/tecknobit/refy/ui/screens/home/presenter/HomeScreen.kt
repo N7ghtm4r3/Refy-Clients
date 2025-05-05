@@ -24,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +35,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
+import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.icons.Collection
@@ -123,8 +126,9 @@ class HomeScreen : EquinoxNoModelScreen() {
      * screen size classes devices
      */
     @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     private fun SideNavigationBar() {
         Row {
             NavigationRail(
@@ -175,8 +179,7 @@ class HomeScreen : EquinoxNoModelScreen() {
      * screen size class devices
      */
     @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    @CompactClassComponent
     private fun BottomNavigationBar() {
         Box (
           modifier = Modifier
@@ -202,7 +205,6 @@ class HomeScreen : EquinoxNoModelScreen() {
      * @param modifier The modifier to apply to the content
      */
     @Composable
-    @NonRestartableComposable
     private fun CurrentTabContent(
         modifier: Modifier = Modifier
     ) {

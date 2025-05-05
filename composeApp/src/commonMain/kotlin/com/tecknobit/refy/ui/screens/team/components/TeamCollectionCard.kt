@@ -7,7 +7,6 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -17,8 +16,8 @@ import com.tecknobit.refy.COLLECTION_SCREEN
 import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.ItemTitle
 import com.tecknobit.refy.ui.components.RemoveItemButton
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
+import com.tecknobit.refy.ui.shared.data.LinksCollection
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -33,7 +32,6 @@ import refy.composeapp.generated.resources.links_contained
  * @param collection The collection shared with the team
  */
 @Composable
-@NonRestartableComposable
 fun TeamCollectionCard(
     viewModel: TeamScreenViewModel,
     iAmAnAdmin: Boolean,

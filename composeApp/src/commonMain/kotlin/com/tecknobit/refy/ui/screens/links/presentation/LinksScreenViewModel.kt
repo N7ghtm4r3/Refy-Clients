@@ -4,12 +4,12 @@ import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
 import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
-import com.tecknobit.equinoxcore.network.Requester.Companion.sendPaginatedRequest
-import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
+import com.tecknobit.equinoxcore.network.sendPaginatedRequest
+import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.requester
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
-import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.data.LinksCollection
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.LinksRetriever
 import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel

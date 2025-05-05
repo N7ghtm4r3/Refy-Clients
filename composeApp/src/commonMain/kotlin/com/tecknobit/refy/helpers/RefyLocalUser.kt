@@ -20,13 +20,13 @@ class RefyLocalUser : EquinoxLocalUser(
      */
     var tagName: String = ""
         set(value) {
-            //if (field != value) { // TODO: FIX THE ISSUE HERE OR REMOVE JUST THE COMMENT AND SEE THE PRODUCTION WEB BINARY
+            if (field != value) {
                 setPreference(
                     key = TAG_NAME_KEY,
                     value = value
                 )
                 field = value
-            //}
+            }
         }
 
     /**
@@ -35,7 +35,7 @@ class RefyLocalUser : EquinoxLocalUser(
     @RequiresSuperCall
     override fun initLocalUser() {
         super.initLocalUser()
-        tagName = getPreference(TAG_NAME_KEY)
+        tagName = getNullSafePreference(TAG_NAME_KEY)
     }
 
     /**
@@ -72,18 +72,9 @@ class RefyLocalUser : EquinoxLocalUser(
             response,
             *custom
         )
-        tagName = custom.extractCustomValue(
+        tagName = custom.extractsCustomValue(
             itemPosition = 0
         )
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    @Deprecated("USE THE EQUINOX BUILT-IN")
-    protected fun <T> Array<out Any?>.extractCustomValue(
-        indexArray: Int = 0,
-        itemPosition: Int
-    ): T {
-        return (this[indexArray] as Array<*>)[itemPosition] as T
     }
 
 }

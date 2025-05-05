@@ -1,31 +1,31 @@
 [versions]
 accompanistSystemuicontroller = "0.36.0"
-agp = "8.5.2"
-ametistaEngine = "1.0.2"
+agp = "8.6.1"
+ametistaEngine = "1.0.4"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
-androidx-activityCompose = "1.10.0"
+androidx-activityCompose = "1.10.1"
 androidx-lifecycle = "2.8.4"
 colorpickerCompose = "1.1.2"
 compose-multiplatform = "1.7.3"
-equinoxCompose = "1.0.7"
+equinox = "1.1.1"
 filekitCore = "0.8.8"
 filekitCompose = "0.8.8"
-kotlin = "2.1.0"
-kotlinx-coroutines = "1.10.1"
-coilCompose = "3.0.4"
-kotlinxSerializationJson = "1.8.0"
-ktor = "3.0.3"
-lazyPaginationCompose = "1.4.0"
+kotlin = "2.1.20"
+kotlinx-coroutines = "1.10.2"
+coilCompose = "3.1.0"
+kotlinxSerializationJson = "1.8.1"
+ktor = "3.1.0"
+lazyPaginationCompose = "1.5.1"
 materialKolor = "2.0.2"
 octocatkdu = "1.0.5"
 precompose = "1.7.0-alpha03"
-refycore = "1.0.1"
+refycore = "1.0.2"
 appUpdate = "2.1.0"
 review = "2.0.2"
 startupRuntime = "1.2.0"
-dokka = "1.9.20"
+dokka = "2.0.0"
 
 [libraries]
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
@@ -35,8 +35,8 @@ androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", nam
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
 colorpicker-compose = { module = "com.github.skydoves:colorpicker-compose", version.ref = "colorpickerCompose" }
-equinox-compose = { module = "io.github.n7ghtm4r3:equinox-compose", version.ref = "equinoxCompose" }
-equinox-core = { module = "io.github.n7ghtm4r3:equinox-core", version.ref = "equinoxCompose" }
+equinox-compose = { module = "io.github.n7ghtm4r3:equinox-compose", version.ref = "equinox" }
+equinox-core = { module = "io.github.n7ghtm4r3:equinox-core", version.ref = "equinox" }
 filekit-compose = { module = "io.github.vinceglb:filekit-compose", version.ref = "filekitCompose" }
 filekit-core = { module = "io.github.vinceglb:filekit-core", version.ref = "filekitCore" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }

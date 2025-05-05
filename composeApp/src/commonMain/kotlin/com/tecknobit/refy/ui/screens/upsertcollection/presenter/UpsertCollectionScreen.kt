@@ -38,8 +38,8 @@ import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.components.LinksChooser
 import com.tecknobit.refy.ui.screens.collection.helpers.adaptStatusBarToCollectionTheme
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.upsertcollection.presentation.UpsertCollectionScreenViewModel
+import com.tecknobit.refy.ui.shared.data.LinksCollection
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
@@ -86,7 +86,6 @@ class UpsertCollectionScreen(
      * @param content The content to display
      */
     @Composable
-    @NonRestartableComposable
     override fun ScreenTheme(
         content: @Composable () -> Unit
     ) {
@@ -124,7 +123,6 @@ class UpsertCollectionScreen(
      * Custom color picker used to pick the color for the collection
      */
     @Composable
-    @NonRestartableComposable
     private fun CollectionColorPicker() {
         SectionTitle(
             title = Res.string.collection_color
@@ -156,7 +154,6 @@ class UpsertCollectionScreen(
      * Section where the user can insert the name of the collection
      */
     @Composable
-    @NonRestartableComposable
     private fun CollectionNameSection() {
         val focusRequester = remember { FocusRequester() }
         LaunchedEffect(Unit) {
@@ -184,7 +181,6 @@ class UpsertCollectionScreen(
      * Section where the user can select the links to share in the collection
      */
     @Composable
-    @NonRestartableComposable
     private fun CollectionLinksSection() {
         SectionTitle(
             title = Res.string.links

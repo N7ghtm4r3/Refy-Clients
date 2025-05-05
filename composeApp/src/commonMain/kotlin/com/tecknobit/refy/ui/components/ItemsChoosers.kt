@@ -49,16 +49,16 @@ import com.tecknobit.equinoxcompose.components.ChameleonText
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.mergeIfNotContained
-import com.tecknobit.equinoxcore.network.Requester.Companion.sendPaginatedRequest
+import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.requester
 import com.tecknobit.refy.ui.icons.CollapseAll
 import com.tecknobit.refy.ui.icons.ExpandAll
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
-import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.data.LinksCollection
 import com.tecknobit.refy.ui.shared.data.RefyItem
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.theme.AppTypography
 import com.tecknobit.refy.ui.theme.green
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
@@ -113,7 +113,6 @@ fun LinksChooser(
  */
 @Wrapper
 @Composable
-@NonRestartableComposable
 fun LinksChooser(
     lazyColumSize: Dp = (-1).dp,
     mainTitle: StringResource?,
@@ -179,7 +178,6 @@ fun LinksChooser(
  */
 @Wrapper
 @Composable
-@NonRestartableComposable
 fun LinksCollectionsChooser(
     mainTitle: StringResource,
     subTitle: StringResource = Res.string.with_collections,
@@ -251,7 +249,6 @@ fun LinksCollectionsChooser(
  */
 @Wrapper
 @Composable
-@NonRestartableComposable
 fun TeamsChooser(
     mainTitle: StringResource,
     currentTeamsAttached: List<Team>,

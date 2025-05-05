@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -38,7 +37,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -66,6 +64,7 @@ import com.tecknobit.equinoxcompose.components.stepper.StepContent
 import com.tecknobit.equinoxcompose.components.stepper.Stepper
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.LANGUAGES_SUPPORTED
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
@@ -107,7 +106,7 @@ import refy.composeapp.generated.resources.tag_name_not_valid
  * allow to customize the preferences and settings
  *
  * @author N7ghtm4r3 - Tecknobit
- * @see com.tecknobit.equinoxcompose.session.EquinoxScreen
+ * @see com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
  */
 class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
     viewModel = ProfileScreenViewModel()
@@ -133,9 +132,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                 ) {
                     Column(
                         modifier = Modifier
-                            .widthIn(
-                                max = MAX_CONTAINER_WIDTH
-                            )
+                            .responsiveMaxWidth()
                             .padding(
                                 all = 16.dp
                             ),
@@ -156,7 +153,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
      * The details of the [localUser]
      */
     @Composable
-    @NonRestartableComposable
     private fun UserDetails() {
         Row(
             modifier = Modifier
@@ -198,7 +194,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
      * The profile picker to allow the [localUser] to change his/her profile picture
      */
     @Composable
-    @NonRestartableComposable
     private fun ProfilePicker() {
         val launcher = rememberFilePickerLauncher(
             type = PickerType.Image,
@@ -224,7 +219,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
      * The actions can be execute on the [localUser] account such logout and delete account
      */
     @Composable
-    @NonRestartableComposable
     private fun ActionButtons() {
         Row(
             horizontalArrangement = Arrangement.spacedBy(5.dp)
@@ -279,7 +273,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
      * The settings section to customize the [localUser] experience
      */
     @Composable
-    @NonRestartableComposable
     private fun Settings() {
         val steps = remember {
             arrayOf(
@@ -287,8 +280,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.Tag,
                     title = Res.string.change_tag_name,
                     content = { ChangeTagName() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.newTagName.value = "" },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeTagName(
                             onSuccess = {
@@ -302,11 +294,10 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.AlternateEmail,
                     title = Res.string.change_email,
                     content = { ChangeEmail() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.newEmail.value = "" },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeEmail(
-                            onSuccess = {
+                            onChange = {
                                 visible.value = false
                             }
                         )
@@ -316,11 +307,10 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.Password,
                     title = Res.string.change_password,
                     content = { ChangePassword() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.newPassword.value = "" },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changePassword(
-                            onSuccess = {
+                            onChange = {
                                 visible.value = false
                             }
                         )
@@ -330,11 +320,10 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.Language,
                     title = Res.string.change_language,
                     content = { ChangeLanguage() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.language.value = localUser.language },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeLanguage(
-                            onSuccess = {
+                            onChange = {
                                 visible.value = false
                                 navigator.navigate(SPLASHSCREEN)
                             }
@@ -345,8 +334,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.Palette,
                     title = Res.string.change_theme,
                     content = { ChangeTheme() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.theme.value = localUser.theme },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeTheme(
                             onChange = {
@@ -370,7 +358,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         number = 1
     )
     @Composable
-    @NonRestartableComposable
     private fun ChangeTagName() {
         val focusRequester = remember { FocusRequester() }
         LaunchedEffect(Unit) {
@@ -411,7 +398,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         number = 2
     )
     @Composable
-    @NonRestartableComposable
     private fun ChangeEmail() {
         val focusRequester = remember { FocusRequester() }
         LaunchedEffect(Unit) {
@@ -457,7 +443,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         number = 3
     )
     @Composable
-    @NonRestartableComposable
     private fun ChangePassword() {
         val focusRequester = remember { FocusRequester() }
         LaunchedEffect(Unit) {
@@ -520,7 +505,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         number = 4
     )
     @Composable
-    @NonRestartableComposable
     private fun ChangeLanguage() {
         Column(
             modifier = Modifier
@@ -549,7 +533,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         number = 5
     )
     @Composable
-    @NonRestartableComposable
     private fun ChangeTheme() {
         Column(
             modifier = Modifier

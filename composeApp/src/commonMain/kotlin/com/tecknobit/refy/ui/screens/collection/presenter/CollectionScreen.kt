@@ -39,6 +39,11 @@ import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Au
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
+import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
@@ -53,8 +58,8 @@ import com.tecknobit.refy.ui.screens.collection.components.CollectionLinkCard
 import com.tecknobit.refy.ui.screens.collection.components.CollectionTeamCard
 import com.tecknobit.refy.ui.screens.collection.helpers.adaptStatusBarToCollectionTheme
 import com.tecknobit.refy.ui.screens.collection.presentation.CollectionScreenViewModel
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.LinksCollection
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.presenters.ItemScreen
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyRow
@@ -128,8 +133,9 @@ class CollectionScreen(
      * Custom [ExtendedFloatingActionButton] used to edit the item where needed
      */
     @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun ExtendedFAB() {
         awaitNullItemLoaded(
             itemToWait = item.value,
@@ -196,16 +202,15 @@ class CollectionScreen(
      * The section where are displayed the teams where the collection is shared
      */
     @Composable
-    @NonRestartableComposable
     private fun TeamsSection() {
         PaginatedLazyRow(
             modifier = Modifier
                 .fillMaxWidth(),
-            paginationState = this@CollectionScreen.viewModel.collectionTeams,
+            paginationState = viewModel.collectionTeams,
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             this.items(
-                items = this@CollectionScreen.viewModel.collectionTeams.allItems!!,
+                items = viewModel.collectionTeams.allItems!!,
                 key = { team -> team.id }
             ) { team ->
                 CollectionTeamCard(
@@ -222,7 +227,6 @@ class CollectionScreen(
      * @param link The link to display
      */
     @Composable
-    @NonRestartableComposable
     override fun ItemRelatedLinkCard(
         link: RefyLinkImpl
     ) {
@@ -259,8 +263,8 @@ class CollectionScreen(
      * Custom trailing content to display in the [TopBar] component
      */
     @Composable
+    @CompactClassComponent
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     override fun ColumnScope.TrailingContent() {
         awaitNullItemLoaded(
             itemToWait = item.value,
@@ -295,6 +299,9 @@ class CollectionScreen(
      */
     @Composable
     @NonRestartableComposable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun AttachContent(
         state: SheetState,
         scope: CoroutineScope
@@ -314,6 +321,9 @@ class CollectionScreen(
      */
     @Composable
     @NonRestartableComposable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun DeleteItemContent(
         delete: MutableState<Boolean>
     ) {
@@ -333,7 +343,6 @@ class CollectionScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         color = viewModel.color.collectAsState(

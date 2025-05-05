@@ -22,7 +22,7 @@ plugins {
 kotlin {
     androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_22)
+            jvmTarget.set(JvmTarget.JVM_18)
         }
     }
     
@@ -39,7 +39,7 @@ kotlin {
     
     jvm("desktop") {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_22)
+            jvmTarget.set(JvmTarget.JVM_18)
         }
     }
     
@@ -141,8 +141,8 @@ android {
         applicationId = "com.tecknobit.refy"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 3
-        versionName = "1.0.1"
+        versionCode = 4
+        versionName = "1.0.2"
     }
     packaging {
         resources {
@@ -155,8 +155,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_22
-        targetCompatibility = JavaVersion.VERSION_22
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
 }
 
@@ -175,8 +175,8 @@ compose.desktop {
                 "jdk.security.auth"
             )
             packageName = "Refy"
-            packageVersion = "1.0.1"
-            version = "1.0.1"
+            packageVersion = "1.0.2"
+            version = "1.0.2"
             description = "References collector and custom links generator"
             copyright = "© 2025 Tecknobit"
             vendor = "Tecknobit"
@@ -193,9 +193,9 @@ compose.desktop {
                 iconFile.set(project.file("src/desktopMain/resources/logo.png"))
                 packageName = "com-tecknobit-refy"
                 debMaintainer = "infotecknobitcompany@gmail.com"
-                appRelease = "1.0.1"
+                appRelease = "1.0.2"
                 appCategory = "PERSONALIZATION"
-                rpmLicenseType = "MIT"
+                rpmLicenseType = "APACHE2"
             }
             buildTypes.release.proguard {
                 configurationFiles.from(project.file("compose-desktop.pro"))
@@ -224,11 +224,6 @@ buildConfig {
         name = "BYPASS_SSL_VALIDATION",
         value = project.findProperty("bypass_ssl_validation").toString().toBoolean()
     )
-}
-
-// TODO: TO REMOVE
-configurations.all {
-    exclude("io.github.n7ghtm4r3", "Equinox-Compose-android")
 }
 
 tasks.withType<DokkaTask>().configureEach {

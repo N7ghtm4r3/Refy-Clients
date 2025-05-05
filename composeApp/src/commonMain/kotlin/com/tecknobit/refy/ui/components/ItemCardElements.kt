@@ -58,7 +58,6 @@ const val MINIMUM_DESCRIPTION_LINES = 3
  * @param descriptionLines The number of the lines occupied by the link description
  */
 @Composable
-@NonRestartableComposable
 fun ItemCardDetails(
     modifier: Modifier = Modifier,
     expanded: MutableState<Boolean>,
@@ -147,7 +146,6 @@ fun ItemInfo(
  * @param descriptionLines The number of the lines occupied by the link description
  */
 @Composable
-@NonRestartableComposable
 fun ExpandCardButton(
     expanded: MutableState<Boolean>,
     descriptionLines: MutableState<Int>
@@ -175,7 +173,6 @@ fun ExpandCardButton(
  * @param attachItemContent The content used to select the items to attach or to share
  */
 @Composable
-@NonRestartableComposable
 fun AttachItemButton(
     attachItemContent: @Composable (SheetState, CoroutineScope) -> Unit
 ) {

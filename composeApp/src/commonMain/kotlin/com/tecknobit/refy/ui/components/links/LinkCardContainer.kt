@@ -50,8 +50,8 @@ import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.components.ProfilePic
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.RefyLink
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.RefyUser
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
@@ -75,7 +75,6 @@ import refy.composeapp.generated.resources.no_preview_available
  * @param cancelButton The button used to remove or delete a link
  */
 @Composable
-@NonRestartableComposable
 fun LinkCardContainer(
     modifier: Modifier = Modifier,
     viewModel: EquinoxViewModel,
@@ -157,7 +156,6 @@ fun LinkCardContainer(
  * @param owner The owner of the link
  */
 @Composable
-@NonRestartableComposable
 private fun OwnerData(
     owner: RefyUser
 ) {
@@ -198,7 +196,6 @@ private fun OwnerData(
  * @param link The link from fetch its **og:image**
  */
 @Composable
-@NonRestartableComposable
 private fun LinkThumbnail(
     link: RefyLinkImpl
 ) {

@@ -27,10 +27,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
-import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.data.LinksCollection
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presentations.CollectionsManager
 import com.tecknobit.refy.ui.shared.presentations.TeamsManager
 import kotlinx.coroutines.CoroutineScope
@@ -227,7 +227,6 @@ fun AttachTeam(
  * @param pages The pages to display where the user can select the items to attach or to share
  */
 @Composable
-@NonRestartableComposable
 private fun AttachItem(
     state: SheetState,
     scope: CoroutineScope,
@@ -288,7 +287,6 @@ private fun AttachItem(
  * @param currentPage The current page displayed
  */
 @Composable
-@NonRestartableComposable
 private fun PagerIndicator(
     state: PagerState,
     currentPage: Int

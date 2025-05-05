@@ -18,7 +18,6 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -28,8 +27,8 @@ import androidx.compose.ui.unit.sp
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.components.TeamMemberListItem
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
-import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.screens.teams.data.TeamMember
+import com.tecknobit.refy.ui.shared.data.Team
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
@@ -45,7 +44,6 @@ import refy.composeapp.generated.resources.team_members
  * @param team The team to display
  */
 @Composable
-@NonRestartableComposable
 fun TeamMembers(
     viewModel: TeamScreenViewModel,
     state: SheetState,

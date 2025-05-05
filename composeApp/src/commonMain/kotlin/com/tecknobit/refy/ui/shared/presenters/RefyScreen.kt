@@ -41,8 +41,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
+import com.tecknobit.equinoxcompose.components.DebouncedOutlinedTextField
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
@@ -70,6 +76,7 @@ import refy.composeapp.generated.resources.search_by_keywords
  * @see EquinoxScreen
  */
 @Structure
+@ScreenCoordinator
 abstract class RefyScreen<V : RefyScreenViewModel>(
     private val title: StringResource? = null,
     viewModel: V,
@@ -138,7 +145,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * any actions related to the screen
      */
     @Composable
-    @NonRestartableComposable
     protected fun TopBar() {
         Column {
             Row(
@@ -181,8 +187,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * Custom [ExtendedFloatingActionButton] used to edit the item where needed
      */
     @Composable
-    @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     protected open fun ExtendedFAB() {
         ExtendedFloatingActionButton(
             onClick = { upsertAction() }
@@ -205,7 +212,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * The custom content of the screen
      */
     @Composable
-    @NonRestartableComposable
     protected abstract fun Content()
 
     /**
@@ -227,7 +233,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * The title of the screen section
      */
     @Composable
-    @NonRestartableComposable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     private fun ScreenTitle() {
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -261,7 +269,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * The content of the [SubTitleSection]
      */
     @Composable
-    @NonRestartableComposable
     protected open fun SubTitleContent() {
         Row(
             modifier = Modifier
@@ -301,7 +308,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * @return the title of the screen as [String]
      */
     @Composable
-    @NonRestartableComposable
     protected open fun title(): String {
         return if (title != null)
             stringResource(title)
@@ -322,7 +328,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * Custom [IconButton] used to filter a list displayed in the current screen
      */
     @Composable
-    @NonRestartableComposable
     protected fun FilterButton() {
         IconButton(
             onClick = {
@@ -347,8 +352,8 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * Custom trailing content to display in the [TopBar] component
      */
     @Composable
+    @CompactClassComponent
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     protected open fun ColumnScope.TrailingContent() {
         ProfilePic(
             size = 75.dp
@@ -360,7 +365,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * to apply
      */
     @Composable
-    @NonRestartableComposable
     protected fun FiltersInputField() {
         AnimatedVisibility(
             visible = filtersEnabled.value
@@ -374,15 +378,12 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                     onCompactSizeClass = { Alignment.Start }
                 )
             ) {
-                EquinoxOutlinedTextField(
+                DebouncedOutlinedTextField(
                     shape = RoundedCornerShape(
                         size = 12.dp
                     ),
                     value = viewModel.keywords,
-                    onValueChange = {
-                        viewModel.keywords.value = it
-                        viewModel.refresh()
-                    },
+                    debounce = { viewModel.refresh() },
                     placeholder = Res.string.search_by_keywords,
                     trailingIcon = {
                         IconButton(

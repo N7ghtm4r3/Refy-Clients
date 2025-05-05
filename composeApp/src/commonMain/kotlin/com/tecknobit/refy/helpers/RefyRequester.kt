@@ -14,12 +14,12 @@ import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE_SIZE
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.PAGE_KEY
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.PAGE_SIZE_KEY
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
 import com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
-import com.tecknobit.refy.ui.screens.teams.data.Team
 import com.tecknobit.refy.ui.screens.teams.data.TeamMember
+import com.tecknobit.refy.ui.shared.data.LinksCollection
+import com.tecknobit.refy.ui.shared.data.RefyLink
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refycore.COLLECTIONS_KEY
 import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.DESCRIPTION_KEY

@@ -23,7 +23,6 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -51,6 +50,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
 import com.tecknobit.refy.ui.screens.home.data.NavigationTab
 import org.jetbrains.compose.resources.stringResource
 
@@ -68,9 +68,8 @@ import org.jetbrains.compose.resources.stringResource
  * @param selectedColor The color to indicate the tab has been selected
  * @param unselectedColor The color indicate a tab not selected
  */
-// TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
 @Composable
-@NonRestartableComposable
+@CompactClassComponent
 fun AnimatedBottomNavigationBar(
     modifier: Modifier,
     tabs: Array<NavigationTab>,

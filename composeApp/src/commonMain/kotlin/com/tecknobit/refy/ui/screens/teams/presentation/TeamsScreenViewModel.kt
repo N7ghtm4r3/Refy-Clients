@@ -4,10 +4,10 @@ import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
 import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
-import com.tecknobit.equinoxcore.network.Requester.Companion.sendPaginatedRequest
+import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse
 import com.tecknobit.refy.requester
-import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
 import com.tecknobit.refy.ui.shared.presentations.TeamsManager
 import io.github.ahmad_hamwi.compose.pagination.PaginationState

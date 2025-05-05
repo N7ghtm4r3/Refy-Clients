@@ -51,7 +51,6 @@ import refy.composeapp.generated.resources.unique_access
  * @param viewModel The support viewmodel for the screen
  */
 @Composable
-@NonRestartableComposable
 fun UniqueAccessCheckBox(
     viewModel: UpsertCustomLinkScreenViewModel
 ) {

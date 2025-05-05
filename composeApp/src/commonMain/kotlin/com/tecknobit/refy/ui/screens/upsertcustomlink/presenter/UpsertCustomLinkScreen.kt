@@ -19,6 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink
@@ -81,7 +85,6 @@ class UpsertCustomLinkScreen(
      * Section where the user can insert the name of the link
      */
     @Composable
-    @NonRestartableComposable
     private fun LinkNameSection() {
         SectionTitle(
             title = Res.string.name
@@ -104,7 +107,6 @@ class UpsertCustomLinkScreen(
      * Section where the user select the access method for the link
      */
     @Composable
-    @NonRestartableComposable
     private fun AccessMethod() {
         SectionTitle(
             title = Res.string.access_method
@@ -121,7 +123,9 @@ class UpsertCustomLinkScreen(
      */
     @Composable
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     private fun AccessMethodRow() {
         Row {
             UniqueAccessCheckBox(
@@ -137,8 +141,8 @@ class UpsertCustomLinkScreen(
      * The [AccessMethod] displayed as [Column] layout
      */
     @Composable
+    @CompactClassComponent
     @NonRestartableComposable
-    // TODO: ANNOTATE WITH SPECIFIC SizeClass annotations
     private fun AccessMethodColumn() {
         Column {
             UniqueAccessCheckBox(
@@ -183,7 +187,6 @@ class UpsertCustomLinkScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStates() {
         super.CollectStates()
         viewModel.linkNameError = remember { mutableStateOf(false) }
@@ -195,7 +198,6 @@ class UpsertCustomLinkScreen(
      */
     @Composable
     @RequiresSuperCall
-    @NonRestartableComposable
     override fun CollectStatesAfterLoading() {
         super.CollectStatesAfterLoading()
         viewModel.linkName = remember {

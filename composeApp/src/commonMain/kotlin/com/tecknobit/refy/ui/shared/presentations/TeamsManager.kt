@@ -1,10 +1,10 @@
 package com.tecknobit.refy.ui.shared.presentations
 
-import com.tecknobit.equinoxcore.network.Requester.Companion.sendRequest
+import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.requester
-import com.tecknobit.refy.ui.screens.collections.data.LinksCollection
-import com.tecknobit.refy.ui.screens.links.data.RefyLink.RefyLinkImpl
-import com.tecknobit.refy.ui.screens.teams.data.Team
+import com.tecknobit.refy.ui.shared.data.LinksCollection
+import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
+import com.tecknobit.refy.ui.shared.data.Team
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

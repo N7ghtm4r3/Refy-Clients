@@ -3,7 +3,7 @@ package com.tecknobit.refy.ui.shared.presentations
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
-import com.tecknobit.refy.ui.screens.links.data.RefyLink
+import com.tecknobit.refy.ui.shared.data.RefyLink
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
 
 /**

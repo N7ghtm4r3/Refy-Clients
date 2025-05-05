@@ -11,7 +11,6 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -32,7 +31,6 @@ import com.tecknobit.refycore.enums.TeamRole
  * @param trailingContent Custom trailing content to display
  */
 @Composable
-@NonRestartableComposable
 fun TeamMemberListItem(
     iAmAnAuthorizedMember: Boolean,
     member: TeamMember,
@@ -106,7 +104,6 @@ fun TeamMemberListItem(
  * @param onRoleSelected The action to execute when the role has been selected
  */
 @Composable
-@NonRestartableComposable
 private fun RolesMenu(
     expanded: MutableState<Boolean>,
     roleState: MutableState<TeamRole>,
