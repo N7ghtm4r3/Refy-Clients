@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
+import com.tecknobit.equinoxcore.toggle
 import com.tecknobit.refy.ui.components.EmptyMembers
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
@@ -184,12 +185,10 @@ class UpsertTeamScreen(
                         Checkbox(
                             checked = added,
                             onCheckedChange = {
-                                // TODO: TO FIX 
                                 added = it
-                                if (added)
-                                    viewModel.teamMembers.add(member)
-                                else
-                                    viewModel.teamMembers.remove(member)
+                                viewModel.teamMembers.toggle(
+                                    element = member
+                                )
                             }
                         )
                     }

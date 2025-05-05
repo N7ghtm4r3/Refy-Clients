@@ -280,8 +280,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.Tag,
                     title = Res.string.change_tag_name,
                     content = { ChangeTagName() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.newTagName.value = "" },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeTagName(
                             onSuccess = {
@@ -295,8 +294,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.AlternateEmail,
                     title = Res.string.change_email,
                     content = { ChangeEmail() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.newEmail.value = "" },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeEmail(
                             onChange = {
@@ -309,8 +307,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.Password,
                     title = Res.string.change_password,
                     content = { ChangePassword() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.newPassword.value = "" },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changePassword(
                             onChange = {
@@ -323,8 +320,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.Language,
                     title = Res.string.change_language,
                     content = { ChangeLanguage() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.language.value = localUser.language },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeLanguage(
                             onChange = {
@@ -338,8 +334,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     stepIcon = Icons.Default.Palette,
                     title = Res.string.change_theme,
                     content = { ChangeTheme() },
-                    // TODO: WHEN THE STEP FIXED ADDED THE visible -> STATE AS CONFIRM ACTION TO HIDE THE STEP
-                    dismissAction = { viewModel.theme.value = localUser.theme },
+                    dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeTheme(
                             onChange = {

@@ -260,7 +260,7 @@ private fun InitAmetista() {
             serverSecret = AmetistaConfig.SERVER_SECRET!!,
             applicationId = AmetistaConfig.APPLICATION_IDENTIFIER!!,
             bypassSslValidation = AmetistaConfig.BYPASS_SSL_VALIDATION,
-            debugMode = true // TODO: TO SET ON FALSE
+            debugMode = false
         )
     }
 }
@@ -281,8 +281,7 @@ fun startSession() {
     requester = RefyRequester(
         host = localUser.hostAddress,
         userId = localUser.userId,
-        userToken = localUser.userToken,
-        debugMode = true // TODO: TO REMOVE
+        userToken = localUser.userToken
     )
     val route = if (localUser.isAuthenticated) {
         MainScope().launch {
