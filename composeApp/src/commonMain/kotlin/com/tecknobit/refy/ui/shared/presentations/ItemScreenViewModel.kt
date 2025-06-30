@@ -1,5 +1,9 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.shared.presentations
 
+import androidx.compose.runtime.ExperimentalComposeApi
+import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
@@ -49,6 +53,11 @@ abstract class ItemScreenViewModel<I : RefyItem>(
     val itemName: StateFlow<String> = _itemName
 
     /**
+     * `sessionFlowState` the state used to manage the session lifecycle in the screen
+     */
+    lateinit var sessionFlowState: SessionFlowState
+
+    /**
      * Method to retrieve the information of the item to display
      */
     abstract fun retrieveItem()
@@ -78,7 +87,24 @@ abstract class ItemScreenViewModel<I : RefyItem>(
      * @param link The link to remove
      */
     abstract fun removeLink(
-        link: RefyLinkImpl
+        link: RefyLinkImpl,
     )
+
+    /**
+     * Method used to reload the content related to the [_item] when an error occurred during its
+     * retrieving
+     */
+    fun reload() {
+        retrieveItem()
+        linksState.refresh()
+    }
+
+    /**
+     * Method used to notify about a server offline status
+     */
+    protected fun notifyServerOffline() {
+        linksState.setError(Exception())
+        sessionFlowState.notifyServerOffline()
+    }
 
 }

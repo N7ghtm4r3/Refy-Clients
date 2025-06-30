@@ -1,5 +1,5 @@
 @file:OptIn(
-    ExperimentalMaterial3Api::class, ExperimentalMultiplatform::class,
+    ExperimentalMaterial3Api::class,
     ExperimentalComposeApi::class
 )
 
@@ -17,6 +17,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
@@ -29,13 +30,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.tecknobit.equinoxcompose.session.ManagedContent
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
+import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.navigator
+import com.tecknobit.refy.ui.components.RetryButton
 import com.tecknobit.refy.ui.components.links.LinksGrid
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
@@ -136,12 +139,14 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     @Composable
     @NonRestartableComposable
     override fun Content() {
-        ManagedContent(
+        SessionFlowContainer(
             modifier = Modifier
                 .fillMaxSize(),
+            state = viewModel.sessionFlowState,
             viewModel = viewModel,
-            initialDelay = 500,
+            initialLoadingRoutineDelay = 1000L,
             loadingRoutine = { item.value != null },
+            loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
                 Column(
                     modifier = Modifier
@@ -156,6 +161,13 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
                         LinksSection()
                     }
                 }
+            },
+            retryFailedFlowContent = {
+                RetryButton(
+                    onRetry = {
+                        viewModel.reload()
+                    }
+                )
             }
         )
     }
@@ -277,6 +289,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         itemName = viewModel.itemName.collectAsState(
             initial = name
         )
+        viewModel.sessionFlowState = rememberSessionFlowState()
     }
 
 }
