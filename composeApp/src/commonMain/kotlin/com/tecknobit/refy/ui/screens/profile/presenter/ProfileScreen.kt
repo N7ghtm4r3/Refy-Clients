@@ -65,7 +65,7 @@ import com.tecknobit.equinoxcompose.components.stepper.Stepper
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
-import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.LANGUAGES_SUPPORTED
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.SUPPORTED_LANGUAGES
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
 import com.tecknobit.refy.SPLASHSCREEN
@@ -510,7 +510,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
             modifier = Modifier
                 .selectableGroup()
         ) {
-            LANGUAGES_SUPPORTED.entries.forEach { entry ->
+            SUPPORTED_LANGUAGES.entries.forEach { entry ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
