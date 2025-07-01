@@ -1,8 +1,9 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.teams.presentation
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
-import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse
@@ -61,15 +62,15 @@ class TeamsScreenViewModel : RefyScreenViewModel(), TeamsManager {
                 },
                 serializer = Team.serializer(),
                 onSuccess = { paginatedResponse ->
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     teamsState.appendPage(
                         items = paginatedResponse.data,
                         nextPageKey = paginatedResponse.nextPage,
                         isLastPage = paginatedResponse.isLastPage
                     )
                 },
-                onFailure = { setHasBeenDisconnectedValue(true) },
-                onConnectionError = { setServerOfflineValue(true) }
+                onFailure = { sessionFlowState.notifyUserDisconnected() },
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }
@@ -93,6 +94,22 @@ class TeamsScreenViewModel : RefyScreenViewModel(), TeamsManager {
      */
     override fun refreshAfterCollectionsAttached() {
         refresh()
+    }
+
+    /**
+     * Method used to reload the content related to data to retrieve that gone on error during the
+     * retrieving
+     */
+    override fun reload() {
+        teamsState.retryLastFailedRequest()
+    }
+
+    /**
+     * Method used to notify about a server offline status
+     */
+    override fun notifyServerOffline() {
+        teamsState.setError(Exception())
+        sessionFlowState.notifyServerOffline()
     }
 
 }

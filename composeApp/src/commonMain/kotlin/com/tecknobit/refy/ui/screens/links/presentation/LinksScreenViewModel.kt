@@ -1,8 +1,9 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.links.presentation
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
-import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.sendRequest
@@ -46,15 +47,15 @@ class LinksScreenViewModel : BaseLinksScreenViewModel<RefyLinkImpl>() {
                     )
                 },
                 onSuccess = { paginatedResponse ->
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     linksState.appendPage(
                         items = paginatedResponse.data,
                         nextPageKey = paginatedResponse.nextPage,
                         isLastPage = paginatedResponse.isLastPage
                     )
                 },
-                onFailure = { setHasBeenDisconnectedValue(true) },
-                onConnectionError = { setServerOfflineValue(true) }
+                onFailure = { sessionFlowState.notifyUserDisconnected() },
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }

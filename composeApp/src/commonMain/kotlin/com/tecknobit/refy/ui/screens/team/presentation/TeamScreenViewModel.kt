@@ -4,7 +4,6 @@ package com.tecknobit.refy.ui.screens.team.presentation
 
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
@@ -106,7 +105,7 @@ class TeamScreenViewModel(
                 },
                 serializer = LinksCollection.serializer(),
                 onSuccess = { paginatedResponse ->
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     teamCollections.appendPage(
                         items = paginatedResponse.data,
                         nextPageKey = paginatedResponse.nextPage,
@@ -114,7 +113,7 @@ class TeamScreenViewModel(
                     )
                 },
                 onFailure = { showSnackbarMessage(it) },
-                onConnectionError = { setServerOfflineValue(true) }
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }
@@ -138,7 +137,7 @@ class TeamScreenViewModel(
                 },
                 serializer = RefyLinkImpl.serializer(),
                 onSuccess = { paginatedResponse ->
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     linksState.appendPage(
                         items = paginatedResponse.data,
                         nextPageKey = paginatedResponse.nextPage,
@@ -146,7 +145,7 @@ class TeamScreenViewModel(
                     )
                 },
                 onFailure = { showSnackbarMessage(it) },
-                onConnectionError = { setServerOfflineValue(true) }
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }

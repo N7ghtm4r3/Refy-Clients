@@ -32,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
-import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
@@ -289,7 +288,6 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         itemName = viewModel.itemName.collectAsState(
             initial = name
         )
-        viewModel.sessionFlowState = rememberSessionFlowState()
     }
 
 }

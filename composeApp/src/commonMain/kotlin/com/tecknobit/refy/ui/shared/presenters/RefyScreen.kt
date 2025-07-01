@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMultiplatform::class)
+@file:OptIn(ExperimentalMultiplatform::class, ExperimentalComposeApi::class)
 
 package com.tecknobit.refy.ui.shared.presenters
 
@@ -28,6 +28,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
@@ -45,6 +46,7 @@ import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
 import com.tecknobit.equinoxcompose.components.DebouncedOutlinedTextField
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
@@ -411,6 +413,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
     override fun CollectStates() {
         filtersEnabled = remember { mutableStateOf(false) }
         viewModel.keywords = remember { mutableStateOf("") }
+        viewModel.sessionFlowState = rememberSessionFlowState()
     }
 
 }
