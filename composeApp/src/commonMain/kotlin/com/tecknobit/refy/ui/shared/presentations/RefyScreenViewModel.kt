@@ -17,11 +17,12 @@ import com.tecknobit.equinoxcore.annotations.Structure
  * @see androidx.lifecycle.ViewModel
  * @see com.tecknobit.equinoxcompose.session.Retriever
  * @see EquinoxViewModel
+ * @see SessionStateFlowConsumer
  */
 @Structure
 abstract class RefyScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
-) {
+), SessionStateFlowConsumer {
 
     /**
      *`keywords` the keywords used as filter
@@ -31,7 +32,7 @@ abstract class RefyScreenViewModel : EquinoxViewModel(
     /**
      * `sessionFlowState` the state used to manage the session lifecycle in the screen
      */
-    lateinit var sessionFlowState: SessionFlowState
+    override lateinit var sessionFlowState: SessionFlowState
 
     /**
      * Method used to refresh the data displayed by the screen
@@ -43,10 +44,5 @@ abstract class RefyScreenViewModel : EquinoxViewModel(
      * retrieving
      */
     abstract fun reload()
-
-    /**
-     * Method used to notify about a server offline status
-     */
-    abstract fun notifyServerOffline()
 
 }

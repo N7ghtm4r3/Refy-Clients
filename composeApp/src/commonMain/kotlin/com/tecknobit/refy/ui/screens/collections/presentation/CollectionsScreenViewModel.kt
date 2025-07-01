@@ -105,11 +105,10 @@ class CollectionsScreenViewModel : RefyScreenViewModel(), CollectionsManager {
     }
 
     /**
-     * Method used to notify about a server offline status
+     * Routine to perform when the server is currently offline
      */
-    override fun notifyServerOffline() {
+    override fun performOnServerOffline() {
         collectionsState.setError(Exception())
-        sessionFlowState.notifyServerOffline()
     }
     
 }

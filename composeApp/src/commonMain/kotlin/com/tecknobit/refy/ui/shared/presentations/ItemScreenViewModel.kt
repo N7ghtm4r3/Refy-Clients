@@ -94,11 +94,10 @@ abstract class ItemScreenViewModel<I : RefyItem>(
     }
 
     /**
-     * Method used to notify about a server offline status
+     * Routine to perform when the server is currently offline
      */
-    override fun notifyServerOffline() {
+    override fun performOnServerOffline() {
         linksState.setError(Exception())
-        sessionFlowState.notifyServerOffline()
     }
 
 }
