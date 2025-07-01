@@ -1,8 +1,9 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.collections.presentation
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
-import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
@@ -61,15 +62,15 @@ class CollectionsScreenViewModel : RefyScreenViewModel(), CollectionsManager {
                 },
                 serializer = LinksCollection.serializer(),
                 onSuccess = { paginatedResponse ->
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     collectionsState.appendPage(
                         items = paginatedResponse.data,
                         nextPageKey = paginatedResponse.nextPage,
                         isLastPage = paginatedResponse.isLastPage
                     )
                 },
-                onFailure = { setHasBeenDisconnectedValue(true) },
-                onConnectionError = { setServerOfflineValue(true) }
+                onFailure = { sessionFlowState.notifyUserDisconnected() },
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }
@@ -95,4 +96,19 @@ class CollectionsScreenViewModel : RefyScreenViewModel(), CollectionsManager {
         refresh()
     }
 
+    /**
+     * Method used to reload the content related to data to retrieve that gone on error during the
+     * retrieving
+     */
+    override fun reload() {
+        collectionsState.retryLastFailedRequest()
+    }
+
+    /**
+     * Routine to perform when the server is currently offline
+     */
+    override fun performOnServerOffline() {
+        collectionsState.setError(Exception())
+    }
+    
 }

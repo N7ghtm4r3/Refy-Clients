@@ -1,9 +1,10 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.collection.presentation
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
-import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
@@ -78,13 +79,13 @@ class CollectionScreenViewModel(
                     )
                 },
                 onSuccess = {
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     _item.value = Json.decodeFromJsonElement(it.toResponseData())
                     _itemName.value = _item.value!!.title
                     _color.value = _item.value!!.color.toColor()
                 },
-                onFailure = { setHasBeenDisconnectedValue(true) },
-                onConnectionError = { setServerOfflineValue(true) }
+                onFailure = { sessionFlowState.notifyUserDisconnected() },
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }
@@ -120,7 +121,7 @@ class CollectionScreenViewModel(
                 },
                 serializer = Team.serializer(),
                 onSuccess = { paginatedResponse ->
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     collectionTeams.appendPage(
                         items = paginatedResponse.data,
                         nextPageKey = paginatedResponse.nextPage,
@@ -128,7 +129,7 @@ class CollectionScreenViewModel(
                     )
                 },
                 onFailure = { navigator.goBack() },
-                onConnectionError = { setServerOfflineValue(true) }
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }
@@ -152,7 +153,7 @@ class CollectionScreenViewModel(
                 },
                 serializer = RefyLinkImpl.serializer(),
                 onSuccess = { paginatedResponse ->
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     linksState.appendPage(
                         items = paginatedResponse.data,
                         nextPageKey = paginatedResponse.nextPage,
@@ -160,7 +161,7 @@ class CollectionScreenViewModel(
                     )
                 },
                 onFailure = { navigator.goBack() },
-                onConnectionError = { setServerOfflineValue(true) }
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }

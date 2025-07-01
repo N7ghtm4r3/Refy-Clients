@@ -1,7 +1,11 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.shared.presentations
 
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
+import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
@@ -21,6 +25,7 @@ import kotlinx.coroutines.flow.StateFlow
  * @see androidx.lifecycle.ViewModel
  * @see com.tecknobit.equinoxcompose.session.Retriever
  * @see EquinoxViewModel
+ * @see SessionStateFlowConsumer
  *
  * @param I The type of the item updated
  *
@@ -30,7 +35,12 @@ abstract class UpsertScreenViewModel<I : RefyItem>(
     private val itemId: String?
 ) : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
-) {
+), SessionStateFlowConsumer {
+
+    /**
+     * `sessionFlowState` the state used to manage the session lifecycle in the screen
+     */
+    override lateinit var sessionFlowState: SessionFlowState
 
     /**
      *`_item` the item to update
@@ -112,5 +122,12 @@ abstract class UpsertScreenViewModel<I : RefyItem>(
     protected abstract fun update(
         onUpdate: () -> Unit,
     )
+
+    /**
+     * Routine to perform when the server is currently offline
+     */
+    override fun performOnServerOffline() {
+        _item.value = null
+    }
 
 }

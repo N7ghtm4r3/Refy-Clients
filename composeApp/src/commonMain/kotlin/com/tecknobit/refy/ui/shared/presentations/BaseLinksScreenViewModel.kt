@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.shared.presentations
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
@@ -50,6 +53,21 @@ abstract class BaseLinksScreenViewModel<L : RefyLink> : RefyScreenViewModel(), L
      */
     override fun refresh() {
         linksState.refresh()
+    }
+
+    /**
+     * Method used to reload the content related to data to retrieve that gone on error during the
+     * retrieving
+     */
+    override fun reload() {
+        linksState.retryLastFailedRequest()
+    }
+
+    /**
+     * Routine to perform when the server is currently offline
+     */
+    override fun performOnServerOffline() {
+        linksState.setError(Exception())
     }
 
 }

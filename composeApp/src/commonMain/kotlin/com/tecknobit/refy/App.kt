@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalResourceApi::class)
+@file:OptIn(ExperimentalComposeApi::class)
 
 package com.tecknobit.refy
 
@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
@@ -17,6 +18,7 @@ import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.ametistaengine.AmetistaEngine
 import com.tecknobit.ametistaengine.AmetistaEngine.Companion.FILES_AMETISTA_CONFIG_PATHNAME
+import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
@@ -48,9 +50,7 @@ import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.titillium
 import refy.composeapp.generated.resources.ubuntu
@@ -135,7 +135,6 @@ const val UPSERT_CUSTOM_LINK_SCREEN = "UpsertCustomLinkScreen"
  * Method to start the `Refy`'s application
  */
 @Composable
-@Preview
 fun App() {
     bodyFontFamily = FontFamily(Font(Res.font.titillium))
     displayFontFamily = FontFamily(Font(Res.font.ubuntu))
@@ -243,6 +242,10 @@ fun App() {
                 }
             }
         }
+    }
+    SessionFlowState.invokeOnUserDisconnected {
+        localUser.clear()
+        navigator.navigate(SPLASHSCREEN)
     }
 }
 

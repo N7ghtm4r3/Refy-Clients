@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.shared.presentations
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
@@ -78,7 +81,23 @@ abstract class ItemScreenViewModel<I : RefyItem>(
      * @param link The link to remove
      */
     abstract fun removeLink(
-        link: RefyLinkImpl
+        link: RefyLinkImpl,
     )
+
+    /**
+     * Method used to reload the content related to the [_item] when an error occurred during its
+     * retrieving
+     */
+    override fun reload() {
+        retrieveItem()
+        linksState.refresh()
+    }
+
+    /**
+     * Routine to perform when the server is currently offline
+     */
+    override fun performOnServerOffline() {
+        linksState.setError(Exception())
+    }
 
 }

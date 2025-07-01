@@ -60,12 +60,12 @@
     ]
   },
   {
-    "name": "abstract class RefyScreenViewModel : EquinoxViewModel",
+    "name": "abstract class RefyScreenViewModel : EquinoxViewModel, SessionStateFlowConsumer",
     "description": "com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel",
     "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-refy-screen-view-model/index.html",
     "searchKeys": [
       "RefyScreenViewModel",
-      "abstract class RefyScreenViewModel : EquinoxViewModel",
+      "abstract class RefyScreenViewModel : EquinoxViewModel, SessionStateFlowConsumer",
       "com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel"
     ]
   },
@@ -80,12 +80,12 @@
     ]
   },
   {
-    "name": "abstract class UpsertScreenViewModel<I : RefyItem>(itemId: String?) : EquinoxViewModel",
+    "name": "abstract class UpsertScreenViewModel<I : RefyItem>(itemId: String?) : EquinoxViewModel, SessionStateFlowConsumer",
     "description": "com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel",
     "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html",
     "searchKeys": [
       "UpsertScreenViewModel",
-      "abstract class UpsertScreenViewModel<I : RefyItem>(itemId: String?) : EquinoxViewModel",
+      "abstract class UpsertScreenViewModel<I : RefyItem>(itemId: String?) : EquinoxViewModel, SessionStateFlowConsumer",
       "com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel"
     ]
   },
@@ -117,6 +117,16 @@
       "loadLinks",
       "abstract fun loadLinks(page: Int)",
       "com.tecknobit.refy.ui.shared.presentations.LinksRetriever.loadLinks"
+    ]
+  },
+  {
+    "name": "abstract fun performOnServerOffline()",
+    "description": "com.tecknobit.refy.ui.shared.presentations.SessionStateFlowConsumer.performOnServerOffline",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-session-state-flow-consumer/perform-on-server-offline.html",
+    "searchKeys": [
+      "performOnServerOffline",
+      "abstract fun performOnServerOffline()",
+      "com.tecknobit.refy.ui.shared.presentations.SessionStateFlowConsumer.performOnServerOffline"
     ]
   },
   {
@@ -167,6 +177,16 @@
       "refreshAfterTeamsSharing",
       "abstract fun refreshAfterTeamsSharing()",
       "com.tecknobit.refy.ui.shared.presentations.CollectionsManager.refreshAfterTeamsSharing"
+    ]
+  },
+  {
+    "name": "abstract fun reload()",
+    "description": "com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel.reload",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-refy-screen-view-model/reload.html",
+    "searchKeys": [
+      "reload",
+      "abstract fun reload()",
+      "com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel.reload"
     ]
   },
   {
@@ -367,6 +387,16 @@
       "title",
       "abstract val title: String",
       "com.tecknobit.refy.ui.shared.data.RefyItem.title"
+    ]
+  },
+  {
+    "name": "abstract var sessionFlowState: SessionFlowState",
+    "description": "com.tecknobit.refy.ui.shared.presentations.SessionStateFlowConsumer.sessionFlowState",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-session-state-flow-consumer/session-flow-state.html",
+    "searchKeys": [
+      "sessionFlowState",
+      "abstract var sessionFlowState: SessionFlowState",
+      "com.tecknobit.refy.ui.shared.presentations.SessionStateFlowConsumer.sessionFlowState"
     ]
   },
   {
@@ -1780,6 +1810,16 @@
     ]
   },
   {
+    "name": "fun RetryButton(onRetry: () -> Unit, text: StringResource = Res.string.retry)",
+    "description": "com.tecknobit.refy.ui.components.RetryButton",
+    "location": "-refy/com.tecknobit.refy.ui.components/-retry-button.html",
+    "searchKeys": [
+      "RetryButton",
+      "fun RetryButton(onRetry: () -> Unit, text: StringResource = Res.string.retry)",
+      "com.tecknobit.refy.ui.components.RetryButton"
+    ]
+  },
+  {
     "name": "fun ScreenTopBar(screenTitle: StringResource)",
     "description": "com.tecknobit.refy.ui.components.ScreenTopBar",
     "location": "-refy/com.tecknobit.refy.ui.components/-screen-top-bar.html",
@@ -2167,6 +2207,16 @@
       "RefyUser",
       "interface RefyUser",
       "com.tecknobit.refy.ui.shared.data.RefyUser"
+    ]
+  },
+  {
+    "name": "interface SessionStateFlowConsumer",
+    "description": "com.tecknobit.refy.ui.shared.presentations.SessionStateFlowConsumer",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-session-state-flow-consumer/index.html",
+    "searchKeys": [
+      "SessionStateFlowConsumer",
+      "interface SessionStateFlowConsumer",
+      "com.tecknobit.refy.ui.shared.presentations.SessionStateFlowConsumer"
     ]
   },
   {
@@ -2590,6 +2640,16 @@
     ]
   },
   {
+    "name": "open fun notifyServerOffline()",
+    "description": "com.tecknobit.refy.ui.shared.presentations.SessionStateFlowConsumer.notifyServerOffline",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-session-state-flow-consumer/notify-server-offline.html",
+    "searchKeys": [
+      "notifyServerOffline",
+      "open fun notifyServerOffline()",
+      "com.tecknobit.refy.ui.shared.presentations.SessionStateFlowConsumer.notifyServerOffline"
+    ]
+  },
+  {
     "name": "open fun shareWithTeams(collection: LinksCollection, teams: List<Team>, afterShared: () -> Unit)",
     "description": "com.tecknobit.refy.ui.shared.presentations.CollectionsManager.shareWithTeams",
     "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-collections-manager/share-with-teams.html",
@@ -2597,6 +2657,26 @@
       "shareWithTeams",
       "open fun shareWithTeams(collection: LinksCollection, teams: List<Team>, afterShared: () -> Unit)",
       "com.tecknobit.refy.ui.shared.presentations.CollectionsManager.shareWithTeams"
+    ]
+  },
+  {
+    "name": "open lateinit override var sessionFlowState: SessionFlowState",
+    "description": "com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel.sessionFlowState",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-refy-screen-view-model/session-flow-state.html",
+    "searchKeys": [
+      "sessionFlowState",
+      "open lateinit override var sessionFlowState: SessionFlowState",
+      "com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel.sessionFlowState"
+    ]
+  },
+  {
+    "name": "open lateinit override var sessionFlowState: SessionFlowState",
+    "description": "com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel.sessionFlowState",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/session-flow-state.html",
+    "searchKeys": [
+      "sessionFlowState",
+      "open lateinit override var sessionFlowState: SessionFlowState",
+      "com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel.sessionFlowState"
     ]
   },
   {
@@ -2687,6 +2767,56 @@
       "loadLinks",
       "open override fun loadLinks(page: Int)",
       "com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel.loadLinks"
+    ]
+  },
+  {
+    "name": "open override fun performOnServerOffline()",
+    "description": "com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel.performOnServerOffline",
+    "location": "-refy/com.tecknobit.refy.ui.screens.collections.presentation/-collections-screen-view-model/perform-on-server-offline.html",
+    "searchKeys": [
+      "performOnServerOffline",
+      "open override fun performOnServerOffline()",
+      "com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel.performOnServerOffline"
+    ]
+  },
+  {
+    "name": "open override fun performOnServerOffline()",
+    "description": "com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel.performOnServerOffline",
+    "location": "-refy/com.tecknobit.refy.ui.screens.teams.presentation/-teams-screen-view-model/perform-on-server-offline.html",
+    "searchKeys": [
+      "performOnServerOffline",
+      "open override fun performOnServerOffline()",
+      "com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel.performOnServerOffline"
+    ]
+  },
+  {
+    "name": "open override fun performOnServerOffline()",
+    "description": "com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel.performOnServerOffline",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-base-links-screen-view-model/perform-on-server-offline.html",
+    "searchKeys": [
+      "performOnServerOffline",
+      "open override fun performOnServerOffline()",
+      "com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel.performOnServerOffline"
+    ]
+  },
+  {
+    "name": "open override fun performOnServerOffline()",
+    "description": "com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel.performOnServerOffline",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-item-screen-view-model/perform-on-server-offline.html",
+    "searchKeys": [
+      "performOnServerOffline",
+      "open override fun performOnServerOffline()",
+      "com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel.performOnServerOffline"
+    ]
+  },
+  {
+    "name": "open override fun performOnServerOffline()",
+    "description": "com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel.performOnServerOffline",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/perform-on-server-offline.html",
+    "searchKeys": [
+      "performOnServerOffline",
+      "open override fun performOnServerOffline()",
+      "com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel.performOnServerOffline"
     ]
   },
   {
@@ -2807,6 +2937,46 @@
       "refreshAfterTeamsSharing",
       "open override fun refreshAfterTeamsSharing()",
       "com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel.refreshAfterTeamsSharing"
+    ]
+  },
+  {
+    "name": "open override fun reload()",
+    "description": "com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel.reload",
+    "location": "-refy/com.tecknobit.refy.ui.screens.collections.presentation/-collections-screen-view-model/reload.html",
+    "searchKeys": [
+      "reload",
+      "open override fun reload()",
+      "com.tecknobit.refy.ui.screens.collections.presentation.CollectionsScreenViewModel.reload"
+    ]
+  },
+  {
+    "name": "open override fun reload()",
+    "description": "com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel.reload",
+    "location": "-refy/com.tecknobit.refy.ui.screens.teams.presentation/-teams-screen-view-model/reload.html",
+    "searchKeys": [
+      "reload",
+      "open override fun reload()",
+      "com.tecknobit.refy.ui.screens.teams.presentation.TeamsScreenViewModel.reload"
+    ]
+  },
+  {
+    "name": "open override fun reload()",
+    "description": "com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel.reload",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-base-links-screen-view-model/reload.html",
+    "searchKeys": [
+      "reload",
+      "open override fun reload()",
+      "com.tecknobit.refy.ui.shared.presentations.BaseLinksScreenViewModel.reload"
+    ]
+  },
+  {
+    "name": "open override fun reload()",
+    "description": "com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel.reload",
+    "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-item-screen-view-model/reload.html",
+    "searchKeys": [
+      "reload",
+      "open override fun reload()",
+      "com.tecknobit.refy.ui.shared.presentations.ItemScreenViewModel.reload"
     ]
   },
   {

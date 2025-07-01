@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.toArgb
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.tecknobit.ametistaengine.AmetistaEngine
-import com.tecknobit.equinoxcompose.session.setUpSession
 import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
 import io.github.vinceglb.filekit.core.FileKit
 
@@ -67,10 +66,6 @@ class MainActivity : ComponentActivity() {
                     darkScrim = MaterialTheme.colorScheme.inversePrimary.toArgb()
                 )
             )
-            setUpSession {
-                localUser.clear()
-                navigator.navigate(SPLASHSCREEN)
-            }
             App()
         }
     }

@@ -1,10 +1,11 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.upsertteam.presentation
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.session.setHasBeenDisconnectedValue
-import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
@@ -31,6 +32,7 @@ import kotlinx.serialization.json.decodeFromJsonElement
  * @see com.tecknobit.equinoxcompose.session.Retriever
  * @see EquinoxViewModel
  * @see UpsertScreenViewModel
+ * @see SessionStateFlowConsumer
  *
  */
 class UpsertTeamScreenViewModel(
@@ -83,11 +85,11 @@ class UpsertTeamScreenViewModel(
                     )
                 },
                 onSuccess = {
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     _item.value = Json.decodeFromJsonElement(it.toResponseData())
                 },
-                onFailure = { setHasBeenDisconnectedValue(true) },
-                onConnectionError = { setServerOfflineValue(true) }
+                onFailure = { sessionFlowState.notifyUserDisconnected() },
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }

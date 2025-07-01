@@ -22,7 +22,7 @@ plugins {
 kotlin {
     androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_18)
+            jvmTarget.set(JvmTarget.JVM_22)
         }
     }
     
@@ -39,13 +39,13 @@ kotlin {
     
     jvm("desktop") {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_18)
+            jvmTarget.set(JvmTarget.JVM_22)
         }
     }
     
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "composeApp"
+        outputModuleName = "composeApp"
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
@@ -141,8 +141,8 @@ android {
         applicationId = "com.tecknobit.refy"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 4
-        versionName = "1.0.2"
+        versionCode = 6
+        versionName = "1.0.3"
     }
     packaging {
         resources {
@@ -155,8 +155,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.VERSION_22
+        targetCompatibility = JavaVersion.VERSION_22
     }
 }
 
@@ -175,8 +175,8 @@ compose.desktop {
                 "jdk.security.auth"
             )
             packageName = "Refy"
-            packageVersion = "1.0.2"
-            version = "1.0.2"
+            packageVersion = "1.0.3"
+            version = "1.0.3"
             description = "References collector and custom links generator"
             copyright = "© 2025 Tecknobit"
             vendor = "Tecknobit"
@@ -193,12 +193,12 @@ compose.desktop {
                 iconFile.set(project.file("src/desktopMain/resources/logo.png"))
                 packageName = "com-tecknobit-refy"
                 debMaintainer = "infotecknobitcompany@gmail.com"
-                appRelease = "1.0.2"
+                appRelease = "1.0.3"
                 appCategory = "PERSONALIZATION"
                 rpmLicenseType = "APACHE2"
             }
             buildTypes.release.proguard {
-                configurationFiles.from(project.file("compose-desktop.pro"))
+                configurationFiles.from(project.file("src/desktopMain/resources/compose-desktop.pro"))
                 obfuscate.set(true)
             }
         }
