@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.upsertlink.presentation
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
@@ -56,9 +59,11 @@ class UpsertLinkScreenViewModel(
                     )
                 },
                 onSuccess = {
+                    sessionFlowState.notifyOperational()
                     _item.value = Json.decodeFromJsonElement(it.toResponseData())
                 },
-                onFailure = { showSnackbarMessage(it) }
+                onFailure = { showSnackbarMessage(it) },
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }

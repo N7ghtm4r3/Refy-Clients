@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.upsertcollection.presentation
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.graphics.Color
@@ -70,9 +73,11 @@ class UpsertCollectionScreenViewModel(
                     )
                 },
                 onSuccess = {
+                    sessionFlowState.notifyOperational()
                     _item.value = Json.decodeFromJsonElement(it.toResponseData())
                 },
-                onFailure = { showSnackbarMessage(it) }
+                onFailure = { showSnackbarMessage(it) },
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }

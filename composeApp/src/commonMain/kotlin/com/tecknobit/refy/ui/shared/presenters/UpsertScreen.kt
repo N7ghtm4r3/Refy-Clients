@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
@@ -32,13 +33,15 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
-import com.tecknobit.equinoxcompose.session.ManagedContent
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
+import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.navigator
+import com.tecknobit.refy.ui.components.RetryButton
 import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel
@@ -106,17 +109,20 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     @Composable
     override fun ArrangeScreenContent() {
         ScreenTheme {
-            ManagedContent(
+            SessionFlowContainer(
+                item.value,
                 modifier = Modifier
                     .fillMaxSize(),
+                state = viewModel.sessionFlowState,
                 viewModel = viewModel,
-                initialDelay = 500,
+                initialLoadingRoutineDelay = 1000L,
                 loadingRoutine = if (isUpdating) {
                     {
                         item.value != null
                     }
                 } else
                     null,
+                loadingContentColor = MaterialTheme.colorScheme.primary,
                 content = {
                     CollectStatesAfterLoading()
                     Scaffold(
@@ -155,6 +161,13 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
                             }
                         }
                     }
+                },
+                retryFailedFlowContent = {
+                    RetryButton(
+                        onRetry = {
+                            viewModel.retrieveItem()
+                        }
+                    )
                 }
             )
         }
@@ -281,6 +294,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
     override fun CollectStates() {
         item = viewModel.item.collectAsState()
         viewModel.itemDescriptionError = remember { mutableStateOf(false) }
+        viewModel.sessionFlowState = rememberSessionFlowState()
     }
 
     /**

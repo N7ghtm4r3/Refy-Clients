@@ -1,9 +1,11 @@
+@file:OptIn(ExperimentalComposeApi::class)
+
 package com.tecknobit.refy.ui.screens.upsertcustomlink.presentation
 
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.session.setServerOfflineValue
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
@@ -31,6 +33,7 @@ import refy.composeapp.generated.resources.resources_not_valid
  * @see com.tecknobit.equinoxcompose.session.Retriever
  * @see EquinoxViewModel
  * @see UpsertScreenViewModel
+ * @see SessionStateFlowConsumer
  *
  */
 class UpsertCustomLinkScreenViewModel(
@@ -83,11 +86,11 @@ class UpsertCustomLinkScreenViewModel(
                     )
                 },
                 onSuccess = {
-                    setServerOfflineValue(false)
+                    sessionFlowState.notifyOperational()
                     _item.value = Json.decodeFromJsonElement(it.toResponseData())
                 },
                 onFailure = { showSnackbarMessage(it) },
-                onConnectionError = { setServerOfflineValue(true) }
+                onConnectionError = { notifyServerOffline() }
             )
         }
     }
