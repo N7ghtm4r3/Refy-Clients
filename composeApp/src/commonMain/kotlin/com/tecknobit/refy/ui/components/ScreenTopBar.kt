@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.tecknobit.refy.displayFontFamily
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navigator
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -34,7 +34,7 @@ fun ScreenTopBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            onClick = { navigator.goBack() }
+            onClick = { navigator.popBackStack() }
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,

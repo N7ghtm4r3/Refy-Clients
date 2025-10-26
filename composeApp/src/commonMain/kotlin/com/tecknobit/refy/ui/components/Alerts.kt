@@ -11,9 +11,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EquinoxAlertDialog
-import com.tecknobit.refy.SPLASHSCREEN
 import com.tecknobit.refy.displayFontFamily
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToSplashscreen
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
 import com.tecknobit.refy.ui.shared.data.LinksCollection
@@ -167,7 +167,7 @@ fun LeaveTeam(
         confirmAction = {
             viewModel.leaveTeam {
                 show.value = false
-                navigator.goBack()
+                navigator.popBackStack()
             }
         }
     )
@@ -198,7 +198,7 @@ fun Logout(
         confirmAction = {
             viewModel.clearSession {
                 show.value = false
-                navigator.navigate(SPLASHSCREEN)
+                navToSplashscreen()
             }
         }
     )
@@ -230,7 +230,7 @@ fun DeleteAccount(
             viewModel.deleteAccount(
                 onDelete = {
                     show.value = false
-                    navigator.navigate(SPLASHSCREEN)
+                    navToSplashscreen()
                 }
             )
         }

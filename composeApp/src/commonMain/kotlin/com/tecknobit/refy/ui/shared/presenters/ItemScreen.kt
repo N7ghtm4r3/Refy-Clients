@@ -36,7 +36,7 @@ import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.components.RetryButton
 import com.tecknobit.refy.ui.components.links.LinksGrid
 import com.tecknobit.refy.ui.shared.data.RefyItem
@@ -91,7 +91,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         IconButton(
             modifier = Modifier
                 .size(25.dp),
-            onClick = { navigator.goBack() }
+            onClick = { navigator.popBackStack() }
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,

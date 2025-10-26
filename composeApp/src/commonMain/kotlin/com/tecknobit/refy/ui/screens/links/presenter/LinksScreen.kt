@@ -3,8 +3,7 @@ package com.tecknobit.refy.ui.screens.links.presenter
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
-import com.tecknobit.refy.UPSERT_LINK_SCREEN
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToUpsertLinkScreen
 import com.tecknobit.refy.ui.screens.links.components.LinkCard
 import com.tecknobit.refy.ui.screens.links.presentation.LinksScreenViewModel
 import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
@@ -49,7 +48,7 @@ class LinksScreen : BaseLinksScreen<RefyLinkImpl, LinksScreenViewModel>(
      * The action to execute to update or insert an item
      */
     override fun upsertAction() {
-        navigator.navigate(UPSERT_LINK_SCREEN)
+        navToUpsertLinkScreen()
     }
 
 }

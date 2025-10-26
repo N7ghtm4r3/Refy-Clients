@@ -46,9 +46,9 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
-import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
+import com.tecknobit.refy.helpers.navToUpsertLinkCollectionScreen
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.localUser
-import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.AttachCollection
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.DeleteCollection
@@ -256,7 +256,9 @@ class CollectionScreen(
      * The action to execute to update or insert an item
      */
     override fun upsertAction() {
-        navigator.navigate("$UPSERT_COLLECTION_SCREEN/${item.value!!.id}/${item.value!!.color}")
+        navToUpsertLinkCollectionScreen(
+            linksCollection = item.value!!
+        )
     }
 
     /**
@@ -333,7 +335,7 @@ class CollectionScreen(
             collection = item.value!!,
             onDelete = {
                 delete.value = false
-                navigator.goBack()
+                navigator.popBackStack()
             }
         )
     }

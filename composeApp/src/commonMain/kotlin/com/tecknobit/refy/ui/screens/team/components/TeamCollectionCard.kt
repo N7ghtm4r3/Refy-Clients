@@ -12,8 +12,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.equinoxcompose.utilities.toColor
-import com.tecknobit.refy.COLLECTION_SCREEN
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToCollectionScreen
 import com.tecknobit.refy.ui.components.ItemTitle
 import com.tecknobit.refy.ui.components.RemoveItemButton
 import com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel
@@ -48,8 +47,8 @@ fun TeamCollectionCard(
             size = 10.dp
         ),
         onClick = {
-            navigator.navigate(
-                route = "$COLLECTION_SCREEN/${collection.id}/${collection.title}/${collection.color}"
+            navToCollectionScreen(
+                linkCollection = collection
             )
         }
     ) {

@@ -91,7 +91,6 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.coil.compose)
                 implementation(libs.coil.network.ktor3)
-                implementation(libs.precompose)
                 implementation(libs.equinox.core)
                 implementation(libs.equinox.compose)
                 implementation(libs.refycore)
@@ -101,6 +100,8 @@ kotlin {
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.compose)
                 implementation(libs.colorpicker.compose)
+                implementation(libs.navigation.compose)
+                implementation(libs.equinoxmisc.navigation.compose.util)
             }
         }
 

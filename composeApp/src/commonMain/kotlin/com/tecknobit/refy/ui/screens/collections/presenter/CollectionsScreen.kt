@@ -18,8 +18,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
-import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToUpsertLinkCollectionScreen
 import com.tecknobit.refy.ui.components.EmptyCollections
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
@@ -99,7 +98,7 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
      * The action to execute to update or insert an item
      */
     override fun upsertAction() {
-        navigator.navigate(UPSERT_COLLECTION_SCREEN)
+        navToUpsertLinkCollectionScreen()
     }
 
     /**

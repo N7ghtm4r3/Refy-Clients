@@ -26,9 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tecknobit.refy.TEAM_SCREEN
-import com.tecknobit.refy.UPSERT_TEAM_SCREEN
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToTeamScreen
+import com.tecknobit.refy.helpers.navToUpsertTeam
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.AttachTeam
 import com.tecknobit.refy.ui.components.DeleteItemButton
@@ -61,11 +60,15 @@ fun TeamCard(
             .clip(CardDefaults.shape)
             .combinedClickable(
                 onClick = {
-                    navigator.navigate("$TEAM_SCREEN/${team.id}/${team.title}")
+                    navToTeamScreen(
+                        team = team
+                    )
                 },
                 onLongClick = if (team.iAmTheOwner()) {
                     {
-                        navigator.navigate("$UPSERT_TEAM_SCREEN/${team.id}")
+                        navToUpsertTeam(
+                            team = team
+                        )
                     }
                 } else
                     null

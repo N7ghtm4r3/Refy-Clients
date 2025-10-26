@@ -16,9 +16,8 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.tecknobit.refy.PROFILE_SCREEN
+import com.tecknobit.refy.helpers.navToProfileScreen
 import com.tecknobit.refy.localUser
-import com.tecknobit.refy.navigator
 import org.jetbrains.compose.resources.painterResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.logo
@@ -41,7 +40,7 @@ fun ProfilePic(
     modifier: Modifier = Modifier,
     profilePic: String = localUser.profilePic,
     size: Dp,
-    onClick: () -> Unit = { navigator.navigate(PROFILE_SCREEN) }
+    onClick: () -> Unit = { navToProfileScreen() },
 ) {
     AsyncImage(
         modifier = modifier

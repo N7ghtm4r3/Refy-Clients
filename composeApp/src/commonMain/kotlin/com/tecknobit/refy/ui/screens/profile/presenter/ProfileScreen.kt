@@ -68,10 +68,9 @@ import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.SUPPORTED_LANGUAGES
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
-import com.tecknobit.refy.SPLASHSCREEN
 import com.tecknobit.refy.bodyFontFamily
+import com.tecknobit.refy.helpers.navToSplashscreen
 import com.tecknobit.refy.localUser
-import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.DeleteAccount
 import com.tecknobit.refy.ui.components.Logout
 import com.tecknobit.refy.ui.components.ProfilePic
@@ -327,7 +326,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                         viewModel.changeLanguage(
                             onChange = {
                                 visible.value = false
-                                navigator.navigate(SPLASHSCREEN)
+                                navToSplashscreen()
                             }
                         )
                     }
@@ -339,10 +338,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeTheme(
-                            onChange = {
-                                visible.value = false
-                                navigator.navigate(SPLASHSCREEN)
-                            }
+                            onChange = { visible.value = false }
                         )
                     }
                 )

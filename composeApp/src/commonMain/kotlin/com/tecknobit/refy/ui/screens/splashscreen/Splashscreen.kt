@@ -23,12 +23,12 @@ import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.app_name
 
 /**
- * The [SplashScreen] class is used to retrieve and load the session data and enter the application's workflow
+ * The [Splashscreen] class is used to retrieve and load the session data and enter the application's workflow
  *
  * @author N7ghtm4r3 - Tecknobit
  * @see EquinoxNoModelScreen
  */
-class SplashScreen : EquinoxNoModelScreen() {
+class Splashscreen : EquinoxNoModelScreen() {
 
     /**
      * Method to arrange the content of the screen to display

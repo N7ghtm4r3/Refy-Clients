@@ -11,7 +11,7 @@ import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.requester
 import com.tecknobit.refy.ui.shared.data.LinksCollection
 import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
@@ -128,7 +128,7 @@ class CollectionScreenViewModel(
                         isLastPage = paginatedResponse.isLastPage
                     )
                 },
-                onFailure = { navigator.goBack() },
+                onFailure = { navigator.popBackStack() },
                 onConnectionError = { notifyServerOffline() }
             )
         }
@@ -160,7 +160,7 @@ class CollectionScreenViewModel(
                         isLastPage = paginatedResponse.isLastPage
                     )
                 },
-                onFailure = { navigator.goBack() },
+                onFailure = { navigator.popBackStack() },
                 onConnectionError = { notifyServerOffline() }
             )
         }

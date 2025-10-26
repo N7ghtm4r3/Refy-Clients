@@ -6,9 +6,8 @@ import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxAuthViewModel
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.json.treatsAsString
-import com.tecknobit.refy.HOME_SCREEN
+import com.tecknobit.refy.helpers.navToHome
 import com.tecknobit.refy.localUser
-import com.tecknobit.refy.navigator
 import com.tecknobit.refy.requester
 import com.tecknobit.refycore.TAG_NAME_KEY
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
@@ -88,7 +87,7 @@ class AuthScreenViewModel : EquinoxAuthViewModel(
         else
             custom[0]
         super.launchApp(response, name, surname, language, tagName)
-        navigator.navigate(HOME_SCREEN)
+        navToHome()
     }
 
 }

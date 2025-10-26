@@ -1,39 +1,43 @@
-@file:OptIn(ExperimentalComposeApi::class)
-
 package com.tecknobit.refy
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil3.ImageLoader
 import coil3.compose.LocalPlatformContext
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
-import com.tecknobit.equinoxcompose.utilities.generateRandomColor
-import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
+import com.tecknobit.refy.helpers.AUTH_SCREEN
+import com.tecknobit.refy.helpers.COLLECTION_SCREEN
+import com.tecknobit.refy.helpers.HOME_SCREEN
+import com.tecknobit.refy.helpers.PROFILE_SCREEN
 import com.tecknobit.refy.helpers.RefyLocalUser
 import com.tecknobit.refy.helpers.RefyRequester
+import com.tecknobit.refy.helpers.SPLASHSCREEN
+import com.tecknobit.refy.helpers.TEAM_SCREEN
+import com.tecknobit.refy.helpers.UPSERT_COLLECTION_SCREEN
+import com.tecknobit.refy.helpers.UPSERT_CUSTOM_LINK_SCREEN
+import com.tecknobit.refy.helpers.UPSERT_LINK_SCREEN
+import com.tecknobit.refy.helpers.UPSERT_TEAM_SCREEN
 import com.tecknobit.refy.helpers.customHttpClient
+import com.tecknobit.refy.helpers.navToSplashscreen
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.components.imageLoader
 import com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen
-import com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
 import com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen
-import com.tecknobit.refy.ui.screens.splashscreen.SplashScreen
-import com.tecknobit.refy.ui.screens.team.presenter.TeamScreen
-import com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen
-import com.tecknobit.refy.ui.screens.upsertcustomlink.presenter.UpsertCustomLinkScreen
-import com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen
-import com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen
+import com.tecknobit.refy.ui.screens.splashscreen.Splashscreen
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.COLLECTION_IDENTIFIER_KEY
@@ -41,11 +45,6 @@ import com.tecknobit.refycore.LINK_IDENTIFIER_KEY
 import com.tecknobit.refycore.TEAM_IDENTIFIER_KEY
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.PreComposeApp
-import moe.tlaster.precompose.navigation.NavHost
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.path
-import moe.tlaster.precompose.navigation.rememberNavigator
 import org.jetbrains.compose.resources.Font
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.titillium
@@ -62,11 +61,6 @@ lateinit var bodyFontFamily: FontFamily
 lateinit var displayFontFamily: FontFamily
 
 /**
- * `navigator` the navigator instance is useful to manage the navigation between the screens of the application
- */
-lateinit var navigator: Navigator
-
-/**
  *`localUser` the helper to manage the local sessions stored locally in
  * the device
  */
@@ -77,55 +71,6 @@ val localUser = RefyLocalUser()
  */
 lateinit var requester: RefyRequester
 
-/**
- * `SPLASHSCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.splashscreen.Splashscreen]
- */
-const val SPLASHSCREEN = "Splashscreen"
-
-/**
- * `AUTH_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen]
- */
-const val AUTH_SCREEN = "AuthScreen"
-
-/**
- * `HOME_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.home.presenter.HomeScreen]
- */
-const val HOME_SCREEN = "HomeScreen"
-
-/**
- * `UPSERT_LINK_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen]
- */
-const val UPSERT_LINK_SCREEN = "UpsertLinkScreen"
-
-/**
- * `PROFILE_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen]
- */
-const val PROFILE_SCREEN = "ProfileScreen"
-
-/**
- * `COLLECTION_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen]
- */
-const val COLLECTION_SCREEN = "CollectionScreen"
-
-/**
- * `UPSERT_COLLECTION_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen]
- */
-const val UPSERT_COLLECTION_SCREEN = "UpsertCollectionScreen"
-
-/**
- * `TEAM_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.team.presenter.TeamScreen]
- */
-const val TEAM_SCREEN = "TeamScreen"
-
-/**
- * `UPSERT_TEAM_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen]
- */
-const val UPSERT_TEAM_SCREEN = "UpsertTeamScreen"
-
-/**
- * `UPSERT_CUSTOM_LINK_SCREEN` route to navigate to the [com.tecknobit.refy.ui.screens.upsertcustomlink.presenter.UpsertCustomLinkScreen]
- */
-const val UPSERT_CUSTOM_LINK_SCREEN = "UpsertCustomLinkScreen"
 
 /**
  * Method to start the `Refy`'s application
@@ -147,100 +92,98 @@ fun App() {
         .networkCachePolicy(CachePolicy.ENABLED)
         .memoryCachePolicy(CachePolicy.ENABLED)
         .build()
-    PreComposeApp {
-        navigator = rememberNavigator()
-        RefyTheme {
-            NavHost(
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.primary)
-                    .statusBarsPadding(),
-                navigator = navigator,
-                initialRoute = SPLASHSCREEN
+    navigator = rememberNavController()
+    RefyTheme {
+        NavHost(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.primary)
+                .statusBarsPadding(),
+            navController = navigator,
+            startDestination = SPLASHSCREEN
+        ) {
+            composable(
+                route = SPLASHSCREEN
             ) {
-                scene(
-                    route = SPLASHSCREEN
-                ) {
-                    SplashScreen().ShowContent()
-                }
-                scene(
-                    route = AUTH_SCREEN
-                ) {
-                    AuthScreen().ShowContent()
-                }
-                scene(
-                    route = HOME_SCREEN
-                ) {
-                    HomeScreen().ShowContent()
-                }
-                scene(
-                    route = "$UPSERT_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
-                ) { backstackEntry ->
-                    val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
-                    UpsertLinkScreen(
-                        linkId = linkId
-                    ).ShowContent()
-                }
-                scene(
-                    route = PROFILE_SCREEN
-                ) {
-                    ProfileScreen().ShowContent()
-                }
-                scene(
-                    route = "$COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}/{$NAME_KEY}/{$COLLECTION_COLOR_KEY}"
-                ) { backstackEntry ->
-                    val collectionId: String =
-                        backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)!!
-                    val name: String = backstackEntry.path<String>(NAME_KEY)!!
-                    val color: String = backstackEntry.path<String>(COLLECTION_COLOR_KEY)!!
-                    CollectionScreen(
-                        collectionId = collectionId,
-                        collectionName = name,
-                        collectionColor = color
-                    ).ShowContent()
-                }
-                scene(
-                    route = "$UPSERT_COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}?/{$COLLECTION_COLOR_KEY}?"
-                ) { backstackEntry ->
-                    val collectionId = backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)
-                    val collectionColor = backstackEntry.path<String>(COLLECTION_COLOR_KEY)
-                        ?: generateRandomColor().toHex()
-                    UpsertCollectionScreen(
-                        collectionId = collectionId,
-                        collectionColor = collectionColor
-                    ).ShowContent()
-                }
-                scene(
-                    route = "$TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}/{$NAME_KEY}"
-                ) { backstackEntry ->
-                    val teamId: String = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)!!
-                    val name: String = backstackEntry.path<String>(NAME_KEY)!!
-                    TeamScreen(
-                        teamId = teamId,
-                        teamName = name
-                    ).ShowContent()
-                }
-                scene(
-                    route = "$UPSERT_TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}?"
-                ) { backstackEntry ->
-                    val teamId = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)
-                    UpsertTeamScreen(
-                        teamId = teamId
-                    ).ShowContent()
-                }
-                scene(
-                    route = "$UPSERT_CUSTOM_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
-                ) { backstackEntry ->
-                    val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
-                    UpsertCustomLinkScreen(
-                        linkId = linkId
-                    ).ShowContent()
-                }
+                Splashscreen().ShowContent()
+            }
+            composable(
+                route = AUTH_SCREEN
+            ) {
+                AuthScreen().ShowContent()
+            }
+            composable(
+                route = HOME_SCREEN
+            ) {
+                HomeScreen().ShowContent()
+            }
+            composable(
+                route = "$UPSERT_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
+            ) { backstackEntry ->
+//                val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
+//                UpsertLinkScreen(
+//                    linkId = linkId
+//                ).ShowContent()
+            }
+            composable(
+                route = PROFILE_SCREEN
+            ) {
+                ProfileScreen().ShowContent()
+            }
+            composable(
+                route = "$COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}/{$NAME_KEY}/{$COLLECTION_COLOR_KEY}"
+            ) { backstackEntry ->
+//                val collectionId: String =
+//                    backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)!!
+//                val name: String = backstackEntry.path<String>(NAME_KEY)!!
+//                val color: String = backstackEntry.path<String>(COLLECTION_COLOR_KEY)!!
+//                CollectionScreen(
+//                    collectionId = collectionId,
+//                    collectionName = name,
+//                    collectionColor = color
+//                ).ShowContent()
+            }
+            composable(
+                route = "$UPSERT_COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}?/{$COLLECTION_COLOR_KEY}?"
+            ) { backstackEntry ->
+//                val collectionId = backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)
+//                val collectionColor = backstackEntry.path<String>(COLLECTION_COLOR_KEY)
+//                    ?: generateRandomColor().toHex()
+//                UpsertCollectionScreen(
+//                    collectionId = collectionId,
+//                    collectionColor = collectionColor
+//                ).ShowContent()
+            }
+            composable(
+                route = "$TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}/{$NAME_KEY}"
+            ) { backstackEntry ->
+//                val teamId: String = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)!!
+//                val name: String = backstackEntry.path<String>(NAME_KEY)!!
+//                TeamScreen(
+//                    teamId = teamId,
+//                    teamName = name
+//                ).ShowContent()
+            }
+            composable(
+                route = "$UPSERT_TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}?"
+            ) { backstackEntry ->
+//                val teamId = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)
+//                UpsertTeamScreen(
+//                    teamId = teamId
+//                ).ShowContent()
+            }
+            composable(
+                route = "$UPSERT_CUSTOM_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
+            ) { backstackEntry ->
+//                val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
+//                UpsertCustomLinkScreen(
+//                    linkId = linkId
+//                ).ShowContent()
             }
         }
     }
     SessionFlowState.invokeOnUserDisconnected {
         localUser.clear()
-        navigator.navigate(SPLASHSCREEN)
+        navToSplashscreen()
     }
 }
 

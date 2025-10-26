@@ -3,8 +3,7 @@ package com.tecknobit.refy.ui.screens.customs.presenter
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
-import com.tecknobit.refy.UPSERT_CUSTOM_LINK_SCREEN
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToUpsertCustomLinkScreen
 import com.tecknobit.refy.ui.screens.customs.components.CustomLinkCard
 import com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink
 import com.tecknobit.refy.ui.screens.customs.presentation.CustomLinksScreenViewModel
@@ -48,7 +47,7 @@ class CustomLinksScreen : BaseLinksScreen<CustomRefyLink, CustomLinksScreenViewM
      * The action to execute to update or insert an item
      */
     override fun upsertAction() {
-        navigator.navigate(UPSERT_CUSTOM_LINK_SCREEN)
+        navToUpsertCustomLinkScreen()
     }
 
 }

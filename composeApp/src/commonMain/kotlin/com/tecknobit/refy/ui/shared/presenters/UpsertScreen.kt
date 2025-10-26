@@ -40,7 +40,7 @@ import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.components.RetryButton
 import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.shared.data.RefyItem
@@ -262,7 +262,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
             ),
             onClick = {
                 viewModel.upsert {
-                    navigator.goBack()
+                    navigator.popBackStack()
                 }
             }
         ) {

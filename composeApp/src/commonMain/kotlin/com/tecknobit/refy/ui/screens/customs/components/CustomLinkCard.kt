@@ -31,9 +31,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
-import com.tecknobit.refy.UPSERT_CUSTOM_LINK_SCREEN
 import com.tecknobit.refy.displayFontFamily
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToUpsertCustomLinkScreen
 import com.tecknobit.refy.ui.components.DeleteItemButton
 import com.tecknobit.refy.ui.components.DeleteLink
 import com.tecknobit.refy.ui.components.ItemInfo
@@ -83,7 +82,11 @@ fun CustomLinkCard(
                 state.show()
             }
         },
-        onLongClick = { navigator.navigate("$UPSERT_CUSTOM_LINK_SCREEN/${link.id}") },
+        onLongClick = {
+            navToUpsertCustomLinkScreen(
+                link = link
+            )
+        },
         extraInformation = if (link.isExpired()) {
             {
                 Row(
