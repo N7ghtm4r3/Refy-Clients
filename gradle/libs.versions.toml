@@ -9,6 +9,7 @@ colorpickerCompose = "1.1.2"
 compose-multiplatform = "1.9.1"
 equinox = "1.1.7"
 equinoxmiscNavigationComposeUtil = "1.0.0"
+equinoxNavigation = "1.0.4"
 filekit = "0.12.0"
 kotlin = "2.2.21"
 kotlinx-coroutines = "1.10.2"
@@ -35,6 +36,7 @@ androidx-startup-runtime = { module = "androidx.startup:startup-runtime", versio
 colorpicker-compose = { module = "com.github.skydoves:colorpicker-compose", version.ref = "colorpickerCompose" }
 equinox-compose = { module = "io.github.n7ghtm4r3:equinox-compose", version.ref = "equinox" }
 equinox-core = { module = "io.github.n7ghtm4r3:equinox-core", version.ref = "equinox" }
+equinox-navigation = { module = "io.github.n7ghtm4r3:equinox-navigation", version.ref = "equinoxNavigation" }
 equinoxmisc-navigation-compose-util = { module = "io.github.n7ghtm4r3:equinoxmisc-navigation-compose-util", version.ref = "equinoxmiscNavigationComposeUtil" }
 filekit-core = { module = "io.github.vinceglb:filekit-core", version.ref = "filekit" }
 filekit-compose = { module = "io.github.vinceglb:filekit-dialogs-compose", version.ref = "filekit" }

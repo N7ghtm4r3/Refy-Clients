@@ -67,9 +67,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     viewModel: V,
     private val name: String
 ) : RefyScreen<V>(
-    viewModel = viewModel,
-    snackbarHostStateBottomPadding = 0.dp,
-    contentBottomPadding = 0.dp
+    viewModel = viewModel
 ) {
 
     /**

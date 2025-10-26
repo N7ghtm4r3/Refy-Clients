@@ -93,6 +93,7 @@ kotlin {
                 implementation(libs.coil.network.ktor3)
                 implementation(libs.equinox.core)
                 implementation(libs.equinox.compose)
+                implementation(libs.equinox.navigation)
                 implementation(libs.refycore)
                 implementation(libs.lazy.pagination.compose)
                 implementation(libs.kotlinx.serialization.json)

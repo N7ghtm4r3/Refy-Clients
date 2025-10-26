@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMultiplatform::class, ExperimentalComposeApi::class)
-
 package com.tecknobit.refy.ui.shared.presenters
 
 import androidx.compose.animation.AnimatedVisibility
@@ -10,8 +8,6 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -28,7 +24,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
@@ -39,7 +34,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
@@ -68,9 +62,6 @@ import refy.composeapp.generated.resources.search_by_keywords
  *
  * @param title The title of the screen
  * @param viewModel The support viewmodel for the screen
- * @param snackbarHostStateBottomPadding The padding to apply from the bottom of the screen to place
- * the [SnackbarHost]
- * @param contentBottomPadding The padding to apply from the bottom of the screen
  *
  * @param V The type of the viewmodel of the screen
  *
@@ -82,8 +73,6 @@ import refy.composeapp.generated.resources.search_by_keywords
 abstract class RefyScreen<V : RefyScreenViewModel>(
     private val title: StringResource? = null,
     viewModel: V,
-    private val snackbarHostStateBottomPadding: Dp = 100.dp,
-    private val contentBottomPadding: Dp = 79.dp
 ) : EquinoxScreen<V>(
     viewModel = viewModel
 ) {
@@ -101,14 +90,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
         Scaffold(
             snackbarHost = {
                 SnackbarHost(
-                    modifier = Modifier
-                        .padding(
-                            bottom = responsiveAssignment(
-                                onExpandedSizeClass = { 0.dp },
-                                onMediumSizeClass = { 0.dp },
-                                onCompactSizeClass = { snackbarHostStateBottomPadding }
-                            )
-                        ),
                     hostState = viewModel.snackbarHostState!!
                 )
             },
@@ -125,16 +106,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 Column(
                     modifier = Modifier
                         .padding(
-                            all = 16.dp
+                            top = 16.dp,
+                            bottom = 16.dp
                         )
-                        .padding(
-                            bottom = responsiveAssignment(
-                                onExpandedSizeClass = { 0.dp },
-                                onMediumSizeClass = { 0.dp },
-                                onCompactSizeClass = { contentBottomPadding }
-                            )
-                        )
-                        .navigationBarsPadding()
                 ) {
                     Content()
                 }
@@ -152,7 +126,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(113.dp)
                     .padding(
                         horizontal = 16.dp
                     ),

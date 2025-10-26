@@ -71,6 +71,7 @@ const val UPSERT_TEAM_SCREEN = "UpsertTeamScreen"
  */
 const val UPSERT_CUSTOM_LINK_SCREEN = "UpsertCustomLinkScreen"
 
+// TODO: TO DOCU SINCE 
 @DestinationScreen(Splashscreen::class)
 fun navToSplashscreen() {
     navigator.navigate(SPLASHSCREEN)
