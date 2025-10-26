@@ -15,7 +15,6 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.FilterListOff
 import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
@@ -35,7 +34,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
 import com.tecknobit.equinoxcompose.components.DebouncedOutlinedTextField
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
@@ -52,6 +50,7 @@ import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
+import com.tecknobit.refy.ui.theme.AppTypography
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -152,9 +151,6 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                     }
                 )
             }
-            HorizontalDivider(
-                color = MaterialTheme.colorScheme.primary
-            )
         }
     }
 
@@ -218,7 +214,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
             NavBackButton()
             Text(
                 text = title(),
-                fontSize = 28.sp,
+                style = AppTypography.displaySmall,
                 color = MaterialTheme.colorScheme.primary,
                 fontFamily = displayFontFamily,
                 fontWeight = FontWeight.Bold,

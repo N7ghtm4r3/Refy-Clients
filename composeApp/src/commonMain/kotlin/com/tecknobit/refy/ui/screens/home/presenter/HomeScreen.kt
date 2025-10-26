@@ -1,13 +1,16 @@
 package com.tecknobit.refy.ui.screens.home.presenter
 
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Groups3
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
@@ -23,7 +26,10 @@ import com.tecknobit.refy.ui.screens.collections.presenter.CollectionsScreen
 import com.tecknobit.refy.ui.screens.customs.presenter.CustomLinksScreen
 import com.tecknobit.refy.ui.screens.links.presenter.LinksScreen
 import com.tecknobit.refy.ui.screens.teams.presenter.TeamsScreen
+import com.tecknobit.refy.ui.theme.AppTypography
+import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
+import refy.composeapp.generated.resources.app_version
 import refy.composeapp.generated.resources.collections
 import refy.composeapp.generated.resources.custom
 import refy.composeapp.generated.resources.links
@@ -57,6 +63,20 @@ class HomeScreen : NavigatorScreen<I18nNavigationTab>() {
         )
         HorizontalDivider(
             color = MaterialTheme.colorScheme.primary
+        )
+    }
+
+    @Composable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
+    override fun ColumnScope.SideNavigationFooterContent() {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth(),
+            text = "v. ${stringResource(Res.string.app_version)}",
+            style = AppTypography.labelMedium,
+            textAlign = TextAlign.Center
         )
     }
 

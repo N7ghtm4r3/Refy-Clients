@@ -54,6 +54,7 @@ import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isSurnameVali
 import com.tecknobit.refy.CloseApplicationOnNavBack
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.screens.auth.presentation.AuthScreenViewModel
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.AT_SYMBOL
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
@@ -216,6 +217,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                     imeAction = ImeAction.Next
                 )
                 EquinoxOutlinedTextField(
+                    shape = InputShape,
                     value = viewModel.host,
                     label = stringResource(Res.string.host_address),
                     keyboardOptions = keyboardOptions,
@@ -230,6 +232,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         EquinoxOutlinedTextField(
+                            shape = InputShape,
                             value = viewModel.serverSecret,
                             label = stringResource(Res.string.server_secret),
                             keyboardOptions = keyboardOptions,
@@ -238,6 +241,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                             validator = { isServerSecretValid(it) }
                         )
                         EquinoxOutlinedTextField(
+                            shape = InputShape,
                             value = viewModel.name,
                             label = stringResource(Res.string.name),
                             keyboardOptions = keyboardOptions,
@@ -246,6 +250,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                             validator = { isNameValid(it) }
                         )
                         EquinoxOutlinedTextField(
+                            shape = InputShape,
                             value = viewModel.surname,
                             label = stringResource(Res.string.surname),
                             keyboardOptions = keyboardOptions,
@@ -254,6 +259,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                             validator = { isSurnameValid(it) }
                         )
                         EquinoxOutlinedTextField(
+                            shape = InputShape,
                             value = viewModel.tagName,
                             label = stringResource(Res.string.tag_name),
                             keyboardOptions = keyboardOptions,
@@ -266,6 +272,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                     }
                 }
                 EquinoxOutlinedTextField(
+                    shape = InputShape,
                     value = viewModel.email,
                     label = stringResource(Res.string.email),
                     mustBeInLowerCase = true,
@@ -280,6 +287,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                 )
                 var hiddenPassword by remember { mutableStateOf(true) }
                 EquinoxOutlinedTextField(
+                    shape = InputShape,
                     value = viewModel.password,
                     label = stringResource(Res.string.password),
                     allowsBlankSpaces = false,
@@ -314,7 +322,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                             top = 10.dp
                         )
                         .height(
-                            60.dp
+                            55.dp
                         )
                         .width(300.dp),
                     shape = RoundedCornerShape(

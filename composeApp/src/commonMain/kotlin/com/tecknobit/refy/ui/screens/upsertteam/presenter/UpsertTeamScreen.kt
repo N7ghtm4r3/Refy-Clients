@@ -36,6 +36,7 @@ import com.tecknobit.refy.ui.screens.upsertteam.presentation.UpsertTeamScreenVie
 import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
 import io.github.vinceglb.filekit.dialogs.FileKitMode
@@ -128,7 +129,7 @@ class UpsertTeamScreen(
         EquinoxOutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            shape = inputFieldShape,
+            shape = InputShape,
             value = viewModel.teamName,
             isError = viewModel.teamNameError,
             validator = { isTitleValid(it) },

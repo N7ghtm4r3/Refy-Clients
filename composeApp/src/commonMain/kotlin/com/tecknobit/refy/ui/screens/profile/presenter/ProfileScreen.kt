@@ -76,6 +76,7 @@ import com.tecknobit.refy.ui.components.Logout
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.AT_SYMBOL
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
@@ -366,6 +367,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         EquinoxTextField(
             modifier = Modifier
                 .focusRequester(focusRequester),
+            shape = InputShape,
             textFieldColors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
@@ -406,6 +408,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         EquinoxTextField(
             modifier = Modifier
                 .focusRequester(focusRequester),
+            shape = InputShape,
             textFieldColors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
@@ -452,6 +455,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         EquinoxOutlinedTextField(
             modifier = Modifier
                 .focusRequester(focusRequester),
+            shape = InputShape,
             outlinedTextFieldColors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,

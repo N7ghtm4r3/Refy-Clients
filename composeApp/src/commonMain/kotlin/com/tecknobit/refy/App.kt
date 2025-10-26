@@ -71,7 +71,6 @@ val localUser = RefyLocalUser()
  */
 lateinit var requester: RefyRequester
 
-
 /**
  * Method to start the `Refy`'s application
  */
