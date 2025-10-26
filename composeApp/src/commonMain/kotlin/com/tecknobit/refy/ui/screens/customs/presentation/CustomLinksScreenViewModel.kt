@@ -4,7 +4,7 @@ package com.tecknobit.refy.ui.screens.customs.presentation
 
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.requester

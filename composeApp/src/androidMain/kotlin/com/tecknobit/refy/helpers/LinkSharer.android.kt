@@ -1,7 +1,7 @@
 package com.tecknobit.refy.helpers
 
 import android.content.Intent
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
 import com.tecknobit.refy.ui.shared.data.RefyLink
 

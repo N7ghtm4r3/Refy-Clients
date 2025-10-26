@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import coil3.ImageLoader
@@ -16,8 +14,6 @@ import coil3.compose.LocalPlatformContext
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
-import com.tecknobit.ametistaengine.AmetistaEngine
-import com.tecknobit.ametistaengine.AmetistaEngine.Companion.FILES_AMETISTA_CONFIG_PATHNAME
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.utilities.generateRandomColor
 import com.tecknobit.equinoxcompose.utilities.toHex
@@ -151,7 +147,6 @@ fun App() {
         .networkCachePolicy(CachePolicy.ENABLED)
         .memoryCachePolicy(CachePolicy.ENABLED)
         .build()
-    InitAmetista()
     PreComposeApp {
         navigator = rememberNavigator()
         RefyTheme {
@@ -246,25 +241,6 @@ fun App() {
     SessionFlowState.invokeOnUserDisconnected {
         localUser.clear()
         navigator.navigate(SPLASHSCREEN)
-    }
-}
-
-/**
- * Method to initialize the Ametista system
- */
-@Composable
-@NonRestartableComposable
-private fun InitAmetista() {
-    LaunchedEffect(Unit) {
-        val ametistaEngine = AmetistaEngine.ametistaEngine
-        ametistaEngine.fireUp(
-            configData = Res.readBytes(FILES_AMETISTA_CONFIG_PATHNAME),
-            host = AmetistaConfig.HOST,
-            serverSecret = AmetistaConfig.SERVER_SECRET!!,
-            applicationId = AmetistaConfig.APPLICATION_IDENTIFIER!!,
-            bypassSslValidation = AmetistaConfig.BYPASS_SSL_VALIDATION,
-            debugMode = false
-        )
     }
 }
 

@@ -1,7 +1,7 @@
 package com.tecknobit.refy.helpers
 
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcompose.utilities.copyOnClipboard
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.refy.ui.shared.data.RefyLink
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.link_copied

@@ -15,7 +15,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     kotlin("plugin.serialization") version "2.1.0"
-    id("com.github.gmazzo.buildconfig") version "5.5.1"
+    id("com.github.gmazzo.buildconfig") version "5.7.0"
     alias(libs.plugins.dokka)
 }
 
@@ -101,7 +101,6 @@ kotlin {
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.compose)
                 implementation(libs.colorpicker.compose)
-                implementation(libs.ametista.engine)
             }
         }
 
@@ -141,8 +140,8 @@ android {
         applicationId = "com.tecknobit.refy"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 6
-        versionName = "1.0.3"
+        versionCode = 7
+        versionName = "1.1.0"
     }
     packaging {
         resources {
@@ -175,8 +174,8 @@ compose.desktop {
                 "jdk.security.auth"
             )
             packageName = "Refy"
-            packageVersion = "1.0.3"
-            version = "1.0.3"
+            packageVersion = "1.1.0"
+            version = "1.1.0"
             description = "References collector and custom links generator"
             copyright = "© 2025 Tecknobit"
             vendor = "Tecknobit"
@@ -193,7 +192,7 @@ compose.desktop {
                 iconFile.set(project.file("src/desktopMain/resources/logo.png"))
                 packageName = "com-tecknobit-refy"
                 debMaintainer = "infotecknobitcompany@gmail.com"
-                appRelease = "1.0.3"
+                appRelease = "1.1.0"
                 appCategory = "PERSONALIZATION"
                 rpmLicenseType = "APACHE2"
             }

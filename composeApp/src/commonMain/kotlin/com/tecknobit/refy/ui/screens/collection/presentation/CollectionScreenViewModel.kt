@@ -5,8 +5,8 @@ package com.tecknobit.refy.ui.screens.collection.presentation
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewModelScope
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcompose.utilities.toColor
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.sendRequest

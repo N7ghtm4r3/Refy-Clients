@@ -43,7 +43,7 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.refy.UPSERT_LINK_SCREEN
 import com.tecknobit.refy.helpers.shareLink
 import com.tecknobit.refy.navigator

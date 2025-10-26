@@ -80,9 +80,11 @@ import com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.AT_SYMBOL
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
-import io.github.vinceglb.filekit.compose.rememberFilePickerLauncher
-import io.github.vinceglb.filekit.core.PickerMode
-import io.github.vinceglb.filekit.core.PickerType
+import io.github.vinceglb.filekit.dialogs.FileKitMode
+import io.github.vinceglb.filekit.dialogs.FileKitType.Image
+import io.github.vinceglb.filekit.dialogs.compose.rememberFilePickerLauncher
+import io.github.vinceglb.filekit.name
+import io.github.vinceglb.filekit.readBytes
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -196,8 +198,8 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
     @Composable
     private fun ProfilePicker() {
         val launcher = rememberFilePickerLauncher(
-            type = PickerType.Image,
-            mode = PickerMode.Single
+            type = Image,
+            mode = FileKitMode.Single
         ) { image ->
             image?.let {
                 viewModel.viewModelScope.launch {
@@ -562,7 +564,6 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         viewModel.profilePic = remember { mutableStateOf(localUser.profilePic) }
         viewModel.tagName = remember { mutableStateOf(localUser.tagName) }
         viewModel.email = remember { mutableStateOf(localUser.email) }
-        viewModel.password = remember { mutableStateOf(localUser.password) }
         viewModel.language = remember { mutableStateOf(localUser.language) }
         viewModel.theme = remember { mutableStateOf(localUser.theme) }
     }

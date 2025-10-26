@@ -3,7 +3,7 @@ package com.tecknobit.refy.ui.screens.profile.presentation
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxProfileViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxProfileViewModel
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.requester
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
  * @author N7ghtm4r3 - Tecknobit
  * @see androidx.lifecycle.ViewModel
  * @see com.tecknobit.equinoxcompose.session.Retriever
- * @see com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+ * @see com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
  * @see EquinoxProfileViewModel
  */
 class ProfileScreenViewModel : EquinoxProfileViewModel(
