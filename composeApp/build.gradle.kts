@@ -207,23 +207,11 @@ compose.desktop {
 }
 
 buildConfig {
-    className("AmetistaConfig")
+    className("RefyConfig")
     packageName("com.tecknobit.refy")
     buildConfigField<String>(
-        name = "HOST",
-        value = project.findProperty("host").toString()
-    )
-    buildConfigField<String?>(
-        name = "SERVER_SECRET",
-        value = project.findProperty("server_secret").toString()
-    )
-    buildConfigField<String?>(
-        name = "APPLICATION_IDENTIFIER",
-        value = project.findProperty("application_id").toString()
-    )
-    buildConfigField<Boolean>(
-        name = "BYPASS_SSL_VALIDATION",
-        value = project.findProperty("bypass_ssl_validation").toString().toBoolean()
+        name = "LOCAL_STORAGE_PATH",
+        value = project.findProperty("localStoragePath").toString()
     )
 }
 

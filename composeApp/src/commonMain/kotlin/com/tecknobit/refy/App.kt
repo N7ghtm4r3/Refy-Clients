@@ -14,6 +14,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
+import com.tecknobit.equinoxcompose.session.screens.equinoxScreen
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
@@ -103,17 +104,20 @@ fun App() {
             composable(
                 route = SPLASHSCREEN
             ) {
-                Splashscreen().ShowContent()
+                val splashscreen = equinoxScreen { Splashscreen() }
+                splashscreen.ShowContent()
             }
             composable(
                 route = AUTH_SCREEN
             ) {
-                AuthScreen().ShowContent()
+                val authScreen = equinoxScreen { AuthScreen() }
+                authScreen.ShowContent()
             }
             composable(
                 route = HOME_SCREEN
             ) {
-                HomeScreen().ShowContent()
+                val homeScreen = equinoxScreen { HomeScreen() }
+                homeScreen.ShowContent()
             }
             composable(
                 route = "$UPSERT_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
@@ -126,7 +130,8 @@ fun App() {
             composable(
                 route = PROFILE_SCREEN
             ) {
-                ProfileScreen().ShowContent()
+                val profileScreen = equinoxScreen { ProfileScreen() }
+                profileScreen.ShowContent()
             }
             composable(
                 route = "$COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}/{$NAME_KEY}/{$COLLECTION_COLOR_KEY}"

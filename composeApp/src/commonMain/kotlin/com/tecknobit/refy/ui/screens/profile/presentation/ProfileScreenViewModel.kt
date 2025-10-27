@@ -61,7 +61,9 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
                     )
                 },
                 onSuccess = {
-                    localUser.tagName = newTagName.value
+                    localUser.initTagName(
+                        tagName = newTagName.value
+                    )
                     onSuccess.invoke()
                 },
                 onFailure = { showSnackbarMessage(it) }
