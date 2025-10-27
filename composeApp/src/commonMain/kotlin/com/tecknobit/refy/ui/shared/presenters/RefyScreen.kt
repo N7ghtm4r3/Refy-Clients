@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -48,6 +49,7 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CO
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
+import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.displayFontFamily
@@ -89,6 +91,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * Method to arrange the content of the screen to display
      */
     @Composable
+    @RequiresSuperCall
     override fun ArrangeScreenContent() {
         Scaffold(
             snackbarHost = {
@@ -104,16 +107,25 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 )
             }
         ) {
-            Column {
-                TopBar()
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Column(
                     modifier = Modifier
-                        .padding(
-                            top = 16.dp,
-                            bottom = 16.dp
-                        )
+                        .responsiveMaxWidth()
                 ) {
-                    Content()
+                    TopBar()
+                    Column(
+                        modifier = Modifier
+                            .padding(
+                                top = 16.dp,
+                                bottom = 16.dp
+                            )
+                    ) {
+                        Content()
+                    }
                 }
             }
         }

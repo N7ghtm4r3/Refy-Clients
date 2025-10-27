@@ -111,6 +111,7 @@ class CollectionScreen(
      * Method to arrange the content of the screen to display
      */
     @Composable
+    @RequiresSuperCall
     override fun ArrangeScreenContent() {
         val colorScheme = rememberDynamicColorScheme(
             primary = color.value,

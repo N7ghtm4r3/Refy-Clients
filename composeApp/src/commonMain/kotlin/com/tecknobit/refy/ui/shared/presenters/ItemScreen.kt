@@ -5,6 +5,7 @@
 
 package com.tecknobit.refy.ui.shared.presenters
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -81,6 +82,23 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     private lateinit var itemName: State<String>
 
     /**
+     * Method to arrange the content of the screen to display
+     */
+    @Composable
+    @RequiresSuperCall
+    override fun ArrangeScreenContent() {
+        Column(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.background)
+                .padding(
+                    top = 16.dp
+                )
+        ) {
+            super.ArrangeScreenContent()
+        }
+    }
+
+    /**
      * Section related to the back navigation from the current screen to a previous one
      */
     @Composable
@@ -147,7 +165,10 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
             content = {
                 Column(
                     modifier = Modifier
-                        .fillMaxSize(),
+                        .fillMaxSize()
+                        .padding(
+                            horizontal = 16.dp
+                        ),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Column(

@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
+import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.refy.helpers.navToUpsertLinkCollectionScreen
 import com.tecknobit.refy.ui.components.EmptyCollections
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
@@ -52,6 +53,7 @@ class CollectionsScreen : ItemsScreen<CollectionsScreenViewModel>(
      * Method to arrange the content of the screen to display
      */
     @Composable
+    @RequiresSuperCall
     override fun ArrangeScreenContent() {
         restoreDefaultApplicationThemeStatusBar()
         super.ArrangeScreenContent()
