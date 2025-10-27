@@ -117,16 +117,16 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     }
 
     /**
-     * The content of the [SubTitleSection]
+     * The content of the [SubtitleSection]
      */
     @Composable
     @NonRestartableComposable
-    override fun SubTitleContent() {
+    override fun SubtitleContent() {
         awaitNullItemLoaded(
             itemToWait = item.value,
             extras = { item.value!!.iAmTheOwner() }
         ) {
-            super.SubTitleContent()
+            super.SubtitleContent()
         }
     }
 

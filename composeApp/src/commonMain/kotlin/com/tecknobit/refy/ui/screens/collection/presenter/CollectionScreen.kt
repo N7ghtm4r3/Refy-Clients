@@ -171,16 +171,19 @@ class CollectionScreen(
                             bottom = 5.dp
                         ),
                     containerColor = MaterialTheme.colorScheme.error,
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = null
+                        )
+                    },
+                    text = {
+                        Text(
+                            text = stringResource(Res.string.delete)
+                        )
+                    },
                     onClick = { delete.value = !delete.value }
-                ) {
-                    Text(
-                        text = stringResource(Res.string.delete)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = null
-                    )
-                }
+                )
                 DeleteItemContent(
                     delete = delete
                 )

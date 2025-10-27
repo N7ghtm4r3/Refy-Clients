@@ -42,14 +42,19 @@ import refy.composeapp.generated.resources.teams
  * @author N7ghtm4r3 - Tecknobit
  * @see EquinoxNoModelScreen
  */
-// TODO: TO DOCU SINCE
 class HomeScreen : NavigatorScreen<I18nNavigationTab>() {
 
+    /**
+     * Method used to arrange the content of the screen to display
+     */
     @Composable
     override fun ArrangeScreenContent() {
         NavigationContent()
     }
 
+    /**
+     * Custom header content to display on the [SideNavigationArrangement] bar
+     */
     @Composable
     @ResponsiveClassComponent(
         classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
@@ -66,6 +71,9 @@ class HomeScreen : NavigatorScreen<I18nNavigationTab>() {
         )
     }
 
+    /**
+     * Custom footer content to display on the [SideNavigationArrangement] bar
+     */
     @Composable
     @ResponsiveClassComponent(
         classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]

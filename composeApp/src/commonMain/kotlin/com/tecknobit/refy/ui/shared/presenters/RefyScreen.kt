@@ -40,8 +40,11 @@ import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.COMPACT_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
@@ -51,6 +54,7 @@ import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
 import com.tecknobit.refy.ui.theme.AppTypography
+import com.tecknobit.refy.ui.theme.InputShape
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -120,35 +124,19 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * any actions related to the screen
      */
     @Composable
+    @LayoutCoordinator
     protected fun TopBar() {
         Column {
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        horizontal = 16.dp
-                    ),
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 ResponsiveContent(
                     onExpandedSizeClass = { ScreenTitle() },
                     onMediumSizeClass = { ScreenTitle() },
-                    onCompactSizeClass = {
-                        ListItem(
-                            modifier = Modifier
-                                .weight(2f),
-                            headlineContent = { ScreenTitle() },
-                            supportingContent = { SubTitleSection() }
-                        )
-                        Column(
-                            modifier = Modifier
-                                .weight(1f),
-                            horizontalAlignment = Alignment.End,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            TrailingContent()
-                        }
-                    }
+                    onMediumWidthExpandedHeight = { SplitTopbar() },
+                    onCompactSizeClass = { SplitTopbar() }
                 )
             }
         }
@@ -163,20 +151,19 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
     )
     protected open fun ExtendedFAB() {
         ExtendedFloatingActionButton(
-            onClick = { upsertAction() }
-        ) {
-            Text(
-                text = stringResource(upsertText())
-            )
-            Icon(
-                modifier = Modifier
-                    .padding(
-                        start = 5.dp
-                    ),
-                imageVector = upsertIcon(),
-                contentDescription = null
-            )
-        }
+            onClick = { upsertAction() },
+            icon = {
+                Icon(
+                    imageVector = upsertIcon(),
+                    contentDescription = null
+                )
+            },
+            text = {
+                Text(
+                    text = stringResource(upsertText())
+                )
+            }
+        )
     }
 
     /**
@@ -199,6 +186,32 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * The action to execute to update or insert an item
      */
     protected abstract fun upsertAction()
+
+    /**
+     * The content of the top bar for the indicated responsive device classes
+     *
+     * @since 1.1.0
+     */
+    @Composable
+    @ResponsiveClassComponent(
+        classes = [MEDIUM_EXPANDED_CONTENT, COMPACT_CONTENT]
+    )
+    private fun RowScope.SplitTopbar() {
+        ListItem(
+            modifier = Modifier
+                .weight(2.5f),
+            headlineContent = { ScreenTitle() },
+            supportingContent = { SubtitleSection() }
+        )
+        Column(
+            modifier = Modifier
+                .weight(1f),
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.Center
+        ) {
+            TrailingContent()
+        }
+    }
 
     /**
      * The title of the screen section
@@ -230,17 +243,17 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      */
     @Composable
     @NonRestartableComposable
-    protected fun SubTitleSection() {
+    protected fun SubtitleSection() {
         Column {
-            SubTitleContent()
+            SubtitleContent()
         }
     }
 
     /**
-     * The content of the [SubTitleSection]
+     * The content of the [SubtitleSection]
      */
     @Composable
-    protected open fun SubTitleContent() {
+    protected open fun SubtitleContent() {
         Row(
             modifier = Modifier
                 .clip(
@@ -260,7 +273,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 contentDescription = null
             )
             Text(
-                text = stringResource(upsertText())
+                text = stringResource(upsertText()),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -350,9 +365,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 )
             ) {
                 DebouncedOutlinedTextField(
-                    shape = RoundedCornerShape(
-                        size = 12.dp
-                    ),
+                    shape = InputShape,
                     value = viewModel.keywords,
                     debounce = { viewModel.refresh() },
                     placeholder = Res.string.search_by_keywords,
