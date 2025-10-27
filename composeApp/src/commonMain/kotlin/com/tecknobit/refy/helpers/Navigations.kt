@@ -1,7 +1,11 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 package com.tecknobit.refy.helpers
 
 import androidx.navigation.NavHostController
 import com.tecknobit.equinoxcompose.annotations.DestinationScreen
+import com.tecknobit.equinoxcore.helpers.NAME_KEY
+import com.tecknobit.equinoxmisc.navigationcomposeutil.navWithData
 import com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen
 import com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
@@ -15,6 +19,10 @@ import com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen
 import com.tecknobit.refy.ui.shared.data.LinksCollection
 import com.tecknobit.refy.ui.shared.data.RefyLink
 import com.tecknobit.refy.ui.shared.data.Team
+import com.tecknobit.refycore.COLLECTION_COLOR_KEY
+import com.tecknobit.refycore.COLLECTION_IDENTIFIER_KEY
+import com.tecknobit.refycore.LINK_IDENTIFIER_KEY
+import com.tecknobit.refycore.TEAM_IDENTIFIER_KEY
 
 /**
  * `navigator` the navigator instance is useful to manage the navigation between the screens of the application
@@ -82,46 +90,85 @@ fun navToHome() {
     navigator.navigate(HOME_SCREEN)
 }
 
-@DestinationScreen(CollectionScreen::class)
-fun navToCollectionScreen(
-    linkCollection: LinksCollection,
-) {
-    navigator.navigate(COLLECTION_SCREEN)
-}
-
-@DestinationScreen(TeamScreen::class)
-fun navToTeamScreen(
-    team: Team,
-) {
-    navigator.navigate(TEAM_SCREEN)
-}
-
 @DestinationScreen(UpsertLinkScreen::class)
 fun navToUpsertLinkScreen(
     link: RefyLink? = null,
 ) {
-    navigator.navigate(UPSERT_LINK_SCREEN)
+    navigator.navWithData(
+        route = UPSERT_LINK_SCREEN,
+        data = buildMap {
+            put(LINK_IDENTIFIER_KEY, link?.id)
+        }
+    )
 }
 
-@DestinationScreen(UpsertCustomLinkScreen::class)
-fun navToUpsertCustomLinkScreen(
-    link: CustomRefyLink? = null,
+@DestinationScreen(CollectionScreen::class)
+fun navToCollectionScreen(
+    linksCollection: LinksCollection,
 ) {
-    navigator.navigate(UPSERT_CUSTOM_LINK_SCREEN)
+    navigator.navWithData(
+        route = COLLECTION_SCREEN,
+        data = buildMap {
+            put(COLLECTION_IDENTIFIER_KEY, linksCollection.id)
+            put(NAME_KEY, linksCollection.title)
+            put(COLLECTION_COLOR_KEY, linksCollection.color)
+        }
+    )
 }
 
 @DestinationScreen(UpsertCollectionScreen::class)
 fun navToUpsertLinkCollectionScreen(
     linksCollection: LinksCollection? = null,
 ) {
-    navigator.navigate(UPSERT_COLLECTION_SCREEN)
+    val navData = if (linksCollection == null)
+        emptyMap<String, Any>()
+    else {
+        buildMap {
+            put(COLLECTION_IDENTIFIER_KEY, linksCollection.id)
+            put(COLLECTION_COLOR_KEY, linksCollection.color)
+        }
+    }
+    navigator.navWithData(
+        route = UPSERT_COLLECTION_SCREEN,
+        data = navData
+    )
+}
+
+@DestinationScreen(TeamScreen::class)
+fun navToTeamScreen(
+    team: Team,
+) {
+    navigator.navWithData(
+        route = TEAM_SCREEN,
+        data = buildMap {
+            put(TEAM_IDENTIFIER_KEY, team.id)
+            put(NAME_KEY, team.title)
+        }
+    )
 }
 
 @DestinationScreen(UpsertTeamScreen::class)
 fun navToUpsertTeam(
     team: Team? = null,
 ) {
-    navigator.navigate(UPSERT_TEAM_SCREEN)
+    navigator.navWithData(
+        route = UPSERT_TEAM_SCREEN,
+        data = buildMap {
+            put(TEAM_IDENTIFIER_KEY, team?.id)
+        }
+    )
+}
+
+@DestinationScreen(UpsertCustomLinkScreen::class)
+fun navToUpsertCustomLinkScreen(
+    link: CustomRefyLink? = null,
+) {
+    navigator.navWithData(
+        route = UPSERT_CUSTOM_LINK_SCREEN,
+        data = buildMap {
+            put(LINK_IDENTIFIER_KEY, link?.id)
+        }
+    )
 }
 
 @DestinationScreen(ProfileScreen::class)

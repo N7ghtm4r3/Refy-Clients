@@ -48,7 +48,7 @@ fun TeamCollectionCard(
         ),
         onClick = {
             navToCollectionScreen(
-                linkCollection = collection
+                linksCollection = collection
             )
         }
     ) {

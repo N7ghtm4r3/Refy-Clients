@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 package com.tecknobit.refy
 
 import androidx.compose.foundation.background
@@ -16,9 +18,13 @@ import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.equinoxcompose.session.screens.equinoxScreen
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
+import com.tecknobit.equinoxcompose.utilities.generateRandomColor
+import com.tecknobit.equinoxcompose.utilities.toHex
 import com.tecknobit.equinoxcore.helpers.NAME_KEY
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
+import com.tecknobit.equinoxmisc.navigationcomposeutil.clearLastDestinationAllNavData
+import com.tecknobit.equinoxmisc.navigationcomposeutil.getDestinationNavData
 import com.tecknobit.refy.helpers.AUTH_SCREEN
 import com.tecknobit.refy.helpers.COLLECTION_SCREEN
 import com.tecknobit.refy.helpers.HOME_SCREEN
@@ -36,9 +42,15 @@ import com.tecknobit.refy.helpers.navToSplashscreen
 import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.components.imageLoader
 import com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen
+import com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen
 import com.tecknobit.refy.ui.screens.home.presenter.HomeScreen
 import com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen
 import com.tecknobit.refy.ui.screens.splashscreen.Splashscreen
+import com.tecknobit.refy.ui.screens.team.presenter.TeamScreen
+import com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen
+import com.tecknobit.refy.ui.screens.upsertcustomlink.presenter.UpsertCustomLinkScreen
+import com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen
+import com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.COLLECTION_IDENTIFIER_KEY
@@ -116,16 +128,22 @@ fun App() {
             composable(
                 route = HOME_SCREEN
             ) {
+                navigator.clearLastDestinationAllNavData()
                 val homeScreen = equinoxScreen { HomeScreen() }
                 homeScreen.ShowContent()
             }
             composable(
-                route = "$UPSERT_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
-            ) { backstackEntry ->
-//                val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
-//                UpsertLinkScreen(
-//                    linkId = linkId
-//                ).ShowContent()
+                route = UPSERT_LINK_SCREEN
+            ) {
+                val linkId: String? = navigator.getDestinationNavData(
+                    key = LINK_IDENTIFIER_KEY
+                )
+                val upsertLinkScreen = equinoxScreen {
+                    UpsertLinkScreen(
+                        linkId = linkId
+                    )
+                }
+                upsertLinkScreen.ShowContent()
             }
             composable(
                 route = PROFILE_SCREEN
@@ -134,54 +152,91 @@ fun App() {
                 profileScreen.ShowContent()
             }
             composable(
-                route = "$COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}/{$NAME_KEY}/{$COLLECTION_COLOR_KEY}"
-            ) { backstackEntry ->
-//                val collectionId: String =
-//                    backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)!!
-//                val name: String = backstackEntry.path<String>(NAME_KEY)!!
-//                val color: String = backstackEntry.path<String>(COLLECTION_COLOR_KEY)!!
-//                CollectionScreen(
-//                    collectionId = collectionId,
-//                    collectionName = name,
-//                    collectionColor = color
-//                ).ShowContent()
+                route = COLLECTION_SCREEN
+            ) {
+                val collectionId: String = navigator.getDestinationNavData(
+                    key = COLLECTION_IDENTIFIER_KEY,
+                    defaultValue = ""
+                )!!
+                val name: String = navigator.getDestinationNavData(
+                    key = NAME_KEY,
+                    defaultValue = ""
+                )!!
+                val color: String = navigator.getDestinationNavData(
+                    key = COLLECTION_COLOR_KEY,
+                    defaultValue = ""
+                )!!
+                val collectionScreen = equinoxScreen {
+                    CollectionScreen(
+                        collectionId = collectionId,
+                        collectionName = name,
+                        collectionColor = color
+                    )
+                }
+                collectionScreen.ShowContent()
             }
             composable(
-                route = "$UPSERT_COLLECTION_SCREEN/{$COLLECTION_IDENTIFIER_KEY}?/{$COLLECTION_COLOR_KEY}?"
-            ) { backstackEntry ->
-//                val collectionId = backstackEntry.path<String>(COLLECTION_IDENTIFIER_KEY)
-//                val collectionColor = backstackEntry.path<String>(COLLECTION_COLOR_KEY)
-//                    ?: generateRandomColor().toHex()
-//                UpsertCollectionScreen(
-//                    collectionId = collectionId,
-//                    collectionColor = collectionColor
-//                ).ShowContent()
+                route = UPSERT_COLLECTION_SCREEN
+            ) {
+                val collectionId: String? = navigator.getDestinationNavData(
+                    key = COLLECTION_IDENTIFIER_KEY
+                )
+                val color: String = navigator.getDestinationNavData(
+                    key = COLLECTION_COLOR_KEY,
+                    defaultValue = generateRandomColor().toHex()
+                )!!
+                val upsertCollectionScreen = equinoxScreen {
+                    UpsertCollectionScreen(
+                        collectionId = collectionId,
+                        collectionColor = color
+                    )
+                }
+                upsertCollectionScreen.ShowContent()
             }
             composable(
-                route = "$TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}/{$NAME_KEY}"
-            ) { backstackEntry ->
-//                val teamId: String = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)!!
-//                val name: String = backstackEntry.path<String>(NAME_KEY)!!
-//                TeamScreen(
-//                    teamId = teamId,
-//                    teamName = name
-//                ).ShowContent()
+                route = TEAM_SCREEN
+            ) {
+                val teamId: String = navigator.getDestinationNavData(
+                    key = TEAM_IDENTIFIER_KEY,
+                    defaultValue = ""
+                )!!
+                val name: String = navigator.getDestinationNavData(
+                    key = NAME_KEY,
+                    defaultValue = ""
+                )!!
+                val teamScreen = equinoxScreen {
+                    TeamScreen(
+                        teamId = teamId,
+                        teamName = name
+                    )
+                }
+                teamScreen.ShowContent()
             }
             composable(
-                route = "$UPSERT_TEAM_SCREEN/{$TEAM_IDENTIFIER_KEY}?"
-            ) { backstackEntry ->
-//                val teamId = backstackEntry.path<String>(TEAM_IDENTIFIER_KEY)
-//                UpsertTeamScreen(
-//                    teamId = teamId
-//                ).ShowContent()
+                route = UPSERT_TEAM_SCREEN
+            ) {
+                val teamId: String? = navigator.getDestinationNavData(
+                    key = TEAM_IDENTIFIER_KEY
+                )
+                val upsertTeamScreen = equinoxScreen {
+                    UpsertTeamScreen(
+                        teamId = teamId
+                    )
+                }
+                upsertTeamScreen.ShowContent()
             }
             composable(
-                route = "$UPSERT_CUSTOM_LINK_SCREEN/{$LINK_IDENTIFIER_KEY}?"
-            ) { backstackEntry ->
-//                val linkId = backstackEntry.path<String>(LINK_IDENTIFIER_KEY)
-//                UpsertCustomLinkScreen(
-//                    linkId = linkId
-//                ).ShowContent()
+                route = UPSERT_CUSTOM_LINK_SCREEN
+            ) {
+                val linkId: String? = navigator.getDestinationNavData(
+                    key = LINK_IDENTIFIER_KEY
+                )
+                val upsertCustomLinkScreen = equinoxScreen {
+                    UpsertCustomLinkScreen(
+                        linkId = linkId
+                    )
+                }
+                upsertCustomLinkScreen.ShowContent()
             }
         }
     }

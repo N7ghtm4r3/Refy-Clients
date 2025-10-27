@@ -63,7 +63,7 @@ fun CollectionCard(
             .combinedClickable(
                 onClick = {
                     navToCollectionScreen(
-                        linkCollection = collection
+                        linksCollection = collection
                     )
                 },
                 onLongClick = if (collection.iAmTheOwner()) {
