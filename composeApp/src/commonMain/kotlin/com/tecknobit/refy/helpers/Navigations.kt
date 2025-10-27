@@ -79,17 +79,33 @@ const val UPSERT_TEAM_SCREEN = "UpsertTeamScreen"
  */
 const val UPSERT_CUSTOM_LINK_SCREEN = "UpsertCustomLinkScreen"
 
-// TODO: TO DOCU SINCE 
+/**
+ * Method used to navigate to the [Splashscreen]
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(Splashscreen::class)
 fun navToSplashscreen() {
     navigator.navigate(SPLASHSCREEN)
 }
 
+/**
+ * Method used to navigate to the [HomeScreen]
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(HomeScreen::class)
 fun navToHome() {
     navigator.navigate(HOME_SCREEN)
 }
 
+/**
+ * Method used to navigate to the [UpsertLinkScreen]
+ *
+ * @param link The link to edit if not `null`
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(UpsertLinkScreen::class)
 fun navToUpsertLinkScreen(
     link: RefyLink? = null,
@@ -102,6 +118,13 @@ fun navToUpsertLinkScreen(
     )
 }
 
+/**
+ * Method used to navigate to the [HomeScreen]
+ *
+ * @param linksCollection The collection to display
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(CollectionScreen::class)
 fun navToCollectionScreen(
     linksCollection: LinksCollection,
@@ -116,6 +139,13 @@ fun navToCollectionScreen(
     )
 }
 
+/**
+ * Method used to navigate to the [UpsertCollectionScreen]
+ *
+ * @param linksCollection The collection to edit if not `null`
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(UpsertCollectionScreen::class)
 fun navToUpsertLinkCollectionScreen(
     linksCollection: LinksCollection? = null,
@@ -134,6 +164,13 @@ fun navToUpsertLinkCollectionScreen(
     )
 }
 
+/**
+ * Method used to navigate to the [TeamScreen]
+ *
+ * @param team The team to display
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(TeamScreen::class)
 fun navToTeamScreen(
     team: Team,
@@ -147,6 +184,13 @@ fun navToTeamScreen(
     )
 }
 
+/**
+ * Method used to navigate to the [UpsertTeamScreen]
+ *
+ * @param team The team to edit if not `null`
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(UpsertTeamScreen::class)
 fun navToUpsertTeam(
     team: Team? = null,
@@ -159,6 +203,13 @@ fun navToUpsertTeam(
     )
 }
 
+/**
+ * Method used to navigate to the [UpsertCustomLinkScreen]
+ *
+ * @param link The link to edit if not `null`
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(UpsertCustomLinkScreen::class)
 fun navToUpsertCustomLinkScreen(
     link: CustomRefyLink? = null,
@@ -171,6 +222,11 @@ fun navToUpsertCustomLinkScreen(
     )
 }
 
+/**
+ * Method used to navigate to the [ProfileScreen]
+ *
+ * @since 1.1.0
+ */
 @DestinationScreen(ProfileScreen::class)
 fun navToProfileScreen() {
     navigator.navigate(PROFILE_SCREEN)
