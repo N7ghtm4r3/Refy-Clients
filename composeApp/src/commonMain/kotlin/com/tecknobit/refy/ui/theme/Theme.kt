@@ -1,12 +1,19 @@
+@file:OptIn(ExperimentalComposeRuntimeApi::class)
+
 package com.tecknobit.refy.ui.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeRuntimeApi
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
+import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme
+import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Auto
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
+import com.tecknobit.equinoxcore.helpers.THEME_KEY
 import com.tecknobit.refy.localUser
 
 /**
@@ -277,12 +284,8 @@ fun green(): Color {
  */
 @Composable
 fun RefyTheme(
-    darkTheme: Boolean = when (localUser.theme) {
-        Light -> false
-        Dark -> true
-        else -> isSystemInDarkTheme()
-    },
-    content: @Composable () -> Unit
+    darkTheme: Boolean = applyDarkTheme(),
+    content: @Composable () -> Unit,
 ) {
     MaterialTheme(
         colorScheme = when {
@@ -292,5 +295,22 @@ fun RefyTheme(
         typography = AppTypography,
         content = content
     )
+}
+
+/**
+ * Method to check which colors scheme is to use based on the current [localUser.theme] property
+ *
+ * @return whether use the dark colors scheme as [Boolean]
+ */
+@Composable
+fun applyDarkTheme(): Boolean {
+    val theme by localUser.observe<ApplicationTheme>(
+        key = THEME_KEY
+    )
+    return when (theme) {
+        Dark -> true
+        Light -> false
+        Auto -> isSystemInDarkTheme()
+    }
 }
 

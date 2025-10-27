@@ -3,6 +3,7 @@ package com.tecknobit.refy.helpers
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
+import com.tecknobit.equinoxcore.helpers.THEME_KEY
 import com.tecknobit.refy.RefyConfig.LOCAL_STORAGE_PATH
 import com.tecknobit.refycore.TAG_NAME_KEY
 
@@ -12,7 +13,8 @@ import com.tecknobit.refycore.TAG_NAME_KEY
  * @author N7ghtm4r3 - Tecknobit
  */
 class RefyLocalUser : EquinoxLocalUser(
-    localStoragePath = LOCAL_STORAGE_PATH
+    localStoragePath = LOCAL_STORAGE_PATH,
+    observableKeys = setOf(THEME_KEY)
 ) {
 
     /**
