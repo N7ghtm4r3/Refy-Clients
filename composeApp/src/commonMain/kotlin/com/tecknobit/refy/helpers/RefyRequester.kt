@@ -4,6 +4,7 @@ import com.tecknobit.equinoxcompose.network.EquinoxRequester
 import com.tecknobit.equinoxcore.annotations.Assembler
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
 import com.tecknobit.equinoxcore.annotations.RequestPath
+import com.tecknobit.equinoxcore.helpers.KEYWORDS_KEY
 import com.tecknobit.equinoxcore.network.RequestMethod.DELETE
 import com.tecknobit.equinoxcore.network.RequestMethod.GET
 import com.tecknobit.equinoxcore.network.RequestMethod.PATCH
@@ -24,7 +25,6 @@ import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.DESCRIPTION_KEY
 import com.tecknobit.refycore.EXPIRED_TIME_KEY
 import com.tecknobit.refycore.FIELDS_KEY
-import com.tecknobit.refycore.KEYWORDS_KEY
 import com.tecknobit.refycore.LINKS_KEY
 import com.tecknobit.refycore.LOGO_PIC_KEY
 import com.tecknobit.refycore.MEMBERS_KEY

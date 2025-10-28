@@ -136,5 +136,5 @@
     <string name="description">Description</string>
     <string name="description_not_valid">Description non valide</string>
     <string name="close_application_on_link_open_title">Fermer l'application</string>
-    <string name="close_application_on_link_open">Fermer l'application à l'ouverture du lien</string>
+    <string name="close_application_on_link_open">Fermer l'application lors de l'ouverture d'un lien avec le clic droit</string>
 </resources>

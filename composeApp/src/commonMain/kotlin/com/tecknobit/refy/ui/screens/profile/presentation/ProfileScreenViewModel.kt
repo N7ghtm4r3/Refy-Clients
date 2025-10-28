@@ -4,7 +4,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxProfileViewModel
-import com.tecknobit.equinoxcore.annotations.RequiresDocumentation
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.requester
@@ -42,9 +41,14 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
      */
     lateinit var newTagNameError: MutableState<Boolean>
 
-    @RequiresDocumentation(
-        additionalNotes = "INCLUDE VERSION"
-    )
+    /**
+     * `closeApplicationOnLinkOpen` Whether the user requires to close the application when
+     * a link has been opened.
+     *
+     * This feature is `Desktop-only`
+     *
+     * @since 1.1.0
+     */
     lateinit var closeApplicationOnLinkOpen: MutableState<Boolean>
 
     /**
@@ -77,9 +81,13 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
         }
     }
 
-    @RequiresDocumentation(
-        additionalNotes = "TODO: INCLUDE VERSION AND DesktopOnly"
-    )
+    /**
+     * Method to change the [closeApplicationOnLinkOpen] requirement.
+     *
+     * This feature is `Desktop-only`
+     *
+     * @param onChange The callback to invoke after the flag changed
+     */
     fun changeCloseOnLinkOpen(
         onChange: () -> Unit,
     ) {

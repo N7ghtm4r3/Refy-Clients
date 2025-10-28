@@ -8,7 +8,12 @@ import androidx.compose.foundation.onClick
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerButton.Companion.Secondary
 import androidx.compose.ui.platform.UriHandler
+import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.shared.data.RefyLink
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.system.exitProcess
 
 /**
  * Method use to handle the `Close Application on Link Open` feature
@@ -26,9 +31,14 @@ internal actual fun Modifier.handleCloseOnLinkOpen(
 ): Modifier = this.onClick(
     matcher = PointerMatcher.mouse(Secondary),
     onClick = {
-        println("hi")
         uriHandler.openUri(
             uri = link.reference
         )
+        if (localUser.requiresCloseApplicationOnLinkOpen) {
+            MainScope().launch {
+                delay(750)
+                exitProcess(0)
+            }
+        }
     }
 )

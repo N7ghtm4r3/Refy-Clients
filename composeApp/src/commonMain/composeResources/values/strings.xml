@@ -136,5 +136,5 @@
     <string name="description">Description</string>
     <string name="description_not_valid">Description not valid</string>
     <string name="close_application_on_link_open_title">Close application</string>
-    <string name="close_application_on_link_open">Close application on link open</string>
+    <string name="close_application_on_link_open">Close application when right-clicked to open link</string>
 </resources>

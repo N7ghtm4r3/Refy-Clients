@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.stepper.Step
 import com.tecknobit.equinoxcompose.components.stepper.StepContent
-import com.tecknobit.equinoxcore.annotations.RequiresDocumentation
+import com.tecknobit.refy.localUser
 import com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -53,9 +53,15 @@ actual fun platformSpecificSettingSteps(
     return arrayOf(*commonSteps, closeOnLinkOpenStep)
 }
 
-@RequiresDocumentation(
-    additionalNotes = "TODO: INCLUDE VERSION"
-)
+/**
+ * Section to change the [localUser]'s close application on link open.
+ *
+ * This feature is `Desktop-only`
+ *
+ * @param viewModel The support viewmodel for the screen
+ *
+ * @since 1.1.0
+ */
 @StepContent(
     number = 6
 )

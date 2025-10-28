@@ -2,10 +2,10 @@ package com.tecknobit.refy.helpers
 
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
-import com.tecknobit.equinoxcore.annotations.RequiresDocumentation
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.helpers.THEME_KEY
 import com.tecknobit.refy.RefyConfig.LOCAL_STORAGE_PATH
+import com.tecknobit.refycore.CLOSE_APPLICATION_ON_LINK_OPEN_KEY
 import com.tecknobit.refycore.TAG_NAME_KEY
 
 /**
@@ -24,10 +24,15 @@ class RefyLocalUser : EquinoxLocalUser(
     var tagName: String = ""
         private set
 
-    @RequiresDocumentation(
-        additionalNotes = "INCLUDE VERSION"
-    )
-    var closeApplicationOnLinkOpen: Boolean = false
+    /**
+     * `requiresCloseApplicationOnLinkOpen` Whether the user requires to close the application when
+     * a link has been opened.
+     *
+     * This feature is `Desktop-only`
+     *
+     * @since 1.1.0
+     */
+    var requiresCloseApplicationOnLinkOpen: Boolean = false
         private set
 
     /**
@@ -44,10 +49,10 @@ class RefyLocalUser : EquinoxLocalUser(
             }
         )
         setNullSafePreference(
-            key = "closeApplicationOnLinkOpen", // TODO: TO CHANGE THE KEY
+            key = CLOSE_APPLICATION_ON_LINK_OPEN_KEY,
             defPrefValue = false,
             prefInit = { closeApplicationOnLinkOpen ->
-                this.closeApplicationOnLinkOpen = closeApplicationOnLinkOpen
+                this.requiresCloseApplicationOnLinkOpen = closeApplicationOnLinkOpen
             }
         )
     }
@@ -66,7 +71,7 @@ class RefyLocalUser : EquinoxLocalUser(
      * @param custom The custom parameters added during the customization of the [EquinoxLocalUser]
      */
     @RequiresSuperCall
-    @CustomParametersOrder(order = [TAG_NAME_KEY])
+    @CustomParametersOrder(order = [TAG_NAME_KEY, CLOSE_APPLICATION_ON_LINK_OPEN_KEY])
     override fun insertNewUser(
         hostAddress: String,
         userId: String,
@@ -95,8 +100,11 @@ class RefyLocalUser : EquinoxLocalUser(
         initTagName(
             tagName = tagNameRef
         )
+        val closeApplicationOnLinkOpen: Boolean = custom.extractsCustomValue(
+            itemPosition = 1
+        )
         initCloseApplicationOnLinkOpen(
-            closeApplicationOnLinkOpen = false
+            closeApplicationOnLinkOpen = closeApplicationOnLinkOpen
         )
     }
 
@@ -117,15 +125,22 @@ class RefyLocalUser : EquinoxLocalUser(
         )
     }
 
-    @RequiresDocumentation(
-        additionalNotes = "INCLUDE VERSION"
-    )
+    /**
+     * Method to initialize the [requiresCloseApplicationOnLinkOpen] property and locally save its value with the [savePreference] method.
+     *
+     * This feature is `Desktop-only`
+     *
+     * @param closeApplicationOnLinkOpen Whether the user requires to close the application when
+     * a link has been opened
+     *
+     * @since 1.1.0
+     */
     fun initCloseApplicationOnLinkOpen(
         closeApplicationOnLinkOpen: Boolean,
     ) {
-        this.closeApplicationOnLinkOpen = closeApplicationOnLinkOpen
+        this.requiresCloseApplicationOnLinkOpen = closeApplicationOnLinkOpen
         savePreference(
-            key = "closeApplicationOnLinkOpen", // TODO: TO CHANGE THE KEY
+            key = CLOSE_APPLICATION_ON_LINK_OPEN_KEY,
             value = closeApplicationOnLinkOpen
         )
     }

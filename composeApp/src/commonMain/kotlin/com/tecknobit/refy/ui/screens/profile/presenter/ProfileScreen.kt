@@ -563,7 +563,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         viewModel.language = remember { mutableStateOf(localUser.language) }
         viewModel.theme = remember { mutableStateOf(localUser.theme) }
         viewModel.closeApplicationOnLinkOpen =
-            remember { mutableStateOf(localUser.closeApplicationOnLinkOpen) }
+            remember { mutableStateOf(localUser.requiresCloseApplicationOnLinkOpen) }
     }
 
 }

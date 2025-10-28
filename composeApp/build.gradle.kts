@@ -94,7 +94,6 @@ kotlin {
                 implementation(libs.equinox.core)
                 implementation(libs.equinox.compose)
                 implementation(libs.equinox.navigation)
-                implementation(libs.refycore)
                 implementation(libs.lazy.pagination.compose)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.material.kolor)
@@ -103,6 +102,7 @@ kotlin {
                 implementation(libs.colorpicker.compose)
                 implementation(libs.navigation.compose)
                 implementation(libs.equinoxmisc.navigation.compose.util)
+                implementation(libs.refycore)
             }
         }
 

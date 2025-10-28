@@ -5,13 +5,17 @@ import androidx.compose.runtime.MutableState
 import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxAuthViewModel
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
+import com.tecknobit.equinoxcore.json.treatsAsBoolean
 import com.tecknobit.equinoxcore.json.treatsAsString
 import com.tecknobit.refy.helpers.navToHome
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.requester
+import com.tecknobit.refycore.CLOSE_APPLICATION_ON_LINK_OPEN_KEY
+import com.tecknobit.refycore.SETTINGS_KEY
 import com.tecknobit.refycore.TAG_NAME_KEY
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
 
 /**
  * The `AuthScreenViewModel` class is the support class used to execute the authentication requests
@@ -20,7 +24,7 @@ import kotlinx.serialization.json.JsonObject
  * @author N7ghtm4r3 - Tecknobit
  * @see androidx.lifecycle.ViewModel
  * @see com.tecknobit.equinoxcompose.session.Retriever
- * @see EquinoxViewModel
+ * @see com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
  * @see EquinoxAuthViewModel
  */
 class AuthScreenViewModel : EquinoxAuthViewModel(
@@ -58,9 +62,9 @@ class AuthScreenViewModel : EquinoxAuthViewModel(
     /**
      * Method to get the list of the custom parameters to use in the [signUp] request
      */
-    @CustomParametersOrder(order = [TAG_NAME_KEY])
+    @CustomParametersOrder(order = [TAG_NAME_KEY, CLOSE_APPLICATION_ON_LINK_OPEN_KEY])
     override fun getSignUpCustomParameters(): Array<out Any?> {
-        return arrayOf(tagName.value)
+        return arrayOf(tagName.value, false)
     }
 
     /**
@@ -74,7 +78,7 @@ class AuthScreenViewModel : EquinoxAuthViewModel(
      * @param custom The custom parameters added in a customization of the equinox user
      */
     @RequiresSuperCall
-    @CustomParametersOrder(order = [TAG_NAME_KEY])
+    @CustomParametersOrder(order = [TAG_NAME_KEY, CLOSE_APPLICATION_ON_LINK_OPEN_KEY])
     override fun launchApp(
         response: JsonObject,
         name: String,
@@ -82,11 +86,20 @@ class AuthScreenViewModel : EquinoxAuthViewModel(
         language: String,
         vararg custom: Any?
     ) {
-        val tagName = if (custom.isEmpty())
-            response[TAG_NAME_KEY].treatsAsString()
-        else
+        val isSignUp = custom.isNotEmpty()
+        val tagName = if (isSignUp)
             custom[0]
-        super.launchApp(response, name, surname, language, tagName)
+        else
+            response[TAG_NAME_KEY].treatsAsString()
+        val closeApplicationOnOpenLink = if (isSignUp)
+            custom[1]
+        else {
+            val settings = response[SETTINGS_KEY]?.jsonObject!!
+            settings[CLOSE_APPLICATION_ON_LINK_OPEN_KEY].treatsAsBoolean()
+        }
+        // TODO: TO REMOVE 
+        println("gmwgpwngwèngèiwe " + closeApplicationOnOpenLink)
+        super.launchApp(response, name, surname, language, tagName, closeApplicationOnOpenLink)
         navToHome()
     }
 
