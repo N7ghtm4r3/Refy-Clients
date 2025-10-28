@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.tecknobit.refy.helpers</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+    <script type="text/javascript"
+            src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js"
+            async="async"></script>
+    <script type="text/javascript" src="../../scripts/sourceset_dependencies.js"
+            async="async"></script>
+    <link href="../../styles/style.css" rel="Stylesheet">
+    <link href="../../styles/main.css" rel="Stylesheet">
+    <link href="../../styles/prism.css" rel="Stylesheet">
+    <link href="../../styles/logo-styles.css" rel="Stylesheet">
+    <link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
+    <script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+    <script type="text/javascript" src="../../scripts/platform-content-handler.js"
+            async="async"></script>
+    <script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+    <script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+    <script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+    <link href="../../images/logo-icon.svg">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+        <a class="library-name--link" href="../../index.html" tabindex="1">
+            Refy
+        </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only"
+                id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+            1.1.0
+        </div>
+        <div class="navigation-controls">
+            <ul class="filter-section filter-section_loading" id="filter-section"
+                aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/androidMain">android
+                </button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/commonMain">common
+                </button>
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/desktopMain">desktop
+                </button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/iosMain">ios
+                </button>
+                <button class="platform-tag platform-selector wasm-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/wasmJsMain">wasmJs
+                </button>
+                <div class="dropdown filter-section--dropdown" data-role="dropdown"
+                     id="filter-section-dropdown">
+                    <button class="button button_dropdown filter-section--dropdown-toggle"
+                            role="combobox"
+                            data-role="dropdown-toggle"
+                            aria-controls="platform-tags-listbox"
+                            aria-haspopup="listbox"
+                            aria-expanded="false"
+                            aria-label="Toggle source sets"
+                    ></button>
+                    <ul role="listbox" id="platform-tags-listbox" class="dropdown--list"
+                        data-role="dropdown-listbox" aria-label="Target filter">
+                        <div class="dropdown--header"><span>Target filter</span>
+                            <button class="button" data-role="dropdown-toggle"
+                                    aria-label="Close target filter">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/androidMain"
+                                       data-filter=":composeApp/androidMain"/>
+                                <span class="checkbox--icon"></span>
+                                android
+                            </label>
+                        </li>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option common-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/commonMain"
+                                       data-filter=":composeApp/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/desktopMain"
+                                       data-filter=":composeApp/desktopMain"/>
+                                <span class="checkbox--icon"></span>
+                                desktop
+                            </label>
+                        </li>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option common-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/iosMain"
+                                       data-filter=":composeApp/iosMain"/>
+                                <span class="checkbox--icon"></span>
+                                ios
+                            </label>
+                        </li>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option wasm-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/wasmJsMain"
+                                       data-filter=":composeApp/wasmJsMain"/>
+                                <span class="checkbox--icon"></span>
+                                wasmJs
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme"
+                    id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar"
+                 role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION"
+             data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    Refy
+                            </span>
+                        <button class="button" data-role="dropdown-toggle"
+                                aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+            <div class="main-content" data-page-type="package" id="content"
+                 pageIds="Refy::com.tecknobit.refy.helpers////PointingToDeclaration//121133551">
+                <div class="breadcrumbs"><a href="../../index.html">Refy</a><span class="delimiter">/</span><span
+                        class="current">com.tecknobit.refy.helpers</span></div>
+                <div class="cover ">
+                    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span>
+                    </h1>
+                </div>
+                <div class="tabbedcontent">
+                    <div class="tabs-section" tabs-section="tabs-section">
+                        <button class="section-tab" data-active="" data-togglable="TYPE">Types
+                        </button>
+                        <button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">
+                            Functions
+                        </button>
+                        <button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">
+                            Properties
+                        </button>
+                    </div>
+                    <div class="tabs-section-body">
+                        <div data-togglable="TYPE">
+                            <h2 class="tableheader">Types</h2>
+                            <div class="table"><a data-name="-630527029%2FClasslikes%2F121133551"
+                                                  anchor-label="KReviewer"
+                                                  id="-630527029%2FClasslikes%2F121133551"
+                                                  data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                                     data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-k-reviewer/index.html"><span><span>KReviewer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-630527029%2FClasslikes%2F121133551"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted  with-platform-tabs"
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="platform-bookmarks-row"
+                                                         data-toggle-list="data-toggle-list">
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/androidMain"
+                                                                data-filterable-set=":composeApp/androidMain"
+                                                                data-active=""
+                                                                data-toggle=":composeApp/androidMain">
+                                                            android
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/commonMain"
+                                                                data-filterable-set=":composeApp/commonMain"
+                                                                data-toggle=":composeApp/commonMain">
+                                                            common
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/desktopMain"
+                                                                data-filterable-set=":composeApp/desktopMain"
+                                                                data-toggle=":composeApp/desktopMain">
+                                                            desktop
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/iosMain"
+                                                                data-filterable-set=":composeApp/iosMain"
+                                                                data-toggle=":composeApp/iosMain">
+                                                            ios
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/wasmJsMain"
+                                                                data-filterable-set=":composeApp/wasmJsMain"
+                                                                data-toggle=":composeApp/wasmJsMain">
+                                                            wasmJs
+                                                        </button>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/androidMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">class </span><a
+                                                                href="-k-reviewer/index.html">KReviewer</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">The
+                                                            <code class="lang-kotlin">KReviewer</code>
+                                                            class is useful to manage the biometric
+                                                            authentication</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">expect </span><span
+                                                                class="token keyword">class </span><a
+                                                                href="-k-reviewer/index.html">KReviewer</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">The
+                                                            <code class="lang-kotlin">KReviewer</code>
+                                                            class is useful to manage the biometric
+                                                            authentication</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/desktopMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">class </span><a
+                                                                href="-k-reviewer/index.html">KReviewer</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">The
+                                                            <code class="lang-kotlin">KReviewer</code>
+                                                            class is useful to manage the biometric
+                                                            authentication</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/iosMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">class </span><a
+                                                                href="-k-reviewer/index.html">KReviewer</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">The
+                                                            <code class="lang-kotlin">KReviewer</code>
+                                                            class is useful to manage the biometric
+                                                            authentication</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/wasmJsMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">class </span><a
+                                                                href="-k-reviewer/index.html">KReviewer</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">The
+                                                            <code class="lang-kotlin">KReviewer</code>
+                                                            class is useful to manage the biometric
+                                                            authentication</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-173880277%2FClasslikes%2F799242938"
+                                   anchor-label="RefyLocalUser"
+                                   id="-173880277%2FClasslikes%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-refy-local-user/index.html"><span>Refy</span><wbr></wbr><span>Local</span><wbr></wbr><span><span>User</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-173880277%2FClasslikes%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">class </span><a
+                                                                href="-refy-local-user/index.html">RefyLocalUser</a>
+                                                            :
+                                                            <span data-unresolved-link="com.tecknobit.equinoxcompose.session/EquinoxLocalUser///PointingToDeclaration/">EquinoxLocalUser</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">The
+                                                            <code class="lang-kotlin">RefyLocalUser</code>
+                                                            class is useful to represent a user in
+                                                            the client application</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="1379683653%2FClasslikes%2F799242938"
+                                   anchor-label="RefyRequester"
+                                   id="1379683653%2FClasslikes%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-refy-requester/index.html"><span>Refy</span><wbr></wbr><span><span>Requester</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1379683653%2FClasslikes%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">class </span><a
+                                                                href="-refy-requester/index.html">RefyRequester</a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">host<span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">userId<span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span
+                                                                class="token operator">?</span><span
+                                                                class="token operator"> = </span>null<span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">userToken<span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span
+                                                                class="token operator">?</span><span
+                                                                class="token operator"> = </span>null<span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">debugMode<span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span
+                                                                class="token operator"> = </span><span
+                                                                class="token boolean">false</span></span></span><span
+                                                                class="token punctuation">)</span> :
+                                                            <span data-unresolved-link="com.tecknobit.equinoxcompose.network/EquinoxRequester///PointingToDeclaration/">EquinoxRequester</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">The
+                                                            <strong>RefyRequester</strong> class is
+                                                            useful to communicate with Refy's
+                                                            backend</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-togglable="PROPERTY">
+                            <h2 class="tableheader">Properties</h2>
+                            <div class="table"><a data-name="316054431%2FProperties%2F799242938"
+                                                  anchor-label="AUTH_SCREEN"
+                                                  id="316054431%2FProperties%2F799242938"
+                                                  data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-a-u-t-h_-s-c-r-e-e-n.html"><span>AUTH_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="316054431%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-a-u-t-h_-s-c-r-e-e-n.html">AUTH_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">AUTH_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.auth.presenter/-auth-screen/index.html">com.tecknobit.refy.ui.screens.auth.presenter.AuthScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-717051691%2FProperties%2F799242938"
+                                   anchor-label="COLLECTION_SCREEN"
+                                   id="-717051691%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html"><span>COLLECTION_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-717051691%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html">COLLECTION_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">COLLECTION_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.collection.presenter/-collection-screen/index.html">com.tecknobit.refy.ui.screens.collection.presenter.CollectionScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-1307109674%2FProperties%2F799242938"
+                                   anchor-label="HOME_SCREEN"
+                                   id="-1307109674%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-h-o-m-e_-s-c-r-e-e-n.html"><span>HOME_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1307109674%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-h-o-m-e_-s-c-r-e-e-n.html">HOME_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">HOME_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.home.presenter/-home-screen/index.html">com.tecknobit.refy.ui.screens.home.presenter.HomeScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-111263765%2FProperties%2F799242938"
+                                   anchor-label="navigator" id="-111263765%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="navigator.html"><span><span>navigator</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-111263765%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">lateinit </span><span
+                                                                class="token keyword">var </span><a
+                                                                href="navigator.html">navigator</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://developer.android.com/reference/kotlin/androidx/navigation/NavHostController.html">NavHostController</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">navigator</code>
+                                                            the navigator instance is useful to
+                                                            manage the navigation between the
+                                                            screens of the application</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="147193494%2FProperties%2F799242938"
+                                   anchor-label="PROFILE_SCREEN"
+                                   id="147193494%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-p-r-o-f-i-l-e_-s-c-r-e-e-n.html"><span>PROFILE_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="147193494%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-p-r-o-f-i-l-e_-s-c-r-e-e-n.html">PROFILE_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">PROFILE_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.profile.presenter/-profile-screen/index.html">com.tecknobit.refy.ui.screens.profile.presenter.ProfileScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="877613253%2FProperties%2F799242938"
+                                   anchor-label="SPLASHSCREEN"
+                                   id="877613253%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-s-p-l-a-s-h-s-c-r-e-e-n.html"><span><span>SPLASHSCREEN</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="877613253%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-s-p-l-a-s-h-s-c-r-e-e-n.html">SPLASHSCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">SPLASHSCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.splashscreen/-splashscreen/index.html">com.tecknobit.refy.ui.screens.splashscreen.Splashscreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="836168788%2FProperties%2F799242938"
+                                   anchor-label="TEAM_SCREEN"
+                                   id="836168788%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-t-e-a-m_-s-c-r-e-e-n.html"><span>TEAM_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="836168788%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-t-e-a-m_-s-c-r-e-e-n.html">TEAM_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">TEAM_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.team.presenter/-team-screen/index.html">com.tecknobit.refy.ui.screens.team.presenter.TeamScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-490924293%2FProperties%2F799242938"
+                                   anchor-label="UPSERT_COLLECTION_SCREEN"
+                                   id="-490924293%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-u-p-s-e-r-t_-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html"><span>UPSERT_</span><wbr></wbr><span>COLLECTION_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-490924293%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-u-p-s-e-r-t_-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html">UPSERT_COLLECTION_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">UPSERT_COLLECTION_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.upsertcollection.presenter/-upsert-collection-screen/index.html">com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-1514754513%2FProperties%2F799242938"
+                                   anchor-label="UPSERT_CUSTOM_LINK_SCREEN"
+                                   id="-1514754513%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-u-p-s-e-r-t_-c-u-s-t-o-m_-l-i-n-k_-s-c-r-e-e-n.html"><span>UPSERT_</span><wbr></wbr><span>CUSTOM_</span><wbr></wbr><span>LINK_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1514754513%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-u-p-s-e-r-t_-c-u-s-t-o-m_-l-i-n-k_-s-c-r-e-e-n.html">UPSERT_CUSTOM_LINK_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">UPSERT_CUSTOM_LINK_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.upsertcustomlink.presenter/-upsert-custom-link-screen/index.html">com.tecknobit.refy.ui.screens.upsertcustomlink.presenter.UpsertCustomLinkScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-418961257%2FProperties%2F799242938"
+                                   anchor-label="UPSERT_LINK_SCREEN"
+                                   id="-418961257%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-u-p-s-e-r-t_-l-i-n-k_-s-c-r-e-e-n.html"><span>UPSERT_</span><wbr></wbr><span>LINK_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-418961257%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-u-p-s-e-r-t_-l-i-n-k_-s-c-r-e-e-n.html">UPSERT_LINK_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">UPSERT_LINK_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.upsertlink.presenter/-upsert-link-screen/index.html">com.tecknobit.refy.ui.screens.upsertlink.presenter.UpsertLinkScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-827298054%2FProperties%2F799242938"
+                                   anchor-label="UPSERT_TEAM_SCREEN"
+                                   id="-827298054%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-u-p-s-e-r-t_-t-e-a-m_-s-c-r-e-e-n.html"><span>UPSERT_</span><wbr></wbr><span>TEAM_</span><wbr></wbr><span>SCREEN</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-827298054%2FProperties%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">const </span><span
+                                                                class="token keyword">val </span><a
+                                                                href="-u-p-s-e-r-t_-t-e-a-m_-s-c-r-e-e-n.html">UPSERT_TEAM_SCREEN</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            <code class="lang-kotlin">UPSERT_TEAM_SCREEN</code>
+                                                            route to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.upsertteam.presenter/-upsert-team-screen/index.html">com.tecknobit.refy.ui.screens.upsertteam.presenter.UpsertTeamScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-togglable="FUNCTION">
+                            <h2 class="tableheader">Functions</h2>
+                            <div class="table"><a data-name="856505652%2FFunctions%2F121133551"
+                                                  anchor-label="customHttpClient"
+                                                  id="856505652%2FFunctions%2F121133551"
+                                                  data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                                     data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="custom-http-client.html"><span>custom</span><wbr></wbr><span>Http</span><wbr></wbr><span><span>Client</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="856505652%2FFunctions%2F121133551"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted  with-platform-tabs"
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="platform-bookmarks-row"
+                                                         data-toggle-list="data-toggle-list">
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/androidMain"
+                                                                data-filterable-set=":composeApp/androidMain"
+                                                                data-active=""
+                                                                data-toggle=":composeApp/androidMain">
+                                                            android
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/commonMain"
+                                                                data-filterable-set=":composeApp/commonMain"
+                                                                data-toggle=":composeApp/commonMain">
+                                                            common
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/desktopMain"
+                                                                data-filterable-set=":composeApp/desktopMain"
+                                                                data-toggle=":composeApp/desktopMain">
+                                                            desktop
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/iosMain"
+                                                                data-filterable-set=":composeApp/iosMain"
+                                                                data-toggle=":composeApp/iosMain">
+                                                            ios
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/wasmJsMain"
+                                                                data-filterable-set=":composeApp/wasmJsMain"
+                                                                data-toggle=":composeApp/wasmJsMain">
+                                                            wasmJs
+                                                        </button>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/androidMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="custom-http-client.html"><span
+                                                                class="token function">customHttpClient</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span><span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to create a custom <span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                            for the com.tecknobit.refy.imageLoader
+                                                            instance</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">expect </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="custom-http-client.html"><span
+                                                                class="token function">customHttpClient</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span><span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to create a custom <span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                            for the com.tecknobit.refy.imageLoader
+                                                            instance</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/desktopMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="custom-http-client.html"><span
+                                                                class="token function">customHttpClient</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span><span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to create a custom <span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                            for the com.tecknobit.refy.imageLoader
+                                                            instance</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/iosMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="custom-http-client.html"><span
+                                                                class="token function">customHttpClient</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span><span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to create a custom <span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                            for the com.tecknobit.refy.imageLoader
+                                                            instance</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/wasmJsMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="custom-http-client.html"><span
+                                                                class="token function">customHttpClient</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span><span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to create a custom <span
+                                                                data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span>
+                                                            for the com.tecknobit.refy.imageLoader
+                                                            instance</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-216730810%2FFunctions%2F799242938"
+                                   anchor-label="navToCollectionScreen"
+                                   id="-216730810%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-collection-screen.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span>Collection</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-216730810%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-collection-screen.html"><span
+                                                                class="token function">navToCollectionScreen</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">linksCollection<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-links-collection/index.html">LinksCollection</a></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.home.presenter/-home-screen/index.html">HomeScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="1925125%2FFunctions%2F799242938"
+                                   anchor-label="navToHome" id="1925125%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-home.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Home</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1925125%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-home.html"><span
+                                                                class="token function">navToHome</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.home.presenter/-home-screen/index.html">HomeScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-124975743%2FFunctions%2F799242938"
+                                   anchor-label="navToProfileScreen"
+                                   id="-124975743%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-profile-screen.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span>Profile</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-124975743%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-profile-screen.html"><span
+                                                                class="token function">navToProfileScreen</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.profile.presenter/-profile-screen/index.html">ProfileScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="608358097%2FFunctions%2F799242938"
+                                   anchor-label="navToSplashscreen"
+                                   id="608358097%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-splashscreen.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Splashscreen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="608358097%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-splashscreen.html"><span
+                                                                class="token function">navToSplashscreen</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.splashscreen/-splashscreen/index.html">Splashscreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-621070039%2FFunctions%2F799242938"
+                                   anchor-label="navToTeamScreen"
+                                   id="-621070039%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-team-screen.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span>Team</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-621070039%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-team-screen.html"><span
+                                                                class="token function">navToTeamScreen</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">team<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-team/index.html">Team</a></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.team.presenter/-team-screen/index.html">TeamScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-387767289%2FFunctions%2F799242938"
+                                   anchor-label="navToUpsertCustomLinkScreen"
+                                   id="-387767289%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-upsert-custom-link-screen.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span>Upsert</span><wbr></wbr><span>Custom</span><wbr></wbr><span>Link</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-387767289%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-upsert-custom-link-screen.html"><span
+                                                                class="token function">navToUpsertCustomLinkScreen</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">link<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.screens.customs.data/-custom-refy-link/index.html">CustomRefyLink</a><span
+                                                                class="token operator">?</span><span
+                                                                class="token operator"> = </span>null</span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.upsertcustomlink.presenter/-upsert-custom-link-screen/index.html">UpsertCustomLinkScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="306723860%2FFunctions%2F799242938"
+                                   anchor-label="navToUpsertLinkCollectionScreen"
+                                   id="306723860%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-upsert-link-collection-screen.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span>Upsert</span><wbr></wbr><span>Link</span><wbr></wbr><span>Collection</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="306723860%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-upsert-link-collection-screen.html"><span
+                                                                class="token function">navToUpsertLinkCollectionScreen</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">linksCollection<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-links-collection/index.html">LinksCollection</a><span
+                                                                class="token operator">?</span><span
+                                                                class="token operator"> = </span>null</span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.upsertcollection.presenter/-upsert-collection-screen/index.html">UpsertCollectionScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="1940935433%2FFunctions%2F799242938"
+                                   anchor-label="navToUpsertLinkScreen"
+                                   id="1940935433%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-upsert-link-screen.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span>Upsert</span><wbr></wbr><span>Link</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1940935433%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-upsert-link-screen.html"><span
+                                                                class="token function">navToUpsertLinkScreen</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">link<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-refy-link/index.html">RefyLink</a><span
+                                                                class="token operator">?</span><span
+                                                                class="token operator"> = </span>null</span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.upsertlink.presenter/-upsert-link-screen/index.html">UpsertLinkScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="402724317%2FFunctions%2F799242938"
+                                   anchor-label="navToUpsertTeam"
+                                   id="402724317%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="nav-to-upsert-team.html"><span>nav</span><wbr></wbr><span>To</span><wbr></wbr><span>Upsert</span><wbr></wbr><span><span>Team</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="402724317%2FFunctions%2F799242938"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="nav-to-upsert-team.html"><span
+                                                                class="token function">navToUpsertTeam</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">team<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-team/index.html">Team</a><span
+                                                                class="token operator">?</span><span
+                                                                class="token operator"> = </span>null</span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to navigate to the <a
+                                                                href="../com.tecknobit.refy.ui.screens.upsertteam.presenter/-upsert-team-screen/index.html">UpsertTeamScreen</a>
+                                                        </p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-1497678998%2FFunctions%2F121133551"
+                                   anchor-label="shareLink" id="-1497678998%2FFunctions%2F121133551"
+                                   data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                                     data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="share-link.html"><span>share</span><wbr></wbr><span><span>Link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1497678998%2FFunctions%2F121133551"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted  with-platform-tabs"
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="platform-bookmarks-row"
+                                                         data-toggle-list="data-toggle-list">
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/androidMain"
+                                                                data-filterable-set=":composeApp/androidMain"
+                                                                data-active=""
+                                                                data-toggle=":composeApp/androidMain">
+                                                            android
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/commonMain"
+                                                                data-filterable-set=":composeApp/commonMain"
+                                                                data-toggle=":composeApp/commonMain">
+                                                            common
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/desktopMain"
+                                                                data-filterable-set=":composeApp/desktopMain"
+                                                                data-toggle=":composeApp/desktopMain">
+                                                            desktop
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/iosMain"
+                                                                data-filterable-set=":composeApp/iosMain"
+                                                                data-toggle=":composeApp/iosMain">
+                                                            ios
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/wasmJsMain"
+                                                                data-filterable-set=":composeApp/wasmJsMain"
+                                                                data-toggle=":composeApp/wasmJsMain">
+                                                            wasmJs
+                                                        </button>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/androidMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="share-link.html"><span
+                                                                class="token function">shareLink</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">viewModel<span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="com.tecknobit.equinoxcompose.session.viewmodels/EquinoxViewModel///PointingToDeclaration/">EquinoxViewModel</span><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">link<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-refy-link/index.html">RefyLink</a></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to share the link</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">expect </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="share-link.html"><span
+                                                                class="token function">shareLink</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">viewModel<span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="com.tecknobit.equinoxcompose.session.viewmodels/EquinoxViewModel///PointingToDeclaration/">EquinoxViewModel</span><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">link<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-refy-link/index.html">RefyLink</a></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to share the link</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/desktopMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="share-link.html"><span
+                                                                class="token function">shareLink</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">viewModel<span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="com.tecknobit.equinoxcompose.session.viewmodels/EquinoxViewModel///PointingToDeclaration/">EquinoxViewModel</span><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">link<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-refy-link/index.html">RefyLink</a></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to share the link</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/iosMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="share-link.html"><span
+                                                                class="token function">shareLink</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">viewModel<span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="com.tecknobit.equinoxcompose.session.viewmodels/EquinoxViewModel///PointingToDeclaration/">EquinoxViewModel</span><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">link<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-refy-link/index.html">RefyLink</a></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to share the link</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/wasmJsMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="share-link.html"><span
+                                                                class="token function">shareLink</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">viewModel<span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="com.tecknobit.equinoxcompose.session.viewmodels/EquinoxViewModel///PointingToDeclaration/">EquinoxViewModel</span><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">link<span
+                                                                class="token operator">: </span><a
+                                                                href="../com.tecknobit.refy.ui.shared.data/-refy-link/index.html">RefyLink</a></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method to share the link</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer--container">
+                    <a href="#content" id="go-to-top-link"
+                       class="footer--button footer--button_go-to-top"></a>
+                    <div class="footer--content">
+                        <div>
+                            <span>Generated by </span>
+                            <a class="footer--link footer--link_external"
+                               href="https://github.com/Kotlin/dokka">
+                                Dokka
+                            </a>
+                            <div>(c) 2025 Tecknobit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

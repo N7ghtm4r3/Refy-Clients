@@ -1,9 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Pkg
-import org.jetbrains.dokka.base.DokkaBase
-import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -215,14 +212,18 @@ buildConfig {
     )
 }
 
-tasks.withType<DokkaTask>().configureEach {
-    dokkaSourceSets {
-        moduleName.set("Refy")
+dokka {
+    moduleName.set("Refy")
+    dokkaPublications.html {
         outputDirectory.set(layout.projectDirectory.dir("../docs"))
     }
-
-    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-        customAssets = listOf(file("../docs/logo-icon.svg"))
-        footerMessage = "(c) 2025 Tecknobit"
+    pluginsConfiguration {
+        versioning {
+            version.set("1.1.0")
+        }
+        html {
+            customAssets.from("../images/logo-icon.svg")
+            footerMessage.set("(c) 2025 Tecknobit")
+        }
     }
 }

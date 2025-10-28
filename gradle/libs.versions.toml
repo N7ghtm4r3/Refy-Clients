@@ -25,7 +25,7 @@ appUpdate = "2.1.0"
 review = "2.0.2"
 startupRuntime = "1.2.0"
 accompanistSystemuicontroller = "0.36.0"
-dokka = "2.0.0"
+dokka = "2.1.0"
 
 [libraries]
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }

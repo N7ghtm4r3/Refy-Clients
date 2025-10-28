@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Refy</title>
+    <link href="images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+    <script type="text/javascript"
+            src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js"
+            async="async"></script>
+    <script type="text/javascript" src="scripts/sourceset_dependencies.js" async="async"></script>
+    <link href="styles/style.css" rel="Stylesheet">
+    <link href="styles/main.css" rel="Stylesheet">
+    <link href="styles/prism.css" rel="Stylesheet">
+    <link href="styles/logo-styles.css" rel="Stylesheet">
+    <link href="ui-kit/ui-kit.min.css" rel="Stylesheet">
+    <script type="text/javascript" src="scripts/safe-local-storage_blocking.js"></script>
+    <script type="text/javascript" src="scripts/navigation-loader.js" async="async"></script>
+    <script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script>
+    <script type="text/javascript" src="scripts/main.js" defer="defer"></script>
+    <script type="text/javascript" src="scripts/prism.js" async="async"></script>
+    <script type="text/javascript" src="ui-kit/ui-kit.min.js" defer="defer"></script>
+    <link href="images/logo-icon.svg">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+        <a class="library-name--link" href="index.html" tabindex="1">
+            Refy
+        </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only"
+                id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+            1.1.0
+        </div>
+        <div class="navigation-controls">
+            <ul class="filter-section filter-section_loading" id="filter-section"
+                aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/androidMain">android
+                </button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/commonMain">common
+                </button>
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/desktopMain">desktop
+                </button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/iosMain">ios
+                </button>
+                <button class="platform-tag platform-selector wasm-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/wasmJsMain">wasmJs
+                </button>
+                <div class="dropdown filter-section--dropdown" data-role="dropdown"
+                     id="filter-section-dropdown">
+                    <button class="button button_dropdown filter-section--dropdown-toggle"
+                            role="combobox"
+                            data-role="dropdown-toggle"
+                            aria-controls="platform-tags-listbox"
+                            aria-haspopup="listbox"
+                            aria-expanded="false"
+                            aria-label="Toggle source sets"
+                    ></button>
+                    <ul role="listbox" id="platform-tags-listbox" class="dropdown--list"
+                        data-role="dropdown-listbox" aria-label="Target filter">
+                        <div class="dropdown--header"><span>Target filter</span>
+                            <button class="button" data-role="dropdown-toggle"
+                                    aria-label="Close target filter">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/androidMain"
+                                       data-filter=":composeApp/androidMain"/>
+                                <span class="checkbox--icon"></span>
+                                android
+                            </label>
+                        </li>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option common-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/commonMain"
+                                       data-filter=":composeApp/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/desktopMain"
+                                       data-filter=":composeApp/desktopMain"/>
+                                <span class="checkbox--icon"></span>
+                                desktop
+                            </label>
+                        </li>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option common-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/iosMain"
+                                       data-filter=":composeApp/iosMain"/>
+                                <span class="checkbox--icon"></span>
+                                ios
+                            </label>
+                        </li>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option wasm-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/wasmJsMain"
+                                       data-filter=":composeApp/wasmJsMain"/>
+                                <span class="checkbox--icon"></span>
+                                wasmJs
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme"
+                    id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar"
+                 role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION"
+             data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    Refy
+                            </span>
+                        <button class="button" data-role="dropdown-toggle"
+                                aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+            <div class="main-content" id="content"
+                 pageIds="Refy::////PointingToDeclaration//121133551">
+                <div class="breadcrumbs"></div>
+                <div class="cover ">
+                    <h1 class="cover"><span><span>Refy</span></span></h1>
+                </div>
+                <h2 class="">Packages</h2>
+                <div class="table"><a data-name="134564368%2FPackages%2F121133551"
+                                      anchor-label="com.tecknobit.refy"
+                                      id="134564368%2FPackages%2F121133551"
+                                      data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                         data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy/index.html">com.tecknobit.refy</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="134564368%2FPackages%2F121133551"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag jvm-like">android</div>
+                                        <div class="platform-tag common-like">common</div>
+                                        <div class="platform-tag jvm-like">desktop</div>
+                                        <div class="platform-tag common-like">ios</div>
+                                        <div class="platform-tag wasm-like">wasmJs</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-969436185%2FPackages%2F121133551"
+                       anchor-label="com.tecknobit.refy.helpers"
+                       id="-969436185%2FPackages%2F121133551"
+                       data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                         data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.helpers/index.html">com.tecknobit.refy.helpers</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-969436185%2FPackages%2F121133551"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag jvm-like">android</div>
+                                        <div class="platform-tag common-like">common</div>
+                                        <div class="platform-tag jvm-like">desktop</div>
+                                        <div class="platform-tag common-like">ios</div>
+                                        <div class="platform-tag wasm-like">wasmJs</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-1146921902%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.components"
+                       id="-1146921902%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.components/index.html">com.tecknobit.refy.ui.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1146921902%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="315501789%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.components.links"
+                       id="315501789%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.components.links/index.html">com.tecknobit.refy.ui.components.links</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="315501789%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="172248930%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.icons"
+                       id="172248930%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.icons/index.html">com.tecknobit.refy.ui.icons</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="172248930%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="906190209%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.auth.presentation"
+                       id="906190209%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.auth.presentation/index.html">com.tecknobit.refy.ui.screens.auth.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="906190209%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-656650843%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.auth.presenter"
+                       id="-656650843%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.auth.presenter/index.html">com.tecknobit.refy.ui.screens.auth.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-656650843%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="745259335%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.collection.components"
+                       id="745259335%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.collection.components/index.html">com.tecknobit.refy.ui.screens.collection.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="745259335%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="899385528%2FPackages%2F121133551"
+                       anchor-label="com.tecknobit.refy.ui.screens.collection.helpers"
+                       id="899385528%2FPackages%2F121133551"
+                       data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                         data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.collection.helpers/index.html">com.tecknobit.refy.ui.screens.collection.helpers</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="899385528%2FPackages%2F121133551"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag jvm-like">android</div>
+                                        <div class="platform-tag common-like">common</div>
+                                        <div class="platform-tag jvm-like">desktop</div>
+                                        <div class="platform-tag common-like">ios</div>
+                                        <div class="platform-tag wasm-like">wasmJs</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1729726603%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.collection.presentation"
+                       id="1729726603%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.collection.presentation/index.html">com.tecknobit.refy.ui.screens.collection.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1729726603%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1457196763%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.collection.presenter"
+                       id="1457196763%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.collection.presenter/index.html">com.tecknobit.refy.ui.screens.collection.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1457196763%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-1711494766%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.collections.components"
+                       id="-1711494766%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.collections.components/index.html">com.tecknobit.refy.ui.screens.collections.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1711494766%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-1273918954%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.collections.presentation"
+                       id="-1273918954%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.collections.presentation/index.html">com.tecknobit.refy.ui.screens.collections.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1273918954%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-1531547344%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.collections.presenter"
+                       id="-1531547344%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.collections.presenter/index.html">com.tecknobit.refy.ui.screens.collections.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1531547344%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1028237477%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.customs.components"
+                       id="1028237477%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.customs.components/index.html">com.tecknobit.refy.ui.screens.customs.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1028237477%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="88254969%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.customs.data"
+                       id="88254969%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.customs.data/index.html">com.tecknobit.refy.ui.screens.customs.data</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="88254969%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-1206185879%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.customs.presentation"
+                       id="-1206185879%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.customs.presentation/index.html">com.tecknobit.refy.ui.screens.customs.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1206185879%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="219399101%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.customs.presenter"
+                       id="219399101%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.customs.presenter/index.html">com.tecknobit.refy.ui.screens.customs.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="219399101%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-1603381924%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.home.presenter"
+                       id="-1603381924%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.home.presenter/index.html">com.tecknobit.refy.ui.screens.home.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1603381924%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-1429216594%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.links.components"
+                       id="-1429216594%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.links.components/index.html">com.tecknobit.refy.ui.screens.links.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1429216594%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-587535310%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.links.presentation"
+                       id="-587535310%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.links.presentation/index.html">com.tecknobit.refy.ui.screens.links.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-587535310%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-968252268%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.links.presenter"
+                       id="-968252268%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.links.presenter/index.html">com.tecknobit.refy.ui.screens.links.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-968252268%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1096986626%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.profile.presentation"
+                       id="1096986626%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.profile.presentation/index.html">com.tecknobit.refy.ui.screens.profile.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1096986626%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="2056057540%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.profile.presenter"
+                       id="2056057540%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.profile.presenter/index.html">com.tecknobit.refy.ui.screens.profile.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="2056057540%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="626111722%2FPackages%2F121133551"
+                       anchor-label="com.tecknobit.refy.ui.screens.profile.util"
+                       id="626111722%2FPackages%2F121133551"
+                       data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                         data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.profile.util/index.html">com.tecknobit.refy.ui.screens.profile.util</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="626111722%2FPackages%2F121133551"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag jvm-like">android</div>
+                                        <div class="platform-tag common-like">common</div>
+                                        <div class="platform-tag jvm-like">desktop</div>
+                                        <div class="platform-tag common-like">ios</div>
+                                        <div class="platform-tag wasm-like">wasmJs</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="928892502%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.splashscreen"
+                       id="928892502%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.splashscreen/index.html">com.tecknobit.refy.ui.screens.splashscreen</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="928892502%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-467586008%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.team.components"
+                       id="-467586008%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.team.components/index.html">com.tecknobit.refy.ui.screens.team.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-467586008%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="121489196%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.team.presentation"
+                       id="121489196%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.team.presentation/index.html">com.tecknobit.refy.ui.screens.team.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="121489196%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-383042598%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.team.presenter"
+                       id="-383042598%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.team.presenter/index.html">com.tecknobit.refy.ui.screens.team.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-383042598%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-654994735%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.teams.components"
+                       id="-654994735%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.teams.components/index.html">com.tecknobit.refy.ui.screens.teams.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-654994735%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="570729765%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.teams.data"
+                       id="570729765%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.teams.data/index.html">com.tecknobit.refy.ui.screens.teams.data</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="570729765%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="410328981%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.teams.presentation"
+                       id="410328981%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.teams.presentation/index.html">com.tecknobit.refy.ui.screens.teams.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="410328981%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1550574609%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.teams.presenter"
+                       id="1550574609%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.teams.presenter/index.html">com.tecknobit.refy.ui.screens.teams.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1550574609%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1972175868%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertcollection.presentation"
+                       id="1972175868%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertcollection.presentation/index.html">com.tecknobit.refy.ui.screens.upsertcollection.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1972175868%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1549906186%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertcollection.presenter"
+                       id="1549906186%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertcollection.presenter/index.html">com.tecknobit.refy.ui.screens.upsertcollection.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1549906186%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1859622091%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertcustomlink.components"
+                       id="1859622091%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertcustomlink.components/index.html">com.tecknobit.refy.ui.screens.upsertcustomlink.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1859622091%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-1109488881%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertcustomlink.presentation"
+                       id="-1109488881%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertcustomlink.presentation/index.html">com.tecknobit.refy.ui.screens.upsertcustomlink.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1109488881%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-307971369%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertcustomlink.presenter"
+                       id="-307971369%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertcustomlink.presenter/index.html">com.tecknobit.refy.ui.screens.upsertcustomlink.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-307971369%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-864381152%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertlink.presentation"
+                       id="-864381152%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertlink.presentation/index.html">com.tecknobit.refy.ui.screens.upsertlink.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-864381152%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1830654054%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertlink.presenter"
+                       id="1830654054%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertlink.presenter/index.html">com.tecknobit.refy.ui.screens.upsertlink.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1830654054%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1661659997%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertteam.presentation"
+                       id="1661659997%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/index.html">com.tecknobit.refy.ui.screens.upsertteam.presentation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1661659997%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="942075209%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.screens.upsertteam.presenter"
+                       id="942075209%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.screens.upsertteam.presenter/index.html">com.tecknobit.refy.ui.screens.upsertteam.presenter</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="942075209%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1001936411%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.shared.data"
+                       id="1001936411%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.shared.data/index.html">com.tecknobit.refy.ui.shared.data</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1001936411%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="153907980%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.shared.presentations"
+                       id="153907980%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.shared.presentations/index.html">com.tecknobit.refy.ui.shared.presentations</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="153907980%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="-847914308%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.shared.presenters"
+                       id="-847914308%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.shared.presenters/index.html">com.tecknobit.refy.ui.shared.presenters</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-847914308%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a data-name="1128621393%2FPackages%2F799242938"
+                       anchor-label="com.tecknobit.refy.ui.theme"
+                       id="1128621393%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
+                        <div>
+                            <div class="main-subrow ">
+                                <div class=""><span class="inline-flex">
+              <div><a href="-refy/com.tecknobit.refy.ui.theme/index.html">com.tecknobit.refy.ui.theme</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1128621393%2FPackages%2F799242938"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+                                <div class="pull-right platform-tags--wrapper">
+                                    <div class="platform-tags no-gutters">
+                                        <div class="platform-tag common-like">common</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer--container">
+                    <a href="#content" id="go-to-top-link"
+                       class="footer--button footer--button_go-to-top"></a>
+                    <div class="footer--content">
+                        <div>
+                            <span>Generated by </span>
+                            <a class="footer--link footer--link_external"
+                               href="https://github.com/Kotlin/dokka">
+                                Dokka
+                            </a>
+                            <div>(c) 2025 Tecknobit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
