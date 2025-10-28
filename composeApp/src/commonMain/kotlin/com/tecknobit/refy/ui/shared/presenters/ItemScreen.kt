@@ -117,6 +117,20 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     }
 
     /**
+     * Custom top bar of the screen to display the information about the screen or to execute
+     * any actions related to the screen
+     */
+    @Composable
+    override fun TopBar() {
+        Row(
+            modifier = Modifier
+                .responsiveMaxWidth()
+        ) {
+            super.TopBar()
+        }
+    }
+
+    /**
      * Method to get the title of the screen
      *
      * @return the title of the screen as [String]

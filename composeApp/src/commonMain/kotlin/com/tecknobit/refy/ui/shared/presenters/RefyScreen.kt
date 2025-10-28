@@ -49,7 +49,6 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CO
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
-import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.displayFontFamily
@@ -112,20 +111,15 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                     .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                TopBar()
                 Column(
                     modifier = Modifier
-                        .responsiveMaxWidth()
+                        .padding(
+                            top = 16.dp,
+                            bottom = 16.dp
+                        )
                 ) {
-                    TopBar()
-                    Column(
-                        modifier = Modifier
-                            .padding(
-                                top = 16.dp,
-                                bottom = 16.dp
-                            )
-                    ) {
-                        Content()
-                    }
+                    Content()
                 }
             }
         }
@@ -137,7 +131,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      */
     @Composable
     @LayoutCoordinator
-    protected fun TopBar() {
+    protected open fun TopBar() {
         Column {
             Row(
                 modifier = Modifier
