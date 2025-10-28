@@ -135,4 +135,6 @@
     <string name="team_name">Nome del team</string>
     <string name="description">Descrizione</string>
     <string name="description_not_valid">Descrizione non valida</string>
+    <string name="close_application_on_link_open_title">Chiusura applicazione</string>
+    <string name="close_application_on_link_open">Chiudi l'applicazione all'apertura di un link</string>
 </resources>

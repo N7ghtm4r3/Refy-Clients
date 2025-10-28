@@ -2,6 +2,7 @@ package com.tecknobit.refy.helpers
 
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
+import com.tecknobit.equinoxcore.annotations.RequiresDocumentation
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.helpers.THEME_KEY
 import com.tecknobit.refy.RefyConfig.LOCAL_STORAGE_PATH
@@ -23,17 +24,30 @@ class RefyLocalUser : EquinoxLocalUser(
     var tagName: String = ""
         private set
 
+    @RequiresDocumentation(
+        additionalNotes = "INCLUDE VERSION"
+    )
+    var closeApplicationOnLinkOpen: Boolean = false
+        private set
+
     /**
      * Method to init the local user session
      */
     @RequiresSuperCall
     override fun initLocalUser() {
         super.initLocalUser()
-        setNullSafePreference<String>(
+        setNullSafePreference(
             key = TAG_NAME_KEY,
             defPrefValue = "",
             prefInit = { tagName ->
                 this.tagName = tagName
+            }
+        )
+        setNullSafePreference(
+            key = "closeApplicationOnLinkOpen", // TODO: TO CHANGE THE KEY
+            defPrefValue = false,
+            prefInit = { closeApplicationOnLinkOpen ->
+                this.closeApplicationOnLinkOpen = closeApplicationOnLinkOpen
             }
         )
     }
@@ -81,6 +95,9 @@ class RefyLocalUser : EquinoxLocalUser(
         initTagName(
             tagName = tagNameRef
         )
+        initCloseApplicationOnLinkOpen(
+            closeApplicationOnLinkOpen = false
+        )
     }
 
     /**
@@ -97,6 +114,19 @@ class RefyLocalUser : EquinoxLocalUser(
         savePreference(
             key = TAG_NAME_KEY,
             value = tagName
+        )
+    }
+
+    @RequiresDocumentation(
+        additionalNotes = "INCLUDE VERSION"
+    )
+    fun initCloseApplicationOnLinkOpen(
+        closeApplicationOnLinkOpen: Boolean,
+    ) {
+        this.closeApplicationOnLinkOpen = closeApplicationOnLinkOpen
+        savePreference(
+            key = "closeApplicationOnLinkOpen", // TODO: TO CHANGE THE KEY
+            value = closeApplicationOnLinkOpen
         )
     }
 

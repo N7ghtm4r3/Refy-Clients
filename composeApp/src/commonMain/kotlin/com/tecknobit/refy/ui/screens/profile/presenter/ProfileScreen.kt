@@ -76,6 +76,7 @@ import com.tecknobit.refy.ui.components.Logout
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel
+import com.tecknobit.refy.ui.screens.profile.util.platformSpecificSettingSteps
 import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.AT_SYMBOL
@@ -346,7 +347,10 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
             )
         }
         Stepper(
-            steps = steps
+            steps = platformSpecificSettingSteps(
+                viewModel = viewModel,
+                commonSteps = steps
+            )
         )
     }
 
@@ -566,6 +570,8 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         viewModel.email = remember { mutableStateOf(localUser.email) }
         viewModel.language = remember { mutableStateOf(localUser.language) }
         viewModel.theme = remember { mutableStateOf(localUser.theme) }
+        viewModel.closeApplicationOnLinkOpen =
+            remember { mutableStateOf(localUser.closeApplicationOnLinkOpen) }
     }
 
 }

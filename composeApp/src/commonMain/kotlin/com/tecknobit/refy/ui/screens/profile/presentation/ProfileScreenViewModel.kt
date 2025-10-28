@@ -4,6 +4,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxProfileViewModel
+import com.tecknobit.equinoxcore.annotations.RequiresDocumentation
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.requester
@@ -41,6 +42,11 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
      */
     lateinit var newTagNameError: MutableState<Boolean>
 
+    @RequiresDocumentation(
+        additionalNotes = "INCLUDE VERSION"
+    )
+    lateinit var closeApplicationOnLinkOpen: MutableState<Boolean>
+
     /**
      * Method to change the tag name of the [localUser]
      *
@@ -69,6 +75,15 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
                 onFailure = { showSnackbarMessage(it) }
             )
         }
+    }
+
+    @RequiresDocumentation(
+        additionalNotes = "TODO: INCLUDE VERSION AND DesktopOnly"
+    )
+    fun changeCloseOnLinkOpen(
+        onChange: () -> Unit,
+    ) {
+        // TODO: TO MAKE THE REQUEST THEN
     }
 
 }

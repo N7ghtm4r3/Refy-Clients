@@ -128,11 +128,13 @@
         <item formatted="false" quantity="one">%1$d semaine</item>
         <item formatted="false" quantity="other">%1$d semaines</item>
     </plurals>
-    <string name="auth_form_not_valid">Les valeurs d\'authentification ne sont pas valides</string>
+    <string name="auth_form_not_valid">Les valeurs d'authentification ne sont pas valides</string>
     <string name="resources_not_valid">Les ressources ne sont pas valides</string>
     <string name="link_reference">Référence du lien</string>
     <string name="link_reference_not_valid">La référence du lien n'est pas valide</string>
     <string name="team_name">Nom de l'équipe</string>
     <string name="description">Description</string>
     <string name="description_not_valid">Description non valide</string>
+    <string name="close_application_on_link_open_title">Fermer l'application</string>
+    <string name="close_application_on_link_open">Fermer l'application à l'ouverture du lien</string>
 </resources>
