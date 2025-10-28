@@ -91,11 +91,22 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
     fun changeCloseOnLinkOpen(
         onChange: () -> Unit,
     ) {
-        // TODO: TO MAKE THE REQUEST THEN
-        localUser.initCloseApplicationOnLinkOpen(
-            closeApplicationOnLinkOpen = closeApplicationOnLinkOpen.value
-        )
-        onChange()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    changeCloseApplicationOnOpenLink(
+                        closeApplicationOnOpenLink = closeApplicationOnLinkOpen.value
+                    )
+                },
+                onSuccess = {
+                    localUser.initCloseApplicationOnLinkOpen(
+                        closeApplicationOnLinkOpen = closeApplicationOnLinkOpen.value
+                    )
+                    onChange()
+                },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
 }

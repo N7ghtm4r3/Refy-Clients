@@ -4,6 +4,7 @@ import com.tecknobit.equinoxcompose.network.EquinoxRequester
 import com.tecknobit.equinoxcore.annotations.Assembler
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
 import com.tecknobit.equinoxcore.annotations.RequestPath
+import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.helpers.KEYWORDS_KEY
 import com.tecknobit.equinoxcore.network.RequestMethod.DELETE
 import com.tecknobit.equinoxcore.network.RequestMethod.GET
@@ -20,6 +21,7 @@ import com.tecknobit.refy.ui.shared.data.LinksCollection
 import com.tecknobit.refy.ui.shared.data.RefyLink
 import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.data.Team
+import com.tecknobit.refycore.CLOSE_APPLICATION_ON_LINK_OPEN_KEY
 import com.tecknobit.refycore.COLLECTIONS_KEY
 import com.tecknobit.refycore.COLLECTION_COLOR_KEY
 import com.tecknobit.refycore.DESCRIPTION_KEY
@@ -32,6 +34,7 @@ import com.tecknobit.refycore.MEMBER_IDENTIFIER_KEY
 import com.tecknobit.refycore.OWNED_ONLY_KEY
 import com.tecknobit.refycore.REFERENCE_LINK_KEY
 import com.tecknobit.refycore.RESOURCES_KEY
+import com.tecknobit.refycore.SETTINGS_KEY
 import com.tecknobit.refycore.TAG_NAME_KEY
 import com.tecknobit.refycore.TEAMS_KEY
 import com.tecknobit.refycore.TEAM_ROLE_KEY
@@ -157,6 +160,60 @@ class RefyRequester(
         return execPatch(
             endpoint = assembleUsersEndpointPath(
                 endpoint = CHANGE_TAG_NAME_ENDPOINT
+            ),
+            payload = payload
+        )
+    }
+
+    /**
+     * Request to change the `close application on open link` preference
+     *
+     * @param closeApplicationOnOpenLink Whether the user requires to close the application when
+     * a link has been opened
+     *
+     * This feature is `Desktop-only`
+     *
+     * @return the result of the request as [JsonObject]
+     *
+     * @since 1.1.0
+     */
+    @Wrapper
+    @RequestPath(
+        path = "/api/v1/users/{id}/settings",
+        method = PATCH,
+        bodyParameters = """
+            {
+                "close_application_on_open_link": true/false
+            }
+            """
+    )
+    suspend fun changeCloseApplicationOnOpenLink(
+        closeApplicationOnOpenLink: Boolean,
+    ): JsonObject {
+        val payload = buildJsonObject {
+            put(CLOSE_APPLICATION_ON_LINK_OPEN_KEY, closeApplicationOnOpenLink)
+        }
+        return changeUserSettings(
+            payload = payload
+        )
+    }
+
+    /**
+     * Request to change the settings of the user
+     *
+     * @param payload The payload of the settings to change
+     *
+     * @return the result of the request as [JsonObject]
+     *
+     * @since 1.1.0
+     */
+    @RequestPath(path = "/api/v1/users/{id}/settings", method = PATCH)
+    private suspend fun changeUserSettings(
+        payload: JsonObject,
+    ): JsonObject {
+        return execPatch(
+            endpoint = assembleUsersEndpointPath(
+                endpoint = "/$SETTINGS_KEY"
             ),
             payload = payload
         )
