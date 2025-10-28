@@ -11,6 +11,7 @@ equinox = "1.1.7"
 equinoxmiscNavigationComposeUtil = "1.0.0"
 equinoxNavigation = "1.0.4"
 filekit = "0.12.0"
+fragmentKtx = "1.8.9"
 kotlin = "2.2.21"
 kotlinx-coroutines = "1.10.2"
 coilCompose = "3.3.0"
@@ -30,6 +31,7 @@ dokka = "2.1.0"
 [libraries]
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
