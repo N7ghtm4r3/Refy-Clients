@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcore.annotations.Structure
@@ -30,6 +30,7 @@ import org.jetbrains.compose.resources.StringResource
  * @see RefyScreen
  */
 @Structure
+@ScreenCoordinator
 abstract class ItemsScreen<V : RefyScreenViewModel>(
     title: StringResource,
     override val viewModel: V
@@ -41,7 +42,6 @@ abstract class ItemsScreen<V : RefyScreenViewModel>(
     /**
      * The custom content of the screen
      */
-    @OptIn(ExperimentalComposeApi::class)
     @Composable
     @NonRestartableComposable
     override fun Content() {

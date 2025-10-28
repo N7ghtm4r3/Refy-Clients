@@ -3,7 +3,7 @@ package com.tecknobit.refy.ui.screens.profile.presentation
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxProfileViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxProfileViewModel
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.refy.localUser
 import com.tecknobit.refy.requester
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
  * @author N7ghtm4r3 - Tecknobit
  * @see androidx.lifecycle.ViewModel
  * @see com.tecknobit.equinoxcompose.session.Retriever
- * @see com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+ * @see com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
  * @see EquinoxProfileViewModel
  */
 class ProfileScreenViewModel : EquinoxProfileViewModel(
@@ -42,6 +42,16 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
     lateinit var newTagNameError: MutableState<Boolean>
 
     /**
+     * `closeApplicationOnLinkOpen` Whether the user requires to close the application when
+     * a link has been opened.
+     *
+     * This feature is `Desktop-only`
+     *
+     * @since 1.1.0
+     */
+    lateinit var closeApplicationOnLinkOpen: MutableState<Boolean>
+
+    /**
      * Method to change the tag name of the [localUser]
      *
      * @param onSuccess The action to execute when the request ends successfully
@@ -61,8 +71,38 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
                     )
                 },
                 onSuccess = {
-                    localUser.tagName = newTagName.value
+                    localUser.initTagName(
+                        tagName = newTagName.value
+                    )
                     onSuccess.invoke()
+                },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
+    }
+
+    /**
+     * Method to change the [closeApplicationOnLinkOpen] requirement.
+     *
+     * This feature is `Desktop-only`
+     *
+     * @param onChange The callback to invoke after the flag changed
+     */
+    fun changeCloseOnLinkOpen(
+        onChange: () -> Unit,
+    ) {
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    changeCloseApplicationOnOpenLink(
+                        closeApplicationOnOpenLink = closeApplicationOnLinkOpen.value
+                    )
+                },
+                onSuccess = {
+                    localUser.initCloseApplicationOnLinkOpen(
+                        closeApplicationOnLinkOpen = closeApplicationOnLinkOpen.value
+                    )
+                    onChange()
                 },
                 onFailure = { showSnackbarMessage(it) }
             )

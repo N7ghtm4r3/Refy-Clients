@@ -1,18 +1,42 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:com.tecknobit.refy.helpers////PointingToDeclaration/-refy/com.tecknobit.refy.helpers/index.html
+$dokka.location:com.tecknobit.refy.helpers//AUTH_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-a-u-t-h_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//COLLECTION_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//HOME_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-h-o-m-e_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//PROFILE_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-p-r-o-f-i-l-e_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//SPLASHSCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-s-p-l-a-s-h-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//TEAM_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-t-e-a-m_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//UPSERT_COLLECTION_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-u-p-s-e-r-t_-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//UPSERT_CUSTOM_LINK_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-u-p-s-e-r-t_-c-u-s-t-o-m_-l-i-n-k_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//UPSERT_LINK_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-u-p-s-e-r-t_-l-i-n-k_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy.helpers//UPSERT_TEAM_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-u-p-s-e-r-t_-t-e-a-m_-s-c-r-e-e-n.html
 $dokka.location:com.tecknobit.refy.helpers//customHttpClient/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/custom-http-client.html
-$dokka.location:com.tecknobit.refy.helpers//shareLink/#com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel#com.tecknobit.refy.ui.shared.data.RefyLink/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/share-link.html
+$dokka.location:com.tecknobit.refy.helpers//navToCollectionScreen/#com.tecknobit.refy.ui.shared.data.LinksCollection/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-collection-screen.html
+$dokka.location:com.tecknobit.refy.helpers//navToHome/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-home.html
+$dokka.location:com.tecknobit.refy.helpers//navToProfileScreen/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-profile-screen.html
+$dokka.location:com.tecknobit.refy.helpers//navToSplashscreen/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-splashscreen.html
+$dokka.location:com.tecknobit.refy.helpers//navToTeamScreen/#com.tecknobit.refy.ui.shared.data.Team/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-team-screen.html
+$dokka.location:com.tecknobit.refy.helpers//navToUpsertCustomLinkScreen/#com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink?/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-upsert-custom-link-screen.html
+$dokka.location:com.tecknobit.refy.helpers//navToUpsertLinkCollectionScreen/#com.tecknobit.refy.ui.shared.data.LinksCollection?/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-upsert-link-collection-screen.html
+$dokka.location:com.tecknobit.refy.helpers//navToUpsertLinkScreen/#com.tecknobit.refy.ui.shared.data.RefyLink?/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-upsert-link-screen.html
+$dokka.location:com.tecknobit.refy.helpers//navToUpsertTeam/#com.tecknobit.refy.ui.shared.data.Team?/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/nav-to-upsert-team.html
+$dokka.location:com.tecknobit.refy.helpers//navigator/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/navigator.html
+$dokka.location:com.tecknobit.refy.helpers//shareLink/#com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel#com.tecknobit.refy.ui.shared.data.RefyLink/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/share-link.html
 $dokka.location:com.tecknobit.refy.helpers/KReviewer///PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-k-reviewer/index.html
 $dokka.location:com.tecknobit.refy.helpers/KReviewer/KReviewer/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-k-reviewer/-k-reviewer.html
 $dokka.location:com.tecknobit.refy.helpers/KReviewer/reviewInApp/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-k-reviewer/review-in-app.html
 $dokka.location:com.tecknobit.refy.helpers/RefyLocalUser///PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-local-user/index.html
 $dokka.location:com.tecknobit.refy.helpers/RefyLocalUser/RefyLocalUser/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-local-user/-refy-local-user.html
-$dokka.location:com.tecknobit.refy.helpers/RefyLocalUser/insertNewUser/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlinx.serialization.json.JsonObject#kotlin.Array[kotlin.Any?]/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-local-user/insert-new-user.html
+$dokka.location:com.tecknobit.refy.helpers/RefyLocalUser/initCloseApplicationOnLinkOpen/#kotlin.Boolean/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-local-user/init-close-application-on-link-open.html
+$dokka.location:com.tecknobit.refy.helpers/RefyLocalUser/initTagName/#kotlin.String/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-local-user/init-tag-name.html
+$dokka.location:com.tecknobit.refy.helpers/RefyLocalUser/insertNewUser/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.Any?/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-local-user/insert-new-user.html
+$dokka.location:com.tecknobit.refy.helpers/RefyLocalUser/requiresCloseApplicationOnLinkOpen/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-local-user/requires-close-application-on-link-open.html
 $dokka.location:com.tecknobit.refy.helpers/RefyLocalUser/tagName/#/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-local-user/tag-name.html
 $dokka.location:com.tecknobit.refy.helpers/RefyRequester///PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/index.html
 $dokka.location:com.tecknobit.refy.helpers/RefyRequester/RefyRequester/#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Boolean/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/-refy-requester.html
 $dokka.location:com.tecknobit.refy.helpers/RefyRequester/attachLinksWithCollection/#com.tecknobit.refy.ui.shared.data.LinksCollection#kotlin.collections.List[kotlin.String]/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/attach-links-with-collection.html
+$dokka.location:com.tecknobit.refy.helpers/RefyRequester/changeCloseApplicationOnOpenLink/#kotlin.Boolean/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/change-close-application-on-open-link.html
 $dokka.location:com.tecknobit.refy.helpers/RefyRequester/changeMemberRole/#kotlin.String#com.tecknobit.refy.ui.screens.teams.data.TeamMember#com.tecknobit.refycore.enums.TeamRole/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/change-member-role.html
 $dokka.location:com.tecknobit.refy.helpers/RefyRequester/changeTagName/#kotlin.String/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/change-tag-name.html
 $dokka.location:com.tecknobit.refy.helpers/RefyRequester/createCollection/#kotlin.String#kotlin.String#kotlin.String#kotlin.collections.List[kotlin.String]/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/create-collection.html
@@ -52,7 +76,7 @@ $dokka.location:com.tecknobit.refy.helpers/RefyRequester/shareLinkWithCollection
 $dokka.location:com.tecknobit.refy.helpers/RefyRequester/shareLinkWithTeams/#com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl#kotlin.collections.List[kotlin.String]/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/share-link-with-teams.html
 $dokka.location:com.tecknobit.refy.helpers/RefyRequester/shareLinksWithTeam/#com.tecknobit.refy.ui.shared.data.Team#kotlin.collections.List[kotlin.String]/PointingToDeclaration/-refy/com.tecknobit.refy.helpers/-refy-requester/share-links-with-team.html
 $dokka.location:com.tecknobit.refy.ui.components.links////PointingToDeclaration/-refy/com.tecknobit.refy.ui.components.links/index.html
-$dokka.location:com.tecknobit.refy.ui.components.links//LinkCardContainer/#androidx.compose.ui.Modifier#com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel#com.tecknobit.refy.ui.shared.data.RefyLink#kotlin.Function1[androidx.compose.ui.platform.UriHandler,kotlin.Unit]#kotlin.Function0[kotlin.Unit]#kotlin.Boolean#kotlin.Function0[kotlin.Unit]?#kotlin.Function0[kotlin.Unit]?#kotlin.Function1[androidx.compose.foundation.layout.RowScope,kotlin.Unit]/PointingToDeclaration/-refy/com.tecknobit.refy.ui.components.links/-link-card-container.html
+$dokka.location:com.tecknobit.refy.ui.components.links//LinkCardContainer/#androidx.compose.ui.Modifier#com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel#com.tecknobit.refy.ui.shared.data.RefyLink#kotlin.Function1[androidx.compose.ui.platform.UriHandler,kotlin.Unit]#kotlin.Function0[kotlin.Unit]#kotlin.Boolean#kotlin.Function0[kotlin.Unit]?#kotlin.Function0[kotlin.Unit]?#kotlin.Function1[androidx.compose.foundation.layout.RowScope,kotlin.Unit]/PointingToDeclaration/-refy/com.tecknobit.refy.ui.components.links/-link-card-container.html
 $dokka.location:com.tecknobit.refy.ui.components.links//LinksGrid/#io.github.ahmad_hamwi.compose.pagination.PaginationState[kotlin.Int,TypeParam(bounds=[com.tecknobit.refy.ui.shared.data.RefyLink])]#kotlin.Function1[TypeParam(bounds=[com.tecknobit.refy.ui.shared.data.RefyLink]),kotlin.Unit]/PointingToDeclaration/-refy/com.tecknobit.refy.ui.components.links/-links-grid.html
 $dokka.location:com.tecknobit.refy.ui.components////PointingToDeclaration/-refy/com.tecknobit.refy.ui.components/index.html
 $dokka.location:com.tecknobit.refy.ui.components//AttachCollection/#androidx.compose.material3.SheetState#kotlinx.coroutines.CoroutineScope#com.tecknobit.refy.ui.shared.presentations.CollectionsManager#com.tecknobit.refy.ui.shared.data.LinksCollection/PointingToDeclaration/-refy/com.tecknobit.refy.ui.components/-attach-collection.html
@@ -173,14 +197,6 @@ $dokka.location:com.tecknobit.refy.ui.screens.customs.presenter////PointingToDec
 $dokka.location:com.tecknobit.refy.ui.screens.customs.presenter/CustomLinksScreen///PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.customs.presenter/-custom-links-screen/index.html
 $dokka.location:com.tecknobit.refy.ui.screens.customs.presenter/CustomLinksScreen/CustomLinksScreen/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.customs.presenter/-custom-links-screen/-custom-links-screen.html
 $dokka.location:com.tecknobit.refy.ui.screens.customs.presenter/CustomLinksScreen/RelatedLinkCard/#com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.customs.presenter/-custom-links-screen/-related-link-card.html
-$dokka.location:com.tecknobit.refy.ui.screens.home.components////PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.components/index.html
-$dokka.location:com.tecknobit.refy.ui.screens.home.components//AnimatedBottomNavigationBar/#androidx.compose.ui.Modifier#kotlin.Array[com.tecknobit.refy.ui.screens.home.data.NavigationTab]#androidx.compose.runtime.MutableState[kotlin.Int]#androidx.compose.ui.graphics.Color#androidx.compose.ui.graphics.Color#androidx.compose.ui.graphics.Color#androidx.compose.ui.graphics.Color/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.components/-animated-bottom-navigation-bar.html
-$dokka.location:com.tecknobit.refy.ui.screens.home.components//SideNavigationItem/#com.tecknobit.refy.ui.screens.home.data.NavigationTab#kotlin.Boolean#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.components/-side-navigation-item.html
-$dokka.location:com.tecknobit.refy.ui.screens.home.data////PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.data/index.html
-$dokka.location:com.tecknobit.refy.ui.screens.home.data/NavigationTab///PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.data/-navigation-tab/index.html
-$dokka.location:com.tecknobit.refy.ui.screens.home.data/NavigationTab/NavigationTab/#org.jetbrains.compose.resources.StringResource#androidx.compose.ui.graphics.vector.ImageVector/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.data/-navigation-tab/-navigation-tab.html
-$dokka.location:com.tecknobit.refy.ui.screens.home.data/NavigationTab/icon/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.data/-navigation-tab/icon.html
-$dokka.location:com.tecknobit.refy.ui.screens.home.data/NavigationTab/title/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.data/-navigation-tab/title.html
 $dokka.location:com.tecknobit.refy.ui.screens.home.presenter////PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.presenter/index.html
 $dokka.location:com.tecknobit.refy.ui.screens.home.presenter/HomeScreen///PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.presenter/-home-screen/index.html
 $dokka.location:com.tecknobit.refy.ui.screens.home.presenter/HomeScreen/HomeScreen/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.home.presenter/-home-screen/-home-screen.html
@@ -200,16 +216,20 @@ $dokka.location:com.tecknobit.refy.ui.screens.links.presenter/LinksScreen/Relate
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presentation////PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/index.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presentation/ProfileScreenViewModel///PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/index.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presentation/ProfileScreenViewModel/ProfileScreenViewModel/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/-profile-screen-view-model.html
+$dokka.location:com.tecknobit.refy.ui.screens.profile.presentation/ProfileScreenViewModel/changeCloseOnLinkOpen/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/change-close-on-link-open.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presentation/ProfileScreenViewModel/changeTagName/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/change-tag-name.html
+$dokka.location:com.tecknobit.refy.ui.screens.profile.presentation/ProfileScreenViewModel/closeApplicationOnLinkOpen/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/close-application-on-link-open.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presentation/ProfileScreenViewModel/newTagName/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/new-tag-name.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presentation/ProfileScreenViewModel/newTagNameError/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/new-tag-name-error.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presentation/ProfileScreenViewModel/tagName/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/tag-name.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presenter////PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presenter/index.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presenter/ProfileScreen///PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presenter/-profile-screen/index.html
 $dokka.location:com.tecknobit.refy.ui.screens.profile.presenter/ProfileScreen/ProfileScreen/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.presenter/-profile-screen/-profile-screen.html
+$dokka.location:com.tecknobit.refy.ui.screens.profile.util////PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.util/index.html
+$dokka.location:com.tecknobit.refy.ui.screens.profile.util//platformSpecificSettingSteps/#com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel#kotlin.Array[com.tecknobit.equinoxcompose.components.stepper.Step]/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.profile.util/platform-specific-setting-steps.html
 $dokka.location:com.tecknobit.refy.ui.screens.splashscreen////PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.splashscreen/index.html
-$dokka.location:com.tecknobit.refy.ui.screens.splashscreen/SplashScreen///PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.splashscreen/-splash-screen/index.html
-$dokka.location:com.tecknobit.refy.ui.screens.splashscreen/SplashScreen/SplashScreen/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.splashscreen/-splash-screen/-splash-screen.html
+$dokka.location:com.tecknobit.refy.ui.screens.splashscreen/Splashscreen///PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.splashscreen/-splashscreen/index.html
+$dokka.location:com.tecknobit.refy.ui.screens.splashscreen/Splashscreen/Splashscreen/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.splashscreen/-splashscreen/-splashscreen.html
 $dokka.location:com.tecknobit.refy.ui.screens.team.components////PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.team.components/index.html
 $dokka.location:com.tecknobit.refy.ui.screens.team.components//TeamCollectionCard/#com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel#kotlin.Boolean#com.tecknobit.refy.ui.shared.data.LinksCollection/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.team.components/-team-collection-card.html
 $dokka.location:com.tecknobit.refy.ui.screens.team.components//TeamLinkCard/#androidx.compose.ui.Modifier#com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel#com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.team.components/-team-link-card.html
@@ -302,7 +322,7 @@ $dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeam
 $dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeamScreenViewModel/UpsertTeamScreenViewModel/#kotlin.String?/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/-upsert-team-screen-view-model/-upsert-team-screen-view-model.html
 $dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeamScreenViewModel/logoPic/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/-upsert-team-screen-view-model/logo-pic.html
 $dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeamScreenViewModel/logoPicError/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/-upsert-team-screen-view-model/logo-pic-error.html
-$dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeamScreenViewModel/pickTeamLogo/#io.github.vinceglb.filekit.core.PlatformFile?/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/-upsert-team-screen-view-model/pick-team-logo.html
+$dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeamScreenViewModel/pickTeamLogo/#io.github.vinceglb.filekit.PlatformFile?/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/-upsert-team-screen-view-model/pick-team-logo.html
 $dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeamScreenViewModel/potentialMembers/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/-upsert-team-screen-view-model/potential-members.html
 $dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeamScreenViewModel/retrieveItem/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/-upsert-team-screen-view-model/retrieve-item.html
 $dokka.location:com.tecknobit.refy.ui.screens.upsertteam.presentation/UpsertTeamScreenViewModel/teamMembers/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.screens.upsertteam.presentation/-upsert-team-screen-view-model/team-members.html
@@ -437,14 +457,14 @@ $dokka.location:com.tecknobit.refy.ui.shared.presenters/ItemScreen/ItemScreen/#T
 $dokka.location:com.tecknobit.refy.ui.shared.presenters/ItemsScreen///PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-items-screen/index.html
 $dokka.location:com.tecknobit.refy.ui.shared.presenters/ItemsScreen/ItemsScreen/#org.jetbrains.compose.resources.StringResource#TypeParam(bounds=[com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel])/PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-items-screen/-items-screen.html
 $dokka.location:com.tecknobit.refy.ui.shared.presenters/RefyScreen///PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-refy-screen/index.html
-$dokka.location:com.tecknobit.refy.ui.shared.presenters/RefyScreen/RefyScreen/#org.jetbrains.compose.resources.StringResource?#TypeParam(bounds=[com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel])#androidx.compose.ui.unit.Dp#androidx.compose.ui.unit.Dp/PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-refy-screen/-refy-screen.html
-$dokka.location:com.tecknobit.refy.ui.shared.presenters/UpsertScreen.Companion///PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-upsert-screen/-companion/index.html
-$dokka.location:com.tecknobit.refy.ui.shared.presenters/UpsertScreen.Companion/inputFieldShape/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-upsert-screen/-companion/input-field-shape.html
+$dokka.location:com.tecknobit.refy.ui.shared.presenters/RefyScreen/RefyScreen/#org.jetbrains.compose.resources.StringResource?#TypeParam(bounds=[com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel])/PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-refy-screen/-refy-screen.html
 $dokka.location:com.tecknobit.refy.ui.shared.presenters/UpsertScreen///PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-upsert-screen/index.html
 $dokka.location:com.tecknobit.refy.ui.shared.presenters/UpsertScreen/UpsertScreen/#kotlin.String?#org.jetbrains.compose.resources.StringResource#org.jetbrains.compose.resources.StringResource#org.jetbrains.compose.resources.StringResource#TypeParam(bounds=[com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel[TypeParam(bounds=[com.tecknobit.refy.ui.shared.data.RefyItem])]])/PointingToDeclaration/-refy/com.tecknobit.refy.ui.shared.presenters/-upsert-screen/-upsert-screen.html
 $dokka.location:com.tecknobit.refy.ui.theme////PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/index.html
 $dokka.location:com.tecknobit.refy.ui.theme//AppTypography/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/-app-typography.html
+$dokka.location:com.tecknobit.refy.ui.theme//InputShape/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/-input-shape.html
 $dokka.location:com.tecknobit.refy.ui.theme//RefyTheme/#kotlin.Boolean#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/-refy-theme.html
+$dokka.location:com.tecknobit.refy.ui.theme//applyDarkTheme/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/apply-dark-theme.html
 $dokka.location:com.tecknobit.refy.ui.theme//backgroundDark/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/background-dark.html
 $dokka.location:com.tecknobit.refy.ui.theme//backgroundDarkHighContrast/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/background-dark-high-contrast.html
 $dokka.location:com.tecknobit.refy.ui.theme//backgroundDarkMediumContrast/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/background-dark-medium-contrast.html
@@ -660,24 +680,14 @@ $dokka.location:com.tecknobit.refy.ui.theme//tertiaryLight/#/PointingToDeclarati
 $dokka.location:com.tecknobit.refy.ui.theme//tertiaryLightHighContrast/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/tertiary-light-high-contrast.html
 $dokka.location:com.tecknobit.refy.ui.theme//tertiaryLightMediumContrast/#/PointingToDeclaration/-refy/com.tecknobit.refy.ui.theme/tertiary-light-medium-contrast.html
 $dokka.location:com.tecknobit.refy////PointingToDeclaration/-refy/com.tecknobit.refy/index.html
-$dokka.location:com.tecknobit.refy//AUTH_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-a-u-t-h_-s-c-r-e-e-n.html
 $dokka.location:com.tecknobit.refy//App/#/PointingToDeclaration/-refy/com.tecknobit.refy/-app.html
-$dokka.location:com.tecknobit.refy//COLLECTION_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html
 $dokka.location:com.tecknobit.refy//CheckForUpdatesAndLaunch/#/PointingToDeclaration/-refy/com.tecknobit.refy/-check-for-updates-and-launch.html
 $dokka.location:com.tecknobit.refy//CloseApplicationOnNavBack/#/PointingToDeclaration/-refy/com.tecknobit.refy/-close-application-on-nav-back.html
-$dokka.location:com.tecknobit.refy//HOME_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-h-o-m-e_-s-c-r-e-e-n.html
-$dokka.location:com.tecknobit.refy//PROFILE_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-p-r-o-f-i-l-e_-s-c-r-e-e-n.html
-$dokka.location:com.tecknobit.refy//SPLASHSCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-s-p-l-a-s-h-s-c-r-e-e-n.html
-$dokka.location:com.tecknobit.refy//TEAM_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-t-e-a-m_-s-c-r-e-e-n.html
-$dokka.location:com.tecknobit.refy//UPSERT_COLLECTION_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-u-p-s-e-r-t_-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html
-$dokka.location:com.tecknobit.refy//UPSERT_CUSTOM_LINK_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-u-p-s-e-r-t_-c-u-s-t-o-m_-l-i-n-k_-s-c-r-e-e-n.html
-$dokka.location:com.tecknobit.refy//UPSERT_LINK_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-u-p-s-e-r-t_-l-i-n-k_-s-c-r-e-e-n.html
-$dokka.location:com.tecknobit.refy//UPSERT_TEAM_SCREEN/#/PointingToDeclaration/-refy/com.tecknobit.refy/-u-p-s-e-r-t_-t-e-a-m_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.refy//MainViewController/#/PointingToDeclaration/-refy/com.tecknobit.refy/-main-view-controller.html
 $dokka.location:com.tecknobit.refy//bodyFontFamily/#/PointingToDeclaration/-refy/com.tecknobit.refy/body-font-family.html
 $dokka.location:com.tecknobit.refy//displayFontFamily/#/PointingToDeclaration/-refy/com.tecknobit.refy/display-font-family.html
 $dokka.location:com.tecknobit.refy//localUser/#/PointingToDeclaration/-refy/com.tecknobit.refy/local-user.html
 $dokka.location:com.tecknobit.refy//main/#/PointingToDeclaration/-refy/com.tecknobit.refy/[wasm-js]main.html
-$dokka.location:com.tecknobit.refy//navigator/#/PointingToDeclaration/-refy/com.tecknobit.refy/navigator.html
 $dokka.location:com.tecknobit.refy//requester/#/PointingToDeclaration/-refy/com.tecknobit.refy/requester.html
 $dokka.location:com.tecknobit.refy//setUserLanguage/#/PointingToDeclaration/-refy/com.tecknobit.refy/set-user-language.html
 $dokka.location:com.tecknobit.refy//startSession/#/PointingToDeclaration/-refy/com.tecknobit.refy/start-session.html
@@ -704,14 +714,13 @@ com.tecknobit.refy.ui.screens.customs.components
 com.tecknobit.refy.ui.screens.customs.data
 com.tecknobit.refy.ui.screens.customs.presentation
 com.tecknobit.refy.ui.screens.customs.presenter
-com.tecknobit.refy.ui.screens.home.components
-com.tecknobit.refy.ui.screens.home.data
 com.tecknobit.refy.ui.screens.home.presenter
 com.tecknobit.refy.ui.screens.links.components
 com.tecknobit.refy.ui.screens.links.presentation
 com.tecknobit.refy.ui.screens.links.presenter
 com.tecknobit.refy.ui.screens.profile.presentation
 com.tecknobit.refy.ui.screens.profile.presenter
+com.tecknobit.refy.ui.screens.profile.util
 com.tecknobit.refy.ui.screens.splashscreen
 com.tecknobit.refy.ui.screens.team.components
 com.tecknobit.refy.ui.screens.team.presentation

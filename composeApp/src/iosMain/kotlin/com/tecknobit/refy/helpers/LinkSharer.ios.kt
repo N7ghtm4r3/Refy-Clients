@@ -1,6 +1,6 @@
 package com.tecknobit.refy.helpers
 
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.refy.ui.shared.data.RefyLink
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication

@@ -48,9 +48,9 @@ import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.ChameleonText
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.Wrapper
-import com.tecknobit.equinoxcore.mergeIfNotContained
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
+import com.tecknobit.equinoxcore.util.mergeIfNotContained
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.requester
 import com.tecknobit.refy.ui.icons.CollapseAll

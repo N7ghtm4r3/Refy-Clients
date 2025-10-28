@@ -5,6 +5,7 @@
 
 package com.tecknobit.refy.ui.shared.presenters
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -36,7 +37,7 @@ import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.components.RetryButton
 import com.tecknobit.refy.ui.components.links.LinksGrid
 import com.tecknobit.refy.ui.shared.data.RefyItem
@@ -67,9 +68,7 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     viewModel: V,
     private val name: String
 ) : RefyScreen<V>(
-    viewModel = viewModel,
-    snackbarHostStateBottomPadding = 0.dp,
-    contentBottomPadding = 0.dp
+    viewModel = viewModel
 ) {
 
     /**
@@ -83,6 +82,23 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     private lateinit var itemName: State<String>
 
     /**
+     * Method to arrange the content of the screen to display
+     */
+    @Composable
+    @RequiresSuperCall
+    override fun ArrangeScreenContent() {
+        Column(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.background)
+                .padding(
+                    top = 16.dp
+                )
+        ) {
+            super.ArrangeScreenContent()
+        }
+    }
+
+    /**
      * Section related to the back navigation from the current screen to a previous one
      */
     @Composable
@@ -91,12 +107,26 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
         IconButton(
             modifier = Modifier
                 .size(25.dp),
-            onClick = { navigator.goBack() }
+            onClick = { navigator.popBackStack() }
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
                 contentDescription = null
             )
+        }
+    }
+
+    /**
+     * Custom top bar of the screen to display the information about the screen or to execute
+     * any actions related to the screen
+     */
+    @Composable
+    override fun TopBar() {
+        Row(
+            modifier = Modifier
+                .responsiveMaxWidth()
+        ) {
+            super.TopBar()
         }
     }
 
@@ -119,16 +149,16 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
     }
 
     /**
-     * The content of the [SubTitleSection]
+     * The content of the [SubtitleSection]
      */
     @Composable
     @NonRestartableComposable
-    override fun SubTitleContent() {
+    override fun SubtitleContent() {
         awaitNullItemLoaded(
             itemToWait = item.value,
             extras = { item.value!!.iAmTheOwner() }
         ) {
-            super.SubTitleContent()
+            super.SubtitleContent()
         }
     }
 
@@ -149,7 +179,10 @@ abstract class ItemScreen<I : RefyItem, V : ItemScreenViewModel<I>>(
             content = {
                 Column(
                     modifier = Modifier
-                        .fillMaxSize(),
+                        .fillMaxSize()
+                        .padding(
+                            horizontal = 16.dp
+                        ),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Column(

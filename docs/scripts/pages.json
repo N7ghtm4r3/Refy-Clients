@@ -50,12 +50,12 @@
     ]
   },
   {
-    "name": "abstract class RefyScreen<V : RefyScreenViewModel>(title: StringResource? = null, viewModel: V, snackbarHostStateBottomPadding: Dp = 100.dp, contentBottomPadding: Dp = 79.dp) : EquinoxScreen<V> ",
+    "name": "abstract class RefyScreen<V : RefyScreenViewModel>(title: StringResource? = null, viewModel: V) : EquinoxScreen<V> ",
     "description": "com.tecknobit.refy.ui.shared.presenters.RefyScreen",
     "location": "-refy/com.tecknobit.refy.ui.shared.presenters/-refy-screen/index.html",
     "searchKeys": [
       "RefyScreen",
-      "abstract class RefyScreen<V : RefyScreenViewModel>(title: StringResource? = null, viewModel: V, snackbarHostStateBottomPadding: Dp = 100.dp, contentBottomPadding: Dp = 79.dp) : EquinoxScreen<V> ",
+      "abstract class RefyScreen<V : RefyScreenViewModel>(title: StringResource? = null, viewModel: V) : EquinoxScreen<V> ",
       "com.tecknobit.refy.ui.shared.presenters.RefyScreen"
     ]
   },
@@ -480,12 +480,12 @@
     ]
   },
   {
-    "name": "class HomeScreen : EquinoxNoModelScreen",
+    "name": "class HomeScreen : NavigatorScreen<I18nNavigationTab> ",
     "description": "com.tecknobit.refy.ui.screens.home.presenter.HomeScreen",
     "location": "-refy/com.tecknobit.refy.ui.screens.home.presenter/-home-screen/index.html",
     "searchKeys": [
       "HomeScreen",
-      "class HomeScreen : EquinoxNoModelScreen",
+      "class HomeScreen : NavigatorScreen<I18nNavigationTab> ",
       "com.tecknobit.refy.ui.screens.home.presenter.HomeScreen"
     ]
   },
@@ -560,13 +560,13 @@
     ]
   },
   {
-    "name": "class SplashScreen : EquinoxNoModelScreen",
-    "description": "com.tecknobit.refy.ui.screens.splashscreen.SplashScreen",
-    "location": "-refy/com.tecknobit.refy.ui.screens.splashscreen/-splash-screen/index.html",
+    "name": "class Splashscreen : EquinoxNoModelScreen",
+    "description": "com.tecknobit.refy.ui.screens.splashscreen.Splashscreen",
+    "location": "-refy/com.tecknobit.refy.ui.screens.splashscreen/-splashscreen/index.html",
     "searchKeys": [
-      "SplashScreen",
-      "class SplashScreen : EquinoxNoModelScreen",
-      "com.tecknobit.refy.ui.screens.splashscreen.SplashScreen"
+      "Splashscreen",
+      "class Splashscreen : EquinoxNoModelScreen",
+      "com.tecknobit.refy.ui.screens.splashscreen.Splashscreen"
     ]
   },
   {
@@ -691,12 +691,12 @@
   },
   {
     "name": "const val AUTH_SCREEN: String",
-    "description": "com.tecknobit.refy.AUTH_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-a-u-t-h_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.AUTH_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-a-u-t-h_-s-c-r-e-e-n.html",
     "searchKeys": [
       "AUTH_SCREEN",
       "const val AUTH_SCREEN: String",
-      "com.tecknobit.refy.AUTH_SCREEN"
+      "com.tecknobit.refy.helpers.AUTH_SCREEN"
     ]
   },
   {
@@ -711,22 +711,22 @@
   },
   {
     "name": "const val COLLECTION_SCREEN: String",
-    "description": "com.tecknobit.refy.COLLECTION_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.COLLECTION_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html",
     "searchKeys": [
       "COLLECTION_SCREEN",
       "const val COLLECTION_SCREEN: String",
-      "com.tecknobit.refy.COLLECTION_SCREEN"
+      "com.tecknobit.refy.helpers.COLLECTION_SCREEN"
     ]
   },
   {
     "name": "const val HOME_SCREEN: String",
-    "description": "com.tecknobit.refy.HOME_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-h-o-m-e_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.HOME_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-h-o-m-e_-s-c-r-e-e-n.html",
     "searchKeys": [
       "HOME_SCREEN",
       "const val HOME_SCREEN: String",
-      "com.tecknobit.refy.HOME_SCREEN"
+      "com.tecknobit.refy.helpers.HOME_SCREEN"
     ]
   },
   {
@@ -741,72 +741,72 @@
   },
   {
     "name": "const val PROFILE_SCREEN: String",
-    "description": "com.tecknobit.refy.PROFILE_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-p-r-o-f-i-l-e_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.PROFILE_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-p-r-o-f-i-l-e_-s-c-r-e-e-n.html",
     "searchKeys": [
       "PROFILE_SCREEN",
       "const val PROFILE_SCREEN: String",
-      "com.tecknobit.refy.PROFILE_SCREEN"
+      "com.tecknobit.refy.helpers.PROFILE_SCREEN"
     ]
   },
   {
     "name": "const val SPLASHSCREEN: String",
-    "description": "com.tecknobit.refy.SPLASHSCREEN",
-    "location": "-refy/com.tecknobit.refy/-s-p-l-a-s-h-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.SPLASHSCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-s-p-l-a-s-h-s-c-r-e-e-n.html",
     "searchKeys": [
       "SPLASHSCREEN",
       "const val SPLASHSCREEN: String",
-      "com.tecknobit.refy.SPLASHSCREEN"
+      "com.tecknobit.refy.helpers.SPLASHSCREEN"
     ]
   },
   {
     "name": "const val TEAM_SCREEN: String",
-    "description": "com.tecknobit.refy.TEAM_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-t-e-a-m_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.TEAM_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-t-e-a-m_-s-c-r-e-e-n.html",
     "searchKeys": [
       "TEAM_SCREEN",
       "const val TEAM_SCREEN: String",
-      "com.tecknobit.refy.TEAM_SCREEN"
+      "com.tecknobit.refy.helpers.TEAM_SCREEN"
     ]
   },
   {
     "name": "const val UPSERT_COLLECTION_SCREEN: String",
-    "description": "com.tecknobit.refy.UPSERT_COLLECTION_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-u-p-s-e-r-t_-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.UPSERT_COLLECTION_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-u-p-s-e-r-t_-c-o-l-l-e-c-t-i-o-n_-s-c-r-e-e-n.html",
     "searchKeys": [
       "UPSERT_COLLECTION_SCREEN",
       "const val UPSERT_COLLECTION_SCREEN: String",
-      "com.tecknobit.refy.UPSERT_COLLECTION_SCREEN"
+      "com.tecknobit.refy.helpers.UPSERT_COLLECTION_SCREEN"
     ]
   },
   {
     "name": "const val UPSERT_CUSTOM_LINK_SCREEN: String",
-    "description": "com.tecknobit.refy.UPSERT_CUSTOM_LINK_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-u-p-s-e-r-t_-c-u-s-t-o-m_-l-i-n-k_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.UPSERT_CUSTOM_LINK_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-u-p-s-e-r-t_-c-u-s-t-o-m_-l-i-n-k_-s-c-r-e-e-n.html",
     "searchKeys": [
       "UPSERT_CUSTOM_LINK_SCREEN",
       "const val UPSERT_CUSTOM_LINK_SCREEN: String",
-      "com.tecknobit.refy.UPSERT_CUSTOM_LINK_SCREEN"
+      "com.tecknobit.refy.helpers.UPSERT_CUSTOM_LINK_SCREEN"
     ]
   },
   {
     "name": "const val UPSERT_LINK_SCREEN: String",
-    "description": "com.tecknobit.refy.UPSERT_LINK_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-u-p-s-e-r-t_-l-i-n-k_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.UPSERT_LINK_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-u-p-s-e-r-t_-l-i-n-k_-s-c-r-e-e-n.html",
     "searchKeys": [
       "UPSERT_LINK_SCREEN",
       "const val UPSERT_LINK_SCREEN: String",
-      "com.tecknobit.refy.UPSERT_LINK_SCREEN"
+      "com.tecknobit.refy.helpers.UPSERT_LINK_SCREEN"
     ]
   },
   {
     "name": "const val UPSERT_TEAM_SCREEN: String",
-    "description": "com.tecknobit.refy.UPSERT_TEAM_SCREEN",
-    "location": "-refy/com.tecknobit.refy/-u-p-s-e-r-t_-t-e-a-m_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.refy.helpers.UPSERT_TEAM_SCREEN",
+    "location": "-refy/com.tecknobit.refy.helpers/-u-p-s-e-r-t_-t-e-a-m_-s-c-r-e-e-n.html",
     "searchKeys": [
       "UPSERT_TEAM_SCREEN",
       "const val UPSERT_TEAM_SCREEN: String",
-      "com.tecknobit.refy.UPSERT_TEAM_SCREEN"
+      "com.tecknobit.refy.helpers.UPSERT_TEAM_SCREEN"
     ]
   },
   {
@@ -941,12 +941,12 @@
   },
   {
     "name": "constructor()",
-    "description": "com.tecknobit.refy.ui.screens.splashscreen.SplashScreen.SplashScreen",
-    "location": "-refy/com.tecknobit.refy.ui.screens.splashscreen/-splash-screen/-splash-screen.html",
+    "description": "com.tecknobit.refy.ui.screens.splashscreen.Splashscreen.Splashscreen",
+    "location": "-refy/com.tecknobit.refy.ui.screens.splashscreen/-splashscreen/-splashscreen.html",
     "searchKeys": [
-      "SplashScreen",
+      "Splashscreen",
       "constructor()",
-      "com.tecknobit.refy.ui.screens.splashscreen.SplashScreen.SplashScreen"
+      "com.tecknobit.refy.ui.screens.splashscreen.Splashscreen.Splashscreen"
     ]
   },
   {
@@ -1210,16 +1210,6 @@
     ]
   },
   {
-    "name": "constructor(title: StringResource, icon: ImageVector)",
-    "description": "com.tecknobit.refy.ui.screens.home.data.NavigationTab.NavigationTab",
-    "location": "-refy/com.tecknobit.refy.ui.screens.home.data/-navigation-tab/-navigation-tab.html",
-    "searchKeys": [
-      "NavigationTab",
-      "constructor(title: StringResource, icon: ImageVector)",
-      "com.tecknobit.refy.ui.screens.home.data.NavigationTab.NavigationTab"
-    ]
-  },
-  {
     "name": "constructor(title: StringResource, viewModel: V)",
     "description": "com.tecknobit.refy.ui.shared.presenters.BaseLinksScreen.BaseLinksScreen",
     "location": "-refy/com.tecknobit.refy.ui.shared.presenters/-base-links-screen/-base-links-screen.html",
@@ -1240,12 +1230,12 @@
     ]
   },
   {
-    "name": "constructor(title: StringResource? = null, viewModel: V, snackbarHostStateBottomPadding: Dp = 100.dp, contentBottomPadding: Dp = 79.dp)",
+    "name": "constructor(title: StringResource? = null, viewModel: V)",
     "description": "com.tecknobit.refy.ui.shared.presenters.RefyScreen.RefyScreen",
     "location": "-refy/com.tecknobit.refy.ui.shared.presenters/-refy-screen/-refy-screen.html",
     "searchKeys": [
       "RefyScreen",
-      "constructor(title: StringResource? = null, viewModel: V, snackbarHostStateBottomPadding: Dp = 100.dp, contentBottomPadding: Dp = 79.dp)",
+      "constructor(title: StringResource? = null, viewModel: V)",
       "com.tecknobit.refy.ui.shared.presenters.RefyScreen.RefyScreen"
     ]
   },
@@ -1277,16 +1267,6 @@
       "LinksCollection",
       "data class LinksCollection(val id: String, val owner: RefyUser.RefyUserImpl, val title: String, val description: String, val date: Long, val color: String, val links: List<RefyLink.RefyLinkImpl> = emptyList(), val teams: List<Team> = emptyList()) : RefyItem",
       "com.tecknobit.refy.ui.shared.data.LinksCollection"
-    ]
-  },
-  {
-    "name": "data class NavigationTab(val title: StringResource, val icon: ImageVector)",
-    "description": "com.tecknobit.refy.ui.screens.home.data.NavigationTab",
-    "location": "-refy/com.tecknobit.refy.ui.screens.home.data/-navigation-tab/index.html",
-    "searchKeys": [
-      "NavigationTab",
-      "data class NavigationTab(val title: StringResource, val icon: ImageVector)",
-      "com.tecknobit.refy.ui.screens.home.data.NavigationTab"
     ]
   },
   {
@@ -1390,6 +1370,16 @@
     ]
   },
   {
+    "name": "expect fun platformSpecificSettingSteps(viewModel: ProfileScreenViewModel, commonSteps: Array<Step>): Array<Step>",
+    "description": "com.tecknobit.refy.ui.screens.profile.util.platformSpecificSettingSteps",
+    "location": "-refy/com.tecknobit.refy.ui.screens.profile.util/platform-specific-setting-steps.html",
+    "searchKeys": [
+      "platformSpecificSettingSteps",
+      "expect fun platformSpecificSettingSteps(viewModel: ProfileScreenViewModel, commonSteps: Array<Step>): Array<Step>",
+      "com.tecknobit.refy.ui.screens.profile.util.platformSpecificSettingSteps"
+    ]
+  },
+  {
     "name": "expect fun reviewInApp(flowAction: () -> Unit)",
     "description": "com.tecknobit.refy.helpers.KReviewer.reviewInApp",
     "location": "-refy/com.tecknobit.refy.helpers/-k-reviewer/review-in-app.html",
@@ -1437,16 +1427,6 @@
       "LinksGrid",
       "fun <T : RefyLink> LinksGrid(linksState: PaginationState<Int, T>, linkCard: (T) -> Unit)",
       "com.tecknobit.refy.ui.components.links.LinksGrid"
-    ]
-  },
-  {
-    "name": "fun AnimatedBottomNavigationBar(modifier: Modifier, tabs: Array<NavigationTab>, currentSelectedTabIndex: MutableState<Int>, barColor: Color = MaterialTheme.colorScheme.surfaceContainer, circleColor: Color = MaterialTheme.colorScheme.surfaceContainer, selectedColor: Color = MaterialTheme.colorScheme.primary, unselectedColor: Color = MaterialTheme.colorScheme.onSurface)",
-    "description": "com.tecknobit.refy.ui.screens.home.components.AnimatedBottomNavigationBar",
-    "location": "-refy/com.tecknobit.refy.ui.screens.home.components/-animated-bottom-navigation-bar.html",
-    "searchKeys": [
-      "AnimatedBottomNavigationBar",
-      "fun AnimatedBottomNavigationBar(modifier: Modifier, tabs: Array<NavigationTab>, currentSelectedTabIndex: MutableState<Int>, barColor: Color = MaterialTheme.colorScheme.surfaceContainer, circleColor: Color = MaterialTheme.colorScheme.surfaceContainer, selectedColor: Color = MaterialTheme.colorScheme.primary, unselectedColor: Color = MaterialTheme.colorScheme.onSurface)",
-      "com.tecknobit.refy.ui.screens.home.components.AnimatedBottomNavigationBar"
     ]
   },
   {
@@ -1710,12 +1690,12 @@
     ]
   },
   {
-    "name": "fun LinkCardContainer(modifier: Modifier = Modifier, viewModel: EquinoxViewModel, link: RefyLink, onClick: (UriHandler) -> Unit = { uriHandler -> uriHandler.openUri(link.reference) }, onLongClick: () -> Unit = {\n        navigator.navigate(\"$UPSERT_LINK_SCREEN/${link.id}\")\n    }, showOwnerData: Boolean = false, extraInformation: () -> Unit? = null, extraButton: () -> Unit? = null, cancelButton: RowScope.() -> Unit)",
+    "name": "fun LinkCardContainer(modifier: Modifier = Modifier, viewModel: EquinoxViewModel, link: RefyLink, onClick: (UriHandler) -> Unit = { uriHandler -> uriHandler.openUri(link.reference) }, onLongClick: () -> Unit = {\n        navToUpsertLinkScreen(\n            link = link\n        )\n    }, showOwnerData: Boolean = false, extraInformation: () -> Unit? = null, extraButton: () -> Unit? = null, cancelButton: RowScope.() -> Unit)",
     "description": "com.tecknobit.refy.ui.components.links.LinkCardContainer",
     "location": "-refy/com.tecknobit.refy.ui.components.links/-link-card-container.html",
     "searchKeys": [
       "LinkCardContainer",
-      "fun LinkCardContainer(modifier: Modifier = Modifier, viewModel: EquinoxViewModel, link: RefyLink, onClick: (UriHandler) -> Unit = { uriHandler -> uriHandler.openUri(link.reference) }, onLongClick: () -> Unit = {\n        navigator.navigate(\"$UPSERT_LINK_SCREEN/${link.id}\")\n    }, showOwnerData: Boolean = false, extraInformation: () -> Unit? = null, extraButton: () -> Unit? = null, cancelButton: RowScope.() -> Unit)",
+      "fun LinkCardContainer(modifier: Modifier = Modifier, viewModel: EquinoxViewModel, link: RefyLink, onClick: (UriHandler) -> Unit = { uriHandler -> uriHandler.openUri(link.reference) }, onLongClick: () -> Unit = {\n        navToUpsertLinkScreen(\n            link = link\n        )\n    }, showOwnerData: Boolean = false, extraInformation: () -> Unit? = null, extraButton: () -> Unit? = null, cancelButton: RowScope.() -> Unit)",
       "com.tecknobit.refy.ui.components.links.LinkCardContainer"
     ]
   },
@@ -1760,6 +1740,16 @@
     ]
   },
   {
+    "name": "fun MainViewController()",
+    "description": "com.tecknobit.refy.MainViewController",
+    "location": "-refy/com.tecknobit.refy/-main-view-controller.html",
+    "searchKeys": [
+      "MainViewController",
+      "fun MainViewController()",
+      "com.tecknobit.refy.MainViewController"
+    ]
+  },
+  {
     "name": "fun NewPageProgressIndicator(modifier: Modifier = Modifier)",
     "description": "com.tecknobit.refy.ui.components.NewPageProgressIndicator",
     "location": "-refy/com.tecknobit.refy.ui.components/-new-page-progress-indicator.html",
@@ -1770,22 +1760,22 @@
     ]
   },
   {
-    "name": "fun ProfilePic(modifier: Modifier = Modifier, profilePic: String = localUser.profilePic, size: Dp, onClick: () -> Unit = { navigator.navigate(PROFILE_SCREEN) })",
+    "name": "fun ProfilePic(modifier: Modifier = Modifier, profilePic: String = localUser.profilePic, size: Dp, onClick: () -> Unit = { navToProfileScreen() })",
     "description": "com.tecknobit.refy.ui.components.ProfilePic",
     "location": "-refy/com.tecknobit.refy.ui.components/-profile-pic.html",
     "searchKeys": [
       "ProfilePic",
-      "fun ProfilePic(modifier: Modifier = Modifier, profilePic: String = localUser.profilePic, size: Dp, onClick: () -> Unit = { navigator.navigate(PROFILE_SCREEN) })",
+      "fun ProfilePic(modifier: Modifier = Modifier, profilePic: String = localUser.profilePic, size: Dp, onClick: () -> Unit = { navToProfileScreen() })",
       "com.tecknobit.refy.ui.components.ProfilePic"
     ]
   },
   {
-    "name": "fun RefyTheme(darkTheme: Boolean = when (localUser.theme) {\n        Light -> false\n        Dark -> true\n        else -> isSystemInDarkTheme()\n    }, content: () -> Unit)",
+    "name": "fun RefyTheme(darkTheme: Boolean = applyDarkTheme(), content: () -> Unit)",
     "description": "com.tecknobit.refy.ui.theme.RefyTheme",
     "location": "-refy/com.tecknobit.refy.ui.theme/-refy-theme.html",
     "searchKeys": [
       "RefyTheme",
-      "fun RefyTheme(darkTheme: Boolean = when (localUser.theme) {\n        Light -> false\n        Dark -> true\n        else -> isSystemInDarkTheme()\n    }, content: () -> Unit)",
+      "fun RefyTheme(darkTheme: Boolean = applyDarkTheme(), content: () -> Unit)",
       "com.tecknobit.refy.ui.theme.RefyTheme"
     ]
   },
@@ -1827,16 +1817,6 @@
       "ScreenTopBar",
       "fun ScreenTopBar(screenTitle: StringResource)",
       "com.tecknobit.refy.ui.components.ScreenTopBar"
-    ]
-  },
-  {
-    "name": "fun SideNavigationItem(tab: NavigationTab, selected: Boolean, onClick: () -> Unit)",
-    "description": "com.tecknobit.refy.ui.screens.home.components.SideNavigationItem",
-    "location": "-refy/com.tecknobit.refy.ui.screens.home.components/-side-navigation-item.html",
-    "searchKeys": [
-      "SideNavigationItem",
-      "fun SideNavigationItem(tab: NavigationTab, selected: Boolean, onClick: () -> Unit)",
-      "com.tecknobit.refy.ui.screens.home.components.SideNavigationItem"
     ]
   },
   {
@@ -1940,6 +1920,26 @@
     ]
   },
   {
+    "name": "fun applyDarkTheme(): Boolean",
+    "description": "com.tecknobit.refy.ui.theme.applyDarkTheme",
+    "location": "-refy/com.tecknobit.refy.ui.theme/apply-dark-theme.html",
+    "searchKeys": [
+      "applyDarkTheme",
+      "fun applyDarkTheme(): Boolean",
+      "com.tecknobit.refy.ui.theme.applyDarkTheme"
+    ]
+  },
+  {
+    "name": "fun changeCloseOnLinkOpen(onChange: () -> Unit)",
+    "description": "com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel.changeCloseOnLinkOpen",
+    "location": "-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/change-close-on-link-open.html",
+    "searchKeys": [
+      "changeCloseOnLinkOpen",
+      "fun changeCloseOnLinkOpen(onChange: () -> Unit)",
+      "com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel.changeCloseOnLinkOpen"
+    ]
+  },
+  {
     "name": "fun changeMemberRole(member: TeamMember, role: TeamRole, onChange: () -> Unit)",
     "description": "com.tecknobit.refy.ui.screens.team.presentation.TeamScreenViewModel.changeMemberRole",
     "location": "-refy/com.tecknobit.refy.ui.screens.team.presentation/-team-screen-view-model/change-member-role.html",
@@ -2000,6 +2000,26 @@
     ]
   },
   {
+    "name": "fun initCloseApplicationOnLinkOpen(closeApplicationOnLinkOpen: Boolean)",
+    "description": "com.tecknobit.refy.helpers.RefyLocalUser.initCloseApplicationOnLinkOpen",
+    "location": "-refy/com.tecknobit.refy.helpers/-refy-local-user/init-close-application-on-link-open.html",
+    "searchKeys": [
+      "initCloseApplicationOnLinkOpen",
+      "fun initCloseApplicationOnLinkOpen(closeApplicationOnLinkOpen: Boolean)",
+      "com.tecknobit.refy.helpers.RefyLocalUser.initCloseApplicationOnLinkOpen"
+    ]
+  },
+  {
+    "name": "fun initTagName(tagName: String)",
+    "description": "com.tecknobit.refy.helpers.RefyLocalUser.initTagName",
+    "location": "-refy/com.tecknobit.refy.helpers/-refy-local-user/init-tag-name.html",
+    "searchKeys": [
+      "initTagName",
+      "fun initTagName(tagName: String)",
+      "com.tecknobit.refy.helpers.RefyLocalUser.initTagName"
+    ]
+  },
+  {
     "name": "fun isExpired(): Boolean",
     "description": "com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink.isExpired",
     "location": "-refy/com.tecknobit.refy.ui.screens.customs.data/-custom-refy-link/is-expired.html",
@@ -2057,6 +2077,96 @@
       "main",
       "fun main()",
       "com.tecknobit.refy.main"
+    ]
+  },
+  {
+    "name": "fun navToCollectionScreen(linksCollection: LinksCollection)",
+    "description": "com.tecknobit.refy.helpers.navToCollectionScreen",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-collection-screen.html",
+    "searchKeys": [
+      "navToCollectionScreen",
+      "fun navToCollectionScreen(linksCollection: LinksCollection)",
+      "com.tecknobit.refy.helpers.navToCollectionScreen"
+    ]
+  },
+  {
+    "name": "fun navToHome()",
+    "description": "com.tecknobit.refy.helpers.navToHome",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-home.html",
+    "searchKeys": [
+      "navToHome",
+      "fun navToHome()",
+      "com.tecknobit.refy.helpers.navToHome"
+    ]
+  },
+  {
+    "name": "fun navToProfileScreen()",
+    "description": "com.tecknobit.refy.helpers.navToProfileScreen",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-profile-screen.html",
+    "searchKeys": [
+      "navToProfileScreen",
+      "fun navToProfileScreen()",
+      "com.tecknobit.refy.helpers.navToProfileScreen"
+    ]
+  },
+  {
+    "name": "fun navToSplashscreen()",
+    "description": "com.tecknobit.refy.helpers.navToSplashscreen",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-splashscreen.html",
+    "searchKeys": [
+      "navToSplashscreen",
+      "fun navToSplashscreen()",
+      "com.tecknobit.refy.helpers.navToSplashscreen"
+    ]
+  },
+  {
+    "name": "fun navToTeamScreen(team: Team)",
+    "description": "com.tecknobit.refy.helpers.navToTeamScreen",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-team-screen.html",
+    "searchKeys": [
+      "navToTeamScreen",
+      "fun navToTeamScreen(team: Team)",
+      "com.tecknobit.refy.helpers.navToTeamScreen"
+    ]
+  },
+  {
+    "name": "fun navToUpsertCustomLinkScreen(link: CustomRefyLink? = null)",
+    "description": "com.tecknobit.refy.helpers.navToUpsertCustomLinkScreen",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-upsert-custom-link-screen.html",
+    "searchKeys": [
+      "navToUpsertCustomLinkScreen",
+      "fun navToUpsertCustomLinkScreen(link: CustomRefyLink? = null)",
+      "com.tecknobit.refy.helpers.navToUpsertCustomLinkScreen"
+    ]
+  },
+  {
+    "name": "fun navToUpsertLinkCollectionScreen(linksCollection: LinksCollection? = null)",
+    "description": "com.tecknobit.refy.helpers.navToUpsertLinkCollectionScreen",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-upsert-link-collection-screen.html",
+    "searchKeys": [
+      "navToUpsertLinkCollectionScreen",
+      "fun navToUpsertLinkCollectionScreen(linksCollection: LinksCollection? = null)",
+      "com.tecknobit.refy.helpers.navToUpsertLinkCollectionScreen"
+    ]
+  },
+  {
+    "name": "fun navToUpsertLinkScreen(link: RefyLink? = null)",
+    "description": "com.tecknobit.refy.helpers.navToUpsertLinkScreen",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-upsert-link-screen.html",
+    "searchKeys": [
+      "navToUpsertLinkScreen",
+      "fun navToUpsertLinkScreen(link: RefyLink? = null)",
+      "com.tecknobit.refy.helpers.navToUpsertLinkScreen"
+    ]
+  },
+  {
+    "name": "fun navToUpsertTeam(team: Team? = null)",
+    "description": "com.tecknobit.refy.helpers.navToUpsertTeam",
+    "location": "-refy/com.tecknobit.refy.helpers/nav-to-upsert-team.html",
+    "searchKeys": [
+      "navToUpsertTeam",
+      "fun navToUpsertTeam(team: Team? = null)",
+      "com.tecknobit.refy.helpers.navToUpsertTeam"
     ]
   },
   {
@@ -2260,6 +2370,16 @@
     ]
   },
   {
+    "name": "lateinit var closeApplicationOnLinkOpen: MutableState<Boolean>",
+    "description": "com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel.closeApplicationOnLinkOpen",
+    "location": "-refy/com.tecknobit.refy.ui.screens.profile.presentation/-profile-screen-view-model/close-application-on-link-open.html",
+    "searchKeys": [
+      "closeApplicationOnLinkOpen",
+      "lateinit var closeApplicationOnLinkOpen: MutableState<Boolean>",
+      "com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel.closeApplicationOnLinkOpen"
+    ]
+  },
+  {
     "name": "lateinit var collectionTitle: MutableState<String>",
     "description": "com.tecknobit.refy.ui.screens.upsertcollection.presentation.UpsertCollectionScreenViewModel.collectionTitle",
     "location": "-refy/com.tecknobit.refy.ui.screens.upsertcollection.presentation/-upsert-collection-screen-view-model/collection-title.html",
@@ -2400,13 +2520,13 @@
     ]
   },
   {
-    "name": "lateinit var navigator: Navigator",
-    "description": "com.tecknobit.refy.navigator",
-    "location": "-refy/com.tecknobit.refy/navigator.html",
+    "name": "lateinit var navigator: NavHostController",
+    "description": "com.tecknobit.refy.helpers.navigator",
+    "location": "-refy/com.tecknobit.refy.helpers/navigator.html",
     "searchKeys": [
       "navigator",
-      "lateinit var navigator: Navigator",
-      "com.tecknobit.refy.navigator"
+      "lateinit var navigator: NavHostController",
+      "com.tecknobit.refy.helpers.navigator"
     ]
   },
   {
@@ -2560,16 +2680,6 @@
     ]
   },
   {
-    "name": "object Companion",
-    "description": "com.tecknobit.refy.ui.shared.presenters.UpsertScreen.Companion",
-    "location": "-refy/com.tecknobit.refy.ui.shared.presenters/-upsert-screen/-companion/index.html",
-    "searchKeys": [
-      "Companion",
-      "object Companion",
-      "com.tecknobit.refy.ui.shared.presenters.UpsertScreen.Companion"
-    ]
-  },
-  {
     "name": "open fun attachCollections(team: Team, collections: List<LinksCollection>, afterAttached: () -> Unit)",
     "description": "com.tecknobit.refy.ui.shared.presentations.TeamsManager.attachCollections",
     "location": "-refy/com.tecknobit.refy.ui.shared.presentations/-teams-manager/attach-collections.html",
@@ -2720,12 +2830,12 @@
     ]
   },
   {
-    "name": "open override fun insertNewUser(hostAddress: String, name: String, surname: String, email: String, password: String, language: String, response: JsonObject, vararg custom: Any?)",
+    "name": "open override fun insertNewUser(hostAddress: String, userId: String, userToken: String, profilePic: String, name: String, surname: String, email: String, language: String, vararg custom: Any?)",
     "description": "com.tecknobit.refy.helpers.RefyLocalUser.insertNewUser",
     "location": "-refy/com.tecknobit.refy.helpers/-refy-local-user/insert-new-user.html",
     "searchKeys": [
       "insertNewUser",
-      "open override fun insertNewUser(hostAddress: String, name: String, surname: String, email: String, password: String, language: String, response: JsonObject, vararg custom: Any?)",
+      "open override fun insertNewUser(hostAddress: String, userId: String, userToken: String, profilePic: String, name: String, surname: String, email: String, language: String, vararg custom: Any?)",
       "com.tecknobit.refy.helpers.RefyLocalUser.insertNewUser"
     ]
   },
@@ -3510,6 +3620,16 @@
     ]
   },
   {
+    "name": "suspend fun changeCloseApplicationOnOpenLink(closeApplicationOnOpenLink: Boolean): JsonObject",
+    "description": "com.tecknobit.refy.helpers.RefyRequester.changeCloseApplicationOnOpenLink",
+    "location": "-refy/com.tecknobit.refy.helpers/-refy-requester/change-close-application-on-open-link.html",
+    "searchKeys": [
+      "changeCloseApplicationOnOpenLink",
+      "suspend fun changeCloseApplicationOnOpenLink(closeApplicationOnOpenLink: Boolean): JsonObject",
+      "com.tecknobit.refy.helpers.RefyRequester.changeCloseApplicationOnOpenLink"
+    ]
+  },
+  {
     "name": "suspend fun changeMemberRole(teamId: String, member: TeamMember, role: TeamRole): JsonObject",
     "description": "com.tecknobit.refy.helpers.RefyRequester.changeMemberRole",
     "location": "-refy/com.tecknobit.refy.helpers/-refy-requester/change-member-role.html",
@@ -3940,6 +4060,16 @@
     ]
   },
   {
+    "name": "val InputShape: RoundedCornerShape",
+    "description": "com.tecknobit.refy.ui.theme.InputShape",
+    "location": "-refy/com.tecknobit.refy.ui.theme/-input-shape.html",
+    "searchKeys": [
+      "InputShape",
+      "val InputShape: RoundedCornerShape",
+      "com.tecknobit.refy.ui.theme.InputShape"
+    ]
+  },
+  {
     "name": "val Link45deg: ImageVector",
     "description": "com.tecknobit.refy.ui.icons.Link45deg",
     "location": "-refy/com.tecknobit.refy.ui.icons/-link45deg.html",
@@ -4257,26 +4387,6 @@
       "greenLight",
       "val greenLight: Color",
       "com.tecknobit.refy.ui.theme.greenLight"
-    ]
-  },
-  {
-    "name": "val icon: ImageVector",
-    "description": "com.tecknobit.refy.ui.screens.home.data.NavigationTab.icon",
-    "location": "-refy/com.tecknobit.refy.ui.screens.home.data/-navigation-tab/icon.html",
-    "searchKeys": [
-      "icon",
-      "val icon: ImageVector",
-      "com.tecknobit.refy.ui.screens.home.data.NavigationTab.icon"
-    ]
-  },
-  {
-    "name": "val inputFieldShape: RoundedCornerShape",
-    "description": "com.tecknobit.refy.ui.shared.presenters.UpsertScreen.Companion.inputFieldShape",
-    "location": "-refy/com.tecknobit.refy.ui.shared.presenters/-upsert-screen/-companion/input-field-shape.html",
-    "searchKeys": [
-      "inputFieldShape",
-      "val inputFieldShape: RoundedCornerShape",
-      "com.tecknobit.refy.ui.shared.presenters.UpsertScreen.Companion.inputFieldShape"
     ]
   },
   {
@@ -6340,23 +6450,13 @@
     ]
   },
   {
-    "name": "val thumbnailPreview: String? = null",
+    "name": "val thumbnailPreview: String?",
     "description": "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.thumbnailPreview",
     "location": "-refy/com.tecknobit.refy.ui.shared.data/-refy-link/-refy-link-impl/thumbnail-preview.html",
     "searchKeys": [
       "thumbnailPreview",
-      "val thumbnailPreview: String? = null",
+      "val thumbnailPreview: String?",
       "com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl.thumbnailPreview"
-    ]
-  },
-  {
-    "name": "val title: StringResource",
-    "description": "com.tecknobit.refy.ui.screens.home.data.NavigationTab.title",
-    "location": "-refy/com.tecknobit.refy.ui.screens.home.data/-navigation-tab/title.html",
-    "searchKeys": [
-      "title",
-      "val title: StringResource",
-      "com.tecknobit.refy.ui.screens.home.data.NavigationTab.title"
     ]
   },
   {
@@ -6377,6 +6477,16 @@
       "uniqueAccess",
       "val uniqueAccess: Boolean",
       "com.tecknobit.refy.ui.screens.customs.data.CustomRefyLink.uniqueAccess"
+    ]
+  },
+  {
+    "name": "var requiresCloseApplicationOnLinkOpen: Boolean",
+    "description": "com.tecknobit.refy.helpers.RefyLocalUser.requiresCloseApplicationOnLinkOpen",
+    "location": "-refy/com.tecknobit.refy.helpers/-refy-local-user/requires-close-application-on-link-open.html",
+    "searchKeys": [
+      "requiresCloseApplicationOnLinkOpen",
+      "var requiresCloseApplicationOnLinkOpen: Boolean",
+      "com.tecknobit.refy.helpers.RefyLocalUser.requiresCloseApplicationOnLinkOpen"
     ]
   },
   {

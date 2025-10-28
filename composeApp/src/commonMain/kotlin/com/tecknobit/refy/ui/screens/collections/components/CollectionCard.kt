@@ -24,9 +24,8 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.utilities.BorderToColor
 import com.tecknobit.equinoxcompose.utilities.colorOneSideBorder
 import com.tecknobit.equinoxcompose.utilities.toColor
-import com.tecknobit.refy.COLLECTION_SCREEN
-import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToCollectionScreen
+import com.tecknobit.refy.helpers.navToUpsertLinkCollectionScreen
 import com.tecknobit.refy.ui.components.AttachCollection
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.DeleteCollection
@@ -63,13 +62,15 @@ fun CollectionCard(
             )
             .combinedClickable(
                 onClick = {
-                    navigator.navigate(
-                        route = "$COLLECTION_SCREEN/${collection.id}/${collection.title}/${collection.color}"
+                    navToCollectionScreen(
+                        linksCollection = collection
                     )
                 },
                 onLongClick = if (collection.iAmTheOwner()) {
                     {
-                        navigator.navigate("$UPSERT_COLLECTION_SCREEN/${collection.id}/${collection.color}")
+                        navToUpsertLinkCollectionScreen(
+                            linksCollection = collection
+                        )
                     }
                 } else null
             )

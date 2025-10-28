@@ -2,7 +2,6 @@
 
 package com.tecknobit.refy.ui.screens.collection.presenter
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -35,9 +34,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.materialkolor.rememberDynamicColorScheme
-import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Auto
-import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Dark
-import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.Light
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
@@ -46,9 +42,8 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.toColor
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
-import com.tecknobit.refy.UPSERT_COLLECTION_SCREEN
-import com.tecknobit.refy.localUser
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToUpsertLinkCollectionScreen
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.components.AttachCollection
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.DeleteCollection
@@ -62,6 +57,7 @@ import com.tecknobit.refy.ui.shared.data.LinksCollection
 import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.presenters.ItemScreen
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
+import com.tecknobit.refy.ui.theme.applyDarkTheme
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyRow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -111,14 +107,11 @@ class CollectionScreen(
      * Method to arrange the content of the screen to display
      */
     @Composable
+    @RequiresSuperCall
     override fun ArrangeScreenContent() {
         val colorScheme = rememberDynamicColorScheme(
             primary = color.value,
-            isDark = when (localUser.theme) {
-                Dark -> true
-                Light -> false
-                Auto -> isSystemInDarkTheme()
-            },
+            isDark = applyDarkTheme(),
             isAmoled = true
         )
         MaterialTheme(
@@ -171,16 +164,19 @@ class CollectionScreen(
                             bottom = 5.dp
                         ),
                     containerColor = MaterialTheme.colorScheme.error,
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = null
+                        )
+                    },
+                    text = {
+                        Text(
+                            text = stringResource(Res.string.delete)
+                        )
+                    },
                     onClick = { delete.value = !delete.value }
-                ) {
-                    Text(
-                        text = stringResource(Res.string.delete)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = null
-                    )
-                }
+                )
                 DeleteItemContent(
                     delete = delete
                 )
@@ -256,7 +252,9 @@ class CollectionScreen(
      * The action to execute to update or insert an item
      */
     override fun upsertAction() {
-        navigator.navigate("$UPSERT_COLLECTION_SCREEN/${item.value!!.id}/${item.value!!.color}")
+        navToUpsertLinkCollectionScreen(
+            linksCollection = item.value!!
+        )
     }
 
     /**
@@ -333,7 +331,7 @@ class CollectionScreen(
             collection = item.value!!,
             onDelete = {
                 delete.value = false
-                navigator.goBack()
+                navigator.popBackStack()
             }
         )
     }

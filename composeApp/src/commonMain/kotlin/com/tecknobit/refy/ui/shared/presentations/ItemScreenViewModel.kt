@@ -3,7 +3,7 @@
 package com.tecknobit.refy.ui.shared.presentations
 
 import androidx.compose.runtime.ExperimentalComposeApi
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.equinoxcore.pagination.PaginatedResponse.Companion.DEFAULT_PAGE
 import com.tecknobit.refy.ui.shared.data.RefyItem

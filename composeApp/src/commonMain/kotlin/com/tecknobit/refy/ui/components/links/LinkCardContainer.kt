@@ -1,8 +1,5 @@
-@file:OptIn(ExperimentalFoundationApi::class)
-
 package com.tecknobit.refy.ui.components.links
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -43,10 +40,9 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
-import com.tecknobit.refy.UPSERT_LINK_SCREEN
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
+import com.tecknobit.refy.helpers.navToUpsertLinkScreen
 import com.tecknobit.refy.helpers.shareLink
-import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.ExpandCardButton
 import com.tecknobit.refy.ui.components.ItemCardDetails
 import com.tecknobit.refy.ui.components.ProfilePic
@@ -81,12 +77,14 @@ fun LinkCardContainer(
     link: RefyLink,
     onClick: (UriHandler) -> Unit = { uriHandler -> uriHandler.openUri(link.reference) },
     onLongClick: () -> Unit = {
-        navigator.navigate("$UPSERT_LINK_SCREEN/${link.id}")
+        navToUpsertLinkScreen(
+            link = link
+        )
     },
     showOwnerData: Boolean = false,
     extraInformation: @Composable (() -> Unit)? = null,
     extraButton: @Composable (() -> Unit)? = null,
-    cancelButton: @Composable RowScope.() -> Unit
+    cancelButton: @Composable RowScope.() -> Unit,
 ) {
     val expanded = remember { mutableStateOf(false) }
     val descriptionLines = remember { mutableIntStateOf(0) }
@@ -95,6 +93,10 @@ fun LinkCardContainer(
         modifier = modifier
             .fillMaxWidth()
             .clip(CardDefaults.shape)
+            .handleCloseOnLinkOpen(
+                uriHandler = uriHandler,
+                link = link
+            )
             .combinedClickable(
                 onClick = { onClick.invoke(uriHandler) },
                 onDoubleClick = {
@@ -283,3 +285,18 @@ private fun LinkBottomBar(
         cancelButton()
     }
 }
+
+/**
+ * Method use to handle the `Close Application on Link Open` feature
+ *
+ * @param uriHandler The handler used to open the links
+ * @param link The link to open
+ *
+ * @return the modifier to apply to the component as [Modifier]
+ *
+ * @since 1.1.0
+ */
+internal expect fun Modifier.handleCloseOnLinkOpen(
+    uriHandler: UriHandler,
+    link: RefyLink,
+): Modifier

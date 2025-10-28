@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Refy</string>
-    <string name="app_version">1.0.3</string>
+    <string name="app_version">1.1.0</string>
     <string name="links">Links</string>
     <string name="collections">Collections</string>
     <string name="teams">Teams</string>
@@ -135,4 +135,6 @@
     <string name="team_name">Team name</string>
     <string name="description">Description</string>
     <string name="description_not_valid">Description not valid</string>
+    <string name="close_application_on_link_open_title">Close application</string>
+    <string name="close_application_on_link_open">Close application when right-clicked to open link</string>
 </resources>

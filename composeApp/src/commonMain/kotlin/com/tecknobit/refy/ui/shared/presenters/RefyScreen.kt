@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMultiplatform::class, ExperimentalComposeApi::class)
-
 package com.tecknobit.refy.ui.shared.presenters
 
 import androidx.compose.animation.AnimatedVisibility
@@ -9,9 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -19,7 +16,6 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.FilterListOff
 import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
@@ -28,7 +24,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.mutableStateOf
@@ -39,17 +34,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
 import com.tecknobit.equinoxcompose.components.DebouncedOutlinedTextField
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.CompactClassComponent
+import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.COMPACT_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
@@ -58,6 +54,8 @@ import com.tecknobit.equinoxcore.annotations.Structure
 import com.tecknobit.refy.displayFontFamily
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.shared.presentations.RefyScreenViewModel
+import com.tecknobit.refy.ui.theme.AppTypography
+import com.tecknobit.refy.ui.theme.InputShape
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -68,9 +66,6 @@ import refy.composeapp.generated.resources.search_by_keywords
  *
  * @param title The title of the screen
  * @param viewModel The support viewmodel for the screen
- * @param snackbarHostStateBottomPadding The padding to apply from the bottom of the screen to place
- * the [SnackbarHost]
- * @param contentBottomPadding The padding to apply from the bottom of the screen
  *
  * @param V The type of the viewmodel of the screen
  *
@@ -82,8 +77,6 @@ import refy.composeapp.generated.resources.search_by_keywords
 abstract class RefyScreen<V : RefyScreenViewModel>(
     private val title: StringResource? = null,
     viewModel: V,
-    private val snackbarHostStateBottomPadding: Dp = 100.dp,
-    private val contentBottomPadding: Dp = 79.dp
 ) : EquinoxScreen<V>(
     viewModel = viewModel
 ) {
@@ -97,18 +90,11 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * Method to arrange the content of the screen to display
      */
     @Composable
+    @RequiresSuperCall
     override fun ArrangeScreenContent() {
         Scaffold(
             snackbarHost = {
                 SnackbarHost(
-                    modifier = Modifier
-                        .padding(
-                            bottom = responsiveAssignment(
-                                onExpandedSizeClass = { 0.dp },
-                                onMediumSizeClass = { 0.dp },
-                                onCompactSizeClass = { snackbarHostStateBottomPadding }
-                            )
-                        ),
                     hostState = viewModel.snackbarHostState!!
                 )
             },
@@ -120,21 +106,18 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 )
             }
         ) {
-            Column {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 TopBar()
                 Column(
                     modifier = Modifier
                         .padding(
-                            all = 16.dp
+                            top = 16.dp,
+                            bottom = 16.dp
                         )
-                        .padding(
-                            bottom = responsiveAssignment(
-                                onExpandedSizeClass = { 0.dp },
-                                onMediumSizeClass = { 0.dp },
-                                onCompactSizeClass = { contentBottomPadding }
-                            )
-                        )
-                        .navigationBarsPadding()
                 ) {
                     Content()
                 }
@@ -147,41 +130,21 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      * any actions related to the screen
      */
     @Composable
-    protected fun TopBar() {
+    @LayoutCoordinator
+    protected open fun TopBar() {
         Column {
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(113.dp)
-                    .padding(
-                        horizontal = 16.dp
-                    ),
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 ResponsiveContent(
                     onExpandedSizeClass = { ScreenTitle() },
                     onMediumSizeClass = { ScreenTitle() },
-                    onCompactSizeClass = {
-                        ListItem(
-                            modifier = Modifier
-                                .weight(2f),
-                            headlineContent = { ScreenTitle() },
-                            supportingContent = { SubTitleSection() }
-                        )
-                        Column(
-                            modifier = Modifier
-                                .weight(1f),
-                            horizontalAlignment = Alignment.End,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            TrailingContent()
-                        }
-                    }
+                    onMediumWidthExpandedHeight = { SplitTopbar() },
+                    onCompactSizeClass = { SplitTopbar() }
                 )
             }
-            HorizontalDivider(
-                color = MaterialTheme.colorScheme.primary
-            )
         }
     }
 
@@ -194,20 +157,19 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
     )
     protected open fun ExtendedFAB() {
         ExtendedFloatingActionButton(
-            onClick = { upsertAction() }
-        ) {
-            Text(
-                text = stringResource(upsertText())
-            )
-            Icon(
-                modifier = Modifier
-                    .padding(
-                        start = 5.dp
-                    ),
-                imageVector = upsertIcon(),
-                contentDescription = null
-            )
-        }
+            onClick = { upsertAction() },
+            icon = {
+                Icon(
+                    imageVector = upsertIcon(),
+                    contentDescription = null
+                )
+            },
+            text = {
+                Text(
+                    text = stringResource(upsertText())
+                )
+            }
+        )
     }
 
     /**
@@ -232,6 +194,32 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
     protected abstract fun upsertAction()
 
     /**
+     * The content of the top bar for the indicated responsive device classes
+     *
+     * @since 1.1.0
+     */
+    @Composable
+    @ResponsiveClassComponent(
+        classes = [MEDIUM_EXPANDED_CONTENT, COMPACT_CONTENT]
+    )
+    private fun RowScope.SplitTopbar() {
+        ListItem(
+            modifier = Modifier
+                .weight(2.5f),
+            headlineContent = { ScreenTitle() },
+            supportingContent = { SubtitleSection() }
+        )
+        Column(
+            modifier = Modifier
+                .weight(1f),
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.Center
+        ) {
+            TrailingContent()
+        }
+    }
+
+    /**
      * The title of the screen section
      */
     @Composable
@@ -245,7 +233,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
             NavBackButton()
             Text(
                 text = title(),
-                fontSize = 28.sp,
+                style = AppTypography.displaySmall,
                 color = MaterialTheme.colorScheme.primary,
                 fontFamily = displayFontFamily,
                 fontWeight = FontWeight.Bold,
@@ -261,17 +249,17 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
      */
     @Composable
     @NonRestartableComposable
-    protected fun SubTitleSection() {
+    protected fun SubtitleSection() {
         Column {
-            SubTitleContent()
+            SubtitleContent()
         }
     }
 
     /**
-     * The content of the [SubTitleSection]
+     * The content of the [SubtitleSection]
      */
     @Composable
-    protected open fun SubTitleContent() {
+    protected open fun SubtitleContent() {
         Row(
             modifier = Modifier
                 .clip(
@@ -291,7 +279,9 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 contentDescription = null
             )
             Text(
-                text = stringResource(upsertText())
+                text = stringResource(upsertText()),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -381,9 +371,7 @@ abstract class RefyScreen<V : RefyScreenViewModel>(
                 )
             ) {
                 DebouncedOutlinedTextField(
-                    shape = RoundedCornerShape(
-                        size = 12.dp
-                    ),
+                    shape = InputShape,
                     value = viewModel.keywords,
                     debounce = { viewModel.refresh() },
                     placeholder = Res.string.search_by_keywords,

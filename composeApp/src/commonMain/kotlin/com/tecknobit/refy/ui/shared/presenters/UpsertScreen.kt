@@ -40,11 +40,12 @@ import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.annotations.Structure
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.components.RetryButton
 import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.shared.data.RefyItem
 import com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isDescriptionValid
 import org.jetbrains.compose.resources.StringResource
@@ -81,17 +82,6 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
 ) : EquinoxScreen<V>(
     viewModel = viewModel
 ) {
-
-    companion object {
-
-        /**
-         *`inputFieldShape` the shape to apply to the input fields component
-         */
-        val inputFieldShape = RoundedCornerShape(
-            size = 10.dp
-        )
-
-    }
 
     /**
      *`isUpdating` whether the action is an updating action
@@ -205,7 +195,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
         EquinoxOutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            shape = inputFieldShape,
+            shape = InputShape,
             minLines = 10,
             maxLines = 10,
             value = viewModel.itemDescription,
@@ -262,7 +252,7 @@ abstract class UpsertScreen<I : RefyItem, V : UpsertScreenViewModel<I>>(
             ),
             onClick = {
                 viewModel.upsert {
-                    navigator.goBack()
+                    navigator.popBackStack()
                 }
             }
         ) {

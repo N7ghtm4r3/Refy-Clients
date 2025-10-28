@@ -1,9 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Pkg
-import org.jetbrains.dokka.base.DokkaBase
-import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -15,7 +12,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     kotlin("plugin.serialization") version "2.1.0"
-    id("com.github.gmazzo.buildconfig") version "5.5.1"
+    id("com.github.gmazzo.buildconfig") version "5.7.0"
     alias(libs.plugins.dokka)
 }
 
@@ -76,6 +73,7 @@ kotlin {
             implementation(libs.review)
             implementation(libs.review.ktx)
             implementation(libs.androidx.startup.runtime)
+            implementation(libs.androidx.fragment.ktx)
         }
 
         val commonMain by getting {
@@ -91,17 +89,18 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.coil.compose)
                 implementation(libs.coil.network.ktor3)
-                implementation(libs.precompose)
                 implementation(libs.equinox.core)
                 implementation(libs.equinox.compose)
-                implementation(libs.refycore)
+                implementation(libs.equinox.navigation)
                 implementation(libs.lazy.pagination.compose)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.material.kolor)
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.compose)
                 implementation(libs.colorpicker.compose)
-                implementation(libs.ametista.engine)
+                implementation(libs.navigation.compose)
+                implementation(libs.equinoxmisc.navigation.compose.util)
+                implementation(libs.refycore)
             }
         }
 
@@ -141,8 +140,8 @@ android {
         applicationId = "com.tecknobit.refy"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 6
-        versionName = "1.0.3"
+        versionCode = 7
+        versionName = "1.1.0"
     }
     packaging {
         resources {
@@ -175,8 +174,8 @@ compose.desktop {
                 "jdk.security.auth"
             )
             packageName = "Refy"
-            packageVersion = "1.0.3"
-            version = "1.0.3"
+            packageVersion = "1.1.0"
+            version = "1.1.0"
             description = "References collector and custom links generator"
             copyright = "© 2025 Tecknobit"
             vendor = "Tecknobit"
@@ -193,7 +192,7 @@ compose.desktop {
                 iconFile.set(project.file("src/desktopMain/resources/logo.png"))
                 packageName = "com-tecknobit-refy"
                 debMaintainer = "infotecknobitcompany@gmail.com"
-                appRelease = "1.0.3"
+                appRelease = "1.1.0"
                 appCategory = "PERSONALIZATION"
                 rpmLicenseType = "APACHE2"
             }
@@ -206,34 +205,26 @@ compose.desktop {
 }
 
 buildConfig {
-    className("AmetistaConfig")
+    className("RefyConfig")
     packageName("com.tecknobit.refy")
     buildConfigField<String>(
-        name = "HOST",
-        value = project.findProperty("host").toString()
-    )
-    buildConfigField<String?>(
-        name = "SERVER_SECRET",
-        value = project.findProperty("server_secret").toString()
-    )
-    buildConfigField<String?>(
-        name = "APPLICATION_IDENTIFIER",
-        value = project.findProperty("application_id").toString()
-    )
-    buildConfigField<Boolean>(
-        name = "BYPASS_SSL_VALIDATION",
-        value = project.findProperty("bypass_ssl_validation").toString().toBoolean()
+        name = "LOCAL_STORAGE_PATH",
+        value = project.findProperty("localStoragePath").toString()
     )
 }
 
-tasks.withType<DokkaTask>().configureEach {
-    dokkaSourceSets {
-        moduleName.set("Refy")
+dokka {
+    moduleName.set("Refy")
+    dokkaPublications.html {
         outputDirectory.set(layout.projectDirectory.dir("../docs"))
     }
-
-    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-        customAssets = listOf(file("../docs/logo-icon.svg"))
-        footerMessage = "(c) 2025 Tecknobit"
+    pluginsConfiguration {
+        versioning {
+            version.set("1.1.0")
+        }
+        html {
+            customAssets.from("../images/logo-icon.svg")
+            footerMessage.set("(c) 2025 Tecknobit")
+        }
     }
 }

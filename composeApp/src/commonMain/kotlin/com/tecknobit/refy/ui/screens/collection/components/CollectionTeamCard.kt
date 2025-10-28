@@ -11,8 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.tecknobit.refy.TEAM_SCREEN
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToTeamScreen
 import com.tecknobit.refy.ui.components.ItemTitle
 import com.tecknobit.refy.ui.components.RemoveItemButton
 import com.tecknobit.refy.ui.components.TeamLogo
@@ -41,7 +40,11 @@ fun CollectionTeamCard(
         shape = RoundedCornerShape(
             size = 10.dp
         ),
-        onClick = { navigator.navigate("$TEAM_SCREEN/${team.id}/${team.title}") }
+        onClick = {
+            navToTeamScreen(
+                team = team
+            )
+        }
     ) {
         ListItem(
             colors = ListItemDefaults.colors(

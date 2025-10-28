@@ -26,7 +26,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.refy.ui.screens.upsertcustomlink.presentation.UpsertCustomLinkScreenViewModel
-import com.tecknobit.refy.ui.shared.presenters.UpsertScreen.Companion.inputFieldShape
+import com.tecknobit.refy.ui.theme.InputShape
 import org.jetbrains.compose.resources.StringResource
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.key
@@ -147,7 +147,7 @@ private fun RowScope.FormInputField(
     EquinoxOutlinedTextField(
         modifier = Modifier
             .weight(1f),
-        shape = inputFieldShape,
+        shape = InputShape,
         value = value,
         placeholder = placeholder,
         isError = valueError,

@@ -1,13 +1,7 @@
-@file:OptIn(
-    ExperimentalComposeApi::class, ExperimentalLayoutApi::class,
-    ExperimentalMaterial3Api::class
-)
-
 package com.tecknobit.refy.ui.screens.profile.presenter
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,7 +19,6 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,7 +28,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -68,21 +60,24 @@ import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.SUPPORTED_LANGUAGES
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
-import com.tecknobit.refy.SPLASHSCREEN
 import com.tecknobit.refy.bodyFontFamily
+import com.tecknobit.refy.helpers.navToSplashscreen
 import com.tecknobit.refy.localUser
-import com.tecknobit.refy.navigator
 import com.tecknobit.refy.ui.components.DeleteAccount
 import com.tecknobit.refy.ui.components.Logout
 import com.tecknobit.refy.ui.components.ProfilePic
 import com.tecknobit.refy.ui.components.ScreenTopBar
 import com.tecknobit.refy.ui.screens.profile.presentation.ProfileScreenViewModel
+import com.tecknobit.refy.ui.screens.profile.util.platformSpecificSettingSteps
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refy.ui.theme.RefyTheme
 import com.tecknobit.refycore.AT_SYMBOL
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTagNameValid
-import io.github.vinceglb.filekit.compose.rememberFilePickerLauncher
-import io.github.vinceglb.filekit.core.PickerMode
-import io.github.vinceglb.filekit.core.PickerType
+import io.github.vinceglb.filekit.dialogs.FileKitMode
+import io.github.vinceglb.filekit.dialogs.FileKitType.Image
+import io.github.vinceglb.filekit.dialogs.compose.rememberFilePickerLauncher
+import io.github.vinceglb.filekit.name
+import io.github.vinceglb.filekit.readBytes
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -196,8 +191,8 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
     @Composable
     private fun ProfilePicker() {
         val launcher = rememberFilePickerLauncher(
-            type = PickerType.Image,
-            mode = PickerMode.Single
+            type = Image,
+            mode = FileKitMode.Single
         ) { image ->
             image?.let {
                 viewModel.viewModelScope.launch {
@@ -325,7 +320,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                         viewModel.changeLanguage(
                             onChange = {
                                 visible.value = false
-                                navigator.navigate(SPLASHSCREEN)
+                                navToSplashscreen()
                             }
                         )
                     }
@@ -337,17 +332,17 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
                     dismissAction = { visible -> visible.value = false },
                     confirmAction = { visible ->
                         viewModel.changeTheme(
-                            onChange = {
-                                visible.value = false
-                                navigator.navigate(SPLASHSCREEN)
-                            }
+                            onChange = { visible.value = false }
                         )
                     }
                 )
             )
         }
         Stepper(
-            steps = steps
+            steps = platformSpecificSettingSteps(
+                viewModel = viewModel,
+                commonSteps = steps
+            )
         )
     }
 
@@ -368,6 +363,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         EquinoxTextField(
             modifier = Modifier
                 .focusRequester(focusRequester),
+            shape = InputShape,
             textFieldColors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
@@ -408,6 +404,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         EquinoxTextField(
             modifier = Modifier
                 .focusRequester(focusRequester),
+            shape = InputShape,
             textFieldColors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
@@ -454,6 +451,7 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         EquinoxOutlinedTextField(
             modifier = Modifier
                 .focusRequester(focusRequester),
+            shape = InputShape,
             outlinedTextFieldColors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
@@ -562,9 +560,10 @@ class ProfileScreen : EquinoxScreen<ProfileScreenViewModel>(
         viewModel.profilePic = remember { mutableStateOf(localUser.profilePic) }
         viewModel.tagName = remember { mutableStateOf(localUser.tagName) }
         viewModel.email = remember { mutableStateOf(localUser.email) }
-        viewModel.password = remember { mutableStateOf(localUser.password) }
         viewModel.language = remember { mutableStateOf(localUser.language) }
         viewModel.theme = remember { mutableStateOf(localUser.theme) }
+        viewModel.closeApplicationOnLinkOpen =
+            remember { mutableStateOf(localUser.requiresCloseApplicationOnLinkOpen) }
     }
 
 }

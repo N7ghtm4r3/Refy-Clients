@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
-import com.tecknobit.equinoxcore.toggle
+import com.tecknobit.equinoxcore.util.toggle
 import com.tecknobit.refy.ui.components.EmptyMembers
 import com.tecknobit.refy.ui.components.FirstPageProgressIndicator
 import com.tecknobit.refy.ui.components.NewPageProgressIndicator
@@ -36,11 +36,12 @@ import com.tecknobit.refy.ui.screens.upsertteam.presentation.UpsertTeamScreenVie
 import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import io.github.ahmad_hamwi.compose.pagination.PaginatedLazyColumn
-import io.github.vinceglb.filekit.compose.rememberFilePickerLauncher
-import io.github.vinceglb.filekit.core.PickerMode
-import io.github.vinceglb.filekit.core.PickerType
+import io.github.vinceglb.filekit.dialogs.FileKitMode
+import io.github.vinceglb.filekit.dialogs.FileKitType
+import io.github.vinceglb.filekit.dialogs.compose.rememberFilePickerLauncher
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.create
 import refy.composeapp.generated.resources.create_team
@@ -91,8 +92,8 @@ class UpsertTeamScreen(
     @Composable
     private fun LogoPicker() {
         val launcher = rememberFilePickerLauncher(
-            type = PickerType.Image,
-            mode = PickerMode.Single
+            type = FileKitType.Image,
+            mode = FileKitMode.Single
         ) { logoAsset ->
             viewModel.pickTeamLogo(
                 logoAsset = logoAsset
@@ -128,7 +129,7 @@ class UpsertTeamScreen(
         EquinoxOutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            shape = inputFieldShape,
+            shape = InputShape,
             value = viewModel.teamName,
             isError = viewModel.teamNameError,
             validator = { isTitleValid(it) },

@@ -33,6 +33,7 @@ import com.tecknobit.refy.ui.screens.upsertcustomlink.components.UniqueAccessChe
 import com.tecknobit.refy.ui.screens.upsertcustomlink.presentation.UpsertCustomLinkScreenViewModel
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refycore.enums.ExpiredTime
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import refy.composeapp.generated.resources.Res
@@ -92,7 +93,7 @@ class UpsertCustomLinkScreen(
         EquinoxOutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            shape = inputFieldShape,
+            shape = InputShape,
             value = viewModel.linkName,
             isError = viewModel.linkNameError,
             validator = { isTitleValid(it) },

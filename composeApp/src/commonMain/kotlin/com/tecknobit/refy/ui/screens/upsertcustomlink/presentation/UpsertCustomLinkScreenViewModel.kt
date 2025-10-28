@@ -6,7 +6,7 @@ import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest

@@ -4,7 +4,6 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import com.tecknobit.ametistaengine.AmetistaEngine
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import refy.composeapp.generated.resources.Res
@@ -16,7 +15,6 @@ import refy.composeapp.generated.resources.logo
  *
  */
 fun main() {
-    AmetistaEngine.intake()
     application {
         Window(
             onCloseRequest = ::exitApplication,

@@ -6,7 +6,7 @@ import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendPaginatedRequest
 import com.tecknobit.equinoxcore.network.sendRequest
@@ -17,7 +17,8 @@ import com.tecknobit.refy.ui.shared.data.Team
 import com.tecknobit.refy.ui.shared.presentations.UpsertScreenViewModel
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import io.github.ahmad_hamwi.compose.pagination.PaginationState
-import io.github.vinceglb.filekit.core.PlatformFile
+import io.github.vinceglb.filekit.PlatformFile
+import io.github.vinceglb.filekit.readBytes
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
@@ -103,7 +104,7 @@ class UpsertTeamScreenViewModel(
         logoAsset?.let {
             viewModelScope.launch {
                 logoBytes = logoAsset.readBytes()
-                logoPic.value = logoAsset.path
+                logoPic.value = logoAsset.toString()
                 logoPicError.value = false
             }
         }

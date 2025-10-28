@@ -42,6 +42,7 @@ import com.tecknobit.refy.ui.screens.upsertcollection.presentation.UpsertCollect
 import com.tecknobit.refy.ui.shared.data.LinksCollection
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isTitleValid
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.collection_color
@@ -166,7 +167,7 @@ class UpsertCollectionScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester),
-            shape = inputFieldShape,
+            shape = InputShape,
             value = viewModel.collectionTitle,
             isError = viewModel.collectionTitleError,
             validator = { isTitleValid(it) },

@@ -44,8 +44,8 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcore.annotations.RequiresSuperCall
-import com.tecknobit.refy.UPSERT_TEAM_SCREEN
-import com.tecknobit.refy.navigator
+import com.tecknobit.refy.helpers.navToUpsertTeam
+import com.tecknobit.refy.helpers.navigator
 import com.tecknobit.refy.ui.components.AttachItemButton
 import com.tecknobit.refy.ui.components.AttachTeam
 import com.tecknobit.refy.ui.components.DeleteItemButton
@@ -143,11 +143,11 @@ class TeamScreen(
     }
 
     /**
-     * The content of the [SubTitleSection]
+     * The content of the [SubtitleSection]
      */
     @Composable
     @NonRestartableComposable
-    override fun SubTitleContent() {
+    override fun SubtitleContent() {
         awaitNullItemLoaded(
             itemToWait = item.value
         ) { team ->
@@ -398,7 +398,7 @@ class TeamScreen(
             team = item.value!!,
             onDelete = {
                 delete.value = false
-                navigator.goBack()
+                navigator.popBackStack()
             }
         )
     }
@@ -421,7 +421,9 @@ class TeamScreen(
      * The action to execute to update or insert an item
      */
     override fun upsertAction() {
-        navigator.navigate("$UPSERT_TEAM_SCREEN/${item.value!!.id}")
+        navToUpsertTeam(
+            team = item.value!!
+        )
     }
 
     /**

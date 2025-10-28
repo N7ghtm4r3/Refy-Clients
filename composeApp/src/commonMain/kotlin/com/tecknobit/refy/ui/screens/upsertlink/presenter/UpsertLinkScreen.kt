@@ -19,6 +19,7 @@ import com.tecknobit.refy.ui.screens.upsertlink.presentation.UpsertLinkScreenVie
 import com.tecknobit.refy.ui.shared.data.RefyLink.RefyLinkImpl
 import com.tecknobit.refy.ui.shared.presenters.RefyScreen
 import com.tecknobit.refy.ui.shared.presenters.UpsertScreen
+import com.tecknobit.refy.ui.theme.InputShape
 import com.tecknobit.refycore.helpers.RefyInputsValidator.isLinkResourceValid
 import refy.composeapp.generated.resources.Res
 import refy.composeapp.generated.resources.insert_link
@@ -74,7 +75,7 @@ class UpsertLinkScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester),
-            shape = inputFieldShape,
+            shape = InputShape,
             value = viewModel.reference,
             isError = viewModel.referenceError,
             allowsBlankSpaces = false,

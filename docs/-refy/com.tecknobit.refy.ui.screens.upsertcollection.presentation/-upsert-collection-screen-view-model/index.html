@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>UpsertCollectionScreenViewModel</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
     <script type="text/javascript"
             src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js"
@@ -28,9 +28,8 @@
     <link href="../../../styles/main.css" rel="Stylesheet">
     <link href="../../../styles/prism.css" rel="Stylesheet">
     <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-    <link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
     <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
     <script type="text/javascript" src="../../../scripts/navigation-loader.js"
             async="async"></script>
     <script type="text/javascript" src="../../../scripts/platform-content-handler.js"
@@ -38,14 +37,12 @@
     <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
     <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
     <script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
-    <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js"
-            defer="defer"></script>
     <link href="../../../images/logo-icon.svg">
 </head>
 <body>
 <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-        <a class="library-name--link" href="../../../index.html">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+        <a class="library-name--link" href="../../../index.html" tabindex="1">
             Refy
         </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only"
@@ -54,12 +51,14 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-            1.0.3
+            1.1.0
         </div>
         <div class="navigation-controls">
-            <div class="filter-section filter-section_loading" id="filter-section">
+            <ul class="filter-section filter-section_loading" id="filter-section"
+                aria-label="Target filter">
                 <button class="platform-tag platform-selector common-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/commonMain">common
+                        aria-pressed="true"
+                        data-filter=":composeApp/commonMain">common
                 </button>
                 <div class="dropdown filter-section--dropdown" data-role="dropdown"
                      id="filter-section-dropdown">
@@ -72,10 +71,10 @@
                             aria-label="Toggle source sets"
                     ></button>
                     <ul role="listbox" id="platform-tags-listbox" class="dropdown--list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header"><span>Platform filter</span>
+                        data-role="dropdown-listbox" aria-label="Target filter">
+                        <div class="dropdown--header"><span>Target filter</span>
                             <button class="button" data-role="dropdown-toggle"
-                                    aria-label="Close platform filter">
+                                    aria-label="Close target filter">
                                 <i class="ui-kit-icon ui-kit-icon_cross"></i>
                             </button>
                         </div>
@@ -84,8 +83,8 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/commonMain"
-                                       data-filter=":composeApp:dokkaHtml/commonMain"/>
+                                       id=":composeApp/commonMain"
+                                       data-filter=":composeApp/commonMain"/>
                                 <span class="checkbox--icon"></span>
                                 common
                             </label>
@@ -93,7 +92,7 @@
                     </ul>
                     <div class="dropdown--overlay"></div>
                 </div>
-            </div>
+            </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme"
                     id="theme-toggle-button"
                     type="button">Switch theme
@@ -103,12 +102,14 @@
                 API
             </div>
         </div>
-    </nav>
+    </header>
     <div id="container">
-        <div class="sidebar" id="leftColumn">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION"
+             data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
             <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
                 <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                    data-role="dropdown-listbox">
+                    data-role="dropdown-listbox" aria-label="Table of contents">
                     <div class="dropdown--header">
                             <span>
                                     Refy
@@ -122,10 +123,11 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
-        <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
             <div class="main-content" data-page-type="classlike" id="content"
-                 pageIds="Refy::com.tecknobit.refy.ui.screens.upsertcollection.presentation/UpsertCollectionScreenViewModel///PointingToDeclaration//-813795679">
+                 pageIds="Refy::com.tecknobit.refy.ui.screens.upsertcollection.presentation/UpsertCollectionScreenViewModel///PointingToDeclaration//799242938">
                 <div class="breadcrumbs"><a href="../../../index.html">Refy</a><span
                         class="delimiter">/</span><a href="../index.html">com.tecknobit.refy.ui.screens.upsertcollection.presentation</a><span
                         class="delimiter">/</span><span class="current">UpsertCollectionScreenViewModel</span>
@@ -142,7 +144,7 @@
                         <span><span>Model</span></span></h1>
                     <div class="platform-hinted " data-platform-hinted="data-platform-hinted">
                         <div class="content sourceset-dependent-content" data-active=""
-                             data-togglable=":composeApp:dokkaHtml/commonMain">
+                             data-togglable=":composeApp/commonMain">
                             <div class="symbol monospace"><span
                                     class="token keyword">class </span><a href="index.html">UpsertCollectionScreenViewModel</a><span
                                     class="token punctuation">(</span><span
@@ -159,11 +161,11 @@
                                 class is the support class used by the <a
                                         href="../../com.tecknobit.refy.ui.screens.upsertcollection.presenter/-upsert-collection-screen/index.html">com.tecknobit.refy.ui.screens.upsertcollection.presenter.UpsertCollectionScreen</a>
                             </p><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span>
-                            <h4 class="">Parameters</h4>
+                            <h4 class="tableheader">Parameters</h4>
                             <div class="table">
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex"><div><u><span>collection</span><wbr></wbr><span><span>Id</span></span></u></div></span>
                                         </div>
@@ -174,11 +176,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <h4 class="">See also</h4>
+                            <h4 class="tableheader">See also</h4>
                             <div class="table">
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex"><div><a
                                                 href="https://developer.android.com/reference/kotlin/androidx/lifecycle/ViewModel.html"><span>View</span><wbr></wbr><span><span>Model</span></span></a></div></span>
@@ -186,9 +188,9 @@
                                         <div></div>
                                     </div>
                                 </div>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex"><div><span
                                                 data-unresolved-link="com.tecknobit.equinoxcompose.session/Retriever///PointingToDeclaration/"><span><span>Retriever</span></span></span></div></span>
@@ -196,19 +198,19 @@
                                         <div></div>
                                     </div>
                                 </div>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex"><div><span
-                                                data-unresolved-link="com.tecknobit.equinoxcompose.viewmodels/EquinoxViewModel///PointingToDeclaration/"><span>Equinox</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Model</span></span></span></div></span>
+                                                data-unresolved-link="com.tecknobit.equinoxcompose.session.viewmodels/EquinoxViewModel///PointingToDeclaration/"><span>Equinox</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Model</span></span></span></div></span>
                                         </div>
                                         <div></div>
                                     </div>
                                 </div>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex"><div><a
                                                 href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html"><span>Upsert</span><wbr></wbr><span>Screen</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Model</span></span></a></div></span>
@@ -228,19 +230,20 @@
                     </div>
                     <div class="tabs-section-body">
                         <div data-togglable="CONSTRUCTOR">
-                            <h2 class="">Constructors</h2>
-                            <div class="table"><a data-name="-88846134%2FConstructors%2F-813795679"
+                            <h2 class="tableheader">Constructors</h2>
+                            <div class="table"><a data-name="-88846134%2FConstructors%2F799242938"
                                                   anchor-label="UpsertCollectionScreenViewModel"
-                                                  id="-88846134%2FConstructors%2F-813795679"
-                                                  data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row" data-togglable="CONSTRUCTOR"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                                  id="-88846134%2FConstructors%2F799242938"
+                                                  data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-togglable="CONSTRUCTOR"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="-upsert-collection-screen-view-model.html"><span>Upsert</span><wbr></wbr><span>Collection</span><wbr></wbr><span>Screen</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Model</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-88846134%2FConstructors%2F-813795679"></span>
+                                   pointing-to="-88846134%2FConstructors%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -249,7 +252,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">constructor</span><span
                                                                 class="token punctuation">(</span><span
@@ -269,19 +272,19 @@
                             </div>
                         </div>
                         <div data-togglable="PROPERTY">
-                            <h2 class="">Properties</h2>
-                            <div class="table"><a data-name="-1042449061%2FProperties%2F-813795679"
+                            <h2 class="tableheader">Properties</h2>
+                            <div class="table"><a data-name="-1042449061%2FProperties%2F799242938"
                                                   anchor-label="collectionLinks"
-                                                  id="-1042449061%2FProperties%2F-813795679"
-                                                  data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                                  id="-1042449061%2FProperties%2F799242938"
+                                                  data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="collection-links.html"><span>collection</span><wbr></wbr><span><span>Links</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1042449061%2FProperties%2F-813795679"></span>
+                                   pointing-to="-1042449061%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -290,7 +293,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">val </span><a
                                                                 href="collection-links.html">collectionLinks</a><span
@@ -310,18 +313,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="-1953002596%2FProperties%2F-813795679"
+                                <a data-name="-1953002596%2FProperties%2F799242938"
                                    anchor-label="collectionTitle"
-                                   id="-1953002596%2FProperties%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="-1953002596%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="collection-title.html"><span>collection</span><wbr></wbr><span><span>Title</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1953002596%2FProperties%2F-813795679"></span>
+                                   pointing-to="-1953002596%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -330,7 +333,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">lateinit </span><span
                                                                 class="token keyword">var </span><a
@@ -350,18 +353,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="-1583783338%2FProperties%2F-813795679"
+                                <a data-name="-1583783338%2FProperties%2F799242938"
                                    anchor-label="collectionTitleError"
-                                   id="-1583783338%2FProperties%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="-1583783338%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="collection-title-error.html"><span>collection</span><wbr></wbr><span>Title</span><wbr></wbr><span><span>Error</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1583783338%2FProperties%2F-813795679"></span>
+                                   pointing-to="-1583783338%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -370,7 +373,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">lateinit </span><span
                                                                 class="token keyword">var </span><a
@@ -392,17 +395,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="1981714931%2FProperties%2F-813795679"
-                                   anchor-label="color" id="1981714931%2FProperties%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <a data-name="1981714931%2FProperties%2F799242938"
+                                   anchor-label="color" id="1981714931%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="color.html"><span><span>color</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1981714931%2FProperties%2F-813795679"></span>
+                                   pointing-to="1981714931%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -411,7 +414,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">lateinit </span><span
                                                                 class="token keyword">var </span><a
@@ -431,17 +434,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="841862335%2FProperties%2F-813795679"
-                                   anchor-label="item" id="841862335%2FProperties%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <a data-name="841862335%2FProperties%2F799242938"
+                                   anchor-label="item" id="841862335%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/item.html"><span><span>item</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="841862335%2FProperties%2F-813795679"></span>
+                                   pointing-to="841862335%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -450,7 +453,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">val </span><a
                                                                 href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/item.html">item</a><span
@@ -467,18 +470,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="-560215777%2FProperties%2F-813795679"
+                                <a data-name="-560215777%2FProperties%2F799242938"
                                    anchor-label="itemDescription"
-                                   id="-560215777%2FProperties%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="-560215777%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/item-description.html"><span>item</span><wbr></wbr><span><span>Description</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-560215777%2FProperties%2F-813795679"></span>
+                                   pointing-to="-560215777%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -487,7 +490,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">lateinit </span><span
                                                                 class="token keyword">var </span><a
@@ -507,18 +510,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="-2009194829%2FProperties%2F-813795679"
+                                <a data-name="-2009194829%2FProperties%2F799242938"
                                    anchor-label="itemDescriptionError"
-                                   id="-2009194829%2FProperties%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="-2009194829%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/item-description-error.html"><span>item</span><wbr></wbr><span>Description</span><wbr></wbr><span><span>Error</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-2009194829%2FProperties%2F-813795679"></span>
+                                   pointing-to="-2009194829%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -527,7 +530,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">lateinit </span><span
                                                                 class="token keyword">var </span><a
@@ -549,18 +552,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="30263173%2FProperties%2F-813795679"
+                                <a data-name="30263173%2FProperties%2F799242938"
                                    anchor-label="sessionFlowState"
-                                   id="30263173%2FProperties%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="30263173%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/session-flow-state.html"><span>session</span><wbr></wbr><span>Flow</span><wbr></wbr><span><span>State</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="30263173%2FProperties%2F-813795679"></span>
+                                   pointing-to="30263173%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -569,7 +572,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">lateinit override </span><span
@@ -588,18 +591,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="625987206%2FProperties%2F-813795679"
+                                <a data-name="890454494%2FProperties%2F799242938"
                                    anchor-label="snackbarHostState"
-                                   id="625987206%2FProperties%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="890454494%2FProperties%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#625987206%2FProperties%2F-813795679"><span>snackbar</span><wbr></wbr><span>Host</span><wbr></wbr><span><span>State</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#890454494%2FProperties%2F799242938"><span>snackbar</span><wbr></wbr><span>Host</span><wbr></wbr><span><span>State</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="625987206%2FProperties%2F-813795679"></span>
+                                   pointing-to="890454494%2FProperties%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -608,10 +611,10 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">val </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#625987206%2FProperties%2F-813795679">snackbarHostState</a><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#890454494%2FProperties%2F799242938">snackbarHostState</a><span
                                                                 class="token operator">: </span><a
                                                                 href="https://developer.android.com/reference/kotlin/androidx/compose/material3/SnackbarHostState.html">SnackbarHostState</a><span
                                                                 class="token operator">?</span>
@@ -625,19 +628,19 @@
                             </div>
                         </div>
                         <div data-togglable="FUNCTION">
-                            <h2 class="">Functions</h2>
-                            <div class="table"><a data-name="-462089743%2FFunctions%2F-813795679"
+                            <h2 class="tableheader">Functions</h2>
+                            <div class="table"><a data-name="-462089743%2FFunctions%2F799242938"
                                                   anchor-label="addCloseable"
-                                                  id="-462089743%2FFunctions%2F-813795679"
-                                                  data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                                  id="-462089743%2FFunctions%2F799242938"
+                                                  data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#2068605057%2FFunctions%2F-813795679"><span>add</span><wbr></wbr><span><span>Closeable</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#2068605057%2FFunctions%2F799242938"><span>add</span><wbr></wbr><span><span>Closeable</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-462089743%2FFunctions%2F-813795679"></span>
+                                   pointing-to="-462089743%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -646,12 +649,12 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">expect </span><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#2068605057%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#2068605057%2FFunctions%2F799242938"><span
                                                                 class="token function">addCloseable</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -663,7 +666,7 @@
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">expect </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#2093014716%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#2093014716%2FFunctions%2F799242938"><span
                                                                 class="token function">addCloseable</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -682,18 +685,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="1021598606%2FFunctions%2F-813795679"
+                                <a data-name="1286065894%2FFunctions%2F799242938"
                                    anchor-label="canRetrieverStart"
-                                   id="1021598606%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="1286065894%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1021598606%2FFunctions%2F-813795679"><span>can</span><wbr></wbr><span>Retriever</span><wbr></wbr><span><span>Start</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1286065894%2FFunctions%2F799242938"><span>can</span><wbr></wbr><span>Retriever</span><wbr></wbr><span><span>Start</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1021598606%2FFunctions%2F-813795679"></span>
+                                   pointing-to="1286065894%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -702,12 +705,12 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">override </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1021598606%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1286065894%2FFunctions%2F799242938"><span
                                                                 class="token function">canRetrieverStart</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="token punctuation">)</span><span
@@ -720,18 +723,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="-1845797905%2FFunctions%2F-813795679"
+                                <a data-name="-157033577%2FFunctions%2F799242938"
                                    anchor-label="continueToRetrieve"
-                                   id="-1845797905%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="-157033577%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1845797905%2FFunctions%2F-813795679"><span>continue</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Retrieve</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-157033577%2FFunctions%2F799242938"><span>continue</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Retrieve</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1845797905%2FFunctions%2F-813795679"></span>
+                                   pointing-to="-157033577%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -740,12 +743,12 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">override </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1845797905%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-157033577%2FFunctions%2F799242938"><span
                                                                 class="token function">continueToRetrieve</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -765,18 +768,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="1102255800%2FFunctions%2F-813795679"
+                                <a data-name="1102255800%2FFunctions%2F799242938"
                                    anchor-label="getCloseable"
-                                   id="1102255800%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="1102255800%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1102255800%2FFunctions%2F-813795679"><span>get</span><wbr></wbr><span><span>Closeable</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1102255800%2FFunctions%2F799242938"><span>get</span><wbr></wbr><span><span>Closeable</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1102255800%2FFunctions%2F-813795679"></span>
+                                   pointing-to="1102255800%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -785,16 +788,16 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">expect </span><span
                                                                 class="token keyword">fun </span><span
                                                                 class="token operator">&lt;</span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1102255800%2FFunctions%2F-813795679">T</a><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1102255800%2FFunctions%2F799242938">T</a><span
                                                                 class="token operator"> : </span><a
                                                                 href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-auto-closeable/index.html">AutoCloseable</a><span
                                                                 class="token operator">&gt; </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1102255800%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1102255800%2FFunctions%2F799242938"><span
                                                                 class="token function">getCloseable</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -803,7 +806,7 @@
                                                                 href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span
                                                                 class="token punctuation">)</span><span
                                                                 class="token operator">: </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1102255800%2FFunctions%2F-813795679">T</a><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1102255800%2FFunctions%2F799242938">T</a><span
                                                                 class="token operator">?</span>
                                                         </div>
                                                     </div>
@@ -812,18 +815,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="709476625%2FFunctions%2F-813795679"
+                                <a data-name="709476625%2FFunctions%2F799242938"
                                    anchor-label="notifyServerOffline"
-                                   id="709476625%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="709476625%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-session-state-flow-consumer/notify-server-offline.html"><span>notify</span><wbr></wbr><span>Server</span><wbr></wbr><span><span>Offline</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="709476625%2FFunctions%2F-813795679"></span>
+                                   pointing-to="709476625%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -832,7 +835,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">fun </span><a
@@ -847,18 +850,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="1897511250%2FFunctions%2F-813795679"
+                                <a data-name="1897511250%2FFunctions%2F799242938"
                                    anchor-label="performOnServerOffline"
-                                   id="1897511250%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="1897511250%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/perform-on-server-offline.html"><span>perform</span><wbr></wbr><span>On</span><wbr></wbr><span>Server</span><wbr></wbr><span><span>Offline</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1897511250%2FFunctions%2F-813795679"></span>
+                                   pointing-to="1897511250%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -867,7 +870,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">override </span><span
@@ -886,18 +889,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="-2047976695%2FFunctions%2F-813795679"
+                                <a data-name="-792519503%2FFunctions%2F799242938"
                                    anchor-label="restartRetriever"
-                                   id="-2047976695%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="-792519503%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-2047976695%2FFunctions%2F-813795679"><span>restart</span><wbr></wbr><span><span>Retriever</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-792519503%2FFunctions%2F799242938"><span>restart</span><wbr></wbr><span><span>Retriever</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-2047976695%2FFunctions%2F-813795679"></span>
+                                   pointing-to="-792519503%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -906,12 +909,12 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">override </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-2047976695%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-792519503%2FFunctions%2F799242938"><span
                                                                 class="token function">restartRetriever</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="token punctuation">)</span>
@@ -922,18 +925,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="216722984%2FFunctions%2F-813795679"
+                                <a data-name="216722984%2FFunctions%2F799242938"
                                    anchor-label="restartRetrieverIf"
-                                   id="216722984%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="216722984%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#216722984%2FFunctions%2F-813795679"><span>restart</span><wbr></wbr><span>Retriever</span><wbr></wbr><span><span>If</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#216722984%2FFunctions%2F799242938"><span>restart</span><wbr></wbr><span>Retriever</span><wbr></wbr><span><span>If</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="216722984%2FFunctions%2F-813795679"></span>
+                                   pointing-to="216722984%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -942,11 +945,11 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#216722984%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#216722984%2FFunctions%2F799242938"><span
                                                                 class="token function">restartRetrieverIf</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -961,17 +964,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="440889135%2FFunctions%2F-813795679"
-                                   anchor-label="retrieve" id="440889135%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <a data-name="-833084281%2FFunctions%2F799242938"
+                                   anchor-label="retrieve" id="-833084281%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#440889135%2FFunctions%2F-813795679"><span><span>retrieve</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-833084281%2FFunctions%2F799242938"><span><span>retrieve</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="440889135%2FFunctions%2F-813795679"></span>
+                                   pointing-to="-833084281%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -980,12 +983,12 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">override </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#440889135%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-833084281%2FFunctions%2F799242938"><span
                                                                 class="token function">retrieve</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -1019,18 +1022,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="1634599637%2FFunctions%2F-813795679"
+                                <a data-name="1634599637%2FFunctions%2F799242938"
                                    anchor-label="retrieveItem"
-                                   id="1634599637%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="1634599637%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="retrieve-item.html"><span>retrieve</span><wbr></wbr><span><span>Item</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1634599637%2FFunctions%2F-813795679"></span>
+                                   pointing-to="1634599637%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -1039,7 +1042,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">override </span><span
@@ -1058,18 +1061,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="-1180848995%2FFunctions%2F-813795679"
+                                <a data-name="-1180848995%2FFunctions%2F799242938"
                                    anchor-label="setActiveContext"
-                                   id="-1180848995%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="-1180848995%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1180848995%2FFunctions%2F-813795679"><span>set</span><wbr></wbr><span>Active</span><wbr></wbr><span><span>Context</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1180848995%2FFunctions%2F799242938"><span>set</span><wbr></wbr><span>Active</span><wbr></wbr><span><span>Context</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1180848995%2FFunctions%2F-813795679"></span>
+                                   pointing-to="-1180848995%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -1078,11 +1081,11 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1180848995%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1180848995%2FFunctions%2F799242938"><span
                                                                 class="token function">setActiveContext</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -1100,18 +1103,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="1687681384%2FFunctions%2F-813795679"
+                                <a data-name="1174316640%2FFunctions%2F799242938"
                                    anchor-label="showSnackbarMessage"
-                                   id="1687681384%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="1174316640%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1354607084%2FFunctions%2F-813795679"><span>show</span><wbr></wbr><span>Snackbar</span><wbr></wbr><span><span>Message</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#823096212%2FFunctions%2F799242938"><span>show</span><wbr></wbr><span>Snackbar</span><wbr></wbr><span><span>Message</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1687681384%2FFunctions%2F-813795679"></span>
+                                   pointing-to="1174316640%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -1120,10 +1123,10 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1354607084%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#823096212%2FFunctions%2F799242938"><span
                                                                 class="token function">showSnackbarMessage</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -1163,7 +1166,7 @@
                                                         </div>
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1157660846%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1535586054%2FFunctions%2F799242938"><span
                                                                 class="token function">showSnackbarMessage</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -1203,7 +1206,7 @@
                                                         </div>
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1790002750%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#-1098679958%2FFunctions%2F799242938"><span
                                                                 class="token function">showSnackbarMessage</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -1247,18 +1250,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="255431158%2FFunctions%2F-813795679"
+                                <a data-name="1510888350%2FFunctions%2F799242938"
                                    anchor-label="suspendRetriever"
-                                   id="255431158%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="1510888350%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#255431158%2FFunctions%2F-813795679"><span>suspend</span><wbr></wbr><span><span>Retriever</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1510888350%2FFunctions%2F799242938"><span>suspend</span><wbr></wbr><span><span>Retriever</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="255431158%2FFunctions%2F-813795679"></span>
+                                   pointing-to="1510888350%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -1267,12 +1270,12 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">override </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#255431158%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#1510888350%2FFunctions%2F799242938"><span
                                                                 class="token function">suspendRetriever</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="token punctuation">)</span>
@@ -1283,18 +1286,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="575449877%2FFunctions%2F-813795679"
+                                <a data-name="575449877%2FFunctions%2F799242938"
                                    anchor-label="suspendRetrieverIf"
-                                   id="575449877%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                   id="575449877%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
-                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#575449877%2FFunctions%2F-813795679"><span>suspend</span><wbr></wbr><span>Retriever</span><wbr></wbr><span><span>If</span></span></a></div>
+                  <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#575449877%2FFunctions%2F799242938"><span>suspend</span><wbr></wbr><span>Retriever</span><wbr></wbr><span><span>If</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="575449877%2FFunctions%2F-813795679"></span>
+                                   pointing-to="575449877%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -1303,11 +1306,11 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">open </span><span
                                                                 class="token keyword">fun </span><a
-                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#575449877%2FFunctions%2F-813795679"><span
+                                                                href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/index.html#575449877%2FFunctions%2F799242938"><span
                                                                 class="token function">suspendRetrieverIf</span></a><span
                                                                 class="token punctuation">(</span><span
                                                                 class="parameters "><span
@@ -1322,17 +1325,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-name="2140683715%2FFunctions%2F-813795679"
-                                   anchor-label="upsert" id="2140683715%2FFunctions%2F-813795679"
-                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                <a data-name="2140683715%2FFunctions%2F799242938"
+                                   anchor-label="upsert" id="2140683715%2FFunctions%2F799242938"
+                                   data-filterable-set=":composeApp/commonMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain"
+                                     data-filterable-set=":composeApp/commonMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/upsert.html"><span><span>upsert</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="2140683715%2FFunctions%2F-813795679"></span>
+                                   pointing-to="2140683715%2FFunctions%2F799242938"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -1341,7 +1344,7 @@
                                                      data-platform-hinted="data-platform-hinted">
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">fun </span><a
                                                                 href="../../com.tecknobit.refy.ui.shared.presentations/-upsert-screen-view-model/upsert.html"><span
@@ -1371,15 +1374,20 @@
                 </div>
             </div>
             <div class="footer">
-                <a href="#content" id="go-to-top-link"
-                   class="footer--button footer--button_go-to-top"></a>
-                <span>(c) 2025 Tecknobit</span>
-                <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
+                <div class="footer--container">
+                    <a href="#content" id="go-to-top-link"
+                       class="footer--button footer--button_go-to-top"></a>
+                    <div class="footer--content">
+                        <div>
+                            <span>Generated by </span>
+                            <a class="footer--link footer--link_external"
+                               href="https://github.com/Kotlin/dokka">
+                                Dokka
+                            </a>
+                            <div>(c) 2025 Tecknobit</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
