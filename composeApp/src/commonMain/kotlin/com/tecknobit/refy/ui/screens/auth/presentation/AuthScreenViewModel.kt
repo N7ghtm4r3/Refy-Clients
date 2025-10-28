@@ -97,8 +97,6 @@ class AuthScreenViewModel : EquinoxAuthViewModel(
             val settings = response[SETTINGS_KEY]?.jsonObject!!
             settings[CLOSE_APPLICATION_ON_LINK_OPEN_KEY].treatsAsBoolean()
         }
-        // TODO: TO REMOVE 
-        println("gmwgpwngwèngèiwe " + closeApplicationOnOpenLink)
         super.launchApp(response, name, surname, language, tagName, closeApplicationOnOpenLink)
         navToHome()
     }
