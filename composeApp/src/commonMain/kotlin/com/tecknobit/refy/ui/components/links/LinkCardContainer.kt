@@ -1,8 +1,5 @@
-@file:OptIn(ExperimentalFoundationApi::class)
-
 package com.tecknobit.refy.ui.components.links
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -96,6 +93,10 @@ fun LinkCardContainer(
         modifier = modifier
             .fillMaxWidth()
             .clip(CardDefaults.shape)
+            .handleCloseOnLinkOpen(
+                uriHandler = uriHandler,
+                link = link
+            )
             .combinedClickable(
                 onClick = { onClick.invoke(uriHandler) },
                 onDoubleClick = {
@@ -284,3 +285,18 @@ private fun LinkBottomBar(
         cancelButton()
     }
 }
+
+/**
+ * Method use to handle the `Close Application on Link Open` feature
+ *
+ * @param uriHandler The handler used to open the links
+ * @param link The link to open
+ *
+ * @return the modifier to apply to the component as [Modifier]
+ *
+ * @since 1.1.0
+ */
+internal expect fun Modifier.handleCloseOnLinkOpen(
+    uriHandler: UriHandler,
+    link: RefyLink,
+): Modifier

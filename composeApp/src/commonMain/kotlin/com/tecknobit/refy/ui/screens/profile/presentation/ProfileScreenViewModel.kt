@@ -84,6 +84,10 @@ class ProfileScreenViewModel : EquinoxProfileViewModel(
         onChange: () -> Unit,
     ) {
         // TODO: TO MAKE THE REQUEST THEN
+        localUser.initCloseApplicationOnLinkOpen(
+            closeApplicationOnLinkOpen = closeApplicationOnLinkOpen.value
+        )
+        onChange()
     }
 
 }
